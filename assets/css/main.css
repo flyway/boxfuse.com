@@ -1,8 +1,12 @@
 
 /* Setup Styles  */
 
+html {
+    height: 100%;
+}
+
 body {
-	background-color: #FFFFFF;
+    height: 100%;
 	font-family:'Open Sans',sans-serif;
 }
 
@@ -75,12 +79,26 @@ h2 {
 #contact {
 	background:#202020;
 }
+
+#wrapper {
+    min-height: 100%;
+    margin: 0 auto -130px;
+}
+
+#push {
+    height: 130px;
+}
+
 #footer {
+    clear: both;
+    color: #ffffff;
     padding-top: 20px;
     background:#202020;
     font-size: 10px;
     line-height: 12px;
     text-align: center;
+    padding-bottom: 10px;
+    height: 130px;
 }
 
 #footer i {
@@ -390,6 +408,7 @@ h2 {
 
 #top3 {
     text-align: center;
+    background-color: #ffffff;
 }
 
 #top3 i {
@@ -423,4 +442,68 @@ h2 {
 .container-shaded {
     background-color: #99B6CA;
     color: white;
+}
+
+#menu.well {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#menu.well ul.nav {
+    float: none;
+    margin-top: 0;
+}
+
+#menu .date {
+    font-size: 10px;
+}
+
+.nav > li.disabled.nav-header > a {
+    cursor: default;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#header {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+#header ul {
+    margin-top: 10px;
+}
+
+.nav-tabs {
+    font-size: 18px;
+}
+
+.nav-pills {
+    font-size: 16px;
+}
+
+.nav-pills>li>a {
+    border-radius: 0;
+}
+
+.doc-title {
+    margin-top: -5px;
+    font-size: 36px;
+    font-weight: 400;
+}
+
+.doc-section {
+    margin-top: 40px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#getstarted {
+    padding-top: 40px;
+}
+
+.next-steps {
+    margin-top: 40px;
 }
