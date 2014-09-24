@@ -17,12 +17,26 @@
 </head>
 <body>
 <div id="wrapper">
+    <div  id="header" class="container">
+        <div class="row">
+            <div class="col-md-3">
+                {% if page.tab != 'home' %}<a href="/"><img src="/assets/img/logo-left-200.png" alt="Boxfuse"></a>{% endif %}
+            </div>
+            <div class="col-md-9">
+                <ul id="tabs" class="nav nav-tabs navbar-right">
+                    <li
+                    {% if page.tab == 'learn' %} class="active" {% endif %}>
+                    <a href="/learn">Learn More</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 {{ content }}
 <div id="push"></div>
 </div>
 <div id="footer">
     <p>
-        &copy; 2014 Boxfuse GmbH -
+        &copy; 2014 Boxfuse GmbH - All rights reserved -
         <a href="#impressum" data-toggle="modal">Impressum</a>
     </p>
 
