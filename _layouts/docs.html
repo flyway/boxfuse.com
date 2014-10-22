@@ -1,42 +1,19 @@
 ---
 layout: default
 tab: docs
-title: Docs
+title: Documentation
 ---
-<div  id="header" class="container">
-    <div class="row">
-        <div class="col-md-3">
-            {% if page.tab != 'home' %}<a href="/"><img src="/assets/img/logo-left-200.png" alt="Boxfuse"></a>{% endif %}
-        </div>
-        <div class="col-md-9">
-            <ul id="tabs" class="nav nav-tabs navbar-right">
-                <li
-                {% if page.tab == 'getStarted' %} class="active" {% endif %}>
-                <a href="/learn">Get Started</a></li>
-                <li
-                {% if page.tab == 'blog' %} class="active" {% endif %}>
-                <a href="/blog"> Blog</a></li>
-                <li
-                {% if page.tab == 'support' %} class="active" {% endif %}>
-                <a href="/support">Help &amp; Support</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-<div class="container">
+<div id="learn" class="container">
     <div class="row">
         <div class="col-md-3">
             <div id="menu">
                 <ul class="nav nav-pills nav-stacked">
                     <li
-                    {% if page.menu == 'overview' %} class="active" {% endif %}>
-                    <a href="/documentation">Overview</a></li>
+                    {% if page.menu == 'commandline' %} class="active" {% endif %}>
+                    <a href="/docs/commandline.html">Command-line client</a></li>
                     <li
-                    {% if page.menu == 'migration' %} class="active" {% endif %}>
-                    <a href="/documentation/migration">Migrations</a></li>
-                    <li
-                    {% if page.menu == 'existingDatabaseSetup' %} class="active" {% endif %}>
-                    <a href="/documentation/existingDatabaseSetup.html">Existing database setup</a></li>
+                    {% if page.menu == 'maven' %} class="active" {% endif %}>
+                    <a href="/docs/maven.html">Maven plugin</a></li>
                 </ul>
             </div>
         </div>

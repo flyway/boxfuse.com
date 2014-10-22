@@ -1,21 +1,17 @@
 ---
-layout: learn
-menu: commandline
-subtitle: 'Command-line client'
+layout: docs
+menu: maven
+subtitle: 'Maven plugin'
 ---
-<div id="getstarted-cli">
-    <p class="doc-title">Command-line client</p>
+<div id="getstarted-maven">
+    <p class="doc-title">Maven plugin</p>
 
-    <p>The Boxfuse Command-line Client is the CLI tool to execute the various commands.</p>
+    <p>The Boxfuse Maven plugin lets you execute the various commands directly from your Maven build.</p>
 
-    <p><img src="/assets/img/learn/commandline.png" alt="Command-line"/></p>
-
-    <p class="doc-section">Supported operating systems</p>
+    <p class="doc-section">Supported Maven versions</p>
 
     <ul>
-        <li>Windows</li>
-        <li>Mac OSX</li>
-        <li>Linux</li>
+        <li>Maven 3.0 or newer</li>
     </ul>
 
     <p class="doc-section">Prerequisites</p>
@@ -27,40 +23,24 @@ subtitle: 'Command-line client'
         <li>AWS Account (for AWS deployments)</li>
     </ul>
 
-    <p class="doc-section">Installation</p>
-
-    <ul>
-        <li>Download the latest version of the Boxfuse Command-line client from the Boxfuse Dashboard</li>
-        <li>Extract it to the directory of your choice</li>
-        <li>Add the root directory of the extracted archive to your PATH</li>
-    </ul>
-
-    <p class="doc-section">Authentication</p>
-
-    <p>Your <strong>download is personalized</strong> and already includes the necessary credentials to connect to your
-        Boxfuse Account.</p>
-
     <p class="doc-section">Configuration</p>
 
     <p>Boxfuse is opinionated, favors <strong>convention over configuration</strong> and comes with <strong>sensible
         defaults</strong>.</p>
 
-    <p>You can override these defaults using either configuration files or program arguments. The installation comes
-        with a configuration file (conf/boxfuse.conf) you can edit. You also have the option to create a system-wide
-        configuration file in your home directory (~/.boxfuse/boxfuse.conf).
-    </p>
+    <p>You can override these defaults by either configuring the plugin, adding Maven properties or passing in System properties.</p>
 
-    <p>Program arguments <em>override</em> &lt;install-dir&gt;/conf/boxfuse.conf <em>which itself overrides</em>
-        ~/.boxfuse/boxfuse.conf</p>
+    <p>System properties <em>override</em> Maven properties <em>which themselves override</em>
+        the plugin configuration.</p>
 
     <p class="doc-section">Commands</p>
     <p class="doc-section">versions</p>
 
     <p>Lists all versions of a specific <em>Component</em> available in the <em>Boxfuse Component Inventory</em>.</p>
 
-    <p><strong>Usage: </strong> boxfuse versions &lt;component&gt;</p>
+    <p><strong>Usage: </strong> mvn boxfuse:versions -Dboxfuse.component=&lt;component&gt;</p>
 
-    <pre class="console">&gt; boxfuse versions tomcat
+    <pre class="console">&gt; mvn boxfuse:versions -Dboxfuse.component=tomcat
 
 Available tomcat versions
 -------------------------
@@ -75,11 +55,9 @@ Available tomcat versions
 
     <p>Fuses your <em>App</em> together with the <em>Components</em> it requires into a <em>Bootable App</em>.</p>
 
-    <p><strong>Usage: </strong> boxfuse fuse &lt;app&gt;</p>
+    <p><strong>Usage: </strong> mvn boxfuse:fuse</p>
 
-    <p>If no App is specified, Boxfuse will search for a suitable one in the current directory.</p>
-
-    <pre class="console">&gt; boxfuse fuse sample.war
+    <pre class="console">&gt; mvn boxfuse:fuse
 
 Generating Bootable App for sample.war ...
 Bootable App generated (48157 K) in 00:05.901s -> ba-5e72abf5a</pre>
@@ -91,27 +69,36 @@ Bootable App generated (48157 K) in 00:05.901s -> ba-5e72abf5a</pre>
         <li>.war file</li>
     </ul>
 
-    <p><br/><strong>Arguments:</strong></p>
+    <p><br/><strong>Properties:</strong></p>
 
     <table class="table">
         <thead>
         <tr>
-            <th>Name</th>
+            <th>Plugin Parameter</th>
+            <th>Maven/System property</th>
             <th>Default</th>
             <th>Description</th>
         </tr>
         </thead>
         <tr>
-            <td>-components.<em>NAME</em>=<em>version</em></td>
-            <td><em>latest</em></td>
-            <td>Pins the component with this name onto this version.<br/>
-                Example: -components.tomcat=8.0.9</td>
+            <td>payload</td>
+            <td>boxfuse.payload</td>
+            <td><em>the project artifact</em></td>
+            <td>The Payload to fuse in a Bootable App</td>
         </tr>
         <tr>
-            <td>-ports.<em>NAME</em>=<em>number</em></td>
+            <td>components</td>
+            <td>boxfuse.components.<em>NAME</em></td>
+            <td><em>latest</em></td>
+            <td>Pins the component with this name onto this version.<br/>
+                Example: -Dboxfuse.components.tomcat=8.0.9</td>
+        </tr>
+        <tr>
+            <td>ports</td>
+            <td>boxfuse.ports.<em>NAME</em></td>
             <td>http=80</td>
             <td>Maps the port of the app with this name onto this number.<br/>
-                Example: -ports.jmx=8001</td>
+                Example: -Dboxfuse.ports.jmx=8001</td>
         </tr>
     </table>
 
@@ -119,9 +106,9 @@ Bootable App generated (48157 K) in 00:05.901s -> ba-5e72abf5a</pre>
 
     <p>Lists all available <em>Bootable Apps</em>.</p>
 
-    <p><strong>Usage: </strong> boxfuse ls</p>
+    <p><strong>Usage: </strong> mvn boxfuse:ls</p>
 
-    <pre class="console">&gt; boxfuse ls
+    <pre class="console">&gt; mvn boxfuse:ls
 
 Available Bootable Apps:
 +--------------+------+------------+-------+---------+--------------+------------+---------+---------------------+
@@ -135,20 +122,39 @@ Total: 1</pre>
 
     <p>Removes a <em>Bootable App</em>.</p>
 
-    <p><strong>Usage: </strong> boxfuse rm &lt;bootable app&gt;</p>
+    <p><strong>Usage: </strong> mvn boxfuse:rm -Dboxfuse.bootableapp=&lt;bootable app&gt;</p>
 
-    <pre class="console">&gt; boxfuse rm ba-5e72abf5a
+    <pre class="console">&gt; mvn boxfuse:rm -Dboxfuse.bootableapp=ba-5e72abf5a
 
 Destroying Bootable App ba-5e72abf5a ...
 ba-5e72abf5a destroyed in 00:00.015s</pre>
+
+    <p><br/><strong>Properties:</strong></p>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Plugin Parameter</th>
+            <th>Maven/System property</th>
+            <th>Default</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tr>
+            <td>bootableapp</td>
+            <td>boxfuse.bootableapp</td>
+            <td></td>
+            <td>The Bootable App to remove</td>
+        </tr>
+    </table>
 
     <p class="doc-section">convert</p>
 
     <p>Converts a <em>Bootable App</em> into a <em>Platform</em>-specific <em>Image</em>.</p>
 
-    <p><strong>Usage: </strong> boxfuse convert &lt;bootable app&gt;</p>
+    <p><strong>Usage: </strong> mvn boxfuse:convert -Dboxfuse.bootableapp=&lt;bootable app&gt;</p>
 
-    <pre class="console">&gt; boxfuse convert ba-5e72abf5a -platform=aws
+    <pre class="console">&gt; boxfuse convert -Dboxfuse.bootableapp=ba-5e72abf5a -Dboxfuse.platform=aws
 
 Uploading ba-5e746e945 (48157 KB) to S3 bucket boxfuse-766686188748-eu-west-1 ...
 48157 KB remaining ...
@@ -158,38 +164,50 @@ ba-5e746e945 uploaded at 6708 KB/s
 Registering hvm-is AMI for Bootable App ba-5e746e945 ...
 Registered AMI for Bootable App ba-5e746e945 on AWS (eu-west-1) -> ami-eea30e99 (hvm-is)</pre>
 
-    <p><strong>Arguments:</strong></p>
+    <p><br/><strong>Properties:</strong></p>
 
     <table class="table">
         <thead>
         <tr>
-            <th>Name</th>
+            <th>Plugin Parameter</th>
+            <th>Maven/System property</th>
             <th>Platforms</th>
             <th>Default</th>
             <th>Description</th>
         </tr>
         </thead>
         <tr>
-            <td>-platform=...</td>
+            <td>bootableapp</td>
+            <td>boxfuse.bootableapp</td>
+            <td></td>
+            <td></td>
+            <td>The Bootable App to convert</td>
+        </tr>
+        <tr>
+            <td>platform</td>
+            <td>boxfuse.platform</td>
             <td></td>
             <td>virtualbox</td>
             <td>The Platform to use<br/>
                 Choices: virtualbox | aws</td>
         </tr>
         <tr>
-            <td>-aws.region=...</td>
+            <td>aws.region</td>
+            <td>boxfuse.aws.region</td>
             <td>aws</td>
             <td>eu-west-1</td>
             <td>The AWS region to use</td>
         </tr>
         <tr>
-            <td>-aws.bucket=...</td>
+            <td>aws.bucket</td>
+            <td>boxfuse.aws.bucket</td>
             <td>aws</td>
             <td><em>auto-created</em></td>
             <td>The S3 bucket to use for uploading AMIs</td>
         </tr>
         <tr>
-            <td>-aws.amitype=...</td>
+            <td>aws.amitype</td>
+            <td>boxfuse.aws.amitype</td>
             <td>aws</td>
             <td>hvm-is</td>
             <td>The type of AMIs to convert a Bootable App into<br/>
@@ -201,9 +219,9 @@ Registered AMI for Bootable App ba-5e746e945 on AWS (eu-west-1) -> ami-eea30e99 
 
     <p>Lists all available <em>Images</em>.</p>
 
-    <p><strong>Usage: </strong> boxfuse lsi</p>
+    <p><strong>Usage: </strong> mvn boxfuse:lsi</p>
 
-    <pre class="console">&gt; boxfuse lsi -platform=aws
+    <pre class="console">&gt; mvn boxfuse:lsi -Dboxfuse.platform=aws
 
 Images on AWS (eu-west-1):
 +--------------+--------------+---------+
@@ -214,26 +232,29 @@ Images on AWS (eu-west-1):
 +--------------+--------------+---------+
 Total: 2</pre>
 
-    <p><strong>Arguments:</strong></p>
+    <p><br/><strong>Properties:</strong></p>
 
     <table class="table">
         <thead>
         <tr>
-            <th>Name</th>
+            <th>Plugin Parameter</th>
+            <th>Maven/System property</th>
             <th>Platforms</th>
             <th>Default</th>
             <th>Description</th>
         </tr>
         </thead>
         <tr>
-            <td>-platform=...</td>
+            <td>platform</td>
+            <td>boxfuse.platform</td>
             <td></td>
             <td>virtualbox</td>
             <td>The Platform to use<br/>
                 Choices: virtualbox | aws</td>
         </tr>
         <tr>
-            <td>-aws.region=...</td>
+            <td>aws.region</td>
+            <td>boxfuse.aws.region</td>
             <td>aws</td>
             <td>eu-west-1</td>
             <td>The AWS region to use</td>
@@ -244,32 +265,42 @@ Total: 2</pre>
 
     <p>Removes an <em>Image</em>.</p>
 
-    <p><strong>Usage: </strong> boxfuse rmi &lt;image&gt;</p>
+    <p><strong>Usage: </strong> mvn boxfuse:rmi -Dboxfuse.image=&lt;image&gt;</p>
 
-    <pre class="console">&gt; boxfuse rmi ami-abcd1234 -platform=aws
+    <pre class="console">&gt; mvn boxfuse:rmi -Dboxfuse.image=ami-abcd1234 -Dboxfuse.platform=aws
 
 Deregistering ami-abcd1234 for Bootable App ba-5e746e945 ...</pre>
 
-    <p><strong>Arguments:</strong></p>
+    <p><br/><strong>Properties:</strong></p>
 
     <table class="table">
         <thead>
         <tr>
-            <th>Name</th>
+            <th>Plugin Parameter</th>
+            <th>Maven/System property</th>
             <th>Platforms</th>
             <th>Default</th>
             <th>Description</th>
         </tr>
         </thead>
         <tr>
-            <td>-platform=...</td>
+            <td>platform</td>
+            <td>boxfuse.platform</td>
             <td></td>
             <td>virtualbox</td>
             <td>The Platform to use<br/>
                 Choices: virtualbox | aws</td>
         </tr>
         <tr>
-            <td>-aws.region=...</td>
+            <td>image</td>
+            <td>boxfuse.image</td>
+            <td></td>
+            <td></td>
+            <td>The Image to remove</td>
+        </tr>
+        <tr>
+            <td>aws.region</td>
+            <td>boxfuse.aws.region</td>
             <td>aws</td>
             <td>eu-west-1</td>
             <td>The AWS region to use</td>
@@ -280,11 +311,9 @@ Deregistering ami-abcd1234 for Bootable App ba-5e746e945 ...</pre>
 
     <p>Runs an <em>Instance</em> of an <em>Image</em> on a specific <em>Platform</em>.</p>
 
-    <p><strong>Usage: </strong> boxfuse run &lt;app | bootable app | image&gt;</p>
+    <p><strong>Usage: </strong> mvn boxfuse:run</p>
 
-    <p>If no App is specified, Boxfuse will search for a suitable one in the current directory.</p>
-
-    <pre class="console">&gt; boxfuse run ami-52399425 -platform=aws
+    <pre class="console">&gt; mvn boxfuse:run -Dboxfuse.image=ami-52399425 -Dboxfuse.platform=aws
 
 Creating Security Group boxfuse-securitygroup-ba-5e746e945 ...
 Launching Instance of ba-5e746e945 on AWS (eu-west-1) ...
@@ -292,50 +321,64 @@ Instance launched in 00:16.302s -> i-c3775080
 Waiting for Payload to start on Instance i-c3775080 ...
 Payload started in 00:12.374s -> http://54.77.254.3</pre>
 
-    <p><strong>Arguments:</strong></p>
+    <p><br/><strong>Properties:</strong></p>
 
     <table class="table">
         <thead>
         <tr>
-            <th>Name</th>
+            <th>Plugin Parameter</th>
+            <th>Maven/System property</th>
             <th>Platforms</th>
             <th>Default</th>
             <th>Description</th>
         </tr>
         </thead>
         <tr>
-            <td>-platform=...</td>
+            <td>platform</td>
+            <td>boxfuse.platform</td>
             <td></td>
             <td>virtualbox</td>
             <td>The Platform to use<br/>
                 Choices: virtualbox | aws</td>
         </tr>
         <tr>
-            <td>-cpus=...</td>
+            <td>image</td>
+            <td>boxfuse.image</td>
+            <td></td>
+            <td></td>
+            <td>The Image to use</td>
+        </tr>
+        <tr>
+            <td>cpu</td>
+            <td>boxfuse.cpus</td>
             <td>virtualbox</td>
             <td><em>same as host</em></td>
             <td>The number of CPUs to assign to an Instance</td>
         </tr>
         <tr>
-            <td>-ram=...</td>
+            <td>ram</td>
+            <td>boxfuse.ram</td>
             <td>virtualbox</td>
             <td>1024</td>
             <td>The amount of RAM in MB to assign to an Instance</td>
         </tr>
         <tr>
-            <td>-aws.region=...</td>
+            <td>aws.region</td>
+            <td>boxfuse.aws.region</td>
             <td>aws</td>
             <td>eu-west-1</td>
             <td>The AWS region to use</td>
         </tr>
         <tr>
-            <td>-aws.bucket=...</td>
+            <td>aws.bucket</td>
+            <td>boxfuse.aws.bucket</td>
             <td>aws</td>
             <td><em>auto-created</em></td>
             <td>For Apps &amp; Bootable Apps only<br/>The S3 bucket to use for uploading AMIs</td>
         </tr>
         <tr>
-            <td>-aws.amitype=...</td>
+            <td>aws.amitype</td>
+            <td>boxfuse.aws.amitype</td>
             <td>aws</td>
             <td>hvm-is</td>
             <td>For Apps &amp; Bootable Apps only<br/>
@@ -343,7 +386,8 @@ Payload started in 00:12.374s -> http://54.77.254.3</pre>
                 Choices: pv-is, pv-ebs, hvm-is, hvm-ebs</td>
         </tr>
         <tr>
-            <td>-aws.instancetype=...</td>
+            <td>aws.instancetype</td>
+            <td>boxfuse.aws.instancetype</td>
             <td>aws</td>
             <td>m3.medium</td>
             <td>The type of instance to launch on AWS</td>
@@ -354,9 +398,9 @@ Payload started in 00:12.374s -> http://54.77.254.3</pre>
 
     <p>Lists all running <em>Instances</em>.</p>
 
-    <p><strong>Usage: </strong> boxfuse ps</p>
+    <p><strong>Usage: </strong> mvn boxfuse:ps</p>
 
-    <pre class="console">&gt; boxfuse ps -platform=aws
+    <pre class="console">&gt; mvn boxfuse:ps -Dboxfuse.platform=aws
 
 Running Instances on AWS (eu-west-1):
 +------------+--------------+--------------+-----------+-----------------------+---------------------+
@@ -368,26 +412,29 @@ Running Instances on AWS (eu-west-1):
 +------------+--------------+--------------+-----------+-----------------------+---------------------+
 Total: 3</pre>
 
-    <p><strong>Arguments:</strong></p>
+    <p><br/><strong>Properties:</strong></p>
 
     <table class="table">
         <thead>
         <tr>
-            <th>Name</th>
+            <th>Plugin Parameter</th>
+            <th>Maven/System property</th>
             <th>Platforms</th>
             <th>Default</th>
             <th>Description</th>
         </tr>
         </thead>
         <tr>
-            <td>-platform=...</td>
+            <td>platform</td>
+            <td>boxfuse.platform</td>
             <td></td>
             <td>virtualbox</td>
             <td>The Platform to use<br/>
                 Choices: virtualbox | aws</td>
         </tr>
         <tr>
-            <td>-aws.region=...</td>
+            <td>aws.region</td>
+            <td>boxfuse.aws.region</td>
             <td>aws</td>
             <td>eu-west-1</td>
             <td>The AWS region to use</td>
@@ -398,9 +445,9 @@ Total: 3</pre>
 
     <p>Gracefully kill an <em>Instance</em>.</p>
 
-    <p><strong>Usage: </strong> boxfuse kill &lt;instance&gt;</p>
+    <p><strong>Usage: </strong> mvn boxfuse:kill -Dboxfuse.instance=&lt;instance&gt;</p>
 
-    <pre class="console">&gt; boxfuse kill i-c3775080 -platform=aws
+    <pre class="console">&gt; mvn boxfuse:kill -Dboxfuse.instance=i-c3775080 -Dboxfuse.platform=aws
 
 Destroying Instance i-c3775080 on AWS (eu-west-1) ...
 Instance destroyed in 00:23.637s
@@ -409,26 +456,36 @@ Deregistering ami-52399425 for Bootable App ba-5e746e945 ...
 Destroying Bootable App ba-5e746e945 ...
 ba-5e746e945 destroyed in 00:00.011s</pre>
 
-    <p><strong>Arguments:</strong></p>
+    <p><br/><strong>Properties:</strong></p>
 
     <table class="table">
         <thead>
         <tr>
-            <th>Name</th>
+            <th>Plugin Parameter</th>
+            <th>Maven/System property</th>
             <th>Platforms</th>
             <th>Default</th>
             <th>Description</th>
         </tr>
         </thead>
         <tr>
-            <td>-platform=...</td>
+            <td>platform</td>
+            <td>boxfuse.platform</td>
             <td></td>
             <td>virtualbox</td>
             <td>The Platform to use<br/>
                 Choices: virtualbox | aws</td>
         </tr>
         <tr>
-            <td>-aws.region=...</td>
+            <td>instance</td>
+            <td>boxfuse.instance</td>
+            <td></td>
+            <td></td>
+            <td>The Instance to kill</td>
+        </tr>
+        <tr>
+            <td>aws.region</td>
+            <td>boxfuse.aws.region</td>
             <td>aws</td>
             <td>eu-west-1</td>
             <td>The AWS region to use</td>
@@ -439,32 +496,42 @@ ba-5e746e945 destroyed in 00:00.011s</pre>
 
     <p>Opens a web browser pointing at the https or http port of an <em>Instance</em>.</p>
 
-    <p><strong>Usage: </strong> boxfuse open &lt;instance&gt;</p>
+    <p><strong>Usage: </strong> mvn boxfuse:open -Dboxfuse.instance=&lt;instance&gt;</p>
 
-    <pre class="console">&gt; boxfuse open vb-5f3cf9387
+    <pre class="console">&gt; mvn boxfuse:open -Dboxfuse.instance=vb-5f3cf9387
 
 Launching default browser to access Instance 'vb-5f3cf9387' (Url: http://127.0.0.1:8888) ...</pre>
 
-    <p><strong>Arguments:</strong></p>
+    <p><br/><strong>Properties:</strong></p>
 
     <table class="table">
         <thead>
         <tr>
-            <th>Name</th>
+            <th>Plugin Parameter</th>
+            <th>Maven/System property</th>
             <th>Platforms</th>
             <th>Default</th>
             <th>Description</th>
         </tr>
         </thead>
         <tr>
-            <td>-platform=...</td>
+            <td>platform</td>
+            <td>boxfuse.platform</td>
             <td></td>
             <td>virtualbox</td>
             <td>The Platform to use<br/>
                 Choices: virtualbox | aws</td>
         </tr>
         <tr>
-            <td>-aws.region=...</td>
+            <td>instance</td>
+            <td>boxfuse.instance</td>
+            <td></td>
+            <td></td>
+            <td>The Instance to use</td>
+        </tr>
+        <tr>
+            <td>aws.region</td>
+            <td>boxfuse.aws.region</td>
             <td>aws</td>
             <td>eu-west-1</td>
             <td>The AWS region to use</td>
@@ -475,9 +542,9 @@ Launching default browser to access Instance 'vb-5f3cf9387' (Url: http://127.0.0
 
     <p>Display the console logs of an <em>Instance</em>.</p>
 
-    <p><strong>Usage: </strong> boxfuse logs &lt;instance&gt;</p>
+    <p><strong>Usage: </strong> mvn boxfuse:logs -Dboxfuse.instance=&lt;instance&gt;</p>
 
-    <pre class="console">&gt; boxfuse logs vb-5f3cf9387
+    <pre class="console">&gt; mvn boxfuse:logs -Dboxfuse.instance=vb-5f3cf9387
 
 init started: BusyBox v1.22.1 (2014-07-16 12:38:11 UTC)
 starting pid 521, tty '': '/etc/init.d/rcS'
@@ -556,26 +623,36 @@ INFO: Starting ProtocolHandler ["http-nio-80"]
 Oct 12, 2014 9:28:31 PM org.apache.catalina.startup.Catalina start
 INFO: Server startup in 250 ms</pre>
 
-    <p><strong>Arguments:</strong></p>
+    <p><br/><strong>Properties:</strong></p>
 
     <table class="table">
         <thead>
         <tr>
-            <th>Name</th>
+            <th>Plugin Parameter</th>
+            <th>Maven/System property</th>
             <th>Platforms</th>
             <th>Default</th>
             <th>Description</th>
         </tr>
         </thead>
         <tr>
-            <td>-platform=...</td>
+            <td>platform</td>
+            <td>boxfuse.platform</td>
             <td></td>
             <td>virtualbox</td>
             <td>The Platform to use<br/>
                 Choices: virtualbox | aws</td>
         </tr>
         <tr>
-            <td>-aws.region=...</td>
+            <td>instance</td>
+            <td>boxfuse.instance</td>
+            <td></td>
+            <td></td>
+            <td>The Instance to use</td>
+        </tr>
+        <tr>
+            <td>aws.region</td>
+            <td>boxfuse.aws.region</td>
             <td>aws</td>
             <td>eu-west-1</td>
             <td>The AWS region to use</td>
