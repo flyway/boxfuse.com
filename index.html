@@ -4,29 +4,49 @@ tab: home
 ---
 <div id="big-sell" class="container container-padded">
     <div class="row">
-        <div class="span12">
+        <div class="col-md-12">
             <img src="assets/img/logo.png" alt="Boxfuse"/>
 
             <p id="tagline" class="strong-heading">
-                <span>Immutable Infrastructure<br/>Made Easy.</span>
-            </p>
-
-            <p>Fuse once, run anywhere.</p>
-
-            <p>
-                <a href="#" data-section="#contact" class="btn btn-primary btn-large btn-jumbo scroller">Get notified
-                    when we
-                    launch <i class="fa fa-arrow-right"></i></a><br/>
-            </p>
-
-            <p id="worksOn">
-                Works on:
-                <i class="fa fa-windows" title="Windows"></i>
-                <i class="fa fa-apple" title="Mac OSX"></i>
-                <i class="fa fa-linux" title="Linux"></i>
+                <span>App to immutable machine image in seconds<br/>Runs on both VirtualBox and AWS unchanged</span>
             </p>
         </div>
     </div>
+    <iframe name="contact-hidden-iframe" id="contact-hidden-iframe2" class="hide"></iframe>
+    <form action="https://docs.google.com/forms/d/15wjjLRur0smKv9EWt_LiPbjhRhYpjfSXS5ArWL7vf50/formResponse"
+          method="POST" class="contact-form" target="contact-hidden-iframe2" role="form">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="form-group">
+
+                    <input type="text" class="form-control" name="entry.860686041" id="entry_860686041"
+                           placeholder="Your Name">
+                </div>
+                <div class="form-group">
+
+                    <input type="text" class="form-control" name="entry.1852498956" id="entry_1852498956"
+                           placeholder="Your Email">
+                </div>
+
+                <input type="hidden" name="pageNumber" value="0">
+                <input type="hidden" name="backupCache" value="">
+                <input type="hidden" name="submit" value="Submit">
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="control-group">
+                    <div class="controls">
+                        <button type="submit" class="btn btn-primary btn-large btn-jumbo">Send me an invite for the
+                            private beta
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
 
 
@@ -79,7 +99,8 @@ tab: home
                             allowfullscreen></iframe>
                 </p>
                 <p class="text-center">
-                    <a href="/learn/why.html" class="btn btn-primary btn-large btn-jumbo">Learn more <i class="fa fa-arrow-right"></i></a><br/>
+                    <a href="/learn/why.html" class="btn btn-primary btn-large btn-jumbo">Learn more <i
+                            class="fa fa-arrow-right"></i></a><br/>
                 </p>
             </div>
         </div>
@@ -91,13 +112,13 @@ tab: home
 <div id="contact">
     <div class="container container-padded dark">
         <div class="row">
-            <h2>Get notified when we launch</h2>
+            <h2>Join the private beta</h2>
 
             <div class="col-md-1"></div>
             <div class="col-md-4">
                 <iframe name="contact-hidden-iframe" id="contact-hidden-iframe" class="hide"></iframe>
                 <form action="https://docs.google.com/forms/d/15wjjLRur0smKv9EWt_LiPbjhRhYpjfSXS5ArWL7vf50/formResponse"
-                      method="POST" id="contact-form" target="contact-hidden-iframe" role="form">
+                      method="POST" class="contact-form" target="contact-hidden-iframe" role="form">
                     <div class="form-group">
                         <label class="control-label" for="entry_860686041">Your Name</label>
 
@@ -112,7 +133,8 @@ tab: home
                     </div>
                     <div class="control-group">
                         <div class="controls">
-                            <button type="submit" class="btn btn-primary">Yes, tell me when you launch!</button>
+                            <button type="submit" class="btn btn-primary">Send me an invite for the
+                                private beta</button>
                         </div>
                     </div>
 
@@ -142,7 +164,7 @@ tab: home
                 <h3>Success</h3>
             </div>
             <div class="modal-body">
-                <p>Thanks! We'll keep you updated.</p>
+                <p>Thanks! We'll be in touch when we're ready to let you on board.</p>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary" data-dismiss="modal">Close</button>

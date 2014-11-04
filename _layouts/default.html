@@ -25,11 +25,11 @@
             <div class="col-md-9">
                 <ul id="tabs" class="nav nav-tabs navbar-right">
                     <li
-                    {% if page.tab == 'learn' %} class="active" {% endif %}>
-                    <a href="/learn/why.html">Learn More</a></li>
+                    {% if page.menu == 'why' %} class="active" {% endif %}>
+                    <a href="/learn/why.html">Why Immutable Infrastructure?</a></li>
                     <li
-                    {% if page.tab == 'docs' %} class="active" {% endif %}>
-                    <a href="/docs/commandline.html">Documentation</a></li>
+                    {% if page.menu == 'how' %} class="active" {% endif %}>
+                    <a href="/learn/how.html">How Boxfuse works</a></li>
                 </ul>
             </div>
         </div>
@@ -105,7 +105,7 @@
         });
 
 
-        $('#contact-form').submit(function (e) {
+        $('.contact-form').submit(function (e) {
             $('#contact-confirm').modal('show');
         });
 

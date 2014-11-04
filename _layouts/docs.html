@@ -9,6 +9,9 @@ title: Documentation
             <div id="menu">
                 <ul class="nav nav-pills nav-stacked">
                     <li
+                    {% if page.menu == 'commands' %} class="active" {% endif %}>
+                    <a href="/docs/commands.html">Commands</a></li>
+                    <li
                     {% if page.menu == 'commandline' %} class="active" {% endif %}>
                     <a href="/docs/commandline.html">Command-line client</a></li>
                     <li
