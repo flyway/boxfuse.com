@@ -226,6 +226,13 @@ h2 {
 	-webkit-box-shadow:none;
 }
 
+#screencast {
+    left: 50%;
+    margin-left: -427px;
+    margin-bottom: 40px;
+    position: relative;
+}
+
 @media (max-width: 979px) {
 
 	.nav-collapse .nav > li > a:hover,.nav-collapse .dropdown-menu a:hover {
@@ -267,6 +274,25 @@ h2 {
 
     h1 {
         font-size: 72px;
+    }
+
+    #big-sell-logo {
+        width: 100%;
+    }
+
+    #tagline {
+        font-size: 24px;
+    }
+
+    #big-sell button {
+        font-size: 16px;
+    }
+
+    #screencast {
+        width: 100%;
+        left: 0;
+        margin-left: 0;
+        height: 200px;
     }
 
 }
@@ -339,13 +365,6 @@ h2 {
 
 .large-icon {
     font-size: 120px;
-}
-
-#screencast {
-    left: 50%;
-    margin-left: -427px;
-    margin-bottom: 40px;
-    position: relative;
 }
 
 
