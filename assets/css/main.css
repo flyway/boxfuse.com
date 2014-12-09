@@ -520,3 +520,8 @@ pre.console {
 .text-center {
     text-align: center;
 }
+
+.legal {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
