@@ -14,53 +14,52 @@ subtitle: 'Commands'
 
     <p>Before we can start we have to talk about a few simple terms you will encounter:</p>
 
-    <p><strong>Boxfuse Dashboard</strong>: The online dashboard to manage your Boxfuse account and usage.</p>
+    <p><strong>Boxfuse Console</strong>: The online console to manage your <em>Apps</em></p>
 
-    <p><strong>Boxfuse Client</strong>: The installable client that lets you invoke the various commands pictured above.</p>
+    <p><strong>Boxfuse Client</strong>: The installable client that lets you invoke the various commands pictured above</p>
 
-    <p><strong>Boxfuse Component Inventory</strong>: The online inventory of all available versions of the various components used to fuse a Bootable App.</p>
+    <p><strong>Boxfuse Inventory</strong>: The online inventory of all available versions of the various components available to fuse <em>Images</em></p>
+    <p><strong>Boxfuse Vault</strong>: The secure online vault where you can store your <em>Images</em></p>
 
-    <p><strong>Component</strong>: A dependency of your app provided by the Boxfuse Component Inventory. Examples: Tomcat, OpenJDK, ...</p>
+    <p>&nbsp;</p>
+    <p><strong>Component</strong>: A dependency of your app provided by the <em>Boxfuse Inventory</em>. Examples: Tomcat, OpenJDK, ...</p>
 
-    <p><strong>App</strong>: This is your application: the <em>payload</em> of the Bootable App.
-        Boxfuse supports the usual standard formats like executable .jar
-        and .war files, avoiding any lock in.</p>
+    <p><strong>App</strong>: This is your application, as you've created in in the <em>Boxfuse Console</em></p>
 
-    <p><strong>Bootable App</strong>: The universally deployable immutable unit containing both your app and all the components it needs to run.</p>
+    <p><strong>Payload</strong>: This payload of an <em>Image</em>, in one the usual standard formats like an executable .jar
+        or a .war file</p>
 
-    <p><strong>Platform</strong>: An execution platform for a Bootable App. Examples: VirtualBox, AWS, ...</p>
+    <p><strong>Image</strong>: A universally deployable immutable version of your App containing both the <em>Payload</em> and all the components it needs to run</p>
 
-    <p><strong>Image</strong>: A Bootable App converted to a format supported by a specific platform. Examples: VMDK, AMI, ...</p>
-
-    <p><strong>Instance</strong>: A running instance of an Image on a specific platform. Examples: VirtualBox VM, AWS Instance, ...</p>
+    <p><strong>Instance</strong>: A running instance of an <em>Image</em> on a specific platform. Examples: VirtualBox VM, AWS Instance, ...</p>
 
     <p class="doc-section">Details</p>
 
     <p>Now that we've covered some basic terms, let's look at what the commands of the <em>Boxfuse Client</em> do:</p>
 
-    <p><strong>versions</strong>: Lists all versions of a specific <em>Component</em> available in the <em>Boxfuse Component Inventory</em>. For Tomcat this could be 7.0.54, 8.0.8, 8.0.9, ...</p>
+    <p><strong>versions</strong>: Lists all versions of a specific <em>Component</em> available in the <em>Boxfuse Inventory</em>. For Tomcat this could be 7.0.54, 8.0.8, 8.0.9, ...</p>
 
-    <p><strong>fuse</strong>: Fuses your <em>App</em> together with the <em>Components</em> it requires into a <em>Bootable App</em>.</p>
+    <p><strong>fuse</strong>: Fuses your <em>Payload</em> together with the <em>Components</em> it requires into an <em>Image</em></p>
 
-    <p><strong>ls</strong>: Lists all available <em>Bootable Apps</em>.</p>
+    <p><strong>ls</strong>: Lists all <em>Images</em> available on your machine</p>
 
-    <p><strong>rm</strong>: Removes a <em>Bootable App</em>.</p>
+    <p><strong>rm</strong>: Removes an <em>Image</em>.</p>
 
-    <p><strong>convert</strong>: Converts a <em>Bootable App</em> into a <em>Platform</em>-specific <em>Image</em>.</p>
+    <p><strong>run</strong>: Runs an <em>Instance</em> of an <em>Image</em> inside VirtualBox on your machine</p>
 
-    <p><strong>lsi</strong>: Lists all available <em>Images</em>.</p>
+    <p><strong>ps</strong>: Lists all running <em>Instances</em> inside VirtualBox on your machine</p>
 
-    <p><strong>rmi</strong>: Removes an <em>Image</em>.</p>
+    <p><strong>kill</strong>: Gracefully kill an <em>Instance</em> inside VirtualBox on your machine</p>
 
-    <p><strong>run</strong>: Runs an <em>Instance</em> of an <em>Image</em> on a specific <em>Platform</em>.</p>
+    <p><strong>open</strong>: Opens a web browser pointing at the https or http port of an <em>Instance</em></p>
 
-    <p><strong>ps</strong>: Lists all running <em>Instances</em>.</p>
+    <p><strong>logs</strong>: Display the console logs of an <em>Instance</em></p>
 
-    <p><strong>kill</strong>: Gracefully kill an <em>Instance</em>.</p>
+    <p><strong>push</strong>: Pushes an <em>Image</em> to the <em>Boxfuse Vault</em></p>
 
-    <p><strong>open</strong>: Opens a web browser pointing at the https or http port of an <em>Instance</em>.</p>
+    <p><strong>pull</strong>: Pulls an <em>Image</em> from the <em>Boxfuse Vault</em></p>
 
-    <p><strong>logs</strong>: Display the console logs of an <em>Instance</em>.</p>
+    <p><strong>deploy</strong>: Deploys an <em>Image</em> of your App from the <em>Boxfuse Vault</em> onto AWS</p>
 
     <p class="next-steps">
         <a class="btn btn-primary" href="/#contact">Get notified when we launch <i class="fa fa-arrow-right"></i></a>
