@@ -1,0 +1,100 @@
+---
+layout: maven
+pill: fuse
+---
+<img src="/assets/img/commands/fuse.png" alt="fuse">
+
+<p class="doc-section">mvn boxfuse:fuse</p>
+
+<p>Fuses a <em>Payload</em> together with the <em>Components</em> it requires into an <em>Image</em>.</p>
+
+<p><strong>Usage: </strong> mvn boxfuse:fuse -Dboxfuse.payload=<em>payload</em></p>
+
+<p>When run as part of a build, the project artifact will automatically be used as a payload.</p>
+
+<pre class="console">&gt; mvn boxfuse:fuse -Dboxfuse.payload=hello-1.0.war
+
+Fusing Image for hello-1.0.war ...
+Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
+
+<p><strong>Supported Payload formats:</strong></p>
+
+<ul>
+    <li>Executable .jar file</li>
+    <li>.war file</li>
+</ul>
+
+<p><br/><strong>Arguments:</strong></p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Default</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tr>
+        <td><nobr>-components.<em>NAME</em>=<em>version</em></nobr></td>
+        <td><em>latest version</em></td>
+        <td>Pins the component with this name onto this version.<br/>
+            Example: -components.tomcat=8.0.9
+        </td>
+    </tr>
+    <tr>
+        <td>-debug</td>
+        <td>false</td>
+        <td>Start the Payload in debug mode when an Instance launches</td>
+    </tr>
+    <tr>
+        <td>-debug.wait</td>
+        <td>false</td>
+        <td>Whether the JVM should wait for the remote debugger to connect (Only applicable when debug mode is active)</td>
+    </tr>
+    <tr>
+        <td>-healtcheck</td>
+        <td>true</td>
+        <td>Check whether to payload started correctly</td>
+    </tr>
+    <tr>
+        <td>-healtcheck.path=...</td>
+        <td>/</td>
+        <td>The path to check whether to payload started correctly</td>
+    </tr>
+    <tr>
+        <td>-healtcheck.timeout=...</td>
+        <td>60</td>
+        <td>The number of seconds to wait for the Payload to come up</td>
+    </tr>
+    <tr>
+        <td>-jvm.args=...</td>
+        <td></td>
+        <td>Extra arguments to pass to the JVM</td>
+    </tr>
+    <tr>
+        <td>-jvm.main.class=...</td>
+        <td><em>autodetected</em></td>
+        <td>Main class to invoke on JVM startup</td>
+    </tr>
+    <tr>
+        <td>-jvm.main.args=...</td>
+        <td></td>
+        <td>Arguments to pass to the main class</td>
+    </tr>
+    <tr>
+        <td>-mode=dev</td>
+        <td>prod</td>
+        <td>Switch to dev mode for live Payload reloading on your local machine</td>
+    </tr>
+    <tr>
+        <td>-ports.<em>NAME</em>=<em>number</em></td>
+        <td>http=80</td>
+        <td>Maps the port of the app with this name onto this number.<br/>
+            Example: -ports.jmx=8001
+        </td>
+    </tr>
+</table>
+
+<p class="next-steps">
+    <a class="btn btn-primary" href="/docs/commandline/ls.html">ls <i class="fa fa-arrow-right"></i></a>
+</p>

@@ -1,0 +1,108 @@
+---
+layout: commandline
+pill: logs
+---
+<img src="/assets/img/commands/logs.png" alt="logs">
+
+<p class="doc-section">logs</p>
+
+<p>Display the console logs of an <em>Instance</em> running on your machine.</p>
+
+<p><strong>Usage: </strong> boxfuse logs <em>instance</em></p>
+
+<pre class="console">&gt; boxfuse logs vb-b100efe1
+
+init started: BusyBox v1.22.1 (2014-05-18 17:19:42 UTC)
+starting pid 522, tty '': '/etc/init.d/rcS'
+udhcpc (v1.22.1) started
+Setting IP address 0.0.0.0 on eth0
+Sending discover...
+Sending select for 10.0.2.15...
+Lease of 10.0.2.15 obtained, lease time 86400
+Setting IP address 10.0.2.15 on eth0
+ifconfig: bad address '+'
+Adding router 10.0.2.2
+Adding DNS server 192.168.0.1
+sh: busybox: unknown operand
+
+******************************************************************************
+
+boxfuse is in the house!
+
+Payload
+-------
+Name        : hello-1.0.war
+Type        : War
+Checksum    : 41419a8b
+
+Image
+-----
+Id          : ba-f941bab99ce44830afaf06868496c83d
+Coordinates : axelfontaine/hello:1.0
+Debug       : false
+Strace      : false
+Ports       : http -> 80
+
+Instance
+--------
+Id          : vb-b100efe1
+IP Address  : 10.0.2.15
+JVM Heap    : 795M
+
+Environment
+-----------
+BOOT_IMAGE=efi/boot/bootx64.efi
+BOXFUSE_COMPONENTS_BUSYBOX=1.22.1
+BOXFUSE_COMPONENTS_CACERTS=2014.04.08
+BOXFUSE_COMPONENTS_GLIBC=2.20
+BOXFUSE_COMPONENTS_LINUX=3.15.9
+BOXFUSE_COMPONENTS_OPENJDK=8.20.26
+BOXFUSE_COMPONENTS_TOMCAT=8.0.9
+BOXFUSE_HOST_IP=192.168.0.12
+BOXFUSE_IMAGE_APP=hello
+BOXFUSE_IMAGE_ID=ba-f941bab99ce44830afaf06868496c83d
+BOXFUSE_IMAGE_OWNER=axelfontaine
+BOXFUSE_IMAGE_VERSION=1.0
+BOXFUSE_INSTANCE_ID=vb-b100efe1
+BOXFUSE_INSTANCE_IP=10.0.2.15
+BOXFUSE_PAYLOAD_NAME=hello-1.0.war
+BOXFUSE_PLATFORM_ID=virtualbox
+BOXFUSE_PLATFORM_NAME=VirtualBox
+BOXFUSE_VERSION=1.0.2.546
+HOME=/
+LD_LIBRARY_PATH=/lib/x86_64-linux-gnu
+PATH=/sbin:/bin
+PWD=/
+SHELL=/bin/sh
+TERM=vt102
+USER=root
+initrd=initrd.gz
+vga=extended
+
+******************************************************************************
+
+Launching App ...
+/openjdk/bin/java -d64 -Xms10m -Xmx795m -Djavax.net.ssl.trustStore=/cacerts/cacerts -Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom -Djdk.reflect.allowGetCallerClass=true -cp "/tomcat/bin/*" org.apache.catalina.startup.Bootstrap
+Mar 03, 2015 8:47:09 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-nio-80"]
+Mar 03, 2015 8:47:09 PM org.apache.tomcat.util.net.NioSelectorPool getSharedSelector
+INFO: Using a shared selector for servlet write/read
+Mar 03, 2015 8:47:09 PM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 361 ms
+Mar 03, 2015 8:47:09 PM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+Mar 03, 2015 8:47:09 PM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/8.0.9
+Mar 03, 2015 8:47:09 PM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /tomcat/webapps/ROOT.war
+HelloServlet: You should see this in the Instance Logs :-)
+Mar 03, 2015 8:47:09 PM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /tomcat/webapps/ROOT.war has finished in 257 ms
+Mar 03, 2015 8:47:09 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-nio-80"]
+Mar 03, 2015 8:47:09 PM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 302 ms</pre>
+
+<p class="next-steps">
+    <a class="btn btn-primary" href="/docs/commandline/push.html">push <i class="fa fa-arrow-right"></i></a>
+</p>
