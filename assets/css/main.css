@@ -501,12 +501,20 @@ h2 {
     font-size: 18px;
 }
 
-.nav-pills {
+.nav-pills.nav-stacked {
     font-size: 16px;
 }
 
-.nav-pills>li>a {
+.nav-pills.nav-stacked>li>a {
     border-radius: 0;
+}
+
+.nav-pills-bar {
+    margin-bottom: 20px;
+}
+
+.nav-pills-bar>li>a {
+    padding: 7px 10px;
 }
 
 .doc-title {

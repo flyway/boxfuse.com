@@ -1,0 +1,85 @@
+---
+layout: commandline
+pill: Overview
+---
+<p>The Boxfuse Command-line Client is the CLI tool to execute the various commands.</p>
+
+<p><img src="/assets/img/learn/commandline.png" alt="Command-line"/></p>
+
+<p class="doc-section">Supported operating systems</p>
+
+<ul>
+    <li>Windows</li>
+    <li>Mac OSX</li>
+    <li>Linux</li>
+</ul>
+
+<p class="doc-section">Prerequisites</p>
+
+<ul>
+    <li>Boxfuse Account</li>
+    <li>Working Java 6+ installation</li>
+    <li>Working VirtualBox installation (for VirtualBox deployments)</li>
+    <li>AWS Account (for AWS deployments)</li>
+</ul>
+
+<p class="doc-section">Installation</p>
+
+<ul>
+    <li>Download the latest version of the Boxfuse Command-line client from the Boxfuse Console</li>
+    <li>Extract it to the directory of your choice</li>
+    <li>Add the root directory of the extracted archive to your PATH</li>
+</ul>
+
+<p class="doc-section">Authentication</p>
+
+<p>Your <strong>download is personalized</strong> and already includes the necessary credentials to connect to your
+    Boxfuse Account.</p>
+
+<p class="doc-section">Configuration</p>
+
+<p>Boxfuse is opinionated, favors <strong>convention over configuration</strong> and comes with <strong>sensible
+    defaults</strong>.</p>
+
+<p>You can override these defaults using either configuration files or program arguments. The installation comes
+    with a configuration file (conf/boxfuse.conf) you can edit. You also have the option to create a system-wide
+    configuration file in your home directory (~/.boxfuse/boxfuse.conf).
+</p>
+
+<p>Program arguments <em>override</em> &lt;install-dir&gt;/conf/boxfuse.conf <em>which itself overrides</em>
+    ~/.boxfuse/boxfuse.conf</p>
+
+<p class="doc-section">General Options</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tr>
+        <td>-configfile=...</td>
+        <td>Specifies the configuration file to use</td>
+    </tr>
+    <tr>
+        <td>-X</td>
+        <td>Show debug output</td>
+    </tr>
+    <tr>
+        <td>-o</td>
+        <td>Work offline</td>
+    </tr>
+    <tr>
+        <td>-v</td>
+        <td>Print the version and exit</td>
+    </tr>
+    <tr>
+        <td>-u</td>
+        <td>Upgrade to the latest Boxfuse Client version</td>
+    </tr>
+</table>
+
+
+<p class="next-steps">
+    <a class="btn btn-primary" href="/docs/commandline/versions.html">versions <i class="fa fa-arrow-right"></i></a>
+</p>

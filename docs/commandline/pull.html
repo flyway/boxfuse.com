@@ -1,0 +1,25 @@
+---
+layout: commandline
+pill: pull
+---
+<img src="/assets/img/commands/pull.png" alt="pull">
+
+<p class="doc-section">pull</p>
+
+<p>Lists all available <em>Bootable Apps</em>.</p>
+
+<p><strong>Usage: </strong> boxfuse ls</p>
+
+<pre class="console">&gt; boxfuse ls
+
+Available Bootable Apps:
++--------------+------+------------+-------+---------+--------------+------------+---------+---------------------+
+| Bootable App | Mode |  Payload   | Debug |  Java   |  AppServer   |   Ports    |  Size   |    Generated at     |
++--------------+------+------------+-------+---------+--------------+------------+---------+---------------------+
+| ba-5e72abf5a | PROD | sample.war | false | 8.20.26 | Tomcat 8.0.9 | http -> 80 | 48157 K | 2014-10-10 12:32:54 |
++--------------+------+------------+-------+---------+--------------+------------+---------+---------------------+
+Total: 1</pre>
+
+<p class="next-steps">
+    <a class="btn btn-primary" href="/docs/commandline/deploy.html">deploy <i class="fa fa-arrow-right"></i></a>
+</p>

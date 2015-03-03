@@ -1,0 +1,54 @@
+---
+layout: commandline
+pill: ps
+---
+<img src="/assets/img/commands/ps.png" alt="ps">
+
+<p class="doc-section">ps</p>
+
+<p>Lists all running <em>Instances</em>.</p>
+
+<p><strong>Usage: </strong> boxfuse ps</p>
+
+<pre class="console">&gt; boxfuse ps -platform=aws
+
+Running Instances on AWS (eu-west-1):
++------------+--------------+--------------+-----------+-----------------------+---------------------+
+|  Instance  | Bootable App |     AMI      |   Type    |          URL          |     Launched at     |
++------------+--------------+--------------+-----------+-----------------------+---------------------+
+| i-b1e3a3e2 | ba-5804f93e7 | ami-de288faa | t2.micro  | https://54.77.131.178 | 2014-09-20 13:19:17 |
+| i-79cce82b | ba-5804f93e7 | ami-de288faa | t2.micro  | https://54.76.228.218 | 2014-09-20 13:19:17 |
+| i-c3775080 | ba-5e746e945 | ami-52399425 | m3.medium | http://54.77.254.3    | 2014-10-12 23:14:03 |
++------------+--------------+--------------+-----------+-----------------------+---------------------+
+Total: 3</pre>
+
+<p><strong>Arguments:</strong></p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Platforms</th>
+        <th>Default</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tr>
+        <td>-platform=...</td>
+        <td></td>
+        <td>virtualbox</td>
+        <td>The Platform to use<br/>
+            Choices: virtualbox | aws
+        </td>
+    </tr>
+    <tr>
+        <td>-aws.region=...</td>
+        <td>aws</td>
+        <td>eu-west-1</td>
+        <td>The AWS region to use</td>
+    </tr>
+</table>
+
+<p class="next-steps">
+    <a class="btn btn-primary" href="/docs/commandline/kill.html">kill <i class="fa fa-arrow-right"></i></a>
+</p>
