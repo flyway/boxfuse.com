@@ -6,19 +6,20 @@ pill: deploy
 
 <p class="doc-section">deploy</p>
 
-<p>Lists all available <em>Bootable Apps</em>.</p>
+<p>Deploys this <em>Image</em> to the cloud.</p>
 
-<p><strong>Usage: </strong> boxfuse ls</p>
+<p><strong>Usage: </strong> boxfuse deploy <em>image</em></p>
 
-<pre class="console">&gt; boxfuse ls
+<pre class="console">&gt; boxfuse deploy hello:1.0
 
-Available Bootable Apps:
-+--------------+------+------------+-------+---------+--------------+------------+---------+---------------------+
-| Bootable App | Mode |  Payload   | Debug |  Java   |  AppServer   |   Ports    |  Size   |    Generated at     |
-+--------------+------+------------+-------+---------+--------------+------------+---------+---------------------+
-| ba-5e72abf5a | PROD | sample.war | false | 8.20.26 | Tomcat 8.0.9 | http -> 80 | 48157 K | 2014-10-10 12:32:54 |
-+--------------+------+------------+-------+---------+--------------+------------+---------+---------------------+
-Total: 1</pre>
+Creating Elastic IP ...
+Mapping hello-axelfontaine.boxfuse.io to 10.11.12.1 ...
+Waiting for AWS to create an AMI for axelfontaine/hello:1.0 in eu-central-1 (this may take 2-3 minutes) ...
+Creating security group boxfuse-sg_axelfontaine/hello:1.0 ...
+Launching t2.micro instance of axelfontaine/hello:1.0 (ami-6bf59a4c) in eu-central-1 ...
+Remapping Elastic IP 10.11.12.1 to i-a7c293ba ...
+Waiting 15s for automatic Zero Downtime transition ...
+Deployment completed successfully. axelfontaine/hello:1.0 is up and running at http://hello-axelfontaine.boxfuse.io</pre>
 
 <p class="next-steps">
     <a class="btn btn-primary" href="/docs/maven.html">Maven Plugin <i class="fa fa-arrow-right"></i></a>

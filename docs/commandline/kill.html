@@ -6,45 +6,14 @@ pill: kill
 
 <p class="doc-section">kill</p>
 
-<p>Gracefully kill an <em>Instance</em>.</p>
+<p>Gracefully kill an <em>Instance</em> on your machine.</p>
 
-<p><strong>Usage: </strong> boxfuse kill &lt;instance&gt;</p>
+<p><strong>Usage: </strong> boxfuse kill <em>instance</em></p>
 
-<pre class="console">&gt; boxfuse kill i-c3775080 -platform=aws
+<pre class="console">&gt; boxfuse kill vb-ec717c5e
 
-Destroying Instance i-c3775080 on AWS (eu-west-1) ...
-Instance destroyed in 00:23.637s
-Destroying Security Group boxfuse-securitygroup-ba-5e746e945 ...
-Deregistering ami-52399425 for Bootable App ba-5e746e945 ...
-Destroying Bootable App ba-5e746e945 ...
-ba-5e746e945 destroyed in 00:00.011s</pre>
-
-<p><strong>Arguments:</strong></p>
-
-<table class="table">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Platforms</th>
-        <th>Default</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tr>
-        <td>-platform=...</td>
-        <td></td>
-        <td>virtualbox</td>
-        <td>The Platform to use<br/>
-            Choices: virtualbox | aws
-        </td>
-    </tr>
-    <tr>
-        <td>-aws.region=...</td>
-        <td>aws</td>
-        <td>eu-west-1</td>
-        <td>The AWS region to use</td>
-    </tr>
-</table>
+Killing Instance vb-ec717c5e on VirtualBox ...
+Instance killed in 00:03.493s</pre>
 
 <p class="next-steps">
     <a class="btn btn-primary" href="/docs/commandline/open.html">open <i class="fa fa-arrow-right"></i></a>

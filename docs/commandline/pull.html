@@ -6,19 +6,14 @@ pill: pull
 
 <p class="doc-section">pull</p>
 
-<p>Lists all available <em>Bootable Apps</em>.</p>
+<p>Pulls this <em>Image</em> from the <em>Boxfuse Vault</em>.</p>
 
-<p><strong>Usage: </strong> boxfuse ls</p>
+<p><strong>Usage: </strong> boxfuse pull <em>image</em></p>
 
-<pre class="console">&gt; boxfuse ls
+<pre class="console">&gt; boxfuse pull hello:1.0
 
-Available Bootable Apps:
-+--------------+------+------------+-------+---------+--------------+------------+---------+---------------------+
-| Bootable App | Mode |  Payload   | Debug |  Java   |  AppServer   |   Ports    |  Size   |    Generated at     |
-+--------------+------+------------+-------+---------+--------------+------------+---------+---------------------+
-| ba-5e72abf5a | PROD | sample.war | false | 8.20.26 | Tomcat 8.0.9 | http -> 80 | 48157 K | 2014-10-10 12:32:54 |
-+--------------+------+------------+-------+---------+--------------+------------+---------+---------------------+
-Total: 1</pre>
+Pulling axelfontaine/hello:1.0 ...
+Verifying axelfontaine/hello:1.0 ...</pre>
 
 <p class="next-steps">
     <a class="btn btn-primary" href="/docs/commandline/deploy.html">deploy <i class="fa fa-arrow-right"></i></a>
