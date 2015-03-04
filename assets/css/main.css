@@ -38,6 +38,11 @@ h2 {
 	margin-bottom:30px;
 }
 
+pre.prettyprint {
+    padding: 5px;
+    border: 1px solid #CCC;
+}
+
 .dark {
 	color:#fff;
 }

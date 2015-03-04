@@ -1,16 +1,16 @@
 ---
-layout: commandline
+layout: maven
 pill: ls
 ---
 <img src="/assets/img/commands/ls.png" alt="ls">
 
-<p class="doc-section">ls</p>
+<p class="doc-section">boxfuse:ls</p>
 
 <p>Lists all <em>Images</em> on your machine.</p>
 
-<p><strong>Usage: </strong> boxfuse ls</p>
+<p><strong>Usage: </strong> mvn boxfuse:ls</p>
 
-<pre class="console">&gt; boxfuse ls
+<pre class="console">&gt; mvn boxfuse:ls
 
 Available Images:
 +-----------+---------------+-------+---------+--------------+------------+---------+---------------------+
@@ -20,6 +20,38 @@ Available Images:
 +-----------+---------------+-------+---------+--------------+------------+---------+---------------------+
 Total: 1</pre>
 
+<p><br/><strong>Properties:</strong></p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Plugin Parameter</th>
+        <th>Maven/System property</th>
+        <th>Default</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tr>
+        <td>user</td>
+        <td>boxfuse.user</td>
+        <td></td>
+        <td><strong>Required</strong> - Your Boxfuse Client user</td>
+    </tr>
+    <tr>
+        <td>secret</td>
+        <td>boxfuse.secret</td>
+        <td></td>
+        <td><strong>Required</strong> - Your Boxfuse Client user</td>
+    </tr>
+</table>
+
+<p><strong>Sample Configuration</strong></p>
+
+<pre class="prettyprint">&lt;configuration&gt;
+    &lt;user&gt;1234567890abcdef1234567890abcdef12345678&lt;/user&gt;
+    &lt;secret&gt;ABCDEFGHIJKL1234567abcdefghijklmnopqrstu&lt;/secret&gt;
+&lt;/configuration&gt;</pre>
+
 <p class="next-steps">
-    <a class="btn btn-primary" href="/docs/commandline/rm.html">rm <i class="fa fa-arrow-right"></i></a>
+    <a class="btn btn-primary" href="/docs/maven/rm.html">rm <i class="fa fa-arrow-right"></i></a>
 </p>

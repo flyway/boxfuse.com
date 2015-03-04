@@ -1,16 +1,16 @@
 ---
-layout: commandline
+layout: maven
 pill: logs
 ---
 <img src="/assets/img/commands/logs.png" alt="logs">
 
-<p class="doc-section">logs</p>
+<p class="doc-section">boxfuse:logs</p>
 
 <p>Display the console logs of an <em>Instance</em> running on your machine.</p>
 
-<p><strong>Usage: </strong> boxfuse logs <em>instance</em></p>
+<p><strong>Usage: </strong> mvn boxfuse:logs -Dboxfuse.instances=<em>instance</em></p>
 
-<pre class="console">&gt; boxfuse logs vb-b100efe1
+<pre class="console">&gt; mvn boxfuse:logs -Dboxfuse.instances=vb-b100efe1
 
 init started: BusyBox v1.22.1 (2014-05-18 17:19:42 UTC)
 starting pid 522, tty '': '/etc/init.d/rcS'
@@ -103,6 +103,45 @@ INFO: Starting ProtocolHandler ["http-nio-80"]
 Mar 03, 2015 8:47:09 PM org.apache.catalina.startup.Catalina start
 INFO: Server startup in 302 ms</pre>
 
+<p><br/><strong>Properties:</strong></p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Plugin Parameter</th>
+        <th>Maven/System property</th>
+        <th>Default</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tr>
+        <td>user</td>
+        <td>boxfuse.user</td>
+        <td></td>
+        <td><strong>Required</strong> - Your Boxfuse Client user</td>
+    </tr>
+    <tr>
+        <td>secret</td>
+        <td>boxfuse.secret</td>
+        <td></td>
+        <td><strong>Required</strong> - Your Boxfuse Client user</td>
+    </tr>
+    <tr>
+        <td>instances</td>
+        <td>boxfuse.instances</td>
+        <td></td>
+        <td>The comma-separated list of ids of the Instance to work with</td>
+    </tr>
+</table>
+
+<p><strong>Sample Configuration</strong></p>
+
+<pre class="prettyprint">&lt;configuration&gt;
+    &lt;user&gt;1234567890abcdef1234567890abcdef12345678&lt;/user&gt;
+    &lt;secret&gt;ABCDEFGHIJKL1234567abcdefghijklmnopqrstu&lt;/secret&gt;
+    &lt;instances&gt;vb-ec717c5e&lt;/instances&gt;
+&lt;/configuration&gt;</pre>
+
 <p class="next-steps">
-    <a class="btn btn-primary" href="/docs/commandline/push.html">push <i class="fa fa-arrow-right"></i></a>
+    <a class="btn btn-primary" href="/docs/maven/push.html">push <i class="fa fa-arrow-right"></i></a>
 </p>

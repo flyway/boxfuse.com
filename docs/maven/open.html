@@ -1,19 +1,58 @@
 ---
-layout: commandline
+layout: maven
 pill: open
 ---
 <img src="/assets/img/commands/open.png" alt="open">
 
-<p class="doc-section">open</p>
+<p class="doc-section">boxfuse:open</p>
 
 <p>Opens a web browser pointing at the https or http port of an <em>Instance</em> running on your machine.</p>
 
-<p><strong>Usage: </strong> boxfuse open <em>instance</em></p>
+<p><strong>Usage: </strong> mvn boxfuse:open -Dboxfuse.instances=<em>instance</em></p>
 
-<pre class="console">&gt; boxfuse open vb-5f3cf9387
+<pre class="console">&gt; mvn boxfuse:open -Dboxfuse.instances=vb-5f3cf9387
 
 Launching default browser to access Instance 'vb-5f3cf9387' (Url: http://127.0.0.1:8888) ...</pre>
 
+<p><br/><strong>Properties:</strong></p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Plugin Parameter</th>
+        <th>Maven/System property</th>
+        <th>Default</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tr>
+        <td>user</td>
+        <td>boxfuse.user</td>
+        <td></td>
+        <td><strong>Required</strong> - Your Boxfuse Client user</td>
+    </tr>
+    <tr>
+        <td>secret</td>
+        <td>boxfuse.secret</td>
+        <td></td>
+        <td><strong>Required</strong> - Your Boxfuse Client user</td>
+    </tr>
+    <tr>
+        <td>instances</td>
+        <td>boxfuse.instances</td>
+        <td></td>
+        <td>The comma-separated list of ids of the Instance to work with</td>
+    </tr>
+</table>
+
+<p><strong>Sample Configuration</strong></p>
+
+<pre class="prettyprint">&lt;configuration&gt;
+    &lt;user&gt;1234567890abcdef1234567890abcdef12345678&lt;/user&gt;
+    &lt;secret&gt;ABCDEFGHIJKL1234567abcdefghijklmnopqrstu&lt;/secret&gt;
+    &lt;instances&gt;vb-ec717c5e&lt;/instances&gt;
+&lt;/configuration&gt;</pre>
+
 <p class="next-steps">
-    <a class="btn btn-primary" href="/docs/commandline/logs.html">logs <i class="fa fa-arrow-right"></i></a>
+    <a class="btn btn-primary" href="/docs/maven/logs.html">logs <i class="fa fa-arrow-right"></i></a>
 </p>
