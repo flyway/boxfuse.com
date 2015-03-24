@@ -6,9 +6,9 @@ pill: ls
 
 <p class="doc-section">ls</p>
 
-<p>Lists all <em>Images</em> on your machine.</p>
+<p>Lists the <em>Images</em> present on your machine or in the Boxfuse Vault.</p>
 
-<p><strong>Usage: </strong> boxfuse ls</p>
+<p><strong>Usage: </strong> boxfuse ls <em>filter</em></p>
 
 <pre class="console">&gt; boxfuse ls
 
@@ -20,6 +20,28 @@ Available Images:
 +-----------+---------------+-------+---------+--------------+------------+---------+---------------------+
 Total: 1</pre>
 
+<p><strong>Supported filters:</strong></p>
+
+<p>You can optionally add a filter to limit results to either a specific app or a specific image.<br/>
+    Example: boxfuse ls myapp:123</p>
+
+<p><br/><strong>Arguments:</strong></p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Default</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tr>
+        <td>-vault</td>
+        <td>false</td>
+        <td>Lists the Images in the Boxfuse Vault instead of the ones present on your local machine</td>
+    </tr>
+</table>
+
 <p class="next-steps">
-    <a class="btn btn-primary" href="/docs/commandline/rm.html">rm <i class="fa fa-arrow-right"></i></a>
+    <a class="btn btn-primary" href="/docs/commandline/push.html">push <i class="fa fa-arrow-right"></i></a>
 </p>

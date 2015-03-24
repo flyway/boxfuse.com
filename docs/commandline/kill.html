@@ -6,14 +6,33 @@ pill: kill
 
 <p class="doc-section">kill</p>
 
-<p>Gracefully kill an <em>Instance</em> on your machine.</p>
+<p>Gracefully kill an <em>Instance</em> or an <em>App</em> either on your machine or on AWS<br/>
+Specifying an App will kill all Instances of that App.</p>
 
-<p><strong>Usage: </strong> boxfuse kill <em>instance</em></p>
+
+<p><strong>Usage: </strong> boxfuse kill <em>app | instance</em></p>
 
 <pre class="console">&gt; boxfuse kill vb-ec717c5e
 
 Killing Instance vb-ec717c5e on VirtualBox ...
 Instance killed in 00:03.493s</pre>
+
+<p><br/><strong>Arguments:</strong></p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Default</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tr>
+        <td>-env=prod</td>
+        <td>dev</td>
+        <td>Kills the Instance on AWS instead of on your local machine</td>
+    </tr>
+</table>
 
 <p class="next-steps">
     <a class="btn btn-primary" href="/docs/commandline/open.html">open <i class="fa fa-arrow-right"></i></a>

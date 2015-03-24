@@ -6,7 +6,7 @@ pill: ps
 
 <p class="doc-section">boxfuse:ps</p>
 
-<p>Lists all running <em>Instances</em> on your machine.</p>
+<p>Lists the running <em>Instances</em> on either your machine or AWS</p>
 
 <p><strong>Usage: </strong> mvn boxfuse:ps</p>
 
@@ -43,6 +43,12 @@ Total: 1</pre>
         <td></td>
         <td><strong>Required</strong> - Your Boxfuse Client user</td>
     </tr>
+    <tr>
+        <td>env</td>
+        <td>boxfuse.env</td>
+        <td>dev</td>
+        <td>Set to <code>prod</code> to list the Instances on AWS instead of on your local machine</td>
+    </tr>
 </table>
 
 <p><strong>Sample Configuration</strong></p>
@@ -50,6 +56,7 @@ Total: 1</pre>
 <pre class="prettyprint">&lt;configuration&gt;
     &lt;user&gt;1234567890abcdef1234567890abcdef12345678&lt;/user&gt;
     &lt;secret&gt;ABCDEFGHIJKL1234567abcdefghijklmnopqrstu&lt;/secret&gt;
+    &lt;env&gt;prod&lt;/env&gt;
 &lt;/configuration&gt;</pre>
 
 <p class="next-steps">

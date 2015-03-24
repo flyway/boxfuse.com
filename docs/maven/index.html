@@ -26,9 +26,15 @@ pill: Overview
 
 <p>You can override these defaults by either configuring the plugin, adding Maven properties or passing in System properties.</p>
 
-<p>System properties <em>override</em> Maven properties <em>which themselves override</em>
-    the plugin configuration.</p>
+<p class="doc-section">Configuration Overriding Order</p>
+
+<p>Higher items on the list override lower ones:</p>
+<ul>
+    <li>System properties</li>
+    <li>Maven properties</li>
+    <li>Plugin configuration</li>
+</ul>
 
 <p class="next-steps">
-    <a class="btn btn-primary" href="/docs/maven/versions.html">versions <i class="fa fa-arrow-right"></i></a>
+    <a class="btn btn-primary" href="/docs/maven/fuse.html">fuse <i class="fa fa-arrow-right"></i></a>
 </p>

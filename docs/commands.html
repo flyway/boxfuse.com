@@ -12,7 +12,7 @@ subtitle: 'Commands'
 
     <p class="doc-section">Terminology</p>
 
-    <p>Before we can start we have to talk about a few simple terms you will encounter:</p>
+    <p>First, let's go over a few simple terms you will encounter:</p>
 
     <p><strong>Boxfuse Console</strong>: The online console to manage your <em>Apps</em></p>
 
@@ -29,37 +29,36 @@ subtitle: 'Commands'
     <p><strong>Payload</strong>: This payload of an <em>Image</em>, in one the usual standard formats like an executable .jar
         or a .war file</p>
 
-    <p><strong>Image</strong>: A universally deployable immutable version of your <em>App</em> containing both the <em>Payload</em> and all the <em>Components</em> it needs to run</p>
+    <p><strong>Image</strong>: A universally deployable immutable version of your <em>App</em> containing both the <em>Payload</em> and all the <em>Components</em> it needs to run.
+    It can reside either on your machine or in the <em>Boxfuse Vault</em>.</p>
 
-    <p><strong>Instance</strong>: A running instance of an <em>Image</em> on a specific platform. Examples: VirtualBox VM, AWS Instance, ...</p>
+    <p><strong>Instance</strong>: A running instance of an <em>Image</em> either inside VirtualBox on your machine or on AWS</p>
 
     <p class="doc-section">Details</p>
 
     <p>Now that we've covered some basic terms, let's look at what the commands of the <em>Boxfuse Client</em> do:</p>
 
-    <p><strong>versions</strong>: Lists all versions of a specific <em>Component</em> available in the <em>Boxfuse Inventory</em>. For Tomcat this could be 7.0.54, 8.0.8, 8.0.9, ...</p>
-
     <p><strong>fuse</strong>: Fuses your <em>Payload</em> together with the <em>Components</em> it requires into an <em>Image</em></p>
 
-    <p><strong>ls</strong>: Lists all <em>Images</em> available on your machine</p>
-
-    <p><strong>rm</strong>: Removes an <em>Image</em>.</p>
-
-    <p><strong>run</strong>: Runs an <em>Instance</em> of an <em>Image</em> inside VirtualBox on your machine</p>
-
-    <p><strong>ps</strong>: Lists all running <em>Instances</em> inside VirtualBox on your machine</p>
-
-    <p><strong>kill</strong>: Gracefully kill an <em>Instance</em> inside VirtualBox on your machine</p>
-
-    <p><strong>open</strong>: Opens a web browser pointing at the https or http port of an <em>Instance</em></p>
-
-    <p><strong>logs</strong>: Display the console logs of an <em>Instance</em></p>
+    <p><strong>ls</strong>: Lists the available <em>Images</em>, either on your machine or in the <em>Boxfuse Vault</em></p>
 
     <p><strong>push</strong>: Pushes an <em>Image</em> to the <em>Boxfuse Vault</em></p>
 
     <p><strong>pull</strong>: Pulls an <em>Image</em> from the <em>Boxfuse Vault</em></p>
 
-    <p><strong>deploy</strong>: Deploys an <em>Image</em> of your App from the <em>Boxfuse Vault</em> onto AWS</p>
+    <p><strong>rm</strong>: Removes an <em>Image</em> from either your machine or the <em>Boxfuse Vault</em></p>
+
+    <p><strong>run</strong>: Runs an <em>Instance</em> of an <em>Image</em> either inside VirtualBox on your machine or on AWS</p>
+
+    <p><strong>ps</strong>: Lists all running <em>Instances</em> either inside VirtualBox on your machine or on AWS</p>
+
+    <p><strong>kill</strong>: Gracefully kill an <em>Instance</em> either inside VirtualBox on your machine or on AWS</p>
+
+    <p><strong>open</strong>: Opens a web browser pointing at the https or http port of an <em>Instance</em></p>
+
+    <p><strong>logs</strong>: Display the console logs of an <em>Instance</em></p>
+
+    <p><strong>inventory</strong>: Lists all versions of a specific <em>Component</em> available in the <em>Boxfuse Inventory</em>. For Tomcat this could be 7.0.54, 8.0.8, 8.0.9, ...</p>
 
     <p class="next-steps">
         <a class="btn btn-primary" href="/docs/commandline">Command-line client <i class="fa fa-arrow-right"></i></a>

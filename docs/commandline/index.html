@@ -43,11 +43,19 @@ pill: Overview
 
 <p>You can override these defaults using either configuration files or program arguments. The installation comes
     with a configuration file (conf/boxfuse.conf) you can edit. You also have the option to create a system-wide
-    configuration file in your home directory (~/.boxfuse/boxfuse.conf).
+    configuration file in your home directory (~/.boxfuse/boxfuse.conf) or a project-specific configuration file
+    in the current directory.
 </p>
 
-<p>Program arguments <em>override</em> &lt;install-dir&gt;/conf/boxfuse.conf <em>which itself overrides</em>
-    ~/.boxfuse/boxfuse.conf</p>
+<p class="doc-section">Configuration Overriding Order</p>
+
+<p>Higher items on the list override lower ones:</p>
+<ul>
+    <li>Program arguments</li>
+    <li><em>&lt;current-dir&gt;</em>/boxfuse.conf</li>
+    <li><em>&lt;home-dir&gt;</em>/.boxfuse/boxfuse.conf</li>
+    <li><em>&lt;boxfuse-install-dir&gt;</em>/conf/boxfuse.conf</li>
+</ul>
 
 <p class="doc-section">General Options</p>
 <table class="table">
@@ -81,5 +89,5 @@ pill: Overview
 
 
 <p class="next-steps">
-    <a class="btn btn-primary" href="/docs/commandline/versions.html">versions <i class="fa fa-arrow-right"></i></a>
+    <a class="btn btn-primary" href="/docs/commandline/inventory.html">versions <i class="fa fa-arrow-right"></i></a>
 </p>

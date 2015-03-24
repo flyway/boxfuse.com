@@ -6,9 +6,9 @@ pill: ps
 
 <p class="doc-section">ps</p>
 
-<p>Lists all running <em>Instances</em> on your machine.</p>
+<p>Lists the running <em>Instances</em> on either your machine or AWS</p>
 
-<p><strong>Usage: </strong> boxfuse ps</p>
+<p><strong>Usage: </strong> boxfuse ps <em>filter</em></p>
 
 <pre class="console">&gt; boxfuse ps
 
@@ -19,6 +19,28 @@ Running Instances on VirtualBox:
 | vb-ec717c5e | hello:1.0 | 4 CPU / 1024 MB RAM | http://127.0.0.1:8888 | 2015-03-03 19:09:36 |
 +-------------+-----------+---------------------+-----------------------+---------------------+
 Total: 1</pre>
+
+<p><strong>Supported filters:</strong></p>
+
+<p>You can optionally add a filter to limit results to either a specific app, a specific image or a specific instance.<br/>
+    Example: boxfuse ps myapp:123</p>
+
+<p><br/><strong>Arguments:</strong></p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Default</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tr>
+        <td>-env=prod</td>
+        <td>dev</td>
+        <td>Lists the Instances on AWS instead of on your local machine</td>
+    </tr>
+</table>
 
 <p class="next-steps">
     <a class="btn btn-primary" href="/docs/commandline/kill.html">kill <i class="fa fa-arrow-right"></i></a>

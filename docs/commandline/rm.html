@@ -6,7 +6,7 @@ pill: rm
 
 <p class="doc-section">rm</p>
 
-<p>Removes this <em>Image</em> from your machine.</p>
+<p>Removes this <em>Image</em> from your machine or the Boxfuse Vault.</p>
 
 <p><strong>Usage: </strong> boxfuse rm <em>image</em></p>
 
@@ -14,6 +14,23 @@ pill: rm
 
 Destroying Image axelfontaine/hello:1.0 ...
 axelfontaine/hello:1.0 destroyed in 00:00.000s</pre>
+
+<p><br/><strong>Arguments:</strong></p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Default</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tr>
+        <td>-vault</td>
+        <td>false</td>
+        <td>Removes the Image from the Boxfuse Vault instead of your local machine</td>
+    </tr>
+</table>
 
 <p class="next-steps">
     <a class="btn btn-primary" href="/docs/commandline/run.html">run <i class="fa fa-arrow-right"></i></a>

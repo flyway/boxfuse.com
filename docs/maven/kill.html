@@ -6,7 +6,8 @@ pill: kill
 
 <p class="doc-section">boxfuse:kill</p>
 
-<p>Gracefully kill an <em>Instance</em> on your machine.</p>
+<p>Gracefully kill an <em>Instance</em> or an <em>App</em> either on your machine or on AWS<br/>
+    Specifying an App will kill all Instances of that App.</p>
 
 <p><strong>Usage: </strong> mvn boxfuse:kill -Dboxfuse.instances=<em>instance</em></p>
 
@@ -39,6 +40,12 @@ Instance killed in 00:03.493s</pre>
         <td><strong>Required</strong> - Your Boxfuse Client user</td>
     </tr>
     <tr>
+        <td>env</td>
+        <td>boxfuse.env</td>
+        <td>dev</td>
+        <td>Set to <code>prod</code> to kill the Instances on AWS instead of on your local machine</td>
+    </tr>
+    <tr>
         <td>instances</td>
         <td>boxfuse.instances</td>
         <td></td>
@@ -51,6 +58,7 @@ Instance killed in 00:03.493s</pre>
 <pre class="prettyprint">&lt;configuration&gt;
     &lt;user&gt;1234567890abcdef1234567890abcdef12345678&lt;/user&gt;
     &lt;secret&gt;ABCDEFGHIJKL1234567abcdefghijklmnopqrstu&lt;/secret&gt;
+    &lt;env&gt;prod&lt;/env&gt;
     &lt;instances&gt;vb-ec717c5e&lt;/instances&gt;
 &lt;/configuration&gt;</pre>
 
