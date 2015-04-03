@@ -5,22 +5,42 @@ title: Documentation
 ---
 <div id="learn" class="container">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-2">
             <div id="menu">
                 <ul class="nav nav-pills nav-stacked">
-                    <li
-                    {% if page.menu == 'commands' %} class="active" {% endif %}>
-                    <a href="/docs/commands.html">Commands</a></li>
-                    <li
-                    {% if page.menu == 'commandline' %} class="active" {% endif %}>
-                    <a href="/docs/commandline">Command-line client</a></li>
-                    <li
-                    {% if page.menu == 'maven' %} class="active" {% endif %}>
-                    <a href="/docs/maven">Maven plugin</a></li>
+                    <li {% if page.menu == 'overview' %} class="active" {% endif %}><a href="/docs">Overview</a></li>
+
+                    <li class="nav-header">Commands</li>
+                    <li role="presentation" {% if page.menu == 'fuse' %} class="active" {% endif %}><a href="/docs/commands/fuse.html">fuse</a></li>
+                    <li role="presentation" {% if page.menu == 'ls' %} class="active" {% endif %}><a href="/docs/commands/ls.html">ls</a></li>
+                    <li role="presentation" {% if page.menu == 'push' %} class="active" {% endif %}><a href="/docs/commands/push.html">push</a></li>
+                    <li role="presentation" {% if page.menu == 'pull' %} class="active" {% endif %}><a href="/docs/commands/pull.html">pull</a></li>
+                    <li role="presentation" {% if page.menu == 'rm' %} class="active" {% endif %}><a href="/docs/commands/rm.html">rm</a></li>
+                    <li role="presentation" {% if page.menu == 'run' %} class="active" {% endif %}><a href="/docs/commands/run.html">run</a></li>
+                    <li role="presentation" {% if page.menu == 'ps' %} class="active" {% endif %}><a href="/docs/commands/ps.html">ps</a></li>
+                    <li role="presentation" {% if page.menu == 'kill' %} class="active" {% endif %}><a href="/docs/commands/kill.html">kill</a></li>
+                    <li role="presentation" {% if page.menu == 'open' %} class="active" {% endif %}><a href="/docs/commands/open.html">open</a></li>
+                    <li role="presentation" {% if page.menu == 'logs' %} class="active" {% endif %}><a href="/docs/commands/logs.html">logs</a></li>
+                    <li role="presentation" {% if page.menu == 'inventory' %} class="active" {% endif %}><a href="/docs/commands/inventory.html">inventory</a></li>
+
+                    <li class="nav-header">Apps</li>
+                    <li {% if page.menu == 'war' %} class="active" {% endif %}><a href="/docs/war.html">Tomcat / War</a></li>
+                    <li {% if page.menu == 'jar' %} class="active" {% endif %}><a href="/docs/jar.html">Executable Jar</a></li>
+
+                    <li class="nav-header">Clients</li>
+                    <li {% if page.menu == 'commandline' %} class="active" {% endif %}><a href="/docs/commandline">Command-line</a></li>
+                    <li {% if page.menu == 'maven' %} class="active" {% endif %}><a href="/docs/maven">Maven</a></li>
+
+                    <li class="nav-header">Platforms</li>
+                    <li {% if page.menu == 'virtualbox' %} class="active" {% endif %}><a href="/docs/virtualbox.html">VirtualBox</a></li>
+                    <li {% if page.menu == 'aws' %} class="active" {% endif %}><a href="/docs/aws.html">AWS</a></li>
                 </ul>
             </div>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-10">
 
             {{ content }}
 

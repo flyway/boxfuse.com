@@ -514,12 +514,29 @@ pre.prettyprint {
     border-radius: 0;
 }
 
+.nav-pills.nav-stacked>li>a:hover {
+    background-color: #dddddd;
+}
+
+.nav-pills.nav-stacked>li.active>a:hover {
+    background-color: #428bca;
+}
+
 .nav-pills-bar {
     margin-bottom: 20px;
 }
 
 .nav-pills-bar>li>a {
     padding: 7px 10px;
+}
+
+.nav-stacked>li.nav-header {
+	font-weight: bold;
+	margin-top: 30px;
+	text-transform: uppercase;
+	background-color: #f0f0f0;
+	padding: 10px 15px;
+	font-size: 13px;
 }
 
 .doc-title {

@@ -1,7 +1,75 @@
-<html>
-<head>
-    <meta http-equiv="refresh" content="0; url=/docs/commands.html" />
-</head>
-<body>
-</body>
-</html>
+---
+layout: docs
+menu: overview
+subtitle: 'Overview'
+---
+<div id="overview">
+    <p class="doc-title">Documentation</p>
+
+
+    <p>Welcome to <strong>Boxfuse</strong>, Immutable Infrastructure made easy.</p>
+    <p><img src="/assets/img/logo-300.png" alt="Boxfuse"/></p>
+    <p>&nbsp;</p>
+
+    <p>If you haven't already, start by reading</p>
+    <ul>
+        <li><a href="/learn/why.html">Why Immutable Infrastructure?</a></li>
+        <li><a href="/learn/how.html">How Boxfuse Works</a></li>
+    </ul>
+
+    <p>&nbsp;</p>
+
+    <p><strong>Boxfuse is the easiest, most reliable and secure way to run your JVM-based apps on AWS.</strong></p>
+
+    <p>In just a few seconds Boxfuse fuses a Payload, like a <a href="/docs/war.html">War file</a> or a
+        <a href="/docs/jar.html">Jar file</a>, together with the required Components,
+        like Tomcat and OpenJDK, into an Image, which we call a Bootable App.</p>
+
+    <p>Boxfuse then runs this Image unchanged on all environments, from Dev on <a href="/docs/virtualbox.html">VirtualBox</a>
+        to Prod on <a href="/docs/aws.html">AWS</a>.
+    This can be done either via the <a href="/docs/commandline">Command-line client</a> or the <a href="/docs/maven">Maven Plugin</a>.</p>
+
+    <p class="doc-section">Terms &amp; Concepts</p>
+
+    <p>First, let's go over a few simple terms you will encounter:</p>
+
+    <p><strong>Boxfuse Console</strong>: The online console to manage your <em>Apps</em></p>
+
+    <p><strong>Boxfuse Client</strong>: The installable client that lets you invoke the various commands pictured above</p>
+
+    <p><strong>Boxfuse Inventory</strong>: The online inventory of all available versions of the various <em>Components</em> available to fuse <em>Images</em></p>
+    <p><strong>Boxfuse Vault</strong>: The secure online vault where you can store your <em>Images</em></p>
+
+    <p><strong>App</strong>: This is your application, as you've created in in the <em>Boxfuse Console</em></p>
+    <p><strong>Component</strong>: A dependency of your app provided by the <em>Boxfuse Inventory</em>. Examples: Tomcat, OpenJDK, ...</p>
+
+    <p><strong>Payload</strong>: This payload of an <em>Image</em>, in one the usual standard formats like an executable .jar
+        or a .war file</p>
+
+    <p><strong>Image</strong>: A universally deployable immutable version of your <em>App</em> containing both the <em>Payload</em> and all the <em>Components</em> it needs to run.
+        It can reside either on your machine or in the <em>Boxfuse Vault</em>.</p>
+
+    <p><strong>Version</strong>: Every <em>Image</em> of an <em>App</em> has a unique version. Example: 1.23.456</p>
+
+    <p><strong>Instance</strong>: A running instance of an <em>Image</em> either inside VirtualBox on your machine or on AWS</p>
+
+    <p class="doc-section">Commands</p>
+    <p>Boxfuse is based around a few simple commands:
+        <a href="/docs/commands/fuse.html">fuse</a>,
+        <a href="/docs/commands/ls.html">ls</a>,
+        <a href="/docs/commands/push.html">push</a>,
+        <a href="/docs/commands/pull.html">pull</a>,
+        <a href="/docs/commands/rm.html">rm</a>,
+        <a href="/docs/commands/run.html">run</a>,
+        <a href="/docs/commands/ps.html">ps</a>,
+        <a href="/docs/commands/kill.html">kill</a>,
+        <a href="/docs/commands/open.html">open</a>,
+        <a href="/docs/commands/logs.html">logs</a> &amp;
+        <a href="/docs/commands/inventory.html">inventory</a></p>
+
+    <p><img src="/assets/img/commands/commands.png" alt="Commands"/></p>
+
+    <p class="next-steps">
+        <a class="btn btn-primary" href="/docs/commands/fuse.html">fuse <i class="fa fa-arrow-right"></i></a>
+    </p>
+</div>

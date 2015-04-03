@@ -1,0 +1,32 @@
+---
+layout: docs
+menu: virtualbox
+subtitle: 'VirtualBox'
+---
+<div id="war">
+    <p class="doc-title">VirtualBox</p>
+
+    <p><img src="/assets/img/virtualbox.png"></p>
+
+    <p>For development, Boxfuse can run your Apps on <strong>VirtualBox</strong>.</p>
+
+    <p class="doc-section">Supported Versions</p>
+
+    <p>Boxfuse supports <strong>VirtualBox 4.2.x and 4.3.x</strong> running on Windows, Mac OSX or Linux.</p>
+
+    <p class="doc-section">Port forwarding</p>
+
+    <p>Ports from your Instnace can be forwarded to your host using the <code>portsmap.NAME=HOST_PORT_NUMBER</code> properties.
+        Example: To forward the HTTP port from your Instance to port 8080 of your host you can use the property <code>portsmap.http=8080</code>.
+    </p>
+
+    <p class="doc-section">CPU &amp; RAM usage</p>
+
+    <p>You can control the number of CPUs exposed to the VM using the <code>cpus</code> property and the number of MB of RAM using the <code>ram</code> property.
+        By default, Boxfuse assigns the same number of CPUs as the host, as well as 1024 MB of RAM to the Instance.
+    </p>
+
+    <p class="next-steps">
+        <a class="btn btn-primary" href="/docs/aws.html">AWS <i class="fa fa-arrow-right"></i></a>
+    </p>
+</div>
