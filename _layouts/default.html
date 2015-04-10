@@ -20,17 +20,16 @@
 <div id="wrapper">
     <div  id="header" class="container">
         <div class="row">
-            <div class="col-md-3">
-                {% if page.tab != 'home' %}<a href="/"><img src="/assets/img/logo-left-200.png" alt="Boxfuse"></a>{% endif %}
+            <div class="col-md-2">
+                <a href="/"><img id="logo" src="/assets/img/logo-left-200.png" alt="Boxfuse"></a>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-10">
                 <ul id="tabs" class="nav nav-tabs navbar-right">
-                    <li
-                    {% if page.menu == 'why' %} class="active" {% endif %}>
+                    <li>
                     <a href="/learn/why.html">Why Immutable Infrastructure?</a></li>
-                    <li
-                    {% if page.menu == 'how' %} class="active" {% endif %}>
+                    <li>
                     <a href="/learn/how.html">How Boxfuse works</a></li>
+                    <li><p class="navbar-btn"><a href="https://console.boxfuse.com" class="btn btn-primary btn-large">Log in / Sign up</a></p></li>
                 </ul>
             </div>
         </div>

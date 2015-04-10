@@ -10,7 +10,11 @@ body {
 	font-family:'Open Sans',sans-serif;
 }
 
-a:hover,a:active, a:focus{
+a {
+	color: #008BC0;
+}
+
+a:hover,a:active,a:focus{
 	text-decoration: none;
     outline: none;
 }
@@ -43,13 +47,34 @@ pre.prettyprint {
     border: 1px solid #CCC;
 }
 
+hr.soften {
+	height: 1px;
+	margin: 54px 0;
+	background-image: -webkit-linear-gradient(left, transparent, rgba(0, 74, 124, .1), transparent);
+	background-image: -moz-linear-gradient(left, transparent, rgba(0, 74, 124, .1), transparent);
+	background-image: -ms-linear-gradient(left, transparent, rgba(0, 74, 124, .1), transparent);
+	background-image: -o-linear-gradient(left, transparent, rgba(0, 74, 124, .1), transparent);
+	background-image: linear-gradient(left, transparent, rgba(0, 74, 124, .1), transparent);
+	border: 0;
+}
+
 .dark {
 	color:#fff;
 }
 
+#video {
+	background-color: black;
+	padding-top: 60px;
+	margin-bottom: 60px;
+}
+
+.center-iframe {
+	left: 50%;
+	margin-left: 285px;
+}
+
 .center {
-	float:none;
-	margin:0 auto;
+	text-align: center;
 }
 
 /* Section Styles  */
@@ -110,6 +135,13 @@ pre.prettyprint {
     color: #990000;
 }
 
+#logo {
+	margin-top: 4px;
+}
+
+.btn-flat {
+	border: 1px solid;
+}
 
 /* Navbar Styles  */
 
@@ -221,6 +253,10 @@ pre.prettyprint {
 	margin-right: 30px;
 }
 
+.navbar-btn>a {
+	font-size: 16px;
+	margin-top: -3px;
+}
 
 .thumbnail {
 	text-align:center;
@@ -374,11 +410,9 @@ pre.prettyprint {
 
 
 #big-sell {
-    min-height: 750px;
+    min-height: 600px;
     text-align: center;
-    background: #f0f0f0;
     width: 100% !important;
-    font-size: 12px;
 }
 
 #big-sell img {
@@ -391,14 +425,59 @@ pre.prettyprint {
 
 .strong-heading {
     font-weight: bold;
-    font-size: 32px;
-    color: #555555;
+    font-size: 28px;
+    color: #004A7C;
     text-align: center;
     line-height: 150%;
 }
 
+.sub-heading {
+    font-size: 20px;
+    color: #CCCCCC;
+    text-align: center;
+    line-height: 150%;
+	margin-bottom: 50px;
+}
+
+.advantage {
+	margin-bottom: 20px;
+}
+.advantage:first-child div {
+	text-align: center;
+}
+.advantage-right {
+	text-align: right;
+}
+
+.advantage i {
+	font-size: 20px;
+	vertical-align: middle;
+	margin-top: -4px;
+}
+
+.advantage-heading {
+	font-size: 20px;
+	font-weight: bold;
+	color: #555;
+	margin-bottom: 10px;
+}
+
+.advantage-description {
+	line-height: 150%;
+}
+
 #big-sell #tagline {
-    margin-bottom: 60px;
+	margin-top: 100px;
+	color: #004A7C;
+	font-size: 36px;
+	font-weight: bold;
+}
+
+#big-sell #tagline2 {
+	margin-top: 20px;
+    margin-bottom: 70px;
+	color: #008BC0;
+	font-size: 24px;
 }
 
 #big-sell #details a {
@@ -435,19 +514,23 @@ pre.prettyprint {
 
 #top3 {
     text-align: center;
-    background-color: #ffffff;
 }
 
 #top3 i {
     font-size: 120px;
     margin-bottom: 20px;
-    color: #004A7C;
+    color: #99B6CA;
 }
 
-#top3 p {
+.top3-heading {
+	font-weight: bold;
+	font-size: 24px;
+	color: #99B6CA;
+	text-align: center;
+	line-height: 150%;
 }
 
-#top3details {
+.top3-details {
     line-height: 150%;
     font-size: 18px;
 }
@@ -504,6 +587,15 @@ pre.prettyprint {
 
 .nav-tabs {
     font-size: 18px;
+	border-bottom: 0;
+}
+
+.nav-tabs>li>a {
+	border-radius: 4px;
+}
+
+.nav-tabs>li>a:hover {
+	border-color: #eee;
 }
 
 .nav-pills.nav-stacked {
@@ -570,7 +662,19 @@ pre.console {
     text-align: center;
 }
 
+.standards img {
+	margin-left: 20px;
+	margin-right: 20px;
+	height: 50px;
+}
+
 .legal {
     padding-top: 50px;
     padding-bottom: 50px;
+}
+
+.final-cta {
+	text-align: center;
+	margin-top: 50px;
+	margin-bottom: 50px;
 }
