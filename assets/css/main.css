@@ -20,10 +20,6 @@ a:hover,a:active,a:focus{
 }
 
 
-h2,h3,h4,h5,h6 {
-	font-weight:300;
-}
-
 h1 {
 	font-weight:bold;
 	font-size:96px;
@@ -34,12 +30,14 @@ h1 {
 }
 
 h2 {
-	font-weight:bold;
-	font-size:50px;
-	text-align:center;
-	line-height:55px;
-	text-shadow:0 1px 1px rgba(0,0,0,0.6);
-	margin-bottom:30px;
+	font-weight: bold;
+	font-size: 24px;
+	color: #004A7C;
+	line-height: 150%;
+}
+
+h3,h4,h5,h6 {
+	font-weight:300;
 }
 
 pre.prettyprint {
@@ -116,19 +114,27 @@ hr.soften {
 }
 
 #push {
-    height: 130px;
+    height: 170px;
 }
 
 #footer {
     clear: both;
     color: #ffffff;
-    padding-top: 20px;
-    background:#202020;
     font-size: 10px;
     line-height: 12px;
     text-align: center;
-    padding-bottom: 10px;
-    height: 130px;
+    height: 170px;
+}
+
+#footer-spacer {
+	height: 40px;
+}
+
+#footer-info {
+	padding-top: 20px;
+	padding-bottom: 10px;
+	background:#202020;
+	height: 130px;
 }
 
 #footer i {
@@ -677,4 +683,43 @@ pre.console {
 	text-align: center;
 	margin-top: 50px;
 	margin-bottom: 50px;
+}
+
+.blog {
+	margin-top: 50px;
+}
+
+.blog-post-date {
+	font-size: 14px;
+	font-weight: bold;
+	color: #aaaaaa;
+}
+
+.blog-post-title {
+	color: #004A7C;
+	font-size: 36px;
+	font-weight: bold;
+}
+
+.blog-post-section {
+	margin-top: 60px;
+	font-weight: 400;
+	font-size: 28px;
+}
+
+.blog-post-image {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#blog-post-nav {
+	margin-top: 30px;
+}
+
+#mc_embed_signup_scroll label {
+	font-size: 12px;
+}
+
+#mc_embed_signup_scroll .btn {
+	margin-top: 4px;
 }
