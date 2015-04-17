@@ -104,7 +104,7 @@ hr.soften {
 
 #wrapper {
     min-height: 100%;
-    margin: 0 auto -130px;
+    margin: 0 auto -170px;
 }
 
 #push {
@@ -716,4 +716,29 @@ pre.console {
 
 #mc_embed_signup_scroll .btn {
 	margin-top: 4px;
+}
+
+.stackoverflow-tag {
+	color: #566e76;
+	background: #f7fdff;
+	border: 1px solid #c0d4db;
+	padding: .4em .5em;
+	border-radius: 15px;
+	text-align: center;
+	line-height: 1;
+	color: #3e6d8e;
+	background-color: #e4edf4;
+	margin: 2px 2px 2px 0;
+	text-decoration: none;
+	white-space: nowrap;
+	display: inline-block;
+	border-radius: 0;
+	border: 1px solid #e4edf4;
+}
+
+
+.stackoverflow-tag:hover {
+	color: #3e6d8e;
+	background-color: #dae6ef;
+	border: 1px solid #dae6ef;
 }
