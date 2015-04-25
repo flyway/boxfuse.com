@@ -706,6 +706,10 @@ pre.console {
 	margin-bottom: 20px;
 }
 
+.blog-post-image img {
+	max-width: 100%;
+}
+
 #blog-post-nav {
 	margin-top: 30px;
 }
