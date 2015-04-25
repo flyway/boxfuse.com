@@ -742,3 +742,56 @@ pre.console {
 	background-color: #dae6ef;
 	border: 1px solid #dae6ef;
 }
+
+#pricing {
+	margin-top: 50px;
+	text-align: center;
+}
+
+#pricing-subtitle {
+	font-size: 20px;
+	color: #888;
+	margin-bottom: 50px;
+}
+
+#pricing .plan {
+	border: 1px #ccc solid;
+	min-height: 295px;
+	background-color: #f8f8f8;
+}
+
+#pricing .plan-name {
+	font-size: 30px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	background-color: #008BC0;
+	color: white;
+	margin: -1px;
+}
+
+#pricing .plan-price {
+	font-size: 14px;
+}
+
+#pricing .plan-feature {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#pricing .num {
+	font-weight: bold;
+}
+
+#pricing .plan-price .num {
+	font-size: 150%;
+}
+
+#pricing .plan-feature .num {
+	font-size: 250%;
+	color: #888;
+}
+
+#pricing-note {
+	color: #888;
+	margin-top: 30px;
+}
