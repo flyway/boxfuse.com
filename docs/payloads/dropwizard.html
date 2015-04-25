@@ -1,0 +1,49 @@
+---
+layout: docs
+menu: dropwizard
+subtitle: 'Dropwizard'
+---
+<div id="dropwizard">
+    <p class="doc-title">Dropwizard</p>
+
+    <p><img src="/assets/img/dropwizard.png"></p>
+
+    <p>Boxfuse supports <strong>Dropwizard 0.8.x or newer</strong> Apps packaged as a <strong>Dropwizard Executable Jar</strong> using either <strong>OpenJDK 7.x or 8.x</strong>.</p>
+
+    <p class="doc-section">Configuration</p>
+
+    <p>Boxfuse extracts all .yml files at the root of the classpath to the same directory as the executable jar.</p>
+
+    <p>By default Boxfuse runs your Dropwizard app with the arguments <code>server boxfuse.yml</code>.</p>
+
+    <p>If no <code>boxfuse.yml</code> is found at the root of the classpath, Boxfuse uses the following defaults:</p>
+
+    <pre class="prettyprint">server:
+  applicationConnectors:
+    - type: http
+      port: 80</pre>
+
+    <p>The use a different yml config file, or a different set of arguments, set <code>jvm.main.args</code> with the arguments you need.</p>
+
+    <p class="doc-section">Healthchecks</p>
+
+    <p>Unless specified otherwise, Boxfuse automatically configures <code>healthcheck.port=8081</code>
+        and <code>healthcheck.path=/healthcheck</code>to <strong>match Dropwizard's defaults</strong>.</p>
+
+    <p class="doc-section">Root Certificates</p>
+
+    <p>By default, Boxfuse uses the <strong>same root certificate bundle as the latest version of Firefox</strong>.
+        You can, however, ship your own set of root certificates, by placing them in a KeyStore inside the Jar file as <code>/cacerts</code>.
+        Boxfuse will then automatically configure the JRE to use these instead.
+    </p>
+
+    <p class="doc-section">Java Agents</p>
+
+    <p>If you wish to launch the JRE with one or more Java Agents, simply place the Java Agent Jar files inside the Jar file under
+        <code>/javaagents/</code>. Boxfuse will then <strong>automatically configure the JRE to use these Java Agents</strong>.
+    </p>
+
+    <p class="next-steps">
+        <a class="btn btn-primary" href="/docs/payloads/war.html">Tomcat / War <i class="fa fa-arrow-right"></i></a>
+    </p>
+</div>

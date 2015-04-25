@@ -80,6 +80,12 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
         <td>Check whether to payload started correctly</td>
     </tr>
     <tr>
+        <td>healtcheck.port</td>
+        <td>boxfuse.healtcheck.port</td>
+        <td><em>autodetected</em></td>
+        <td>The port to check whether to payload started correctly</td>
+    </tr>
+    <tr>
         <td>healtcheck.path</td>
         <td>boxfuse.healtcheck.path</td>
         <td>/</td>
@@ -144,6 +150,7 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
     &lt;debug&gt;true&lt;/debug&gt;
     &lt;debug.wait&gt;false&lt;/debug.wait&gt;
     &lt;healthcheck&gt;true&lt;/healtcheck&gt;
+    &lt;healthcheck.port&gt;https&lt;/healtcheck.port&gt;
     &lt;healthcheck.path&gt;/health&lt;/healtcheck.path&gt;
     &lt;healthcheck.timeout&gt;120&lt;/healtcheck.timeout&gt;
     &lt;jvm.args&gt;-DmycustomProp=abc&lt;/jvm.args&gt;

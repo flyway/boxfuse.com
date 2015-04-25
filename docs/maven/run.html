@@ -68,6 +68,12 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>Check whether to payload started correctly</td>
     </tr>
     <tr>
+        <td>healtcheck.port</td>
+        <td>boxfuse.healtcheck.port</td>
+        <td><em>autodetected</em></td>
+        <td>The port to check whether to payload started correctly</td>
+    </tr>
+    <tr>
         <td>healtcheck.path</td>
         <td>boxfuse.healtcheck.path</td>
         <td>/</td>
@@ -133,6 +139,7 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         &lt;MY_OTHER_VAR&gt;abc&lt;/MY_OTHER_VAR&gt;
     &lt;/envvars&gt;
     &lt;healthcheck&gt;true&lt;/healtcheck&gt;
+    &lt;healthcheck.port&gt;https&lt;/healtcheck.port&gt;
     &lt;healthcheck.path&gt;/health&lt;/healtcheck.path&gt;
     &lt;healthcheck.timeout&gt;120&lt;/healtcheck.timeout&gt;
     &lt;image&gt;hello:1.0&lt;/image&gt;
