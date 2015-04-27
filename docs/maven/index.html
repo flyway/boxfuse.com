@@ -19,6 +19,25 @@ pill: Overview
     <li>AWS Account (for AWS deployments)</li>
 </ul>
 
+<p class="doc-section">Installation</p>
+
+<p>You can start using the Boxfuse Maven plugin by adding the following to the appropriate sections of your POM:</p>
+
+<pre class="prettyprint">&lt;pluginRepository&gt;
+    &lt;id&gt;boxfuse-repo&lt;/id&gt;
+    &lt;url&gt;https://files.boxfuse.com&lt;/url&gt;
+&lt;/pluginRepository&gt;
+
+&lt;plugin&gt;
+  &lt;groupId&gt;com.boxfuse.client&lt;/groupId&gt;
+  &lt;artifactId&gt;boxfuse-maven-plugin&lt;/artifactId&gt;
+  &lt;version&gt;1.3.2.576&lt;/version&gt;
+  &lt;configuration&gt;
+    <strong>&lt;user&gt;</strong><em>your-boxfuse-client-user</em><strong>&lt;/user&gt;</strong>
+    <strong>&lt;secret&gt;</strong><em>your-boxfuse-client-secret</em><strong>&lt;/secret&gt;</strong>
+  &lt;/configuration&gt;
+&lt;/plugin&gt;</pre>
+
 <p class="doc-section">Configuration</p>
 
 <p>Boxfuse is opinionated, favors <strong>convention over configuration</strong> and comes with <strong>sensible
