@@ -1,12 +1,12 @@
 ---
 layout: blog
 subtitle: "Deploy a Dropwizard Unikernel to AWS"
+parttitle: "Part 1: Up and running"
 permalink: /blog/dropwizard-aws.html
 ---
 <div>
-
     <div class="blog-post-image center">
-        <img src="/assets/posts/dropwizard-aws-sm.png" alt="Dropwizard to AWS">
+        <img src="/assets/posts/dropwizard-aws/dropwizard-aws-sm.png" alt="Dropwizard to AWS">
     </div>
 
     <p>Here at Boxfuse <a href="/blog/welcome.html">we strongly believe in keeping things simple</a>. We love
@@ -19,7 +19,7 @@ permalink: /blog/dropwizard-aws.html
         and finally we'll <strong>deploy it unchanged to AWS</strong>. All this in 3 easy steps.</p>
 
     <div class="blog-post-image center">
-        <img src="/assets/posts/dropwizard-aws.png" alt="Dropwizard to AWS">
+        <img src="/assets/posts/dropwizard-aws/dropwizard-aws.png" alt="Dropwizard to AWS">
     </div>
 
     <h2 class="blog-post-section">Prerequisites</h2>
@@ -49,7 +49,7 @@ permalink: /blog/dropwizard-aws.html
     <p>This generated the basic skeleton for Dropwizard:</p>
 
     <div class="blog-post-image">
-        <img src="/assets/posts/archetype.png" alt="Dropwizard Archetype Basic Skeleton">
+        <img src="/assets/posts/dropwizard-aws/archetype.png" alt="Dropwizard Archetype Basic Skeleton">
     </div>
 
     <p>Now let's add a resource and a healthcheck.</p>
@@ -124,7 +124,7 @@ public void run(final DwUnikernelConfiguration configuration, final Environment 
         <code>dwunikernel</code>. Select the defaults of <em>Single Instance with Zero Downtime updates</em> (elastic IP) and the AWS eu-central-1 region:</p>
 
     <div class="blog-post-image">
-        <img src="/assets/posts/new-app.png" alt="New application">
+        <img src="/assets/posts/dropwizard-aws/new-app.png" alt="New application">
     </div>
 
     <p>Now build our Dropwizard app using Maven:</p>
@@ -160,7 +160,7 @@ Total: 1</pre>
         openjdk-8-jre-headless and our application, this is how large the image would have been:</p>
 
     <div class="blog-post-image">
-        <img src="/assets/posts/ubuntu.png" alt="Ubuntu vs Boxfuse">
+        <img src="/assets/posts/dropwizard-aws/ubuntu.png" alt="Ubuntu vs Boxfuse">
     </div>
 
     <p><strong>The Boxfuse unikernel image is just 4% of the equivalent Ubuntu one.</strong>
@@ -260,5 +260,5 @@ Deployment completed successfully. axelfontaine/dwunikernel:1.0 is up and runnin
 
     <p>Now go ahead, dive deeper and read the <a href="/docs/payloads/dropwizard.html">documentation</a>.</p>
 
-    <p><strong>Stay tuned for part 2</strong>, where we will <strong>integrate Boxfuse directly into the Maven build.</strong></p>
+    <p><a href="/blog/dropwizard-aws-maven.html"><strong>Continue to part 2</strong></a>, where we will <a href="/blog/dropwizard-aws-maven.html"><strong>integrate Boxfuse directly into the Maven build.</strong></a></p>
 </div>

@@ -1,2 +1,2 @@
 safe: true
-exclude: [.gitattributes, .gitignore, boxfuse.com.iml, README.md]
+exclude: [.gitattributes, .gitignore, boxfuse.com.iml, README.md, CNAME]

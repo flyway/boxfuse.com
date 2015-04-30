@@ -42,6 +42,15 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td><strong>Required</strong> - Your Boxfuse Client user</td>
     </tr>
     <tr>
+        <td>serverid</td>
+        <td>boxfuse.serverid</td>
+        <td>boxfuse</td>
+        <td>The id of the server in the Maven settings.xml file to
+            load the credentials from.<br/><br/>This is an alternative to passing the credentials in
+            directly through properties.
+        </td>
+    </tr>
+    <tr>
         <td>cpus</td>
         <td>boxfuse.cpus</td>
         <td><em>same as host</em></td>
@@ -156,6 +165,34 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
     &lt;ram&gt;512&lt;/ram&gt;
 &lt;/configuration&gt;</pre>
 
+<p><strong>Dynamically defined properties</strong></p>
+
+<p>After you execute run, Boxfuse will automatically define the following Maven properties</p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Maven property</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tr>
+        <td>boxfuse.image</td>
+        <td>The image that was used to launch the instances</td>
+    </tr>
+    <tr>
+        <td>boxfuse.instances</td>
+        <td>Comma-separated list of ids of the instances just launched</td>
+    </tr>
+    <tr>
+        <td>boxfuse.instances.0.id</td>
+        <td>Id of the instance just launched</td>
+    </tr>
+    <tr>
+        <td>boxfuse.instances.0.url</td>
+        <td>Url of the instance just launched. Very useful for automated testing.</td>
+    </tr>
+</table>
 <p class="next-steps">
     <a class="btn btn-primary" href="/docs/maven/ps.html">ps <i class="fa fa-arrow-right"></i></a>
 </p>

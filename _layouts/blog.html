@@ -7,7 +7,7 @@ title: Blog
     <div class="row">
         <div class="col-md-9">
             <p class="blog-post-date">{{page.date | date: "%Y-%m-%d"}}</p>
-            <h1 class="blog-post-title">{{ page.subtitle }}</h1>
+            <h1 class="blog-post-title">{{ page.subtitle }}{% if page.parttitle %} <br/><span class="blog-post-subtitle">{{page.parttitle}}</span> {% endif %}</h1>
 
             {{ content }}
 
@@ -16,7 +16,7 @@ title: Blog
                     <tr>
                         <td>
                             <a href="https://twitter.com/share" class="twitter-share-button"
-                               data-text="{{ page.subtitle }} by @boxfuse"></a>
+                               data-text="{{ page.subtitle }} {% if page.parttitle %}- {{page.parttitle}} {% endif %}by @boxfuse"></a>
                             <script>!function (d, s, id) {
                                 var js, fjs = d.getElementsByTagName(s)[0];
                                 if (!d.getElementById(id)) {
@@ -46,13 +46,13 @@ title: Blog
             <div id="blog-post-nav">
                 {% if page.previous %}
                 <div id="blog-post-previous">
-                    <a href="{{page.previous.url}}">« {{ page.previous.subtitle }}</a>
+                    <a href="{{page.previous.url}}">« {{ page.previous.subtitle }} {% if page.previous.parttitle %} <br/> {{ page.previous.parttitle }}{% endif %}</a>
                 </div>
                 {% endif %}
 
                 {% if page.next %}
                 <div id="blog-post-next">
-                    <a href="{{page.next.url}}">{{ page.next.subtitle }} »</a>
+                    <a href="{{page.next.url}}">{{ page.next.subtitle }} {% if page.next.parttitle %}  »<br/> {{ page.next.parttitle }}{% endif %}</a>
                 </div>
                 {% endif %}
 
@@ -61,6 +61,23 @@ title: Blog
                     <a href="/blog/atom.xml">RSS Feed</a>
                 </div>
             </div>
+            <!-- Begin MailChimp Signup Form -->
+            <form action="//boxfuse.us9.list-manage.com/subscribe/post?u=0e72f61962b6b47f78568d56c&amp;id=5641e8645a" method="post" id="mc-embedded-subscribe-form-footer" name="mc-embedded-subscribe-form-footer" class="validate" target="_blank" novalidate>
+                <div id="mc_embed_signup_scroll-footer">
+                    <div class="mc-field-group">
+                        <label>Stay updated and receive new blog posts by email
+                        <input type="email" value="" name="EMAIL" class="required email form-control" id="mce-EMAIL-footer" placeholder="Your email address">
+                        </label>
+                        <input type="submit" value="Follow Blog" name="subscribe" id="mc-embedded-subscribe-footer" class="btn btn-primary">
+                    </div>
+                    <div id="mce-responses-footer" class="clear">
+                        <div class="response" id="mce-error-response" style="display:none"></div>
+                        <div class="response" id="mce-success-response" style="display:none"></div>
+                    </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                    <div style="position: absolute; left: -5000px;"><input type="text" name="b_0e72f61962b6b47f78568d56c_5641e8645a" tabindex="-1" value=""></div>
+                </div>
+            </form>
+            <!--End mc_embed_signup-->
         </div>
         <div id="blog-sidebar" class="col-md-3">
             <!-- Begin MailChimp Signup Form -->
@@ -89,7 +106,7 @@ title: Blog
                     {% for post in site.posts %}
                     <li
                     {% if page.permalink == post.permalink %} class="active" {% endif %}>
-                    <a href="{{ post.permalink }}"><span class="date">{{ post.date | date: "%Y-%m-%d" }}</span><br/>{{ post.subtitle | xml_escape }}</a></li>
+                    <a href="{{ post.permalink }}"><span class="date">{{ post.date | date: "%Y-%m-%d" }}</span><br/>{{ post.subtitle | xml_escape }} {% if post.parttitle %} <br/> <span class="blog-sidebar-subtitle">{{ post.parttitle }}</span>{% endif %}</a></li>
                     {% endfor %}
                 </ul>
             </div>

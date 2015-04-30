@@ -43,7 +43,8 @@ pill: Overview
 <p>Boxfuse is opinionated, favors <strong>convention over configuration</strong> and comes with <strong>sensible
     defaults</strong>.</p>
 
-<p>You can override these defaults by either configuring the plugin, adding Maven properties or passing in System properties.</p>
+<p>You can override these defaults by either configuring the plugin, adding Maven properties or passing in System properties.
+You can also either specify an external config file or place a <code>boxfuse.conf</code> file in either the current directory or under .boxfuse in your home directory.</p>
 
 <p class="doc-section">Configuration Overriding Order</p>
 
@@ -52,7 +53,27 @@ pill: Overview
     <li>System properties</li>
     <li>Maven properties</li>
     <li>Plugin configuration</li>
+    <li>External config file as specified with <code>configfile</code></li>
+    <li><em>&lt;current-dir&gt;</em>/boxfuse.conf</li>
+    <li><em>&lt;home-dir&gt;</em>/.boxfuse/boxfuse.conf</li>
 </ul>
+
+<p class="doc-section">Authentication</p>
+
+<p>Besides configuring credentials through one of the configuration mechanisms described above, it is also possible to externalize
+    them in the Maven <code>settings.xml</code> file:</p>
+
+<pre class="prettyprint">&lt;settings&gt;
+    &lt;servers&gt;
+        &lt;server&gt;
+            &lt;!-- By default Boxfuse will look for the server with the id 'boxfuse' --&gt;
+            &lt;!-- This can be customized by configuring the 'serverid' property --&gt;
+            &lt;id&gt;boxfuse&lt;/id&gt;
+            &lt;username&gt;<em>your-boxfuse-client-user</em>&lt;/username&gt;
+            &lt;password&gt;<em>your-boxfuse-client-secret</em>&lt;/password&gt;
+        &lt;/server&gt;
+    &lt;/servers&gt;
+&lt;/settings&gt;</pre>
 
 <p class="next-steps">
     <a class="btn btn-primary" href="/docs/maven/fuse.html">fuse <i class="fa fa-arrow-right"></i></a>

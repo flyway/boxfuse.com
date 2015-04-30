@@ -1,0 +1,316 @@
+---
+layout: blog
+subtitle: "Deploy a Dropwizard Unikernel to AWS"
+parttitle: "Part 2: Automated Maven build"
+permalink: /blog/dropwizard-aws-maven.html
+---
+<div>
+    <div class="blog-post-image center">
+        <img src="/assets/posts/dropwizard-aws-maven/dropwizard-aws-maven.png" alt="Dropwizard to AWS using Maven">
+    </div>
+
+    <p>In <strong><a href="/blog/dropwizard-aws.html">part 1 of this series</a></strong> we looked at how to fuse a
+        <strong><a href="http://www.dropwizard.io/">Dropwizard</a></strong> application into a <strong>secure unikernel image</strong>.
+        We then <strong>tested it locally on VirtualBox</strong>
+        and finally we <strong>deployed it unchanged to AWS</strong>.</p>
+
+    <p>Today we are going to continue where we left off and <strong>automate the steps from part 1</strong> directly
+        from our <strong>Maven build</strong>. In addition, we are going to automatically execute an integration
+    test against a test instance deployed on VirtualBox before pusing the image out to AWS.</p>
+
+    <div class="blog-post-image center">
+        <img src="/assets/posts/dropwizard-aws-maven/maven-phases.png" alt="Maven phases">
+    </div>
+
+    <h2 class="blog-post-section">Prerequisites</h2>
+
+    <p>This post assumes you have everything set up as described in <a href="/blog/dropwizard-aws.html">part 1</a>.</p>
+
+    <h2 class="blog-post-section">Step 1: Automatically fusing the unikernel image</h2>
+
+    <p>Instead of manually having to type some commands, we now <strong>automatically fuse our Dropwizard app into a
+    unikernel image using the Boxfuse Maven plugin as part every build</strong>. The image effectively supplants the jar
+        file as the final product of our build.</p>
+
+    <p>It however shares all the essential qualities of the jar file:</p>
+    <ul>
+        <li>one immutable artifact</li>
+        <li>regenerated after every changed</li>
+        <li>promoted unchanged from environment to environment</li>
+    </ul>
+
+    <p>And it <strong>avoids the classic mistake of building a separate artifact per environment</strong>, where the artifact you run in
+        production is different from the one you tested in test. In other words it avoids the very mistake that happens with classic provisioning of systems.</p>
+
+    <div class="blog-post-image center">
+        <img src="/assets/posts/dropwizard-aws-maven/maven-phases-step1.png" alt="Maven phases - step 1">
+    </div>
+
+    <p>For this we first need to add the <strong>Boxfuse Maven repository</strong> to our <code>pom.xml</code>:</p>
+    <pre class="prettyprint">&lt;pluginRepositories&gt;
+    &lt;pluginRepository&gt;
+        &lt;id&gt;central&lt;/id&gt;
+        &lt;url&gt;https://repo1.maven.org/maven2&lt;/url&gt;
+    &lt;/pluginRepository&gt;
+    &lt;pluginRepository&gt;
+        &lt;id&gt;boxfuse-repo&lt;/id&gt;
+        &lt;url&gt;https://files.boxfuse.com&lt;/url&gt;
+    &lt;/pluginRepository&gt;
+&lt;/pluginRepositories&gt;</pre>
+
+    <p>We now add the <a href="/docs/maven"><strong>Boxfuse Maven plugin</strong></a> after the shade plugin and define
+        one execution in the <em>package</em> phase to fuse the image:</p>
+
+    <pre class="prettyprint">&lt;!-- must be placed after the shade plugin to guarantee the correct execution order --&gt;
+&lt;plugin&gt;
+    &lt;groupId&gt;com.boxfuse.client&lt;/groupId&gt;
+    &lt;artifactId&gt;boxfuse-maven-plugin&lt;/artifactId&gt;
+    &lt;version&gt;1.3.2.576&lt;/version&gt;
+    &lt;configuration&gt;
+        &lt;user&gt;<em>your-boxfuse-client-user</em>&lt;/user&gt;
+        &lt;secret&gt;<em>your-boxfuse-client-secret</em>&lt;/secret&gt;
+    &lt;/configuration&gt;
+    &lt;executions&gt;
+        &lt;execution&gt;
+            &lt;id&gt;fuse-image&lt;/id&gt;
+            &lt;goals&gt;
+                &lt;goal&gt;fuse&lt;/goal&gt;
+            &lt;/goals&gt;
+            &lt;phase&gt;package&lt;/phase&gt;
+        &lt;/execution&gt;
+    &lt;/executions&gt;
+&lt;/plugin&gt;</pre>
+
+    <p>Don't forget to replace the Boxfuse user and secret with the ones specified on your <a href="https://console.boxfuse.com/#/downloads">download page</a> of the Boxfuse Console.</p>
+
+    <p>Executing the build now gives us this:</p>
+
+    <pre class="console">&gt; mvn clean package
+...
+[INFO] --- boxfuse-maven-plugin:1.3.2.576:fuse (fuse-image) @ dwunikernel ---
+[INFO] Fusing Image for dwunikernel-1.0.jar ...
+[INFO] Image fused in 00:07.273s (54017 K) -> axelfontaine/dwunikernel:1.0</pre>
+
+    <p>And there we have it! A new image generated as part of every build.</p>
+
+    <h2 class="blog-post-section">Step 2: Adding an integration test against VirtualBox</h2>
+
+    <p>Now let's automatically</p>
+    <ul>
+        <li><strong>run an instance</strong> of our new image on VirtualBox in the <em>pre-integration-test</em> phase</li>
+        <li><strong>execute an integration test</strong> against it in the <em>integration-test</em> phase</li>
+        <li><strong>kill the instance</strong> in the <em>post-integration-test</em> phase</li>
+        <li><strong>verify the results</strong> in the <em>verify</em> phase</li>
+    </ul>
+
+    <div class="blog-post-image center">
+        <img src="/assets/posts/dropwizard-aws-maven/maven-phases-step2.png" alt="Maven phases - step 2">
+    </div>
+
+    <p>Let's start by creating our integration test. For that we'll need to add <code>junit</code> and
+        <code>fluent-hc</code> (the fluent interface for the Apache HTTP client) to the test scope of the <code>pom.xml</code>:</p>
+
+    <pre class="prettyprint">&lt;dependency&gt;
+    &lt;groupId&gt;junit&lt;/groupId&gt;
+    &lt;artifactId&gt;junit&lt;/artifactId&gt;
+    &lt;version&gt;4.12&lt;/version&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.httpcomponents&lt;/groupId&gt;
+    &lt;artifactId&gt;fluent-hc&lt;/artifactId&gt;
+    &lt;version&gt;4.3.6&lt;/version&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;</pre>
+
+    <p>Now let's add an integration test called <code>dwunikernel.resources.HelloWorldResourceTest</code> to <code>src/test/java</code>:</p>
+
+    <pre class="prettyprint">package dwunikernel.resources;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.http.client.fluent.Request;
+import org.junit.Test;
+import java.util.Map;
+
+import static org.junit.Assert.assertEquals;
+
+public class HelloWorldResourceTest {
+    @Test
+    public void hello() throws Exception {
+        String url = System.getProperty("instanceUrl") + "?name=IntegrationTest";
+        String json = Request.Get(url).execute().returnContent().asString();
+        Map&lt;String, Object&gt; result = new ObjectMapper().readValue(json, new TypeReference&lt;Map&lt;String, Object&gt;&gt;(){});
+        assertEquals("Hello, IntegrationTest!", result.get("hello"));
+    }
+}</pre>
+
+    <p>As the <strong>url of the instance may change based on port availability</strong>, you can see it is being
+        <strong>passed in dynamically using the system property</strong> <em>instanceUrl</em>.
+        It is then being used to connect to the running instance, where the response
+    of the request is then converted from a json string into a map object and compared against our expectations.</p>
+
+    <p>Next add additional executions of the Boxfuse Maven plugin to the <code>pom.xml</code> to automatically run and kill the instance:</p>
+
+    <pre class="prettyprint">&lt;execution&gt;
+    &lt;id&gt;run-on-virtualbox&lt;/id&gt;
+    &lt;goals&gt;
+        &lt;goal&gt;run&lt;/goal&gt;
+    &lt;/goals&gt;
+    &lt;phase&gt;pre-integration-test&lt;/phase&gt;
+&lt;/execution&gt;
+&lt;execution&gt;
+    &lt;id&gt;kill-on-virtualbox&lt;/id&gt;
+    &lt;goals&gt;
+        &lt;goal&gt;kill&lt;/goal&gt;
+    &lt;/goals&gt;
+    &lt;phase&gt;post-integration-test&lt;/phase&gt;
+&lt;/execution&gt;</pre>
+
+    <p>And finally configure the Surefire and Failsafe plugins to run our test and verify the results:</p>
+    
+    <pre class="prettyprint">&lt;plugin&gt;
+    &lt;artifactId&gt;maven-surefire-plugin&lt;/artifactId&gt;
+    &lt;version&gt;2.18.1&lt;/version&gt;
+    &lt;configuration&gt;
+        &lt;excludes&gt;
+            &lt;exclude&gt;**/*ResourceTest.java&lt;/exclude&gt;
+        &lt;/excludes&gt;
+    &lt;/configuration&gt;
+&lt;/plugin&gt;
+&lt;plugin&gt;
+    &lt;artifactId&gt;maven-failsafe-plugin&lt;/artifactId&gt;
+    &lt;version&gt;2.18.1&lt;/version&gt;
+    &lt;configuration&gt;
+        &lt;includes&gt;
+            &lt;include&gt;**/*ResourceTest.java&lt;/include&gt;
+        &lt;/includes&gt;
+        &lt;systemPropertyVariables&gt;
+            &lt;instanceUrl&gt;${boxfuse.instances.0.url}&lt;/instanceUrl&gt;
+        &lt;/systemPropertyVariables&gt;
+    &lt;/configuration&gt;
+    &lt;executions&gt;
+        &lt;execution&gt;
+            &lt;id&gt;integration-test&lt;/id&gt;
+            &lt;goals&gt;
+                &lt;goal&gt;integration-test&lt;/goal&gt;
+            &lt;/goals&gt;
+        &lt;/execution&gt;
+        &lt;execution&gt;
+            &lt;id&gt;verify&lt;/id&gt;
+            &lt;goals&gt;
+                &lt;goal&gt;verify&lt;/goal&gt;
+            &lt;/goals&gt;
+        &lt;/execution&gt;
+    &lt;/executions&gt;
+&lt;/plugin&gt;</pre>
+
+    <p>As you can see we pass in the variable <code>${boxfuse.instances.0.url}</code> as the value of the <code>instanceUrl</code>
+    System property we referred to in out test. After executing <em>run</em>, <strong>Boxfuse will automatically set the
+        <code>${boxfuse.instances.0.url}</code> to the correct url of the instance</strong> that was just started. We then use
+    that url in our test to connect to the Dropwizard application.</p>
+
+    <p>Time to fire up Maven and see the results:</p>
+
+<pre class="console">&gt; mvn clean verify
+...
+[INFO] --- boxfuse-maven-plugin:1.3.2.576:run (run-on-virtualbox) @ dwunikernel ---
+[INFO] Launching Instance of axelfontaine/dwunikernel:1.0 on VirtualBox ...
+[INFO] Forwarding admin-http port localhost:50001 -> vb-fc55a898:8081
+[INFO] Forwarding http port localhost:8888 -> vb-fc55a898:80
+[INFO] Instance launched in 00:03.851s -> vb-fc55a898
+[INFO] Waiting for Payload to start on Instance vb-fc55a898 ...
+[INFO] Payload started in 00:07.025s -> http://127.0.0.1:8888
+[INFO]
+[INFO] --- maven-failsafe-plugin:2.18.1:integration-test (integration-test) @ dwunikernel ---
+[INFO] Failsafe report directory: C:\Workspaces\dwunikernel\target\failsafe-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running dwunikernel.resources.HelloWorldResourceTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.557 sec - in dwunikernel.resources.HelloWorldResourceTest
+
+Results :
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO]
+[INFO] --- boxfuse-maven-plugin:1.3.2.576:kill (kill-on-virtualbox) @ dwunikernel ---
+[INFO] Killing Instance vb-fc55a898 on VirtualBox ...
+[INFO] Instance killed in 00:02.349s
+[INFO]
+[INFO] --- maven-failsafe-plugin:2.18.1:verify (verify) @ dwunikernel ---
+[INFO] Failsafe report directory: C:\Workspaces\dwunikernel\target\failsafe-reports</pre>
+
+
+    <p>Success! Our test has verified our HelloWorldResource is behaving as we expect and we have now
+        <strong>automatically tested the exact same image we'll later run on AWS</strong>. This
+        provides us with very strong guarantees that it will work there too.</p>
+
+    <h2 class="blog-post-section">Step 3: Deploying the tested image to AWS</h2>
+
+    <p>After we have successfully tested our image, we are now sufficiently confident to <strong>automatically push it out
+    to our production environment on AWS</strong>. For that we need one final addition to the list of executions of the Boxfuse Maven plugin
+    in the <code>pom.xml</code>:</p>
+
+    <pre class="prettyprint">&lt;execution&gt;
+    &lt;id&gt;run-on-aws&lt;/id&gt;
+    &lt;goals&gt;
+        &lt;goal&gt;run&lt;/goal&gt;
+    &lt;/goals&gt;
+    &lt;phase&gt;deploy&lt;/phase&gt;
+    &lt;configuration&gt;
+        &lt;env&gt;prod&lt;/env&gt;
+    &lt;/configuration&gt;
+&lt;/execution&gt;</pre>
+
+    <p>And also disable the deploy plugin as we have not configured a remote repository (and our images land in the <strong>Boxfuse Vault</strong>):</p>
+
+<pre class="prettyprint">&lt;plugin&gt;
+    &lt;artifactId&gt;maven-deploy-plugin&lt;/artifactId&gt;
+    &lt;version&gt;2.8.2&lt;/version&gt;
+    &lt;configuration&gt;
+        &lt;skip&gt;true&lt;/skip&gt;
+    &lt;/configuration&gt;
+&lt;/plugin&gt;</pre>
+
+    <p>Finally put it all together:</p>
+
+<div class="blog-post-image center">
+    <img src="/assets/posts/dropwizard-aws-maven/maven-phases.png" alt="Maven phases">
+</div>
+
+    <pre class="console">&gt; boxfuse clean deploy
+...
+[INFO] Pushing axelfontaine/dwunikernel:1.0 ...
+[INFO] Verifying axelfontaine/dwunikernel:1.0 ...
+[INFO] Waiting for AWS to create an AMI for axelfontaine/dwunikernel:1.0 in eu-central-1 (this may take up to 50 seconds) ...
+[INFO] AMI created in 00:31.703s -> ami-842d1299
+[INFO] Creating security group boxfuse-sg_axelfontaine/dwunikernel:1.0 ...
+[INFO] Launching t2.micro instance of axelfontaine/dwunikernel:1.0 (ami-842d1299) in eu-central-1 ...
+[INFO] Instance launched in 00:22.192s -> i-0cd66acd
+[INFO] Waiting for Payload to start on Instance i-0cd66acd at http://52.28.79.74:8081/healthcheck ...
+[INFO] Remapping Elastic IP 52.28.20.51 to i-0cd66acd ...
+[INFO] Waiting 15s for AWS to complete Elastic IP Zero Downtime transition ...
+[INFO] Terminating instance i-2ed66aef ...
+[INFO] Destroying Security Group sg-fc548d95 ...
+[INFO] Deployment completed successfully. axelfontaine/dwunikernel:1.0 is up and running at http://dwunikernel-axelfontaine.boxfuse.io:8081</pre>
+
+    <p>And there we have it. We have successfully <strong>pushed the image to the Boxfuse Vault</strong>,
+        started a <strong>new instance on AWS</strong> and remapped the
+    Elastic IP for a smooth <strong>Zero Downtime transition</strong>.
+        No additional work is required. We now have this as part of every single build.</p>
+
+    <h2 class="blog-post-section">Done</h2>
+
+    <p>Congratulations! We have taken our <a href="/blog/dropwizard-aws.html">unikernel from part 1</a> and with just
+        a few additions to the <code>pom.xml</code> you now have a <strong>fully automated deployment process</strong>.
+        That includes both the dev environment, including <strong>automated testing against VirtualBox</strong>, and the production
+        environment with <strong>Blue/Green deployments with zero downtime on AWS</strong>.</p>
+
+    <p>Now go ahead, dive deeper and read the <a href="/docs/maven">Maven plugin documentation</a>.</p>
+
+    <p><strong>Stay tuned for part 3</strong>, where we will take this to 11 by creating a
+        <strong>fully automated Continuous Deployment pipeline using GitHub and TravisCI.</strong></p>
+</div>

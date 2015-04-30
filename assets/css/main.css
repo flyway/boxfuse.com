@@ -346,62 +346,8 @@ hr.soften {
 	border-radius:5px;
 }
 
-/*	Team Social Icon Styles */
-
-
-.social{
-	text-align: center;
-}
-.social img {
-	-webkit-transition:all .5s ease;
-	-moz-transition:all .5s ease;
-	-o-transition:all .5s ease;
-	-ms-transition:all .5s ease;
-	transition:all .5s ease;
-	margin-right: 4px;
-}
-
-.social img:hover {
-	-webkit-transform:rotate(-15deg);
-	-moz-transform:rotate(-15deg);
-	-o-transform:rotate(-15deg);
-	-ms-transform:rotate(-15deg);
-	transform:rotate(-15deg);
-}
-
-/*	BigVideo Styles */
-
-
-#big-video-wrap {
-	overflow:hidden;
-	position:fixed;
-	height:100%;
-	width:100%;
-	top:0;
-	left:0;
-}
-
-#big-video-vid,#big-video-image {
-	position:absolute;
-}
-
-#big-video-control-container {
-	position:fixed;
-	bottom:20px;
-	padding:0 20px;
-	width:100%;
-	-webkit-transition-duration:.6s;
-	-moz-transition-duration:.6s;
-	-ms-transition-duration:.6s;
-	-o-transition-duration:.6s;
-	transition-duration:.6s;
-}
-
-#big-video-control {
-	width:100%;
-	height:16px;
-	position:relative;
-	display:none;
+#social-buttons td {
+	padding-right: 20px;
 }
 
 .large-icon {
@@ -692,6 +638,13 @@ pre.console {
 .blog-post-title {
 	color: #004A7C;
 	font-size: 36px;
+	margin-bottom: 50px;
+	font-weight: 600;
+}
+
+.blog-post-subtitle {
+	color: #888;
+	font-size: 28px;
 	font-weight: bold;
 }
 
@@ -714,12 +667,28 @@ pre.console {
 	margin-top: 30px;
 }
 
+#blog-post-previous {
+	float: left;
+}
+
+#blog-post-next {
+	float: right;
+}
+
+.blog-sidebar-subtitle {
+	font-size: 12px;
+}
+
 #mc_embed_signup_scroll label {
 	font-size: 12px;
 }
 
 #mc_embed_signup_scroll .btn {
 	margin-top: 4px;
+}
+
+#mc_embed_signup_scroll-footer {
+	margin-top: 50px;
 }
 
 .stackoverflow-tag {
