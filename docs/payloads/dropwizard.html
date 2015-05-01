@@ -10,20 +10,23 @@ subtitle: 'Dropwizard'
 
     <p>Boxfuse supports <strong>Dropwizard 0.8.x or newer</strong> Apps packaged as a <strong>Dropwizard Executable Jar</strong> using either <strong>OpenJDK 7.x or 8.x</strong>.</p>
 
-    <p class="doc-section">Configuration</p>
+    <p id="configuration" class="doc-section">Configuration</p>
 
-    <p>Boxfuse extracts all .yml files at the root of the classpath to the same directory as the executable jar.</p>
+    <p>By default Boxfuse looks for a <code>/boxfuse.yml</code> file <em>inside</em> the Dropwizard jar file and runs your app
+        with the arguments <code>server boxfuse.yml</code>.</p>
 
-    <p>By default Boxfuse runs your Dropwizard app with the arguments <code>server boxfuse.yml</code>.</p>
-
-    <p>If no <code>boxfuse.yml</code> is found at the root of the classpath, Boxfuse uses the following defaults:</p>
+    <p>If no <code>boxfuse.yml</code> is found at the root of the jar file, Boxfuse uses the following defaults:</p>
 
     <pre class="prettyprint">server:
   applicationConnectors:
     - type: http
       port: 80</pre>
 
-    <p>The use a different yml config file, or a different set of arguments, set <code>jvm.main.args</code> with the arguments you need.</p>
+    <p>To make it easy to use a different configuration file, Boxfuse always extracts all .yml files at the root of the jar file
+        to the same directory as the executable jar.</p>
+
+    <p>You can then refer to the different yml config file or pass in a different set of arguments by setting
+        <code>jvm.main.args</code> to the list of arguments you need.</p>
 
     <p class="doc-section">Healthchecks</p>
 
