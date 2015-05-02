@@ -16,7 +16,7 @@
   <entry>
     <id>https://boxfuse.com{{ post.permalink }}</id>
     <link type="text/html" rel="alternate" href="{{ post.permalink }}"/>
-    <title>{{ post.subtitle | xml_escape }}</title>
+    <title>{{ post.subtitle | xml_escape }}{% if post.parttitle %} - {{ post.parttitle | xml_escape }}{% endif %}</title>
     <published>{{ post.date | date_to_xmlschema }}</published>
     <updated>{{ post.date | date_to_xmlschema }}</updated>
     <author>
