@@ -18,6 +18,9 @@ subtitle: 'Dropwizard'
     <p>If you use Maven, this means the <code>boxfuse.yml</code> file should be put into the <code>src/main/resources</code> directory.
         When Maven packages the jar, it will include it in the root of your Dropwizard jar file, where Boxfuse can see it.</p>
 
+    <p>Boxfuse parses <code>boxfuse.yml</code> and <strong>automatically configures the ports and the healthcheck</strong> based on the
+    information it contains.</p>
+
     <p>If no <code>boxfuse.yml</code> is found at the root of the jar file, Boxfuse uses the following defaults:</p>
 
     <pre class="prettyprint">server:

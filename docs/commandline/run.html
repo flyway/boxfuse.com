@@ -65,10 +65,30 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>60</td>
         <td>The number of seconds to wait for the Payload to come up</td>
     </tr>
+    <tr id="jvm.args">
+        <td>-jvm.args=...</td>
+        <td></td>
+        <td>Extra arguments to pass to the JVM</td>
+    </tr>
+    <tr>
+        <td>-jvm.main.class=...</td>
+        <td><em>autodetected</em></td>
+        <td>Main class to invoke on JVM startup</td>
+    </tr>
+    <tr id="jvm.main.args">
+        <td>-jvm.main.args=...</td>
+        <td></td>
+        <td>Arguments to pass to the main class</td>
+    </tr>
     <tr>
         <td>-logs</td>
         <td>true</td>
         <td>Logs may slow down the Instance. Set to false to disable. (VirtualBox on Windows only)</td>
+    </tr>
+    <tr>
+        <td>-logs.auto</td>
+        <td>true</td>
+        <td>Whether to automatically display the instance logs on startup</td>
     </tr>
     <tr>
         <td>-logs.dir=...</td>

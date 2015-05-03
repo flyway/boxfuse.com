@@ -95,6 +95,24 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>The number of seconds to wait for the Payload to come up</td>
     </tr>
     <tr>
+        <td>jvm.args</td>
+        <td>boxfuse.jvm.args</td>
+        <td></td>
+        <td>Extra arguments to pass to the JVM</td>
+    </tr>
+    <tr>
+        <td>jvm.main.class</td>
+        <td>boxfuse.jvm.main.class</td>
+        <td><em>autodetected</em></td>
+        <td>Main class to invoke on JVM startup</td>
+    </tr>
+    <tr>
+        <td>jvm.main.args</td>
+        <td>boxfuse.jvm.main.args</td>
+        <td></td>
+        <td>Arguments to pass to the main class</td>
+    </tr>
+    <tr>
         <td>image</td>
         <td>boxfuse.image</td>
         <td></td>
@@ -104,7 +122,13 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>logs</td>
         <td>boxfuse.logs</td>
         <td>true</td>
-        <td>Only for Windows & VirtualBox. Logs may slow down the Instance. Set to false to disable.</td>
+        <td>Only for Windows &amp; VirtualBox. Logs may slow down the Instance. Set to false to disable.</td>
+    </tr>
+    <tr>
+        <td>logs.auto</td>
+        <td>boxfuse.logs.auto</td>
+        <td>true</td>
+        <td>Whether to automatically display the instance logs on startup</td>
     </tr>
     <tr>
         <td>logs.dir</td>
@@ -151,8 +175,12 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
     &lt;healthcheck.port&gt;https&lt;/healtcheck.port&gt;
     &lt;healthcheck.path&gt;/health&lt;/healtcheck.path&gt;
     &lt;healthcheck.timeout&gt;120&lt;/healtcheck.timeout&gt;
+    &lt;jvm.args&gt;-DmycustomProp=abc&lt;/jvm.args&gt;
+    &lt;jvm.main.class&gt;com.mycorp.MyApp&lt;/jvm.main.class&gt;
+    &lt;jvm.main.args&gt;-abc -def&lt;/jvm.main.args&gt;
     &lt;image&gt;hello:1.0&lt;/image&gt;
     &lt;logs&gt;true&lt;/logs&gt;
+    &lt;logs.auto&gt;true&lt;/logs.auto&gt;
     &lt;logs.dir&gt;${project.outputDirectory}/logs&lt;/logs.dir&gt;
     &lt;ports&gt;
         &lt;https&gt;443&lt;/https&gt;
