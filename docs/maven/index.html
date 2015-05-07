@@ -60,8 +60,13 @@ You can also either specify an external config file or place a <code>boxfuse.con
 
 <p class="doc-section">Authentication</p>
 
-<p>Besides configuring credentials through one of the configuration mechanisms described above, it is also possible to externalize
-    them in the Maven <code>settings.xml</code> file:</p>
+<p>Besides configuring credentials through one of the configuration mechanisms described above, you have a few other
+ways to pass in authentication info.</p>
+
+<p><strong>settings.xml</strong></p>
+
+<p>Maven makes it also possible to externalize credentials using its <code>settings.xml</code> file.
+    Boxfuse supports both regular and encrypted passwords.</p>
 
 <pre class="prettyprint">&lt;settings&gt;
     &lt;servers&gt;
@@ -74,6 +79,11 @@ You can also either specify an external config file or place a <code>boxfuse.con
         &lt;/server&gt;
     &lt;/servers&gt;
 &lt;/settings&gt;</pre>
+
+<p><strong>Environment variables</strong></p>
+
+<p>Alternatively you can also pass in your Boxfuse credentials by setting the <code>BOXFUSE_USER</code> and
+<code>BOXFUSE_SECRET</code> environment variables.</p>
 
 <p class="next-steps">
     <a class="btn btn-primary" href="/docs/maven/fuse.html">fuse <i class="fa fa-arrow-right"></i></a>

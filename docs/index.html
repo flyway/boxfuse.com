@@ -53,7 +53,31 @@ subtitle: 'Overview'
 
     <p><strong>Version</strong>: Every <em>Image</em> of an <em>App</em> has a unique version. Example: 1.23.456</p>
 
-    <p><strong>Instance</strong>: A running instance of an <em>Image</em> either inside VirtualBox on your machine or on AWS</p>
+    <p><strong>Platform</strong>: A virtualization platform to run <em>Instances</em> on, like VirtualBox on your machine or AWS in the cloud</p>
+
+    <p><strong>Environment</strong>: An isolated part of <em>Platform</em> to your <em>Instances</em> in</p>
+
+    <p><strong>Instance</strong>: A running instance of an <em>Image</em> inside an <em>Environment</em></p>
+
+    <p class="doc-section">Environments</p>
+
+    <p>Boxfuse offers you 3 environments to run your instances:</p>
+    <table class="table">
+        <tr>
+            <td><strong>dev</strong></td>
+            <td>Develop with fast turnarounds on your local machine using VirtualBox</td>
+        </tr>
+        <tr>
+            <td><strong>test</strong></td>
+            <td>Test your applications on AWS in a production-like environment</td>
+        </tr>
+        <tr>
+            <td><strong>prod</strong></td>
+            <td>Run your applications in production on AWS</td>
+        </tr>
+    </table>
+
+    <p><img src="/assets/img/environments.png" alt="Environments"/></p>
 
     <p class="doc-section">Commands</p>
     <p>Boxfuse is based around a few simple commands:
