@@ -1,0 +1,235 @@
+---
+layout: blog
+subtitle: "Deploy a Dropwizard Unikernel to AWS"
+parttitle: "Part 3: Continuous Deployment with GitHub and Travis CI"
+permalink: /blog/dropwizard-aws-travisci.html
+---
+<div>
+    <div class="blog-post-image center">
+        <img src="/assets/posts/dropwizard-aws-travisci/dropwizard-aws-travisci.png" alt="Dropwizard continuous deployment to AWS">
+    </div>
+
+    <p>In <strong><a href="/blog/dropwizard-aws.html">part 1 of this series</a></strong> we looked at how to fuse a
+        <strong><a href="http://www.dropwizard.io/">Dropwizard</a></strong> application into a <strong>secure unikernel image</strong>.
+        We then <strong>tested it locally on VirtualBox</strong> and finally we <strong>deployed it unchanged to AWS</strong>.</p>
+
+    <p>In <strong><a href="/blog/dropwizard-aws-maven.html">part 2</a></strong> we <strong>automated the workflow using Maven</strong>.
+        With every automated build, we fused an image, ran integration tests against it on VirtualBox and deployed it unchanged to EC2.</p>
+
+    <p>Today in the final part of this series, we take this to its natural conclusion and create a full <strong>Continuous Deployment pipeline
+        for our unikernel</strong>. Every commit flows smoothly and automatically all the way <strong>from GitHub to AWS, using Travis CI, Maven and Boxfuse</strong>.</p>
+
+    <h2 class="blog-post-section">Prerequisites</h2>
+
+    <p>This post assumes you have everything set up as described in <a href="/blog/dropwizard-aws.html">part 1</a>
+        and <a href="/blog/dropwizard-aws-maven.html">part 2</a>.</p>
+
+    <h2 class="blog-post-section">Step 1: Setting up GitHub and Travis CI</h2>
+
+    <p>Here at Boxfuse we are big fans of both <strong><a href="https://github.com">GitHub</a></strong> and
+        <strong><a href="https://travis-ci.org">Travis CI</a></strong>. Together they form a powerful combo of source
+        control and continuous integration. We especially like the fact that Travis CI integrates really well with GitHub
+        and lets you <strong>check the whole CI build job definition straight into source control</strong>. And best of all, they are both
+        completely free for public repositories, so that is what we'll use.</p>
+
+    <p>So without further ado, let's get started!</p>
+
+    <p>Log in to your <strong>GitHub</strong> account and <strong><a href="https://github.com/new">create a new repository</a></strong> called <code>dwunikernel</code>:</p>
+
+    <div class="blog-post-image">
+        <img src="/assets/posts/dropwizard-aws-travisci/create-repo.png" alt="Create a new GitHub repository">
+    </div>
+
+    <p>Now head over to <strong>Travis CI</strong> and <a href="https://travis-ci.org/">sign in with your GitHub credentials</a>.
+    It's easy and there is no extra registration required.</p>
+
+    <p>Then go to your <a href="https://travis-ci.org/profile">profile</a>, <strong>sync your repositories</strong>
+        and <strong>activate Travis CI</strong> for <code>dwunikernel</code>:</p>
+
+    <div class="blog-post-image">
+        <img src="/assets/posts/dropwizard-aws-travisci/travisci-sync.png" alt="Travis CI sync">
+    </div>
+
+    <p>Finally, go to your Travis CI repository settings and define two <strong>secure environment variables</strong>
+        for your <strong>Boxfuse credentials</strong> called
+        <code>BOXFUSE_USER</code> and <code>BOXFUSE_SECRET</code>. Their values are the same as the ones you enterred in
+        your <code>pom.xml</code> in <a href="/blog/dropwizard-aws-maven.html">part 2</a>.</p>
+
+    <p>The big advantage is that they'll be securely stored at Travis CI and will not appear in neither your public
+    GitHub repository nor your Travis CI build logs, yet the Boxfuse Maven plugin will be able to use them.</p>
+
+    <div class="blog-post-image">
+        <img src="/assets/posts/dropwizard-aws-travisci/envvars.png" alt="Secure environment variables">
+    </div>
+
+    <p>Great! That's all we need to do on this end. <strong>Do not check in anything yet</strong>. We first need to make some changes to our app.</p>
+
+    <h2 class="blog-post-section">Step 2: Tuning the build definition</h2>
+
+    <p>Before we can check in, some important changes must be made. This is both due to the nature of public repositories
+    and the build environment for Travis CI.</p>
+
+    <p>The first and most important thing you must do is <strong>delete your Boxfuse credentials from the <code>pom.xml</code></strong>.
+        This is essential, because checking them in basically means giving the entire world access to your Boxfuse account!
+    </p>
+
+    <p>The next thing we need to take into account is that Travis CI does not support VirtualBox. This is important
+        for running our integration test. We will therefore
+    adjust the Boxfuse Maven plugin configuration to use a <strong><a href="/docs#environments">test environment on AWS</a></strong>
+        instead.</p>
+
+    <p>This is what the end result in the <code>pom.xml</code> looks like:</p>
+
+    <pre class="prettyprint">&lt;plugin&gt;
+    &lt;groupId&gt;com.boxfuse.client&lt;/groupId&gt;
+    &lt;artifactId&gt;boxfuse-maven-plugin&lt;/artifactId&gt;
+    &lt;version&gt;1.5.1.600&lt;/version&gt;
+    &lt;!-- No more Boxfuse credentials in the POM. --&gt;
+    &lt;!-- Instead the BOXFUSE_USER and BOXFUSE_SECRET secure environment variables will be used. --&gt;
+    &lt;executions&gt;
+        &lt;execution&gt;
+            &lt;id&gt;fuse-image&lt;/id&gt;
+            &lt;goals&gt;
+                &lt;goal&gt;fuse&lt;/goal&gt;
+            &lt;/goals&gt;
+            &lt;phase&gt;package&lt;/phase&gt;
+        &lt;/execution&gt;
+        &lt;execution&gt;
+            &lt;id&gt;run-on-test&lt;/id&gt;
+            &lt;goals&gt;
+                &lt;goal&gt;run&lt;/goal&gt;
+            &lt;/goals&gt;
+            &lt;phase&gt;pre-integration-test&lt;/phase&gt;
+            &lt;configuration&gt;
+                <strong>&lt;env&gt;test&lt;/env&gt;</strong>
+            &lt;/configuration&gt;
+        &lt;/execution&gt;
+        &lt;execution&gt;
+            &lt;id&gt;kill-on-test&lt;/id&gt;
+            &lt;goals&gt;
+                &lt;goal&gt;kill&lt;/goal&gt;
+            &lt;/goals&gt;
+            &lt;phase&gt;post-integration-test&lt;/phase&gt;
+            &lt;configuration&gt;
+                <strong>&lt;env&gt;test&lt;/env&gt;</strong>
+            &lt;/configuration&gt;
+        &lt;/execution&gt;
+        &lt;execution&gt;
+            &lt;id&gt;run-on-prod&lt;/id&gt;
+            &lt;goals&gt;
+                &lt;goal&gt;run&lt;/goal&gt;
+            &lt;/goals&gt;
+            &lt;phase&gt;deploy&lt;/phase&gt;
+            &lt;configuration&gt;
+                &lt;env&gt;prod&lt;/env&gt;
+            &lt;/configuration&gt;
+        &lt;/execution&gt;
+    &lt;/executions&gt;
+&lt;/plugin&gt;</pre>
+
+    <p>We also want to give each unikernel we build a <strong>unique version</strong>. For this Travis CI makes a
+        number of interesting <a href="http://docs.travis-ci.com/user/ci-environment/#Environment-variables">environment variables</a>
+        available to every build. In this case we will use the <code>TRAVIS_BUILD_NUMBER</code> environment variable
+        so the version of each unikernel
+    image can be nicely traced back to the build that created it. On your project, you will probably want to use the
+    full <a href="http://axelfontaine.com/blog/final-nail.html">Maven Releases on Steroids</a> process to also tag the source control repository.</p>
+
+    <p>To make this possible we will give our project a generic version (0-SNAPSHOT) and replace it dynamically at the
+    start of every build with the Travis CI build number using the <code>set</code> goal of the
+        <a href="http://mojo.codehaus.org/versions-maven-plugin/set-mojo.html">Maven Versions plugin</a>.</p>
+
+    <p>So let's first put a generic version in our <code>pom.xml</code>:</p>
+
+    <pre class="prettyprint">&lt;project ...
+
+    &lt;groupId&gt;dwunikernel&lt;/groupId&gt;
+    &lt;artifactId&gt;dwunikernel&lt;/artifactId&gt;
+    <strong>&lt;version&gt;0-SNAPSHOT&lt;/version&gt;</strong>
+    ...
+&lt;/project&gt;        
+</pre>
+
+    <p>Then add the Versions plugin with the new version set to <code>TRAVIS_BUILD_NUMBER</code> environment variable:</p>
+
+    <pre class="prettyprint">&lt;plugin&gt;
+    &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+    &lt;artifactId&gt;versions-maven-plugin&lt;/artifactId&gt;
+    &lt;version&gt;2.2&lt;/version&gt;
+    &lt;configuration&gt;
+        <strong>&lt;newVersion&gt;${env.TRAVIS_BUILD_NUMBER}&lt;/newVersion&gt;</strong>
+    &lt;/configuration&gt;
+&lt;/plugin&gt;</pre>
+
+    <p>Finally, we must add a small YAML descriptor called <code>.travis.yml</code> to the root of our project to tell
+        Travis CI how to build it:</p>
+    
+    <pre class="prettyprint">language: java
+jdk: oraclejdk8
+install: mvn versions:set
+script: mvn deploy</pre>
+
+    <p>This tells Travis CI to use Java 8 and first set the version, then build, test and deploy the project.</p>
+
+    <p>And that's all! We are all set to fire this thing up!</p>
+
+    <h2 class="blog-post-section">Step 3: Commit, push, sit back and enjoy the show!</h2>
+
+    <p>We are now ready. Clone your new <code>dwunikernel</code> GitHub repository, add all the code we created, commit and push.</p>
+
+    <p><strong>All the gears will now kick into motion:</strong></p>
+
+    <ul>
+        <li>GitHub will <strong>notify</strong> Travis CI of the push</li>
+        <li>Travis CI will create a <strong>fresh build worker</strong>, check out the sources and start Maven</li>
+        <li>Maven will run once to <strong>set the version</strong> to match the build number</li>
+        <li>Maven will then run again to <strong>compile and package</strong> the code as an executable Jar</li>
+        <li>Boxfuse will fuse that Jar into a <strong>unikernel image</strong></li>
+        <li>Boxfuse will then launch an instance of that image in a <strong>test environment</strong> on AWS</li>
+        <li>Maven will execute <strong>integration tests</strong> against that instance</li>
+        <li>Boxfuse will terminate the instance</li>
+        <li>Maven will verify the test results</li>
+        <li>And finally if everything went well, Boxfuse will <strong>update our production environment</strong> on AWS with <strong>zero downtime</strong></li>
+    </ul>
+
+    <div class="blog-post-image">
+        <img src="/assets/posts/dropwizard-aws-travisci/travisci-build.png" alt="Travis CI build">
+    </div>
+
+    <p>And you now get all of this <strong>fully automatically after every commit</strong>!</p>
+
+    <p>That includes spinning up
+        a new Travis CI worker, Maven downloading the internet,
+        Boxfuse fusing the unikernel image, creating an AMI, launching 2 new instance on AWS, successfully
+        running integration tests against one of them AND performing a clean blue/green zero downtime update with the other.</p>
+
+    <p>As you can see the entire process takes just <strong>5 minutes from GitHub commit to being live on AWS</strong>.</p>
+
+    <h2 class="blog-post-section">Summary</h2>
+
+    <p>Congratulations! You now have a <strong>fully automated Continuous Deployment pipeline for Dropwizard unikernels.</strong></p>
+    <p>It races <strong>from GitHub to AWS in 5 minutes</strong>, including the automated image build, deployment and the integration tests against the exact same image you run in production.</p>
+
+    <div class="blog-post-image center">
+        <img src="/assets/posts/dropwizard-aws-travisci/dropwizard-aws-travisci.png" alt="Dropwizard continuous deployment to AWS">
+    </div>
+
+    <p>It is <strong>fully automated</strong>. It is <strong>reliable</strong>. It is <strong>secure</strong>. And it's <strong>fast</strong>.</p>
+
+    <p>And best of all, it's <strong>completely free</strong>!</p>
+
+    <p>So say goodbye to snowflake servers and unreliable infrastructure.<br>Create your
+        <strong><a href="https://console.boxfuse.com">Boxfuse account</a></strong> now to get started with fast and reliable
+        dropwizard unikernels on AWS.</p>
+
+    <p>You can find the <strong><a href="https://github.com/boxfuse/dwunikernel">repository we used</a></strong> on <strong>GitHub</strong>
+        and the <strong><a href="https://travis-ci.org/boxfuse/dwunikernel">build jobs for this article</a></strong> on <strong>Travis CI</strong>.</p>
+
+    <p>Learn more:</p>
+    <ul>
+        <li><a href="/docs">Boxfuse documentation</a></li>
+        <li><a href="/docs/payloads/dropwizard.html">Boxfuse Dropwizard support</a></li>
+        <li><a href="/docs/aws.html">Boxfuse AWS support</a></li>
+    </ul>
+
+    <p>Stay tuned for much more exciting news, <strong>subscribe to this blog</strong> and <strong><a href="https://twitter.com/boxfuse">follow Boxfuse on Twitter</a></strong></p>
+</div>
