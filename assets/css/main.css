@@ -764,6 +764,12 @@ pre.console {
 	color: #888;
 }
 
+#pricing .plan-feature .name {
+	font-weight: bold;
+	font-size: 200%;
+	color: #888;
+}
+
 #pricing-note {
 	color: #888;
 	margin-top: 30px;
