@@ -77,19 +77,19 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>Check whether to payload started correctly</td>
     </tr>
     <tr>
-        <td>healtcheck.port</td>
+        <td>healthcheck.port</td>
         <td>boxfuse.healtcheck.port</td>
         <td><em>autodetected</em></td>
         <td>The port to check whether to payload started correctly</td>
     </tr>
     <tr>
-        <td>healtcheck.path</td>
+        <td>healthcheck.path</td>
         <td>boxfuse.healtcheck.path</td>
         <td>/</td>
         <td>The path to check whether to payload started correctly</td>
     </tr>
     <tr>
-        <td>healtcheck.timeout</td>
+        <td>healthcheck.timeout</td>
         <td>boxfuse.healtcheck.timeout</td>
         <td>60</td>
         <td>The number of seconds to wait for the Payload to come up</td>
@@ -171,10 +171,10 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         &lt;JDBC_URL&gt;jdbc:mydburl&lt;/JDBC_URL&gt;
         &lt;MY_OTHER_VAR&gt;abc&lt;/MY_OTHER_VAR&gt;
     &lt;/envvars&gt;
-    &lt;healthcheck&gt;true&lt;/healtcheck&gt;
-    &lt;healthcheck.port&gt;https&lt;/healtcheck.port&gt;
-    &lt;healthcheck.path&gt;/health&lt;/healtcheck.path&gt;
-    &lt;healthcheck.timeout&gt;120&lt;/healtcheck.timeout&gt;
+    &lt;healthcheck&gt;true&lt;/healthcheck&gt;
+    &lt;healthcheck.port&gt;https&lt;/healthcheck.port&gt;
+    &lt;healthcheck.path&gt;/health&lt;/healthcheck.path&gt;
+    &lt;healthcheck.timeout&gt;120&lt;/healthcheck.timeout&gt;
     &lt;jvm.args&gt;-DmycustomProp=abc&lt;/jvm.args&gt;
     &lt;jvm.main.class&gt;com.mycorp.MyApp&lt;/jvm.main.class&gt;
     &lt;jvm.main.args&gt;-abc -def&lt;/jvm.main.args&gt;

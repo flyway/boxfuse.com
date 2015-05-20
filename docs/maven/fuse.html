@@ -83,25 +83,25 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
         <td>Whether the JVM should wait for the remote debugger to connect (Only applicable when debug mode is active)</td>
     </tr>
     <tr>
-        <td>healtcheck</td>
+        <td>healthcheck</td>
         <td>boxfuse.healtcheck</td>
         <td>true</td>
         <td>Check whether to payload started correctly</td>
     </tr>
     <tr>
-        <td>healtcheck.port</td>
+        <td>healthcheck.port</td>
         <td>boxfuse.healtcheck.port</td>
         <td><em>autodetected</em></td>
         <td>The port to check whether to payload started correctly</td>
     </tr>
     <tr>
-        <td>healtcheck.path</td>
+        <td>healthcheck.path</td>
         <td>boxfuse.healtcheck.path</td>
         <td>/</td>
         <td>The path to check whether to payload started correctly</td>
     </tr>
     <tr>
-        <td>healtcheck.timeout</td>
+        <td>healthcheck.timeout</td>
         <td>boxfuse.healtcheck.timeout</td>
         <td>60</td>
         <td>The number of seconds to wait for the Payload to come up</td>
@@ -158,10 +158,10 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
     &lt;/components&gt;
     &lt;debug&gt;true&lt;/debug&gt;
     &lt;debug.wait&gt;false&lt;/debug.wait&gt;
-    &lt;healthcheck&gt;true&lt;/healtcheck&gt;
-    &lt;healthcheck.port&gt;https&lt;/healtcheck.port&gt;
-    &lt;healthcheck.path&gt;/health&lt;/healtcheck.path&gt;
-    &lt;healthcheck.timeout&gt;120&lt;/healtcheck.timeout&gt;
+    &lt;healthcheck&gt;true&lt;/healthcheck&gt;
+    &lt;healthcheck.port&gt;https&lt;/healthcheck.port&gt;
+    &lt;healthcheck.path&gt;/health&lt;/healthcheck.path&gt;
+    &lt;healthcheck.timeout&gt;120&lt;/healthcheck.timeout&gt;
     &lt;jvm.args&gt;-DmycustomProp=abc&lt;/jvm.args&gt;
     &lt;jvm.main.class&gt;com.mycorp.MyApp&lt;/jvm.main.class&gt;
     &lt;jvm.main.args&gt;-abc -def&lt;/jvm.main.args&gt;
