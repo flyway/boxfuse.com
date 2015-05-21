@@ -1,16 +1,16 @@
 ---
-layout: maven
+layout: gradle
 pill: ps
 ---
 <img src="/assets/img/commands/ps.png" alt="ps">
 
-<p class="doc-section">boxfuse:ps</p>
+<p class="doc-section">boxfusePs</p>
 
 <p>Lists the running <em>Instances</em> on either your machine or AWS</p>
 
-<p><strong>Usage: </strong> mvn boxfuse:ps</p>
+<p><strong>Usage: </strong> gradle boxfusePs</p>
 
-<pre class="console">&gt; mvn boxfuse:ps
+<pre class="console">&gt; gradle boxfusePs
 
 Running Instances on VirtualBox:
 +-------------+-----------+---------------------+-----------------------+---------------------+
@@ -26,7 +26,7 @@ Total: 1</pre>
     <thead>
     <tr>
         <th>Plugin Parameter</th>
-        <th>Maven/System property</th>
+        <th>Gradle/System property</th>
         <th>Default</th>
         <th>Description</th>
     </tr>
@@ -36,24 +36,14 @@ Total: 1</pre>
         <td>boxfuse.user</td>
         <td></td>
         <td><strong>Required</strong> - Your Boxfuse Client user. Also configurable via the <code>BOXFUSE_USER</code>
-            environment variable or the Maven settings.xml
-        </td>
+            environment variable</td>
     </tr>
     <tr>
         <td>secret</td>
         <td>boxfuse.secret</td>
         <td></td>
         <td><strong>Required</strong> - Your Boxfuse Client secret. Also configurable via the <code>BOXFUSE_SECRET</code>
-            environment variable or the Maven settings.xml</td>
-    </tr>
-    <tr>
-        <td>serverid</td>
-        <td>boxfuse.serverid</td>
-        <td>boxfuse</td>
-        <td>The id of the server in the Maven settings.xml file to
-            load the credentials from.<br/><br/>This is an alternative to passing the credentials in
-            directly through properties.
-        </td>
+            environment variable</td>
     </tr>
     <tr>
         <td>env</td>
@@ -65,12 +55,12 @@ Total: 1</pre>
 
 <p><strong>Sample Configuration</strong></p>
 
-<pre class="prettyprint">&lt;configuration&gt;
-    &lt;user&gt;1234567890abcdef1234567890abcdef12345678&lt;/user&gt;
-    &lt;secret&gt;ABCDEFGHIJKL1234567abcdefghijklmnopqrstu&lt;/secret&gt;
-    &lt;env&gt;prod&lt;/env&gt;
-&lt;/configuration&gt;</pre>
+<pre class="prettyprint">boxfuse {
+    user='1234567890abcdef1234567890abcdef12345678'
+    secret='ABCDEFGHIJKL1234567abcdefghijklmnopqrstu'
+    env='prod'
+}</pre>
 
 <p class="next-steps">
-    <a class="btn btn-primary" href="/docs/maven/kill.html">kill <i class="fa fa-arrow-right"></i></a>
+    <a class="btn btn-primary" href="/docs/gradle/kill.html">kill <i class="fa fa-arrow-right"></i></a>
 </p>

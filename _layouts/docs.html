@@ -24,6 +24,7 @@ title: Documentation
                     <li role="presentation" {% if page.menu == 'inventory' %} class="active" {% endif %}><a href="/docs/commands/inventory.html">inventory</a></li>
 
                     <li class="nav-header">Payloads</li>
+                    <li {% if page.menu == 'springboot' %} class="active" {% endif %}><a href="/docs/payloads/springboot.html">Spring Boot</a></li>
                     <li {% if page.menu == 'dropwizard' %} class="active" {% endif %}><a href="/docs/payloads/dropwizard.html">Dropwizard</a></li>
                     <li {% if page.menu == 'war' %} class="active" {% endif %}><a href="/docs/payloads/war.html">Tomcat / War</a></li>
                     <li {% if page.menu == 'jar' %} class="active" {% endif %}><a href="/docs/payloads/jar.html">Executable Jar</a></li>
@@ -31,6 +32,7 @@ title: Documentation
                     <li class="nav-header">Clients</li>
                     <li {% if page.menu == 'commandline' %} class="active" {% endif %}><a href="/docs/commandline">Command-line</a></li>
                     <li {% if page.menu == 'maven' %} class="active" {% endif %}><a href="/docs/maven">Maven</a></li>
+                    <li {% if page.menu == 'gradle' %} class="active" {% endif %}><a href="/docs/gradle">Gradle</a></li>
 
                     <li class="nav-header">Platforms</li>
                     <li {% if page.menu == 'virtualbox' %} class="active" {% endif %}><a href="/docs/virtualbox.html">VirtualBox</a></li>

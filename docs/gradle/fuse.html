@@ -1,18 +1,18 @@
 ---
-layout: maven
+layout: gradle
 pill: fuse
 ---
 <img src="/assets/img/commands/fuse.png" alt="fuse">
 
-<p class="doc-section">boxfuse:fuse</p>
+<p class="doc-section">boxfuseFuse</p>
 
 <p>Fuses a <em>Payload</em> together with the <em>Components</em> it requires into an <em>Image</em>.</p>
 
-<p><strong>Usage: </strong> mvn boxfuse:fuse -Dboxfuse.payload=<em>payload</em></p>
+<p><strong>Usage: </strong> gradle boxfuseFuse -Dboxfuse.payload=<em>payload</em></p>
 
 <p>When run as part of a build, the project artifact will automatically be used as a payload.</p>
 
-<pre class="console">&gt; mvn boxfuse:fuse -Dboxfuse.payload=hello-1.0.war
+<pre class="console">&gt; gradle boxfuseFuse -Dboxfuse.payload=hello-1.0.war
 
 Fusing Image for hello-1.0.war ...
 Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
@@ -23,7 +23,7 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
     <thead>
     <tr>
         <th>Plugin Parameter</th>
-        <th>Maven/System property</th>
+        <th>Gradle/System property</th>
         <th>Default</th>
         <th>Description</th>
     </tr>
@@ -33,24 +33,14 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
         <td>boxfuse.user</td>
         <td></td>
         <td><strong>Required</strong> - Your Boxfuse Client user. Also configurable via the <code>BOXFUSE_USER</code>
-            environment variable or the Maven settings.xml
-        </td>
+            environment variable</td>
     </tr>
     <tr>
         <td>secret</td>
         <td>boxfuse.secret</td>
         <td></td>
         <td><strong>Required</strong> - Your Boxfuse Client secret. Also configurable via the <code>BOXFUSE_SECRET</code>
-            environment variable or the Maven settings.xml</td>
-    </tr>
-    <tr>
-        <td>serverid</td>
-        <td>boxfuse.serverid</td>
-        <td>boxfuse</td>
-        <td>The id of the server in the Maven settings.xml file to
-            load the credentials from.<br/><br/>This is an alternative to passing the credentials in
-            directly through properties.
-        </td>
+            environment variable</td>
     </tr>
     <tr>
         <td>payload</td>
@@ -73,7 +63,7 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
         <td>Start the Payload in debug mode when an Instance launches</td>
     </tr>
     <tr>
-        <td>debug.wait</td>
+        <td>debugWait</td>
         <td>boxfuse.debug.wait</td>
         <td>false</td>
         <td>Whether the JVM should wait for the remote debugger to connect (Only applicable when debug mode is active)</td>
@@ -85,37 +75,37 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
         <td>Check whether to payload started correctly</td>
     </tr>
     <tr>
-        <td>healthcheck.port</td>
+        <td>healthcheckPort</td>
         <td>boxfuse.healthcheck.port</td>
         <td><em>autodetected</em></td>
         <td>The port to check whether to payload started correctly</td>
     </tr>
     <tr>
-        <td>healthcheck.path</td>
+        <td>healthcheckPath</td>
         <td>boxfuse.healthcheck.path</td>
         <td>/</td>
         <td>The path to check whether to payload started correctly</td>
     </tr>
     <tr>
-        <td>healthcheck.timeout</td>
+        <td>healthcheckTimeout</td>
         <td>boxfuse.healthcheck.timeout</td>
         <td>60</td>
         <td>The number of seconds to wait for the Payload to come up</td>
     </tr>
     <tr>
-        <td>jvm.args</td>
+        <td>jvmArgs</td>
         <td>boxfuse.jvm.args</td>
         <td></td>
         <td>Extra arguments to pass to the JVM</td>
     </tr>
     <tr>
-        <td>jvm.main.class</td>
+        <td>jvmMainClass</td>
         <td>boxfuse.jvm.main.class</td>
         <td><em>autodetected</em></td>
         <td>Main class to invoke on JVM startup</td>
     </tr>
     <tr>
-        <td>jvm.main.args</td>
+        <td>jvmMainArgs</td>
         <td>boxfuse.jvm.main.args</td>
         <td></td>
         <td>Arguments to pass to the main class</td>
@@ -144,39 +134,39 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
 
 <p><strong>Sample Configuration</strong></p>
 
-<pre class="prettyprint">&lt;configuration&gt;
-    &lt;user&gt;1234567890abcdef1234567890abcdef12345678&lt;/user&gt;
-    &lt;secret&gt;ABCDEFGHIJKL1234567abcdefghijklmnopqrstu&lt;/secret&gt;
-    &lt;payload&gt;hello-1.0.war&lt;/payload&gt;
-    &lt;components&gt;
-        &lt;openjdk&gt;8.25.40&lt;/openjdk&gt;
-        &lt;tomcat&gt;8.0.20&lt;/tomcat&gt;
-    &lt;/components&gt;
-    &lt;debug&gt;true&lt;/debug&gt;
-    &lt;debug.wait&gt;false&lt;/debug.wait&gt;
-    &lt;healthcheck&gt;true&lt;/healthcheck&gt;
-    &lt;healthcheck.port&gt;https&lt;/healthcheck.port&gt;
-    &lt;healthcheck.path&gt;/health&lt;/healthcheck.path&gt;
-    &lt;healthcheck.timeout&gt;120&lt;/healthcheck.timeout&gt;
-    &lt;jvm.args&gt;-DmycustomProp=abc&lt;/jvm.args&gt;
-    &lt;jvm.main.class&gt;com.mycorp.MyApp&lt;/jvm.main.class&gt;
-    &lt;jvm.main.args&gt;-abc -def&lt;/jvm.main.args&gt;
-    &lt;mode&gt;dev&lt;/mode&gt;
-    &lt;ports&gt;
-        &lt;https&gt;443&lt;/https&gt;
-        &lt;http&gt;80&lt;/http&gt;
-    &lt;/ports&gt;
-    &lt;vault&gt;false&lt;/vault&gt;
-&lt;/configuration&gt;</pre>
+<pre class="prettyprint">boxfuse {
+    user='1234567890abcdef1234567890abcdef12345678'
+    secret='ABCDEFGHIJKL1234567abcdefghijklmnopqrstu'
+    payload='hello-1.0.war'
+    components=[
+        'openjdk':'8.25.40',
+        'tomcat':'8.0.20'
+    ]
+    debug=true
+    debugWait=false
+    healthcheck=true
+    healthcheckPort='https'
+    healthcheckPath='/health'
+    healthcheckTimeout=120
+    jvmArgs='-DmycustomProp=abc'
+    jvmMainClass='com.mycorp.MyApp'
+    jvmMainArgs='-abc -def'
+    mode='dev'
+    ports=[
+        'https':443,
+        'http':80
+    ]
+    vault=false
+}</pre>
 
 <p><strong>Dynamically defined properties</strong></p>
 
-<p>After you execute run, Boxfuse will automatically define the following Maven properties</p>
+<p>After you execute run, Boxfuse will automatically define the following Gradle properties</p>
 
 <table class="table">
     <thead>
     <tr>
-        <th>Maven property</th>
+        <th>Gradle property</th>
         <th>Description</th>
     </tr>
     </thead>
@@ -186,5 +176,5 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
     </tr>
 </table>
 <p class="next-steps">
-    <a class="btn btn-primary" href="/docs/maven/ls.html">ls <i class="fa fa-arrow-right"></i></a>
+    <a class="btn btn-primary" href="/docs/gradle/ls.html">ls <i class="fa fa-arrow-right"></i></a>
 </p>

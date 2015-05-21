@@ -1,0 +1,72 @@
+---
+layout: gradle
+pill: Overview
+---
+<p>The Boxfuse Gradle plugin lets you execute the various commands directly from your Gradle build.</p>
+
+<p><img src="/assets/img/gradle.png"></p>
+
+<p class="doc-section">Supported Gradle versions</p>
+
+<ul>
+    <li>Gradle 2.0 or newer</li>
+</ul>
+
+<p class="doc-section">Prerequisites</p>
+
+<ul>
+    <li>Boxfuse Account</li>
+    <li>Working Java 6+ installation</li>
+    <li>Working VirtualBox installation (for VirtualBox deployments)</li>
+    <li>AWS Account (for AWS deployments)</li>
+</ul>
+
+<p class="doc-section">Installation</p>
+
+<p>You can start using the Boxfuse Gradle plugin by adding the following to your <code>build.gradle</code>:</p>
+
+<pre class="prettyprint">buildscript {
+    repositories {
+        maven { url 'https://files.boxfuse.com' }
+    }
+    dependencies {
+        classpath "com.boxfuse.client:boxfuse-gradle-plugin:{{site.boxfuseVersion}}"
+    }
+}
+
+apply plugin: 'boxfuse'
+
+boxfuse {
+    <strong>user='<em>your-boxfuse-client-user</em>'</strong>
+    <strong>secret='<em>your-boxfuse-client-secret</em>'</strong>
+}</pre>
+
+<p class="doc-section">Configuration</p>
+
+<p>Boxfuse is opinionated, favors <strong>convention over configuration</strong> and comes with <strong>sensible
+    defaults</strong>.</p>
+
+<p>You can override these defaults by either configuring the plugin, adding Gradle properties or passing in System properties.
+You can also either specify an external config file or place a <code>boxfuse.conf</code> file in either the current directory or under .boxfuse in your home directory.</p>
+
+<p class="doc-section">Configuration Overriding Order</p>
+
+<p>Higher items on the list override lower ones:</p>
+<ul>
+    <li>System properties</li>
+    <li>Gradle properties</li>
+    <li>Plugin configuration</li>
+    <li>External config file as specified with <code>configfile</code></li>
+    <li><em>&lt;current-dir&gt;</em>/boxfuse.conf</li>
+    <li><em>&lt;home-dir&gt;</em>/.boxfuse/boxfuse.conf</li>
+</ul>
+
+<p class="doc-section">Authentication</p>
+
+<p>Besides configuring credentials through one of the configuration mechanisms described above,
+    you can also pass in your Boxfuse credentials by setting the <code>BOXFUSE_USER</code> and
+<code>BOXFUSE_SECRET</code> environment variables.</p>
+
+<p class="next-steps">
+    <a class="btn btn-primary" href="/docs/gradle/fuse.html">fuse <i class="fa fa-arrow-right"></i></a>
+</p>

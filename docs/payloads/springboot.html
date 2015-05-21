@@ -1,0 +1,57 @@
+---
+layout: docs
+menu: springboot
+subtitle: 'Spring Boot'
+---
+<div id="springboot">
+    <p class="doc-title">Spring Boot</p>
+
+    <p><img src="/assets/img/springboot.png"></p>
+
+    <p>Boxfuse supports <strong>Spring Boot 1.2.x or newer</strong> Apps packaged as a <strong>Spring Boot Executable Jar</strong> using either <strong>OpenJDK 7.x or 8.x</strong>.</p>
+
+    <p id="configuration" class="doc-section">Configuration</p>
+
+    <p>By default Boxfuse looks for a <code>/application-boxfuse.properties</code> file <em>inside</em> the Spring Boot jar file
+        and <strong>runs your app with the Spring profile <code>boxfuse</code></strong> activated by default.</p>
+
+    <p>If you use Maven or Gradle, this means the <code>application-boxfuse.properties</code> file should be put into the <code>src/main/resources</code> directory.
+        When the Spring Boot Maven or Gradle plugin packages the executable jar, it will include it in the root of your class path, where Boxfuse can see it.</p>
+
+    <p>Boxfuse parses <code>application-boxfuse.properties</code> and <strong>automatically configures the ports and the healthcheck</strong> based on the
+    information it contains.</p>
+
+    <p>If no <code>application-boxfuse.properties</code> is found at the root of the jar file, Boxfuse uses the following defaults:</p>
+
+    <pre class="prettyprint">server.port=80
+endpoints.health.id=health
+management.health.diskspace.threshold=0</pre>
+
+    <p class="doc-section">Ports</p>
+
+    <p>Boxfuse will automatically configure your main application port to be either <code>HTTP</code>
+        or <code>HTTPS</code> based on the value of <code>server.ssl.enabled</code>. The actual port number is automatically
+        configured based according to the value of <code>server.port</code>.</p>
+
+    <p class="doc-section">Healthchecks</p>
+
+    <p>If your application also includes the Spring Boot Actuator, Boxfuse will <strong>automatically configures its healthcheck
+        to match the Spring Boot health endpoint</strong>.</p>
+
+    <p class="doc-section">Root Certificates</p>
+
+    <p>By default, Boxfuse uses the <strong>same root certificate bundle as the latest version of Firefox</strong>.
+        You can, however, ship your own set of root certificates, by placing them in a KeyStore inside the Jar file as <code>/cacerts</code>.
+        Boxfuse will then automatically configure the JRE to use these instead.
+    </p>
+
+    <p class="doc-section">Java Agents</p>
+
+    <p>If you wish to launch the JRE with one or more Java Agents, simply place the Java Agent Jar files inside the Jar file under
+        <code>/javaagents/</code>. Boxfuse will then <strong>automatically configure the JRE to use these Java Agents</strong>.
+    </p>
+
+    <p class="next-steps">
+        <a class="btn btn-primary" href="/docs/payloads/dropwizard.html">Dropwizard <i class="fa fa-arrow-right"></i></a>
+    </p>
+</div>

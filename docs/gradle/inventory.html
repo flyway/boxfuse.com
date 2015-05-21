@@ -1,16 +1,16 @@
 ---
-layout: maven
+layout: gradle
 pill: inventory
 ---
 <img src="/assets/img/commands/inventory.png" alt="versions">
 
-<p class="doc-section">boxfuse:inventory</p>
+<p class="doc-section">boxfuseInventory</p>
 
 <p>Lists all versions of a specific <em>Component</em> available in the <em>Boxfuse Inventory</em>.</p>
 
-<p><strong>Usage: </strong> mvn boxfuse:inventory -Dboxfuse.component=<em>component</em></p>
+<p><strong>Usage: </strong> gradle boxfuseInventory -Dboxfuse.component=<em>component</em></p>
 
-<pre class="console">&gt; mvn boxfuse:inventory -Dboxfuse.component=tomcat
+<pre class="console">&gt; gradle boxfuseInventory -Dboxfuse.component=tomcat
 
 Available tomcat versions
 -------------------------
@@ -27,7 +27,7 @@ Available tomcat versions
     <thead>
     <tr>
         <th>Plugin Parameter</th>
-        <th>Maven/System property</th>
+        <th>Gradle/System property</th>
         <th>Default</th>
         <th>Description</th>
     </tr>
@@ -37,24 +37,14 @@ Available tomcat versions
         <td>boxfuse.user</td>
         <td></td>
         <td><strong>Required</strong> - Your Boxfuse Client user. Also configurable via the <code>BOXFUSE_USER</code>
-            environment variable or the Maven settings.xml
-        </td>
+            environment variable</td>
     </tr>
     <tr>
         <td>secret</td>
         <td>boxfuse.secret</td>
         <td></td>
         <td><strong>Required</strong> - Your Boxfuse Client secret. Also configurable via the <code>BOXFUSE_SECRET</code>
-            environment variable or the Maven settings.xml</td>
-    </tr>
-    <tr>
-        <td>serverid</td>
-        <td>boxfuse.serverid</td>
-        <td>boxfuse</td>
-        <td>The id of the server in the Maven settings.xml file to
-            load the credentials from.<br/><br/>This is an alternative to passing the credentials in
-            directly through properties.
-        </td>
+            environment variable</td>
     </tr>
     <tr>
         <td>component</td>
@@ -66,12 +56,12 @@ Available tomcat versions
 
 <p><strong>Sample Configuration</strong></p>
 
-<pre class="prettyprint">&lt;configuration&gt;
-    &lt;user&gt;1234567890abcdef1234567890abcdef12345678&lt;/user&gt;
-    &lt;secret&gt;ABCDEFGHIJKL1234567abcdefghijklmnopqrstu&lt;/secret&gt;
-    &lt;component&gt;tomcat&lt;/component&gt;
-&lt;/configuration&gt;</pre>
+<pre class="prettyprint">boxfuse {
+    user='1234567890abcdef1234567890abcdef12345678'
+    secret='ABCDEFGHIJKL1234567abcdefghijklmnopqrstu'
+    component='tomcat'
+}</pre>
 
 <p class="next-steps">
-    <a class="btn btn-primary" href="/docs/gradle">Gradle <i class="fa fa-arrow-right"></i></a>
+    <a class="btn btn-primary" href="/docs/virtualbox.html">VirtualBox <i class="fa fa-arrow-right"></i></a>
 </p>

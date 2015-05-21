@@ -614,6 +614,20 @@ pre.console {
 	height: 50px;
 }
 
+.runson {
+	margin-top: 50px;
+	font-size: 20px;
+	color: #888;
+}
+
+.runson i {
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 10px;
+	font-size: 28px;
+	color: #555;
+}
+
 .legal {
     padding-top: 50px;
     padding-bottom: 50px;
