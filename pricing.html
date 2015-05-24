@@ -4,7 +4,7 @@ tab: pricing
 title: 'Pricing'
 ---
 <div id="pricing" class="container">
-    <p class="doc-title">Pricing</p>
+    <h1 class="doc-title">Pricing</h1>
 
     <p id="pricing-subtitle">Boxfuse is free to use in development and for one application in production.<br/>
         Run more applications with any of our paid plans.</p>
@@ -14,20 +14,21 @@ title: 'Pricing'
         <div class="col-md-2">
             <div class="plan">
                 <div class="plan-name">Free
-                <div class="plan-price"><span class="num">0</span> $/mo.</div>
-                </div>
+                <div class="plan-price"><span class="num">$0</span>/month</div></div>
                 <div class="plan-feature"><span class="num">1</span><br/>application</div>
                 <div class="plan-feature"><span class="num">3</span><br/>images</div>
+                <div class="plan-feature"><span class="name">1</span><br/>instance</div>
                 <div class="plan-feature"><span class="name">t2.micro</span><br/>instance type</div>
                 <div class="plan-feature"><span class="num"><i class="fa fa-close"></i></span><br/>Elastic Load Balancer<br/>support</div>
             </div>
         </div>
         <div class="col-md-2">
-            <div class="plan">
+            <div class="plan plan-featured">
                 <div class="plan-name">Micro
-                <div class="plan-price"><span class="num">25</span> $/mo.</div></div>
+                <div class="plan-price"><span class="num">$25</span>/month</div></div>
                 <div class="plan-feature"><span class="num">3</span><br/>applications</div>
                 <div class="plan-feature"><span class="num">30</span><br/>images</div>
+                <div class="plan-feature"><span class="name">UNLIMITED</span><br/>instances</div>
                 <div class="plan-feature"><span class="name">ALL</span><br/>instance types</div>
                 <div class="plan-feature"><span class="num"><i class="fa fa-check"></i></span><br/>Elastic Load Balancer<br/>support</div>
             </div>
@@ -35,9 +36,10 @@ title: 'Pricing'
         <div class="col-md-2">
             <div class="plan">
                 <div class="plan-name">Small
-                <div class="plan-price"><span class="num">50</span> $/mo.</div></div>
+                <div class="plan-price"><span class="num">$50</span>/month</div></div>
                 <div class="plan-feature"><span class="num">8</span><br/>applications</div>
                 <div class="plan-feature"><span class="num">80</span><br/>images</div>
+                <div class="plan-feature"><span class="name">UNLIMITED</span><br/>instances</div>
                 <div class="plan-feature"><span class="name">ALL</span><br/>instance types</div>
                 <div class="plan-feature"><span class="num"><i class="fa fa-check"></i></span><br/>Elastic Load Balancer<br/>support</div>
             </div>
@@ -45,9 +47,10 @@ title: 'Pricing'
         <div class="col-md-2">
             <div class="plan">
                 <div class="plan-name">Medium
-                <div class="plan-price"><span class="num">100</span> $/mo.</div></div>
+                <div class="plan-price"><span class="num">$100</span>/month</div></div>
                 <div class="plan-feature"><span class="num">20</span><br/>applications</div>
                 <div class="plan-feature"><span class="num">200</span><br/>images</div>
+                <div class="plan-feature"><span class="name">UNLIMITED</span><br/>instances</div>
                 <div class="plan-feature"><span class="name">ALL</span><br/>instance types</div>
                 <div class="plan-feature"><span class="num"><i class="fa fa-check"></i></span><br/>Elastic Load Balancer<br/>support</div>
             </div>
@@ -55,9 +58,10 @@ title: 'Pricing'
         <div class="col-md-2">
             <div class="plan">
                 <div class="plan-name">Large
-                <div class="plan-price"><span class="num">200</span> $/mo.</div></div>
+                <div class="plan-price"><span class="num">$200</span>/month</div></div>
                 <div class="plan-feature"><span class="num">50</span><br/>applications</div>
                 <div class="plan-feature"><span class="num">500</span><br/>images</div>
+                <div class="plan-feature"><span class="name">UNLIMITED</span><br/>instances</div>
                 <div class="plan-feature"><span class="name">ALL</span><br/>instance types</div>
                 <div class="plan-feature"><span class="num"><i class="fa fa-check"></i></span><br/>Elastic Load Balancer<br/>support</div>
             </div>
@@ -65,6 +69,40 @@ title: 'Pricing'
     </div>
 
     <p id="pricing-note">All plans are charged in US dollars. EU customers may be subject to 19% VAT.</p>
+
+    <div class="final-cta">
+        <a href="https://console.boxfuse.com" class="btn btn-primary btn-large btn-jumbo">Sign up for free</a>
+    </div>
+
+    <h2>Do I have to sign any long-term contracts?</h2>
+    <p>No. All plans are monthly pay as you go with no long term commitments.</p>
+
+    <h2>Is the free plan compatible with the AWS free tier?</h2>
+    <p>Yes. By signing up for a new AWS account, you automatically gain access to the AWS free tier.
+        You can then use both Boxfuse and AWS for free with 1 t2.micro instance and zero downtime upgrades using an elastic IP.</p>
+
+    <h2>Can I change plans at any time?</h2>
+    <p>Yes. You can upgrade or downgrade plans at any time. Upgrades happen immediately and the unused amount you paid
+        for a previous plan will be deducted from your first invoice on the new plan. Downgrades take place at the end
+        of your current billing month.</p>
+
+    <h2>Is the price really $XX/month no matter how many instances I run?</h2>
+    <p>Yes. All paid plans are by the app and come with unlimited instances. Note that AWS instances may still incur charges on your AWS bill.</p>
+
+    <h2>Will AWS charge me for my instances?</h2>
+    <p>Yes. Boxfuse works with your AWS account. Any instances you launch on AWS will be billed by AWS at their usual rate.</p>
+
+    <h2>What happens to my existing instances when I downgrade?</h2>
+    <p>For Boxfuse, you pay by the app. Existing instances do not need Boxfuse to run. If you have more apps than your current plan
+        supports, you will have to upgrade your plan or delete apps before you can deploy again.
+    </p>
+
+    <h2>What happens when you raise your prices?</h2>
+    <p>Our rule is simple: <strong>You always
+        get the best price you've ever paid</strong>.<br/> If we raise prices and you got in when it was cheaper, then it is our way of saying
+        thank you and you get to keep your low price as long as you stay on your current plan. If we lower prices,
+        you will get the new lower price immediately.
+    </p>
 
     <div class="final-cta">
         <a href="https://console.boxfuse.com" class="btn btn-primary btn-large btn-jumbo">Sign up for free</a>
