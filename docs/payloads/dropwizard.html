@@ -29,10 +29,11 @@ subtitle: 'Dropwizard'
       port: 80</pre>
 
     <p>To make it easy to use a different configuration file, Boxfuse always extracts all .yml files at the root of the jar file
-        to the same directory as the executable jar.</p>
-
-    <p>You can then refer to the different yml config file or pass in a different set of arguments by setting
-        <code>jvm.main.args</code> to the list of arguments you need.</p>
+        to the same directory as the executable jar. You can then refer to the different yml config file or pass in a
+        different set of arguments by setting <code>jvm.main.args</code> to the list of arguments you need. However,
+        keep in mind that this will bypass Boxfuse's auto-configuration mechanism and you will need to ensure that
+        your Boxfuse configuration matches what you configured in the yaml file.
+    </p>
 
     <p class="doc-section">Healthchecks</p>
 
