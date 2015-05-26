@@ -16,8 +16,8 @@ pill: Overview
 
 <ul>
     <li>Boxfuse Account</li>
-    <li>Working Java 6+ installation</li>
-    <li>Working VirtualBox installation (for VirtualBox deployments)</li>
+    <li>Gradle</li>
+    <li>VirtualBox (for VirtualBox deployments)</li>
     <li>AWS Account (for AWS deployments)</li>
 </ul>
 
@@ -27,7 +27,8 @@ pill: Overview
 
 <pre class="prettyprint">buildscript {
     repositories {
-        maven { url 'https://files.boxfuse.com' }
+        // https is disabled until https://issues.gradle.org/browse/GRADLE-3250 is fixed
+        maven { url 'http://files.boxfuse.com' }
     }
     dependencies {
         classpath "com.boxfuse.client:boxfuse-gradle-plugin:{{site.boxfuseVersion}}"
