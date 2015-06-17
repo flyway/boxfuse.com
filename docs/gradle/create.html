@@ -1,0 +1,68 @@
+---
+layout: gradle
+pill: create
+---
+<img src="/assets/img/commands/create.png" alt="create">
+
+<p class="doc-section">boxfuseCreate</p>
+
+<p>Creates a new <em>App</em> in the <em>Boxfuse Console</em>.</p>
+
+<p><strong>Usage: </strong> gradle boxfuseCreate -Dboxfuse.app=<em>appName</em></p>
+
+<pre class="console">&gt; gradle boxfuseCreate -Dboxfuse.app=hello
+
+Creating axelfontaine/hello ...
+Successfully created axelfontaine/hello</pre>
+
+<p><br/><strong>Properties:</strong></p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Plugin Parameter</th>
+        <th>Gradle/System property</th>
+        <th>Default</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tr>
+        <td>user</td>
+        <td>boxfuse.user</td>
+        <td></td>
+        <td><strong>Required</strong> - Your Boxfuse Client user. Also configurable via the <code>BOXFUSE_USER</code>
+            environment variable</td>
+    </tr>
+    <tr>
+        <td>secret</td>
+        <td>boxfuse.secret</td>
+        <td></td>
+        <td><strong>Required</strong> - Your Boxfuse Client secret. Also configurable via the <code>BOXFUSE_SECRET</code>
+            environment variable</td>
+    </tr>
+    <tr>
+        <td>app</td>
+        <td>boxfuse.app</td>
+        <td></td>
+        <td>The name of the application</td>
+    </tr>
+    <tr>
+        <td>apptype</td>
+        <td>boxfuse.apptype</td>
+        <td>single-instance</td>
+        <td>The type of app to create. Possible values: Create a <code>single-instance</code> (elastic IP) or a <code>load-balanced</code> app (ELB)</td>
+    </tr>
+</table>
+
+<p><strong>Sample Configuration</strong></p>
+
+<pre class="prettyprint">boxfuse {
+    user='1234567890abcdef1234567890abcdef12345678'
+    secret='ABCDEFGHIJKL1234567abcdefghijklmnopqrstu'
+    app='hello'
+    apptype='load-balanced'
+}</pre>
+
+<p class="next-steps">
+    <a class="btn btn-primary" href="/docs/gradle/ls.html">ls <i class="fa fa-arrow-right"></i></a>
+</p>

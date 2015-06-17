@@ -1,0 +1,37 @@
+---
+layout: commandline
+pill: create
+---
+<img src="/assets/img/commands/create.png" alt="create">
+
+<p class="doc-section">create</p>
+
+<p>Creates a new <em>App</em> in the <em>Boxfuse Console</em>.</p>
+
+<p><strong>Usage: </strong> boxfuse create <em>app</em></p>
+
+<pre class="console">&gt; boxfuse create hello
+
+Creating axelfontaine/hello ...
+Successfully created axelfontaine/hello</pre>
+
+<p><br/><strong>Arguments:</strong></p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Default</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tr>
+        <td>-apptype=...</td>
+        <td>single-instance</td>
+        <td>The type of app to create. Possible values: Create a <code>single-instance</code> (elastic IP) or a <code>load-balanced</code> app (ELB)</td>
+    </tr>
+</table>
+
+<p class="next-steps">
+    <a class="btn btn-primary" href="/docs/commandline/fuse.html">fuse <i class="fa fa-arrow-right"></i></a>
+</p>

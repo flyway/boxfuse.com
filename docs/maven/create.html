@@ -1,0 +1,78 @@
+---
+layout: maven
+pill: create
+---
+<img src="/assets/img/commands/create.png" alt="create">
+
+<p class="doc-section">boxfuse:create</p>
+
+<p>Creates a new <em>App</em> in the <em>Boxfuse Console</em>.</p>
+
+<p><strong>Usage: </strong> mvn boxfuse:create -Dboxfuse.app=<em>appName</em></p>
+
+<pre class="console">&gt; mvn boxfuse:create -Dboxfuse.app=hello
+
+Creating axelfontaine/hello ...
+Successfully created axelfontaine/hello</pre>
+
+<p><br/><strong>Properties:</strong></p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Plugin Parameter</th>
+        <th>Maven/System property</th>
+        <th>Default</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tr>
+        <td>user</td>
+        <td>boxfuse.user</td>
+        <td></td>
+        <td><strong>Required</strong> - Your Boxfuse Client user. Also configurable via the <code>BOXFUSE_USER</code>
+            environment variable or the Maven settings.xml
+        </td>
+    </tr>
+    <tr>
+        <td>secret</td>
+        <td>boxfuse.secret</td>
+        <td></td>
+        <td><strong>Required</strong> - Your Boxfuse Client secret. Also configurable via the <code>BOXFUSE_SECRET</code>
+            environment variable or the Maven settings.xml</td>
+    </tr>
+    <tr>
+        <td>serverid</td>
+        <td>boxfuse.serverid</td>
+        <td>boxfuse</td>
+        <td>The id of the server in the Maven settings.xml file to
+            load the credentials from.<br/><br/>This is an alternative to passing the credentials in
+            directly through properties.
+        </td>
+    </tr>
+    <tr>
+        <td>app</td>
+        <td>boxfuse.app</td>
+        <td></td>
+        <td>The name of the application</td>
+    </tr>
+    <tr>
+        <td>apptype</td>
+        <td>boxfuse.apptype</td>
+        <td>single-instance</td>
+        <td>The type of app to create. Possible values: Create a <code>single-instance</code> (elastic IP) or a <code>load-balanced</code> app (ELB)</td>
+    </tr>
+</table>
+
+<p><strong>Sample Configuration</strong></p>
+
+<pre class="prettyprint">&lt;configuration&gt;
+    &lt;user&gt;1234567890abcdef1234567890abcdef12345678&lt;/user&gt;
+    &lt;secret&gt;ABCDEFGHIJKL1234567abcdefghijklmnopqrstu&lt;/secret&gt;
+    &lt;app&gt;hello&lt;/app&gt;
+    &lt;apptype&gt;load-balanced&lt;/apptype&gt;
+&lt;/configuration&gt;</pre>
+
+<p class="next-steps">
+    <a class="btn btn-primary" href="/docs/maven/fuse.html">fuse <i class="fa fa-arrow-right"></i></a>
+</p>
