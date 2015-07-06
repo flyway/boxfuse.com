@@ -1,0 +1,88 @@
+---
+layout: gradle
+pill: scale
+---
+<img src="/assets/img/commands/scale.png" alt="scale">
+
+<p class="doc-section">boxfuseScale</p>
+
+<p>Scales an <em>App</em> to the specified capacity in a certain environment</p>
+
+<p><strong>Usage: </strong> gradle boxfuseScale -Dboxfuse.app=<em>appName</em> -Dboxfuse.capacity=<em>instanceCount:instanceType</em></p>
+
+<pre class="console">&gt; gradle boxfuseScale -Dboxfuse.app=hello -Dboxfuse.capacity=3:t2.small -Dboxfuse.env=prod
+
+Scaling hello to 3 t2.large instances in prod
+Launching t2.large instance of axelfontaine/hello:1.0 (ami-f6384f94) in eu-central-1 ...
+Instance launched in 00:10.009s -> i-f876f2ba
+Remapping Elastic IP 54.11.12.1 to i-f876f2ba ...
+Waiting 15s for AWS to complete Elastic IP Zero Downtime transition ...
+Terminating instance i-053de18e ...
+Deployment completed successfully. axelfontaine/hello:1.0 is up and running at http://hello-axelfontaine.boxfuse.io
+Successfully scaled hello to 3 t2.large instances in prod</pre>
+
+<p><br/><strong>Properties:</strong></p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Plugin Parameter</th>
+        <th>Gradle/System property</th>
+        <th>Default</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tr>
+        <td>user</td>
+        <td>boxfuse.user</td>
+        <td></td>
+        <td><strong>Required</strong> - Your Boxfuse Client user. Also configurable via the <code>BOXFUSE_USER</code>
+            environment variable</td>
+    </tr>
+    <tr>
+        <td>secret</td>
+        <td>boxfuse.secret</td>
+        <td></td>
+        <td><strong>Required</strong> - Your Boxfuse Client secret. Also configurable via the <code>BOXFUSE_SECRET</code>
+            environment variable</td>
+    </tr>
+    <tr>
+        <td>app</td>
+        <td>boxfuse.app</td>
+        <td></td>
+        <td>The name of the application</td>
+    </tr>
+    <tr>
+        <td>capacity</td>
+        <td>boxfuse.capacity</td>
+        <td></td>
+        <td>The capacity to scale an app to in a certain environment.<br/>
+            Valid formats:<br/>
+            <ul>
+                <li>instanceCount -> Ex. 3</li>
+                <li>instanceType -> Ex. t2.small</li>
+                <li>instanceCount:instanceType -> Ex. 3:t2.small</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>env</td>
+        <td>boxfuse.env</td>
+        <td></td>
+        <td>The environment to scale the app in: <code>test</code> or <code>prod</code></td>
+    </tr>
+</table>
+
+<p><strong>Sample Configuration</strong></p>
+
+<pre class="prettyprint">boxfuse {
+    user='1234567890abcdef1234567890abcdef12345678'
+    secret='ABCDEFGHIJKL1234567abcdefghijklmnopqrstu'
+    app='hello'
+    capacity='3:t2.large'
+    env='test'
+}</pre>
+
+<p class="next-steps">
+    <a class="btn btn-primary" href="/docs/gradle/ps.html">ps <i class="fa fa-arrow-right"></i></a>
+</p>

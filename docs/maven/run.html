@@ -60,6 +60,18 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>The number of CPUs to assign to an Instance</td>
     </tr>
     <tr>
+        <td>debug</td>
+        <td>boxfuse.debug</td>
+        <td>false</td>
+        <td>Start the Payload in debug mode when an Instance launches</td>
+    </tr>
+    <tr>
+        <td>debug.wait</td>
+        <td>boxfuse.debug.wait</td>
+        <td>false</td>
+        <td>Whether the JVM should wait for the remote debugger to connect (Only applicable when debug mode is active)</td>
+    </tr>
+    <tr>
         <td>env</td>
         <td>boxfuse.env</td>
         <td>dev</td>
@@ -169,6 +181,8 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
     &lt;user&gt;1234567890abcdef1234567890abcdef12345678&lt;/user&gt;
     &lt;secret&gt;ABCDEFGHIJKL1234567abcdefghijklmnopqrstu&lt;/secret&gt;
     &lt;cpus&gt;2&lt;/cpus&gt;
+    &lt;debug&gt;true&lt;/debug&gt;
+    &lt;debug.wait&gt;false&lt;/debug.wait&gt;
     &lt;env&gt;prod&lt;/env&gt;
     &lt;envvars&gt;
         &lt;JDBC_URL&gt;jdbc:mydburl&lt;/JDBC_URL&gt;
@@ -225,5 +239,5 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
     </tr>
 </table>
 <p class="next-steps">
-    <a class="btn btn-primary" href="/docs/maven/ps.html">ps <i class="fa fa-arrow-right"></i></a>
+    <a class="btn btn-primary" href="/docs/maven/scale.html">scale <i class="fa fa-arrow-right"></i></a>
 </p>

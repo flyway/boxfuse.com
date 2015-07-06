@@ -34,6 +34,16 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>The number of CPUs to assign to an Instance (VirtualBox only)</td>
     </tr>
     <tr>
+        <td>-debug</td>
+        <td>false</td>
+        <td>Start the Payload in debug mode when an Instance launches</td>
+    </tr>
+    <tr>
+        <td>-debug.wait</td>
+        <td>false</td>
+        <td>Whether the JVM should wait for the remote debugger to connect (Only applicable when debug mode is active)</td>
+    </tr>
+    <tr>
         <td>-env=dev<em>|</em>test<em>|</em>prod</td>
         <td>dev</td>
         <td>Use the AWS test or prod environments instead of the local dev one</td>
@@ -117,5 +127,5 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
 </table>
 
 <p class="next-steps">
-    <a class="btn btn-primary" href="/docs/commandline/ps.html">ps <i class="fa fa-arrow-right"></i></a>
+    <a class="btn btn-primary" href="/docs/commandline/scale.html">scale <i class="fa fa-arrow-right"></i></a>
 </p>
