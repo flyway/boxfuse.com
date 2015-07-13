@@ -1,0 +1,129 @@
+---
+layout: blog
+subtitle: "Immutable Infrastructure: No SSH"
+permalink: /blog/no-ssh.html
+---
+<div>
+    <p>One of the things that is really exciting about <a href="/learn/why.html">Immutable Infrastructure</a> is that it
+        opens up a vast number of opportunities to revisit old ways and change them for the better. One of those is
+        <strong>drift</strong>, the slow natural divergence of machines from each other and their intended setup. There are two main
+    causes for this: deferred provisioning and updates. Both are exacerbated by time. <strong>The longer apart machines
+    are set up and the longer they exists, the higher the likely hood to run into drift problems.</strong> Let's look at each of
+        these in turn.</p>
+
+    <h2 class="blog-post-section">Why is drift a problem?</h2>
+    <p>The first question to ask is really: why is drift itself a problem? Or to put it differently: why is having identical
+        machines important?</p>
+
+    <p>One of the primary ways to reduce risk in a software system is testing. Both manual and automated testing rely
+    on the same three step workflow:</p>
+    <ol>
+        <li>Put the system in a known state</li>
+        <li>Perform an action</li>
+        <li>Compare the results against your expectations</li>
+    </ol>
+    <p>Putting the system in a known state does not only apply to data, it also applies to the versions of all the
+    software components installed. Once your system is correctly set up, your tests will then validate version X
+        of your code running on version Y of your platform
+    while having version Z of a library on board. All other combinations are unknown and must be validated separately.
+        In other words, <strong>there is no guarantee that the exact version of your code
+    will work identically when combined with older or newer versions of the platform and libraries</strong> as older versions may still
+    contain bugs and newer versions could have regressions or subtle changes.</p>
+    <p>For the investment you have made with your tests to have any value, you must therefore ensure the known state of the system
+    and the versions of all components can be easily and safely replicated across machines and environments.</p>
+
+    <p>Or to put it more simply: to have any guarantee that things will work, <strong>you need to run in production what you tested in test</strong>.</p>
+
+    <p>The same thing of course also applies within a single environment. If you have multiple machines serving clients
+        behind a load balancer and want to keep your sanity, you also want these to be absolutely identical.</p>
+
+    <h2 class="blog-post-section">The problems with deferred provisioning</h2>
+
+    <p>Now you may think this is easily solved by using some solid automated provisioning mechanism. Regardless of whether you favor shell scripts or
+        configuration management tools, this is not as easy as it seems. The problem lies in the common usage patterns
+        of package managers and update timings in central repositories. Trouble starts the minute you start relying on
+        commands like this:</p>
+
+    <pre class="console">&gt; sudo apt-get install mypkg</pre>
+
+    <p>To better illustrate why this is a problem, look at this simple example of three machines being set up based on
+        the exact same provisioning script at different points in time:</p>
+
+    <div class="blog-post-image">
+        <img src="/assets/posts/end-of-drift/classic.png" alt="Drift using classic provisioning">
+    </div>
+
+    <p>As you can see, even though all machines install Package A and Package B, the difference in provisioning time
+        causes the same script to pull different versions of the same packages onto the various machines. <strong>You effectively
+        couple the stability of your system to the update schedule of individual packages in the central repository!</strong></p>
+
+    <h2 class="blog-post-section">Images to the rescue</h2>
+
+    <p>One way to fix this is to pin all packages and all their transitive dependencies to specific versions. While this
+        lets your regain control of the update schedule of your system, this comes with a high maintenance overhead.</p>
+
+    <p>A simpler and more reliable alternative is to stick to the proven mantra: <strong>build your artifact only once</strong>.</p>
+
+    <p>To eliminate differences (and thus potential causes of failure) between environment, <strong>your build should produce an artifact that captures your application and all
+        its dependencies at the lowest level possible</strong>. When working with virtual infrastructure, the lowest level possible
+    is simply an <strong>image of the entire machine</strong>. From then on identical instances can be created when you want as often as you want:</p>
+
+    <div class="blog-post-image">
+        <img src="/assets/posts/end-of-drift/image.png" alt="Reliable image-based provisioning">
+    </div>
+
+    <p>While images make it easy to create identical machines, this doesn't solve all problems.
+        <strong>As soon as you have the possibility to log in you
+        lose guarantee that those machines will not diverge over time</strong>:</p>
+
+    <div class="blog-post-image">
+        <img src="/assets/posts/end-of-drift/update.png" alt="Image drift">
+    </div>
+
+    <p>The longer those machines those machines exists, the more likely someone will have modified something and
+    the harder they become to recreate exactly. This effectively largely removes a lot of the benefits.</p>
+
+    <h2 class="blog-post-section">Enforcing immutability</h2>
+
+    <p>So what can be done to remedy this? You need to <strong>prevent log in</strong>. This not only removes the drift problem. It also
+        has very compelling security implications by <strong>reducing your attack surface</strong>. Vulnerabilities like ShellShock
+        simply vanish. And on top of that it forces you to stick to a clean image-based workflow, without hacks or
+        back-doors. In light of all these advantages we'd like to invite you to <strong>join us on the no SSH movement</strong>:</p>
+
+    <div class="blog-post-image center">
+        <img src="/assets/posts/end-of-drift/no-ssh.png" alt="No SSH">
+    </div>
+
+    <p>Your infrastructure now effectively becomes immutable. <strong>Any change requires rebuilding of a new image through
+    your regular automated build and deployment pipeline</strong>. In turn your system drastically gains in simplicity and
+    reliability. A pretty good deal if you ask us.</p>
+
+    <div class="blog-post-image center">
+        <img src="/assets/posts/end-of-drift/image-no-ssh.png" alt="Immutable Images">
+    </div>
+
+    <h2 class="blog-post-section">Conclusion</h2>
+
+    <p>Drift reduces the reliability of your system by effectively undermining the guarantees you gained while testing
+    it. Yet it very easily occurs when relying on traditional provisioning.</p>
+
+    <p>By moving to a build and deployment pipeline that captures your application and all of its dependencies at the
+        lowest possible level, you can regain a lot of confidence. When dealing with virtual hardware, the best way
+        to achieve this is to produce images of an entire system. The ensure the process stays reliable and to keep you honest
+        you should eliminate SSH and the ability to log in. <strong>Your images and your infrastructure effectively becomes immutable.
+    Any change triggers the creation of a new image, which is built only once for all environments.</strong></p>
+
+    <h2 class="blog-post-section">Take it to 11</h2>
+
+    <p><a href="https://boxfuse.com"><strong>Boxfuse</strong></a> lets you do all this and more. Boxfuse intelligently analyses your application and
+        <strong>generates minimal images in seconds</strong>.
+    There is no general purpose operating system and no tedious provisioning. Boxfuse images are lean, secure and efficient. You
+    can run them on VirtualBox for development and deploy them unchanged and with <strong>zero downtime on AWS</strong> for test and
+    production.</p>
+
+    <p>Have fun! And if you haven't already,
+        <a href="https://console.boxfuse.com"><strong>sign up for your
+        Boxfuse account</strong></a> now. All you need is a GitHub user
+        and you'll be up and running in no time. The <a href="/pricing.html">Boxfuse free plan</a> aligns
+        perfectly with the AWS free tier, so you can deploy your application to EC2 completely free.</p>
+</div>
