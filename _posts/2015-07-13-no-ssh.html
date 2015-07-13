@@ -86,8 +86,8 @@ permalink: /blog/no-ssh.html
     <h2 class="blog-post-section">Enforcing immutability</h2>
 
     <p>So what can be done to remedy this? You need to <strong>prevent log in</strong>. This not only removes the drift problem. It also
-        has very compelling security implications by <strong>reducing your attack surface</strong>. Vulnerabilities like ShellShock
-        simply vanish. And on top of that it forces you to stick to a clean image-based workflow, without hacks or
+        has very compelling security implications by <strong>reducing your attack surface</strong>. <del>Vulnerabilities like ShellShock
+        simply vanish.*</del> And on top of that it forces you to stick to a clean image-based workflow, without hacks or
         back-doors. In light of all these advantages we'd like to invite you to <strong>join us on the no SSH movement</strong>:</p>
 
     <div class="blog-post-image center">
@@ -112,6 +112,10 @@ permalink: /blog/no-ssh.html
         to achieve this is to produce images of an entire system. The ensure the process stays reliable and to keep you honest
         you should eliminate SSH and the ability to log in. <strong>Your images and your infrastructure effectively becomes immutable.
     Any change triggers the creation of a new image, which is built only once for all environments.</strong></p>
+
+    <p><strong>* Update:</strong> As correctly pointed out by a few people, the ShellShock vulnerability doesn't fully
+        vanish with this in a general-purpose operating system. This is a Boxfuse-specific point as Boxfuse doesn't include
+    bash either.</p>
 
     <h2 class="blog-post-section">Take it to 11</h2>
 
