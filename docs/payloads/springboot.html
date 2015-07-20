@@ -31,7 +31,7 @@ server.context-path=/
 server.servlet-path=/
 server.ssl.enabled=false
 endpoints.health.id=health
-management.health.diskspace.threshold=0
+management.health.diskspace.enabled=false
 management.context-path=/</pre>
 
     <p class="doc-section">Ports</p>
@@ -43,7 +43,14 @@ management.context-path=/</pre>
     <p class="doc-section">Healthchecks</p>
 
     <p>If your application also includes the Spring Boot Actuator, Boxfuse will <strong>automatically configures its healthcheck
-        to match the Spring Boot health endpoint</strong>.</p>
+        to match the Spring Boot health endpoint</strong>. The only requirement is that if you provide your own configuration,
+    you must set <code>management.health.diskspace.enabled</code> to <code>false</code>.</p>
+
+    <p class="doc-section">Spring Profiles</p>
+
+    <p>By default Boxfuse activates a Spring Profile called <code>boxfuse</code>. You can however easily specify a different
+    profile by setting the <code>SPRING_PROFILES_ACTIVE</code> environment variable to the value you need using the
+        <a href="/docs/commandline/run.html#envvars">envvars</a> argument.</p>
 
     <p class="doc-section">Root Certificates</p>
 

@@ -49,6 +49,18 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
         <td>The Payload to use. Can be either a file, a directory or a URL.</td>
     </tr>
     <tr>
+        <td>payloadPort</td>
+        <td>boxfuse.payload.port</td>
+        <td><em>autodetected</em></td>
+        <td>The main port on which the payload starts (usually http or https)</td>
+    </tr>
+    <tr id="payloadPath">
+        <td>payloadPath</td>
+        <td>boxfuse.payload.path</td>
+        <td>/</td>
+        <td>The path where the payload starts</td>
+    </tr>
+    <tr>
         <td>components</td>
         <td>boxfuse.components.<em>NAME</em></td>
         <td><em>latest version</em></td>
@@ -138,6 +150,8 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
     user='1234567890abcdef1234567890abcdef12345678'
     secret='ABCDEFGHIJKL1234567abcdefghijklmnopqrstu'
     payload='hello-1.0.war'
+    payloadPort='https'
+    payloadPath='/app'
     components=[
         'openjdk':'8.25.40',
         'tomcat':'8.0.20'
