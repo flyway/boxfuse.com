@@ -36,11 +36,12 @@
             </div>
             <div class="col-md-10">
                 <ul id="tabs" class="nav nav-tabs navbar-right">
-                    <li><a href="/learn/why.html">Learn More</a></li>
-                    <li><a href="/pricing.html">Pricing</a></li>
-                    <li><a href="/docs">Documentation</a></li>
-                    <li><a href="/blog">Blog</a></li>
-                    <li><p class="navbar-btn"><a href="https://console.boxfuse.com" class="btn btn-primary btn-large">Log in / Sign up</a></p></li>
+                    <li {% if page.tab == 'learn' %} class="active" {% endif %}><a href="/learn/why.html">Learn More</a></li>
+                    <li {% if page.tab == 'pricing' %} class="active" {% endif %}><a href="/pricing.html">Pricing</a></li>
+                    <li {% if page.tab == 'docs' %} class="active" {% endif %}><a href="/docs">Documentation</a></li>
+                    <li {% if page.tab == 'events' %} class="active" {% endif %}><a href="/events.html">Events</a></li>
+                    <li {% if page.tab == 'blog' %} class="active" {% endif %}><a href="/blog">Blog</a></li>
+                    <li><p class="navbar-btn"><a id="navbar-login" href="https://console.boxfuse.com" class="btn btn-primary btn-large">Log in / Sign up</a></p></li>
                 </ul>
             </div>
         </div>
