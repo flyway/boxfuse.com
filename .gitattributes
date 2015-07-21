@@ -6,6 +6,7 @@
 *.gif binary
 *.jar binary
 *.jpg binary
+*.jpeg binary
 *.mp4 binary
 *.ogv binary
 *.pptx binary
