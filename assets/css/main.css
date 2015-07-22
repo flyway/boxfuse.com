@@ -838,3 +838,106 @@ pre.console {
 #events .row>.col-md-4 {
 	text-align: center;
 }
+
+.marketing-testimonial-stripe {
+	margin-top: 100px;
+	height: 260px;
+	width: 100%;
+	background: #004A7C;
+}
+
+.marketing-testimonial-stripe-4 {
+	height: 290px;
+}
+
+.marketing-testimonial {
+	margin-top: -230px;
+	margin-bottom: 100px;
+}
+
+.marketing-testimonial-4 {
+	margin-top: -260px;
+}
+
+@media (max-width: 979px) {
+	.marketing-testimonial-stripe {
+		height: 430px;
+		background: #004A7C;
+	}
+
+	.marketing-testimonial-stripe-4 {
+		height: 480px;
+	}
+
+	.marketing-testimonial {
+		margin-top: -415px;
+		margin-bottom: 100px;
+	}
+
+	.marketing-testimonial-4 {
+		margin-top: -460px;
+	}
+
+	.marketing-testimonial .col-md-2 {
+		text-align: center;
+	}
+
+}
+
+@media (max-width: 768px) {
+	.marketing-testimonial-stripe {
+		margin-top: 100px;
+		height: 0;
+	}
+
+	.marketing-testimonial {
+		padding-top: 10px;
+		padding-bottom: 30px;
+		margin-bottom: 100px;
+		background: #004A7C;
+		margin-top: 0;
+	}
+
+	.marketing-testimonial-4 {
+	}
+}
+
+.marketing-testimonial blockquote {
+	border-left: 0;
+	margin-top: 20px;
+	padding: 0.5em 10px;
+	quotes: "\201C""\201D""\2018""\2019";
+	font-style: italic;
+	font-size: 20px;
+	line-height: 150%;
+	color: #fff;
+}
+.marketing-testimonial blockquote:before {
+	color: #ccc;
+	width: 28px;
+	content: "\201C";
+	font-size: 4em;
+	line-height: 0.1em;
+	margin-right: 0.25em;
+	vertical-align: -0.4em;
+}
+
+.marketing-testimonial blockquote p {
+	display: inline;
+}
+
+.marketing-testimonial img {
+	margin-top: 25px;
+	width: 150px;
+}
+
+.marketing-testimonial p {
+	color: #99B6CA;
+	margin-left: 10px;
+	font-size: 16px;
+}
+
+.marketing-testimonial a {
+	color: #99B6CA;
+}
+
