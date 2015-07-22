@@ -55,14 +55,21 @@ hr.soften {
 }
 
 #video {
-	background-color: black;
+	background-color: #008BC0;
 	padding-top: 60px;
-	margin-bottom: 60px;
+	padding-bottom: 40px;
+	margin-bottom: 30px;
+	text-align: center;
 }
 
-.center-iframe {
-	left: 50%;
-	margin-left: 285px;
+#screencast {
+	margin-top: 0;
+	margin-bottom: 0;
+	position: relative;
+	border-color: #99B6CA;
+	border-width: 20px;
+	border-radius: 20px;
+	border-style: solid;
 }
 
 .center {
@@ -269,13 +276,6 @@ hr.soften {
 	-moz-box-shadow:none;
 	-o-box-shadow:none;
 	-webkit-box-shadow:none;
-}
-
-#screencast {
-    left: 50%;
-    margin-left: -427px;
-    margin-bottom: 40px;
-    position: relative;
 }
 
 @media (max-width: 979px) {
