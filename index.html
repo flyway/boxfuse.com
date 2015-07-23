@@ -6,13 +6,14 @@ tab: home
     <div class="row">
         <div class="col-md-12">
             <h1 id="tagline">
-                Immutable Infrastructure for Developers
+                Immutable Infrastructure Made Easy
             </h1>
 
             <p id="tagline2">
-                <span>Fuse your App into an Image in 5 seconds.<br/>Run it on both VirtualBox and AWS unchanged.</span>
+                <span>Build minimal fully-provisioned images in seconds<br/>Test on VirtualBox, deploy atomically to AWS<br/>No legacy OS. No containers. No drift.</span>
             </p>
-            <a href="https://console.boxfuse.com" class="btn btn-primary btn-large btn-jumbo">Sign up for free</a>
+            <a href="https://console.boxfuse.com" class="btn btn-primary btn-large btn-jumbo">Sign up for Boxfuse</a>
+            <p class="pricing-hint">Free forever for development and one application in production on AWS.<br/><a href="/pricing.html">Paid plans start at $25/month</a>.</p>
         </div>
     </div>
 </div>
@@ -34,36 +35,30 @@ tab: home
 <div id="top3">
     <div class="container container-padded">
         <div id="tagline-long" class="strong-heading row">
-            Turn your JVM-based app into a hardened production server<br/> with a single command, in seconds.
+            The End of Application Deployment as you know it
         </div>
         <div class="row">
             <div class="col-md-4">
-                <i class="fa fa-paper-plane-o"></i>
-
-                <p class="top3-heading">Simple & Fast</p>
-
-                <p class="top3-details">Easy to get started, simple to master. Boxfuse turns your app into a production
-                    server image with a
-                    single command, in seconds.</p>
-            </div>
-            <div class="col-md-4">
                 <i class="fa fa-cube"></i>
 
-                <p class="top3-heading">Minimal & Portable</p>
+                <p class="top3-heading">Minimal Images</p>
 
-                <p class="top3-details">Stop configuring and start generating. Boxfuse produces tiny portable server
-                    images which can be run
-                    unchanged both on your local laptop and on AWS.</p>
+                <p class="top3-details">Boxfuse generates minimal images for your application in seconds. They <strong>boot directly on virtual hardware</strong>. There is no classic OS and no container runtime.</p>
             </div>
             <div class="col-md-4">
-                <i class="fa fa-lock"></i>
+                <i class="fa fa-cog"></i>
 
-                <p class="top3-heading">Immutable & Secure</p>
+                <p class="top3-heading">Immutable Instances</p>
 
-                <p class="top3-details">Say goodbye to environmental inconsistencies. A Boxfuse image is like solid
-                    rock: immutable and
-                    hardened.
-                    Predictability, consistency and security have never been easier.</p>
+                <p class="top3-details">Boxfuse images are <strong>fully-provisioned at build time</strong>. Instances are immutable and
+                    identical in all environments, both on your local machine and on AWS.</p>
+            </div>
+            <div class="col-md-4">
+                <i class="fa fa-cloud-upload"></i>
+
+                <p class="top3-heading">Atomic Deployments</p>
+
+                <p class="top3-details">Boxfuse deployments to AWS are <strong>atomic blue/green deployments</strong> with zero downtime using either Elastic IPs or Elastic Load Balancers.</p>
             </div>
         </div>
     </div>
@@ -93,87 +88,86 @@ tab: home
 
 <div class="container container-padded">
     <div class="strong-heading row">
-        It just works. Refreshingly simple.
+        Why you'll love Boxfuse.
     </div>
     <div class="sub-heading row">
-        Built to make your life easy
+        Efficient, powerful and robust to make your life easier
     </div>
     <div class="advantage row">
-        <div class="col-md-4">
-            <div class="advantage-heading">
-                <i class="fa fa-tachometer"></i>
-                Generated in Seconds
-            </div>
-            <p class="advantage-description">Boxfuse analyses your App and generates the smallest possible Image to run
-                it in 5 seconds.</p>
+        <div class="col-md-1"></div>
+        <div class="col-md-4 right">
+            <img src="/assets/posts/dropwizard-aws/ubuntu.png">
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
             <div class="advantage-heading">
-                <i class="fa fa-hdd-o"></i>
-                Images size of a few MB
+                Images measured in MB, not GB
             </div>
-            <p class="advantage-description">For a Java 8 App, the Image is about 40 MB plus the size of your App. And
-                that includes everything,
-                from the bootloader up.</p>
-        </div>
-        <div class="col-md-4">
-            <div class="advantage-heading">
-                <i class="fa fa-shield"></i>
-                Secure by Design
-            </div>
-            <p class="advantage-description">With the smallest possible size, comes the smallest possible attack
-                surface. And it feels good.</p>
+            <p class="advantage-description">Boxfuse analyses your application and generates the smallest possible image to run
+                it. For a Java 8 application, a Boxfuse image is about 40 MB plus the size of your app. The image is bootable
+                on virtual hardware and includes a bootloader, a kernel, a JVM and your application. <strong>Boxfuse generates
+                the image on-the-fly in 5 seconds</strong> on Windows, Mac and Linux.</p>
         </div>
     </div>
     <div class="advantage row">
-        <div class="col-md-4">
+        <div class="col-md-2"></div>
+        <div class="col-md-5 right">
             <div class="advantage-heading">
-                <i class="fa fa-coffee"></i>
-                Made for JVM Apps
+                Deep and powerful integration
             </div>
-            <p class="advantage-description">Deep integration and intelligent analysis for JVM-based Apps packaged as
-                executable jar and war files.</p>
+            <p class="advantage-description">Boxfuse integrates with frameworks like <strong>Spring Boot</strong>
+                and <strong>Dropwizard</strong>. It uses
+                their <strong>native configuration files</strong> to automatically set up health checks, port definitions and AWS resources
+                like security groups and elastic load balancers. No additional configuration is required on your part.
+            All settings are auto-detected and applied intelligently for you.</p>
         </div>
         <div class="col-md-4">
-            <div class="advantage-heading">
-                <i class="fa fa-cloud-upload"></i>
-                Image Vault
-            </div>
-            <p class="advantage-description">Push and store your Images securely in the online Boxfuse Vault. Pull them
-                down anywhere and any time you need them.</p>
-        </div>
-        <div class="col-md-4">
-            <div class="advantage-heading">
-                <i class="fa fa-cog"></i>
-                Build Tool Integration
-            </div>
-            <p class="advantage-description">Use the Maven plugin to easily create, push, run and test Images
-                automatically as part of your build</p>
+            <img src="/assets/img/intelligent.png">
         </div>
     </div>
     <div class="advantage row">
-        <div class="col-md-4">
+        <div class="col-md-1"></div>
+        <div class="col-md-4 right">
+            <img src="/assets/posts/no-ssh/no-ssh.png">
+        </div>
+        <div class="col-md-5">
             <div class="advantage-heading">
-                <i class="fa fa-laptop"></i>
-                Run on Your Machine
+                Secure and production-ready by design
             </div>
-            <p class="advantage-description">Run and test your Images on Your Machine using VirtualBox.</p>
+            <p class="advantage-description">Boxfuse images have the <strong>smallest possible attack surface</strong>. They are always
+                hardened and capable of doing exactly one thing: running your application as efficiently and securely
+            as possible. There is <strong>no SSH</strong> on board and all instances are guaranteed to be identical across all environments.</p>
+        </div>
+    </div>
+    <div class="advantage row">
+        <div class="col-md-2"></div>
+        <div class="col-md-5 right">
+            <div class="advantage-heading">
+                Made for Continuous Deployment
+            </div>
+            <p class="advantage-description">In addition to its command-line client, Boxfuse comes with <strong>plugins</strong> for popular build tools like <strong>Maven</strong> or <strong>Gradle</strong>
+                so you can generate, integration test and deploy images directly from your build script. Boxfuse also
+                comes with a <strong>secure online repository</strong> for your images called the Boxfuse Vault. Combine this with your
+                favorite CI server and Boxfuse's blue/green deployments and you have the perfect <strong>continuous deployment</strong> pipeline.</p>
         </div>
         <div class="col-md-4">
-            <div class="advantage-heading">
-                <i class="fa fa-cubes"></i>
-                Deploy unchanged to AWS
-            </div>
-            <p class="advantage-description">Deploy the same Image you ran locally unchanged to AWS. It is identical,
-                down to the last bit.</p>
+            <img src="/assets/img/vault.png">
         </div>
-        <div class="col-md-4">
+    </div>
+    <div class="advantage row" style="margin-bottom: 40px">
+        <div class="col-md-1"></div>
+        <div class="col-md-4 right">
+            <img src="/assets/img/elb.png" style="margin-top: 0">
+        </div>
+        <div class="col-md-5">
             <div class="advantage-heading">
-                <i class="fa fa-refresh"></i>
-                Zero Downtime updates
+                Atomic Blue/Green Deployments on AWS
             </div>
-            <p class="advantage-description">Automatically update your App on AWS using automatic transactional
-                Blue/Green deployments.</p>
+            <p class="advantage-description">Boxfuse always deploys your application on AWS
+                using <strong>blue/green deployments</strong>. All deployments are atomic. A new version of the application is
+                only put into service once it has passed the configured health checks. Only then does Boxfuse
+                take the old version offline. Boxfuse enables these <strong>zero-downtime upgrades</strong> regardless of whether you choose
+                to use an AWS Elastic IP or and Elastic Load Balancer. The entire process is fully automatic and requires
+                no manual intervention on your behalf.</p>
         </div>
     </div>
 </div>
@@ -231,5 +225,6 @@ tab: home
 </div>
 
 <div class="final-cta">
-    <a href="https://console.boxfuse.com" class="btn btn-primary btn-large btn-jumbo">Sign up for free</a>
+    <a href="https://console.boxfuse.com" class="btn btn-primary btn-large btn-jumbo">Sign up for Boxfuse</a><br/>
+    <p class="pricing-hint">Free forever for development and one application in production on AWS.<br/><a href="/pricing.html">Paid plans start at $25/month</a>.</p>
 </div>

@@ -54,6 +54,10 @@ hr.soften {
 	color:#fff;
 }
 
+.right {
+	text-align: right;
+}
+
 #video {
 	background-color: #008BC0;
 	padding-top: 60px;
@@ -375,26 +379,30 @@ hr.soften {
 
 .strong-heading {
     font-weight: bold;
-    font-size: 28px;
+    font-size: 32px;
     color: #004A7C;
     text-align: center;
     line-height: 150%;
 }
 
 .sub-heading {
-    font-size: 20px;
-    color: #CCCCCC;
+    font-size: 24px;
+    color: #99B6CA;
     text-align: center;
     line-height: 150%;
+	margin-top: 0;
 	margin-bottom: 50px;
 }
 
 .advantage {
-	margin-bottom: 20px;
+	margin-top: 80px;
+	margin-bottom: 120px;
 }
-.advantage:first-child div {
-	text-align: center;
+.advantage img {
+	max-width: 95%;
+	margin-top: 20px;
 }
+
 .advantage-right {
 	text-align: right;
 }
@@ -419,7 +427,7 @@ hr.soften {
 #big-sell #tagline {
 	margin-top: 100px;
 	color: #004A7C;
-	font-size: 36px;
+	font-size: 44px;
 	font-weight: bold;
 }
 
@@ -459,7 +467,7 @@ hr.soften {
 
 #tagline-long {
     margin-bottom: 30px;
-    font-size: 24px;
+	color: #444;
 }
 
 #top3 {
@@ -469,13 +477,13 @@ hr.soften {
 #top3 i {
     font-size: 120px;
     margin-bottom: 20px;
-    color: #99B6CA;
+    color: #004A7C;
 }
 
 .top3-heading {
 	font-weight: bold;
 	font-size: 24px;
-	color: #99B6CA;
+	color: #004A7C;
 	text-align: center;
 	line-height: 150%;
 }
@@ -627,7 +635,7 @@ pre.console {
 .runson {
 	margin-top: 50px;
 	font-size: 20px;
-	color: #888;
+	color: #99B6CA;
 }
 
 .runson i {
@@ -647,6 +655,10 @@ pre.console {
 	text-align: center;
 	margin-top: 50px;
 	margin-bottom: 50px;
+}
+
+.pricing-hint {
+	color: #ccc;
 }
 
 .blog {
