@@ -40,12 +40,40 @@ subtitle: 'Dropwizard'
     <p>Unless specified otherwise, Boxfuse automatically configures <code>healthcheck.port=admin-http</code> (8081)
         and <code>healthcheck.path=/healthcheck</code> to <strong>match Dropwizard's defaults</strong>.</p>
 
+    <p class="doc-section">SSL (TLS) / HTTPS</p>
+
+    <p>To use <strong>HTTPS</strong> simply add the KeyStore containing your SSL certificate at the root of the classpath
+        <em>inside</em> the Dropwizard jar file. Boxfuse will automatically extract all <code>.jks</code> and <code>.keystore</code>
+        files it finds to the same directory on the file system as your Dropwizard jar file.</p>
+
+    <p>If you use Maven, this means your <code>.jks</code> or <code>.keystore</code> KeyStore file should be put into the <code>src/main/resources</code> directory.
+        When Maven packages the jar, it will include it in the root of your Dropwizard jar file, where Boxfuse can see it.</p>
+
+    <p>You can then configure the Dropwizard HTTPS connector to use it. So if for example
+        you have a KeyStore named <code>/example.jks</code> inside your Dropwizard jar file,
+        the connector configuration should look like this:</p>
+
+    <pre class="prettyprint">server:
+  applicationConnectors:
+    - type: https
+      port: 443
+      keyStorePath: example.jks
+      keyStorePassword: myS3cr3tPwd</pre>
+
+    <p>Very often for newer certificates you'll find you also need to add <code>enableCRLDP: true</code> to make things work.</p>
+
     <p class="doc-section">Root Certificates</p>
 
     <p>By default, Boxfuse uses the <strong>same root certificate bundle as the latest version of Firefox</strong>.
-        You can, however, ship your own set of root certificates, by placing them in a KeyStore inside the Jar file as <code>/cacerts</code>.
+        You can, however, ship your own set of root certificates, by placing them in a KeyStore <em>inside</em> the Jar file as <code>/cacerts</code>.
         Boxfuse will then automatically configure the JRE to use these instead.
     </p>
+
+    <p>If you choose to secure your <code>cacerts</code> TrustStore with a password different than the default <code>changeit</code>,
+    you have to add the following to your Dropwizard connector configuration:</p>
+
+    <pre class="prettyprint">trustStorePath: /cacerts/cacerts
+trustStorePassword: my0th3rPwd</pre>
 
     <p class="doc-section">Java Agents</p>
 
