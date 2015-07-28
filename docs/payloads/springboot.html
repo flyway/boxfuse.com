@@ -52,12 +52,36 @@ management.context-path=/</pre>
     profile by setting the <code>SPRING_PROFILES_ACTIVE</code> environment variable to the value you need using the
         <a href="/docs/commandline/run.html#envvars">envvars</a> argument.</p>
 
+    <p class="doc-section">SSL (TLS) / HTTPS</p>
+
+    <p>To use <strong>HTTPS</strong> simply add the KeyStore containing your SSL certificate at the root of the classpath
+        <em>inside</em> the Spring Boot jar file. Boxfuse will automatically extract all <code>.jks</code> and <code>.keystore</code>
+        files it finds to the same directory on the file system as your Spring Boot jar file.</p>
+
+    <p>If you use Maven or Gradle, this means your <code>.jks</code> or <code>.keystore</code> KeyStore file should be put into the <code>src/main/resources</code> directory.
+        When Maven or Gradle packages the jar, it will include it in the root of your Spring Boot jar file, where Boxfuse can see it.</p>
+
+    <p>You can then configure the Spring Boot connector to use it. So if for example
+        you have a KeyStore named <code>/example.jks</code> inside your Spring Boot jar file,
+        <code>application-boxfuse.properties</code> should look like this:</p>
+
+    <pre class="prettyprint">server.port=443
+server.ssl.enabled=true
+server.ssl.key-store=example.jks
+server.ssl.key-store-password=myS3cr3tPwd</pre>
+
     <p class="doc-section">Root Certificates</p>
 
     <p>By default, Boxfuse uses the <strong>same root certificate bundle as the latest version of Firefox</strong>.
         You can, however, ship your own set of root certificates, by placing them in a KeyStore inside the Jar file as <code>/cacerts</code>.
         Boxfuse will then automatically configure the JRE to use these instead.
     </p>
+
+    <p>If you choose to secure your <code>cacerts</code> TrustStore with a password different than the default <code>changeit</code>,
+        you have to add the following to your Spring Boot configuration:</p>
+
+    <pre class="prettyprint">server.ssl.trust-store=/cacerts/cacerts
+server.ssl.trust-store-password=my0th3rPwd</pre>
 
     <p class="doc-section">Java Agents</p>
 
