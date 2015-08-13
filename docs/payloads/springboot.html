@@ -31,14 +31,15 @@ server.context-path=/
 server.servlet-path=/
 server.ssl.enabled=false
 endpoints.health.id=health
+management.port=
 management.health.diskspace.enabled=false
 management.context-path=/</pre>
 
     <p class="doc-section">Ports</p>
 
-    <p>Boxfuse will automatically configure your main application port to be either <code>HTTP</code>
-        or <code>HTTPS</code> based on the value of <code>server.ssl.enabled</code>. The actual port number is automatically
-        configured based according to the value of <code>server.port</code>.</p>
+    <p>Boxfuse will automatically configure your application ports to be either <code>HTTP</code>
+        or <code>HTTPS</code> based on the value of <code>server.ssl.enabled</code>. The actual port numbers are automatically
+        configured according to the values of the <code>server.port</code> and <code>management.port</code> properties.</p>
 
     <p class="doc-section">Healthchecks</p>
 
