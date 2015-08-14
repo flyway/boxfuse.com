@@ -1,19 +1,19 @@
 ---
 layout: maven
-pill: push
+pill: convert
 ---
-<img src="/assets/img/commands/push.png" alt="push">
+<img src="/assets/img/commands/convert.png" alt="convert">
 
-<p class="doc-section">boxfuse:push</p>
+<p class="doc-section">boxfuse:convert</p>
 
-<p>Pushes this <em>Image</em> to the <em>Boxfuse Vault</em>.</p>
+<p>Converts this <em>Image</em> from the <em>Boxfuse Vault</em> into an AWS AMI..</p>
 
-<p><strong>Usage: </strong> mvn boxfuse:push -Dboxfuse.image=<em>image</em></p>
+<p><strong>Usage: </strong> mvn boxfuse:convert -Dboxfuse.image=<em>image</em></p>
 
-<pre class="console">&gt; mvn boxfuse:push -Dboxfuse.image=hello:1.0
+<pre class="console">&gt; mvn boxfuse:convert -Dboxfuse.image=hello:1.0
 
-Pushing axelfontaine/hello:1.0 ...
-Verifying axelfontaine/hello:1.0 ...</pre>
+Waiting for AWS to create an AMI for axelfontaine/hello:1.0 in eu-central-1 (this may take up to 50 seconds) ...
+AMI created in 00:12.603s -> ami-74d4d369</pre>
 
 <p><br/><strong>Properties:</strong></p>
 
@@ -67,5 +67,5 @@ Verifying axelfontaine/hello:1.0 ...</pre>
 &lt;/configuration&gt;</pre>
 
 <p class="next-steps">
-    <a class="btn btn-primary" href="/docs/maven/convert.html">convert <i class="fa fa-arrow-right"></i></a>
+    <a class="btn btn-primary" href="/docs/maven/pull.html">pull <i class="fa fa-arrow-right"></i></a>
 </p>
