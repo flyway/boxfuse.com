@@ -1,7 +1,7 @@
 ---
 layout: blog
 subtitle: "Boxfuse Convert: fully-provisioned AMIs in 30 seconds"
-permalink: /blog/amis.html
+permalink: /blog/amis-in-30-seconds.html
 ---
 <div>
     <p>One of the key elements of <a href="/learn/why.html"><strong>Immutable Infrastructure</strong></a> is the capability to efficiently
@@ -11,7 +11,7 @@ permalink: /blog/amis.html
     <p>On AWS, the typical process to achieve that can be described as follows:</p>
 
     <div class="blog-post-image">
-        <img src="/assets/posts/amis/create-ami-launch-instances.png" alt="Create AMI, Launch Instances">
+        <img src="/assets/posts/amis-in-30-seconds/create-ami-launch-instances.png" alt="Create AMI, Launch Instances">
     </div>
 
     <p>You first create an AMI, based on which you can then launch any number of identical instances.</p>
@@ -29,7 +29,7 @@ permalink: /blog/amis.html
     you to benefit from Boxfuse's incredibly fast AMI creation, while still relying on your current instance provisioning technology:</p>
 
     <div class="blog-post-image">
-        <img src="/assets/posts/amis/boxfuse-convert.png" alt="Boxfuse Convert">
+        <img src="/assets/posts/amis-in-30-seconds/boxfuse-convert.png" alt="Boxfuse Convert">
     </div>
 
     <p>With <strong>boxfuse convert</strong> you can finally say goodbye to your old, slow and flaky AMI creation workflows.
@@ -47,7 +47,7 @@ AMI created in 00:19.777s -> ami-e66264fb</pre>
     <p>And there you have it:</p>
 
     <div class="blog-post-image">
-        <img src="/assets/posts/amis/aws-console.png" alt="AMI in AWS Console">
+        <img src="/assets/posts/amis-in-30-seconds/aws-console.png" alt="AMI in AWS Console">
     </div>
 
     <p>Your brand new <strong>fully-provisioned AMI</strong> has been <strong>created from scratch in less than 30 seconds</strong>!
@@ -63,13 +63,13 @@ AMI created in 00:19.777s -> ami-e66264fb</pre>
     <a href="https://packer.io/docs/builders/amazon-ebs.html">EBS backed AMI builder</a>, <strong>Boxfuse is more than 10 times faster:</strong></p>
 
     <div class="blog-post-image">
-        <img src="/assets/posts/amis/boxfuse-vs-packer.png" alt="Boxfuse vs Packer: time">
+        <img src="/assets/posts/amis-in-30-seconds/boxfuse-vs-packer.png" alt="Boxfuse vs Packer: time">
     </div>
 
     <p>And that's not all. <strong>Boxfuse's AMIs are also more than 10 times smaller</strong>:</p>
 
     <div class="blog-post-image">
-        <img src="/assets/posts/amis/boxfuse-vs-packer-size.png" alt="Boxfuse vs Packer: size">
+        <img src="/assets/posts/amis-in-30-seconds/boxfuse-vs-packer-size.png" alt="Boxfuse vs Packer: size">
     </div>
 
     <p>(In fact Boxfuse AMIs are even much smaller than that, but AWS's smallest EBS snapshot size is a full 1 GB)</p>
