@@ -858,6 +858,10 @@ pre.console {
 	background: #004A7C;
 }
 
+.marketing-testimonial-stripe-2 {
+	height: 200px;
+}
+
 .marketing-testimonial-stripe-4 {
 	height: 290px;
 }
@@ -865,16 +869,29 @@ pre.console {
 .marketing-testimonial {
 	margin-top: -230px;
 	margin-bottom: 100px;
+	text-align: left;
+}
+
+.marketing-testimonial-2 {
+	margin-top: -187px;
 }
 
 .marketing-testimonial-4 {
 	margin-top: -260px;
 }
 
+.marketing-testimonial .col-md-2 {
+	text-align: center;
+}
+
 @media (max-width: 979px) {
 	.marketing-testimonial-stripe {
 		height: 430px;
 		background: #004A7C;
+	}
+
+	.marketing-testimonial-stripe-2 {
+		height: 380px;
 	}
 
 	.marketing-testimonial-stripe-4 {
@@ -886,12 +903,12 @@ pre.console {
 		margin-bottom: 100px;
 	}
 
-	.marketing-testimonial-4 {
-		margin-top: -460px;
+	.marketing-testimonial-2 {
+		margin-top: -370px;
 	}
 
-	.marketing-testimonial .col-md-2 {
-		text-align: center;
+	.marketing-testimonial-4 {
+		margin-top: -460px;
 	}
 
 }
@@ -941,6 +958,11 @@ pre.console {
 .marketing-testimonial img {
 	margin-top: 25px;
 	width: 150px;
+}
+
+.marketing-testimonial-2 img {
+	margin-top: 25px;
+	width: 120px;
 }
 
 .marketing-testimonial p {
