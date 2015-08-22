@@ -26,7 +26,13 @@ subtitle: 'Dropwizard'
     <pre class="prettyprint">server:
   applicationConnectors:
     - type: http
-      port: 80</pre>
+      port: 80
+  requestLog:
+      appenders: []
+logging:
+  appenders:
+    - type: console
+      threshold: WARN</pre>
 
     <p>To make it easy to use a different configuration file, Boxfuse always extracts all .yml files at the root of the jar file
         to the same directory as the executable jar. You can then refer to the different yml config file or pass in a
