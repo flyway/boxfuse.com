@@ -1,0 +1,101 @@
+---
+layout: blog
+subtitle: "Immutable Infrastructure: Fast & Reliable Scaling"
+permalink: /blog/fast-reliable-scaling.html
+---
+<div>
+    <p>Moving to <a href="/learn/why.html"><strong>Immutable Infrastructure</strong></a> brings many advantages. In the
+        <a href="/blog/no-ssh.html"><strong>previous article</strong></a> in this series we saw how it <strong>eliminates drift</strong>
+    and the problems associated with deferred provisioning by <strong>capturing your application and all its dependencies at the
+        lowest level possible</strong>: an image of the entire system. We also looked at how to enforce immutability by creating
+    images with <strong>no SSH</strong>. With <a href="/blog/no-ssh.html">this technique</a> any change requires
+        rebuilding a new image through your regular automated build and deployment pipeline. In turn your system
+        drastically gains in simplicity and reliability.</p>
+
+    <p>Another area where Immutable Infrastructure <strong>radically simplifies</strong> things is <strong>scaling</strong>. Let's find out how.</p>
+
+    <h2 class="blog-post-section">Why scaling?</h2>
+
+    <p>Scaling is adding or removing capacity from your system. The main driver for scaling has traditionally
+        been load. When <strong>load increases</strong> beyond what can be reliably handled by the current infrastructure,
+        <strong>more capacity</strong> must be provisioned to handle it.</p>
+
+    <p>However today we have another important force at play: money.
+        On the public cloud, cost is an important driver for the way we architect our systems.
+        In stark contrast to on premise setups where hardware is almost universally a sunk cost,
+        <strong>public clouds</strong> like AWS offer utility-like pricing. You essentially <strong>pay for what you use</strong>. It therefore becomes
+        essential to not only be able to quickly add, but also to <strong>remove capacity</strong> from a system! You effectively <strong>optimize your budget
+        to optimally handle the current load</strong> on the system.</p>
+
+    <h2 class="blog-post-section">Horizontal vs Vertical Scaling</h2>
+
+    <p>When it comes to scaling, it really boils down to two options. Changing the size or the number of instances. You can either <strong>scale horizontally</strong> by adding
+        <em>(scaling out)</em> or removing <em>(scaling in)</em> instances, or you can <strong>scale vertically</strong> to bigger <em>(scaling up)</em>
+        or smaller <em>(scaling down)</em> machines.</p>
+    <div class="blog-post-image">
+        <img src="/assets/posts/simple-scaling/simple-scaling.png" alt="Horizontal and Vertical scaling">
+    </div>
+
+    <p><strong>Regardless of the scaling direction and technique you choose, you need to be able to do this quickly and reliably</strong>.
+        While this sounds easy, its has traditionally come with a number of challenges, the most common ones being
+        state, provisioning times and robustness. However as you'll see these aren't intrinsic problems to scaling.
+    They come from the way we have traditionally handled state and provisioned machines.</p>
+
+    <h2 class="blog-post-section">The challenges with traditional provisioning</h2>
+
+    <p>As we already saw in the <a href="/blog/no-ssh.html">previous article</a> traditional provisioning with shell
+    scripts or configuration management tools is very prone to drift as it flies in the face of the proven mantra:
+        <strong>build your artifact only once</strong>.</p>
+
+    <p>The reason for this, is that instead of building an image with all software fully configured, secured and ready to boot,
+    this provisioning process happens on every instance you launch. This puts you at risk for all issues related to
+        <a href="/blog/no-ssh.html">deferred provisioning</a> as well as all potential reliability problems of having to fetch
+    everything again and again from remote repositories which may have changed or temporarily gone offline.</p>
+
+    <p>The other big issue with this is that it takes a very long time. Whereas with Immutable Infrastructure and
+        fully-provisioned images all you need to do is make a copy of the volume and start up the instance,
+        with traditional provisioning you first have to go through a tedious installation process before your application
+        can even begin to start up.</p>
+
+    <h2 class="blog-post-section">Dealing with state</h2>
+
+    <p>When it comes to dealing with state, Immutable Infrastructure forces you to do the right thing:
+    <strong>keep all persistent state off the instance</strong>. This doesn't mean you can't have a local copy
+    as a a cache to speed things up (beware of stale data though!), but the master should be in a central highly-available
+        and replicated data store.</p>
+
+    <p>This applies first and foremost to <strong>application data</strong> which should reside in data stores,
+        in-memory caches or object storage. But also to other things like <a href="/blog/logging-cloudnative.html"><strong>log files</strong></a>
+        which in 2015 should not be spread across multiple instances, but instead aggregated in a <a href="/blog/logging-cloudnative.html">central log server</a>
+        where they can be archived, indexed, and made searchable. And last, but not least, also <strong>sessions</strong> should be moved
+        to either a cookie, a data store or a central in-memory cache. We'll talk more in detail about this in a future post.
+    </p>
+
+    <h2 class="blog-post-section">Conclusion</h2>
+
+    <p>In a public cloud world you need to be able to quickly and reliably add capacity to a system in response to load, but also
+    remove capacity to optimize your budget. You can do this by scaling horizontally (in &amp; out) and adjust the number
+    of instances. Or you can do it by scaling vertically (up &amp; down) to change the size of your instances.</p>
+
+    <p>Traditional provisioning poses a number of challenges related to drift, deferred provisioning, reliability and performance.
+    <strong>Immutable Infrastructure solves these problems through fast and reliable launching of instances based on fully provisioned images.</strong>
+        It also forces you to do the right thing and <strong>keep all persistent state off instance</strong>.</p>
+
+    <p>Stay tuned for future blog blog posts where we'll explore more aspects of Immutable Infrastructure including sessions and service discovery.</p>
+
+    <h2 class="blog-post-section">Try it for yourself</h2>
+
+    <p><a href="https://boxfuse.com"><strong>Boxfuse</strong></a> lets you do all this and more. Boxfuse intelligently analyses your application and
+        <strong>generates minimal images in seconds</strong>.
+        There is no general purpose operating system and no tedious provisioning. Boxfuse images are lean, secure and efficient. You
+        can run them on VirtualBox for development and deploy them unchanged and with <strong>zero downtime on AWS</strong> for test and
+        production.</p>
+
+    <p>Have fun! And if you haven't already,
+        <a href="https://console.boxfuse.com"><strong>sign up for your
+            Boxfuse account</strong></a> now. All you need is a GitHub user
+        and you'll be up and running in no time. The <a href="/pricing.html">Boxfuse free plan</a> aligns
+        perfectly with the AWS free tier, so you can deploy your application to EC2 completely free. And when it comes
+        to scaling both horizontally and vertically, all you need is a <a href="/docs/commandline/scale.html">single command</a>.</p>
+
+</div>
