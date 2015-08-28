@@ -73,8 +73,16 @@ You can also either specify an external config file or place a <code>boxfuse.con
     healthcheckPath='/health'
 }</pre>
 
+<p id="multiple" class="doc-section">Multiple task instances</p>
+
 <p>In some build scripts however you may want to use different values for different tasks. In that case you can define
-additional instances of the tasks and extension as follows:</p>
+additional instances of the tasks and configure them individually like this:</p>
+
+<pre class="prettyprint">task boxfuseRunProd (type: com.boxfuse.client.gradle.task.RunTask) {
+    env='prod'
+}</pre>
+
+<p>Or you can if you prefer, you can also define multiple instances of the extension:</p>
 
 <pre class="prettyprint">extensions.create('boxfuseProd', com.boxfuse.client.gradle.BoxfuseExtension)
 boxfuseProd {
@@ -82,12 +90,6 @@ boxfuseProd {
 }
 task boxfuseRunProd (type: com.boxfuse.client.gradle.task.RunTask) {
     extension=boxfuseProd
-}</pre>
-
-<p>Or you can if you prefer, you can also set values directly on the tasks:</p>
-
-<pre class="prettyprint">task boxfuseRunProd (type: com.boxfuse.client.gradle.task.RunTask) {
-    env='prod'
 }</pre>
 
 <p>&nbsp;</p>
