@@ -56,7 +56,8 @@ You can also either specify an external config file or place a <code>boxfuse.con
 <ul>
     <li>System properties</li>
     <li>Gradle properties</li>
-    <li>Plugin configuration</li>
+    <li>Task configuration</li>
+    <li>Plugin extension</li>
     <li>External config file as specified with <code>configfile</code></li>
     <li><em>&lt;current-dir&gt;</em>/boxfuse.conf</li>
     <li><em>&lt;home-dir&gt;</em>/.boxfuse/boxfuse.conf</li>
@@ -81,6 +82,12 @@ boxfuseProd {
 }
 task boxfuseRunProd (type: com.boxfuse.client.gradle.task.RunTask) {
     extension=boxfuseProd
+}</pre>
+
+<p>Or you can if you prefer, you can also set values directly on the tasks:</p>
+
+<pre class="prettyprint">task boxfuseRunProd (type: com.boxfuse.client.gradle.task.RunTask) {
+    env='prod'
 }</pre>
 
 <p>&nbsp;</p>
