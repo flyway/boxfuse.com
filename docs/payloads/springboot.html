@@ -47,11 +47,15 @@ management.context-path=/</pre>
         to match the Spring Boot health endpoint</strong>. The only requirement is that if you provide your own configuration,
     you must set <code>management.health.diskspace.enabled</code> to <code>false</code>.</p>
 
-    <p class="doc-section">Spring Profiles</p>
+    <p id="profiles" class="doc-section">Spring Profiles</p>
 
     <p>By default Boxfuse activates a Spring Profile called <code>boxfuse</code>. You can however easily specify a different
     profile by setting the <code>SPRING_PROFILES_ACTIVE</code> environment variable to the value you need using the
         <a href="/docs/commandline/run.html#envvars">envvars</a> argument.</p>
+
+    <p class="alert alert-info"><strong>Tip:</strong> To use a different Spring Profile for each <a href="/docs/environments.html">Boxfuse environment</a>,
+    set the Spring Boot profile to the value of the <code>BOXFUSE_ENV</code> environment variable which contains the name of the
+        current <a href="/docs/environments.html">environment</a> (dev, test, prod): <code>envvars.SPRING_PROFILES_ACTIVE=$BOXFUSE_ENV</code></p>
 
     <p class="doc-section">SSL (TLS) / HTTPS</p>
 
