@@ -992,3 +992,7 @@ pre.console {
 .alert-info {
 	background-image: none;
 }
+
+.max-width-image {
+	max-width: 100%;
+}
