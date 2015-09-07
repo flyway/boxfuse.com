@@ -1,0 +1,99 @@
+---
+layout: gradle
+pill: cfg
+---
+<img src="/assets/img/commands/cfg.png" alt="cfg">
+
+<p class="doc-section">boxfuseCfg</p>
+
+<p>Configures an <em>App</em> for a specific <em>Environment</em>.</p>
+
+<p><strong>Usage: </strong> gradle boxfuseCfg -Dboxfuse.app=<em>appName</em></p>
+
+<pre class="console">&gt; gradle boxfuseCfg -Dboxfuse.app=hello -Dboxfuse.env=test -Dboxfuse.securitygroup=sg-12345678
+
+Configuring hello in test ...
+Successfully configured hello in test</pre>
+
+<p><br/><strong>Class name:</strong> <code>com.boxfuse.client.gradle.task.CfgTask</code></p>
+
+<p><br/><strong>Properties:</strong></p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Plugin Parameter</th>
+        <th>Gradle/System property</th>
+        <th>Default</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tr>
+        <td>user</td>
+        <td>boxfuse.user</td>
+        <td></td>
+        <td><strong>Required</strong> - Your Boxfuse Client user. Also configurable via the <code>BOXFUSE_USER</code>
+            environment variable</td>
+    </tr>
+    <tr>
+        <td>secret</td>
+        <td>boxfuse.secret</td>
+        <td></td>
+        <td><strong>Required</strong> - Your Boxfuse Client secret. Also configurable via the <code>BOXFUSE_SECRET</code>
+            environment variable</td>
+    </tr>
+    <tr>
+        <td>app</td>
+        <td>boxfuse.app</td>
+        <td></td>
+        <td>The name of the application</td>
+    </tr>
+    <tr>
+        <td>env</td>
+        <td>boxfuse.env</td>
+        <td>dev</td>
+        <td>Use the AWS <code>test</code> or <code>prod</code> environments instead of the local <code>dev</code> one</td>
+    </tr>
+    <tr>
+        <td>securitygroup</td>
+        <td>boxfuse.securitygroup</td>
+        <td>auto</td>
+        <td>The id of the AWS security group to use in the specified environment. <code>auto</code> will auto-create a new security group based on the configured ports.</td>
+    </tr>
+    <tr>
+        <td><nobr>instanceprofile</nobr></td>
+        <td><nobr>boxfuse.instanceprofile</nobr></td>
+        <td>none</td>
+        <td>The name of the AWS instance profile to use in the specified environment.
+            This is only for apps using the AWS API. The value <code>none</code> unsets any instance profile.</td>
+    </tr>
+    <tr>
+        <td>subnet</td>
+        <td>boxfuse.subnet</td>
+        <td>auto</td>
+        <td>The AWS subnet to deploy to in the specified environment (single instance apps only)</td>
+    </tr>
+    <tr>
+        <td>elb</td>
+        <td>boxfuse.elb</td>
+        <td>auto</td>
+        <td>The AWS ELB to deploy use in the specified environment (load balanced apps only)</td>
+    </tr>
+</table>
+
+<p><strong>Sample Configuration</strong></p>
+
+<pre class="prettyprint">boxfuse {
+    user='1234567890abcdef1234567890abcdef12345678'
+    secret='ABCDEFGHIJKL1234567abcdefghijklmnopqrstu'
+    app='hello'
+    env='prod'
+    securitygroup='sg-12345678'
+    instanceprofile='none'
+    subnet='auto'
+    elb='my-elb'
+}</pre>
+
+<p class="next-steps">
+    <a class="btn btn-primary" href="/docs/gradle/fuse.html">fuse <i class="fa fa-arrow-right"></i></a>
+</p>
