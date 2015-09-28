@@ -10,7 +10,7 @@ subtitle: 'TomEE'
 
     <p>Boxfuse supports Java EE apps written in Java or any other language and packaged as a <strong>.war file</strong> running on <strong>TomEE 1.7.x</strong> using either <strong>OpenJDK 7.x or 8.x</strong>.</p>
 
-    <p>If your .war file contains a <code>WEB-INF/services.xml</code> file, Boxfuse will automatically run it using TomEE instead of Tomcat.
+    <p>If your .war file contains a <code>WEB-INF/resources.xml</code> file, Boxfuse will automatically run it using TomEE instead of Tomcat.
         By default it uses TomEE Web Profile, but it will automatically select TomEE Plus if you have defined any JMS resources.</p>
 
     <p>You can override the automatic behavior and force a particular TomEE edition to be used by passing in <code>-components.tomee-webprofile=1.7.2</code> (for TomEE Web Profile)
