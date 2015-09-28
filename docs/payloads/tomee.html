@@ -1,0 +1,50 @@
+---
+layout: docs
+menu: tomee
+subtitle: 'TomEE'
+---
+<div id="tomee">
+    <p class="doc-title">TomEE</p>
+
+    <p><img src="/assets/img/tomee.png"></p>
+
+    <p>Boxfuse supports Java EE apps written in Java or any other language and packaged as a <strong>.war file</strong> running on <strong>TomEE 1.7.x</strong> using either <strong>OpenJDK 7.x or 8.x</strong>.</p>
+
+    <p>If your .war file contains a <code>WEB-INF/services.xml</code> file, Boxfuse will automatically run it using TomEE instead of Tomcat.
+        By default it uses TomEE Web Profile, but it will automatically select TomEE Plus if you have defined any JMS resources.</p>
+
+    <p>You can override the automatic behavior and force a particular TomEE edition to be used by passing in <code>-components.tomee-webprofile=1.7.2</code> (for TomEE Web Profile)
+    or <code>-components.tomee-plus=1.7.2</code> (for TomEE Plus).</p>
+
+    <p class="doc-section">HTTP</p>
+
+    <p>By default, Boxfuse will automatically configure TomEE to listen to HTTP traffic on port 80.</p>
+
+    <p class="doc-section">SSL (TLS) / HTTPS</p>
+
+    <p>To use <strong>HTTPS</strong> simply add the KeyStore containing your SSL certificate inside the .war file as
+        <code>/WEB-INF/keystore.jks</code>. It must be secured with the standard password <em>changeit</em>.
+        Boxfuse will then automatically configure Tomcat to start serving traffic via HTTPS on port 443, as well as
+        <strong>automatically redirect any insecure HTTP traffic to a secure HTTPS connection</strong>.
+    </p>
+
+    <p class="doc-section">Root Certificates</p>
+
+    <p>By default, Boxfuse uses the <strong>same root certificate bundle as the latest version of Firefox</strong>.
+        You can, however, ship your own set of root certificates, by placing them in a KeyStore at <code>/WEB-INF/cacerts</code>.
+        Boxfuse will then automatically configure both the JRE and Tomcat to use these instead.
+    </p>
+
+    <p class="doc-section">Java Agents</p>
+
+    <p>By default Boxfuse will activate the OpenEJB Java Agent.</p>
+
+    <p>If you wish to launch the JRE with one or more additional Java Agents, simply place the Java Agent .jar files under
+        <code>/WEB-INF/javaagents/</code>.
+        Boxfuse will then <strong>automatically configure the JRE to use these Java Agents</strong>.
+    </p>
+
+    <p class="next-steps">
+        <a class="btn btn-primary" href="/docs/payloads/jar.html">Executable Jar <i class="fa fa-arrow-right"></i></a>
+    </p>
+</div>

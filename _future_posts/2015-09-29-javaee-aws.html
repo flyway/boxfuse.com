@@ -1,34 +1,23 @@
 ---
 layout: blog
-subtitle: "Deploying Spring Boot Apps on EC2"
-permalink: /blog/spring-boot-ec2.html
+subtitle: "Deploying Java EE Apps on AWS"
+permalink: /blog/javaee-aws.html
 ---
 <div>
-    <p>Lately the JVM-world has finally started embracing solutions that just work.
-        Gone are the days where you had to manually wire together many components and write large amounts of XML configuration
-        just to make things work. Today it is all about being productive from the get go. And to us this is really music to our ears.
-        Our products (<a href="http://flywaydb.org">Flyway</a> &amp; <a href="https://boxfuse.com">Boxfuse</a>) have always adhered to this exact design principle from the start.
-        And so regardless of whether
-    you easily want to migrate your
-        relational databases or fuse your applications into bootable apps, <a href="http://flywaydb.org">Flyway</a> &amp; <a href="https://boxfuse.com">Boxfuse</a>
-        work very had to make you successful. Rapidly and reliably.</p>
+    <p>At <a href="https://boxfuse.com">Boxfuse</a> we love solutions that just work. And that's why, when it comes to
+        Java EE, we've grown very fond of <a href="http://tomee.apache.org">Apache TomEE</a>. Unlike traditional heavy
+        and complex application servers, TomEE combines the swiftness of Tomcat with the benefits of standard Java EE.</p>
 
-    <p>Pivotal has now gone the same way and tied their entire portfolio of Spring frameworks and libraries
-    into a fantastic framework called <a href="http://projects.spring.io/spring-boot/">Spring Boot</a>. It is a turn-key solution to the Spring ecosystem.</p>
-
-    <p>At its core, <a href="http://projects.spring.io/spring-boot/">Spring Boot</a> combines your
-    application with an embedded container and all its other libraries into a single executable jar that can easily
-    be deployed onto any system. It adds lots of auto-configuration and integration options to make your
-        application production-ready from day one. In fact Spring Boot even offers
-        <a href="http://docs.spring.io/spring-boot/docs/current/reference/html/howto-database-initialization.html#howto-execute-flyway-database-migrations-on-startup">out of the box integration for
-        Flyway</a> so adopting industry best practices like database migrations has never been easier.</p>
+    <p>Today we are happy to announce that we have added TomEE to Boxfuse's selection of payloads that can be deployed
+        effortlessly to VirtualBox and AWS. Just like <a href="/docs/payloads/dropwizard.html">Dropwizard</a>,
+        <a href="/docs/payloads/springboot.html">Spring Boot</a>, <a href="/docs/payloads/war.html">Tomcat</a> and
+        <a href="/docs/payloads/jar.html">(executable) jar files</a>, you can now fuse TomEE applications into
+        immutable images with a single command. These images can then be deployed unchanged to VirtualBox and AWS
+        with zero downtime updates.</p>
 
     <div class="blog-post-image center">
-        <img src="/assets/posts/spring-boot-ec2/springboot-ec2.png" alt="Spring Boot to AWS">
+        <img src="/assets/posts/javaee-aws/tomee-aws.png" alt="TomEE to EC2">
     </div>
-
-    <p>In this post we'll <strong>take Spring Boot's idea of executable jars to its natural conclusion</strong>:
-        fusing your Spring Boot application together with a JVM and a kernel into a immutable bootable app that can be run unchanged on both VirtualBox and EC2.</p>
 
     <h2 class="blog-post-section">Prerequisites</h2>
 
