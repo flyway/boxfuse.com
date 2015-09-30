@@ -9,7 +9,7 @@ pill: Overview
 <p class="doc-section">Supported Gradle versions</p>
 
 <ul>
-    <li>Gradle 2.0 or newer</li>
+    <li>Gradle 2.1 or newer</li>
 </ul>
 
 <p class="doc-section">Prerequisites</p>
@@ -23,19 +23,12 @@ pill: Overview
 
 <p class="doc-section">Installation</p>
 
-<p>You can start using the Boxfuse Gradle plugin by adding the following to your <code>build.gradle</code>:</p>
+<p>The Boxfuse Gradle plugin is available from the <a href="https://plugins.gradle.org/plugin/com.boxfuse.client">Gradle Plugin portal</a>.
+    You can start using it by adding the following to your <code>build.gradle</code>:</p>
 
-<pre class="prettyprint">buildscript {
-    repositories {
-        // https is disabled until https://issues.gradle.org/browse/GRADLE-3250 is fixed
-        maven { url 'http://files.boxfuse.com' }
-    }
-    dependencies {
-        classpath "com.boxfuse.client:boxfuse-gradle-plugin:{{site.boxfuseVersion}}"
-    }
+<pre class="prettyprint">plugins {
+  id "com.boxfuse.client" version "{{site.boxfuseVersion}}"
 }
-
-apply plugin: 'boxfuse'
 
 boxfuse {
     <strong>user='<em>your-boxfuse-client-user</em>'</strong>
