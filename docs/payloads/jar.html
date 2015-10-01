@@ -4,20 +4,18 @@ menu: jar
 subtitle: 'Executable Jar'
 ---
 <div id="war">
-    <p class="doc-title">Executable Jar</p>
-
     <p><img src="/assets/img/java.png"></p>
 
     <p>Boxfuse supports Apps written in Java or any other language and packaged as an <strong>Executable Jar file</strong> running on either <strong>OpenJDK 7.x or 8.x</strong>.</p>
 
-    <p class="doc-section">Root Certificates</p>
+    <h2>Root Certificates</h2>
 
     <p>By default, Boxfuse uses the <strong>same root certificate bundle as the latest version of Firefox</strong>.
         You can, however, ship your own set of root certificates, by placing them in a KeyStore inside the Jar file as <code>/cacerts</code>.
         Boxfuse will then automatically configure the JRE to use these instead.
     </p>
 
-    <p class="doc-section">Java Agents</p>
+    <h2>Java Agents</h2>
 
     <p>If you wish to launch the JRE with one or more Java Agents, simply place the Java Agent Jar files inside the Jar file under
         <code>/javaagents/</code>. Boxfuse will then <strong>automatically configure the JRE to use these Java Agents</strong>.

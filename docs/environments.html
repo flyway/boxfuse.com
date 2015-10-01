@@ -4,27 +4,37 @@ menu: environments
 subtitle: 'Environments'
 ---
 <div id="environments">
-    <p class="doc-title">Environments</p>
-
-    <p>Boxfuse offers you 3 environments to run your instances:</p>
+    <p>By default Boxfuse offers you 3 environments to run your instances:</p>
     <table class="table">
         <tr>
-            <td><strong>dev</strong></td>
+            <td><i class="fa fa-object-group"></i> <strong>dev</strong></td>
             <td>Develop with fast turnarounds on your local machine using VirtualBox</td>
         </tr>
         <tr>
-            <td><strong>test</strong></td>
+            <td><i class="fa fa-object-group"></i> <strong>test</strong></td>
             <td>Test your applications on AWS in a production-like environment</td>
         </tr>
         <tr>
-            <td><strong>prod</strong></td>
+            <td><i class="fa fa-object-group"></i> <strong>prod</strong></td>
             <td>Run your applications in production on AWS</td>
         </tr>
     </table>
 
     <p><img src="/assets/img/environments.png" alt="Environments"/></p>
 
+    <h2 id="custom">Creating new Environments</h2>
+    <p>If you have subscribed to one of the paid plans, you can also define any number of additional custom environments (like <code>staging</code> for example)
+    via the Boxfuse Console:</p>
+
+    <p><img src="/assets/img/env-new.png" alt="Custom Environments"/></p>
+
+    <p>You can then use these new environments just like the default ones to deploy isolated copies of your application.</p>
+
+    <h2>Determining the current environment</h2>
+    <p>Your application can find out at any time in which environment it is deployed by reading the <code>BOXFUSE_ENV</code> variable
+    which will always be set correctly to the name of the current environment (dev, test, prod, ...)</p>
+
     <p class="next-steps">
-        <a class="btn btn-primary" href="/docs/commands">commands <i class="fa fa-arrow-right"></i></a>
+        <a class="btn btn-primary" href="/docs/commands.html">Commands <i class="fa fa-arrow-right"></i></a>
     </p>
 </div>

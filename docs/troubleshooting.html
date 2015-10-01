@@ -4,9 +4,7 @@ menu: troubleshooting
 subtitle: 'Troubleshooting'
 ---
 <div id="faq">
-    <p class="doc-title">Troubleshooting</p>
-
-    <p class="doc-section">My instance runs into a health check timeout. What could be the issue?</p>
+    <h2>My instance runs into a health check timeout. What could be the issue?</h2>
 
     <p>A health check timeout typically occurs for one of two reasons:</p>
     <ol>
@@ -20,7 +18,7 @@ subtitle: 'Troubleshooting'
     <p>The second problem can be due to either the <code>healthcheck.path</code> being incorrect,
         <code>healthcheck.port</code> being incorrect or the ports configuration simply not matching the ports
         opened up by the application. Example: the http port is configured to be 80, yet the application listens on 8080.
-        The solution for all of these is the same, carefully review your configuration and check the <a href="/docs/commands/logs.html">logs</a>
+        The solution for all of these is the same, carefully review your configuration and check the <a href="/docs/commands.html#logs">logs</a>
         to make sure everything matches.
     </p>
 

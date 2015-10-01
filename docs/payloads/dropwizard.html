@@ -4,13 +4,11 @@ menu: dropwizard
 subtitle: 'Dropwizard'
 ---
 <div id="dropwizard">
-    <p class="doc-title">Dropwizard</p>
-
     <p><img src="/assets/img/dropwizard.png"></p>
 
     <p>Boxfuse supports <strong>Dropwizard 0.8.x or newer</strong> Apps packaged as a <strong>Dropwizard Executable Jar</strong> using either <strong>OpenJDK 7.x or 8.x</strong>.</p>
 
-    <p id="configuration" class="doc-section">Configuration</p>
+    <h2 id="configuration">Configuration</h2>
 
     <p>By default Boxfuse looks for a <code>/boxfuse.yml</code> file <em>inside</em> the Dropwizard jar file and runs your app
         with the arguments <code>server boxfuse.yml</code>.</p>
@@ -41,12 +39,12 @@ logging:
         your Boxfuse configuration matches what you configured in the yaml file.
     </p>
 
-    <p class="doc-section">Healthchecks</p>
+    <h2>Healthchecks</h2>
 
     <p>Unless specified otherwise, Boxfuse automatically configures <code>healthcheck.port=admin-http</code> (8081)
         and <code>healthcheck.path=/healthcheck</code> to <strong>match Dropwizard's defaults</strong>.</p>
 
-    <p class="doc-section">SSL (TLS) / HTTPS</p>
+    <h2>SSL (TLS) / HTTPS</h2>
 
     <p>To use <strong>HTTPS</strong> simply add the KeyStore containing your SSL certificate at the root of the classpath
         <em>inside</em> the Dropwizard jar file. Boxfuse will automatically extract all <code>.jks</code> and <code>.keystore</code>
@@ -68,7 +66,7 @@ logging:
 
     <p>Very often for newer certificates you'll find you also need to add <code>enableCRLDP: true</code> to make things work.</p>
 
-    <p class="doc-section">Root Certificates</p>
+    <h2>Root Certificates</h2>
 
     <p>By default, Boxfuse uses the <strong>same root certificate bundle as the latest version of Firefox</strong>.
         You can, however, ship your own set of root certificates, by placing them in a KeyStore <em>inside</em> the Jar file as <code>/cacerts</code>.
@@ -81,13 +79,13 @@ logging:
     <pre class="prettyprint">trustStorePath: /cacerts/cacerts
 trustStorePassword: my0th3rPwd</pre>
 
-    <p class="doc-section">Java Agents</p>
+    <h2>Java Agents</h2>
 
     <p>If you wish to launch the JRE with one or more Java Agents, simply place the Java Agent Jar files inside the Jar file under
         <code>/javaagents/</code>. Boxfuse will then <strong>automatically configure the JRE to use these Java Agents</strong>.
     </p>
 
-    <p class="doc-section">Sample App</p>
+    <h2>Sample App</h2>
 
     <p class="alert alert-info"><strong>Tip:</strong> Check out our 3 part <a href="/blog/dropwizard-aws.html"><strong>blog post series</strong></a> on how to
         set up a CD pipeline from GitHub to AWS for Dropwizard apps using Boxfuse</p>
@@ -95,6 +93,6 @@ trustStorePassword: my0th3rPwd</pre>
     <p>You can find a Dropwizard sample app for Boxfuse on GitHub at <strong><a href="https://github.com/boxfuse/dwunikernel">boxfuse/dwunikernel</a></strong>.</p>
 
     <p class="next-steps">
-        <a class="btn btn-primary" href="/docs/payloads/war.html">Tomcat <i class="fa fa-arrow-right"></i></a>
+        <a class="btn btn-primary" href="/docs/payloads/tomcat.html">Tomcat <i class="fa fa-arrow-right"></i></a>
     </p>
 </div>

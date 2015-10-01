@@ -6,13 +6,13 @@ pill: Overview
 
 <p><img src="/assets/img/maven.png"></p>
 
-<p class="doc-section">Supported Maven versions</p>
+<h2>Supported Maven versions</h2>
 
 <ul>
     <li>Maven 3.3.3 or newer</li>
 </ul>
 
-<p class="doc-section">Prerequisites</p>
+<h2>Prerequisites</h2>
 
 <ul>
     <li>Boxfuse Account</li>
@@ -21,7 +21,7 @@ pill: Overview
     <li>AWS Account (for AWS deployments)</li>
 </ul>
 
-<p class="doc-section">Installation</p>
+<h2>Installation</h2>
 
 <p>You can start using the Boxfuse Maven plugin by adding the following to the appropriate sections of your POM:</p>
 
@@ -43,7 +43,7 @@ pill: Overview
     &lt;/configuration&gt;
 &lt;/plugin&gt;</pre>
 
-<p class="doc-section">Configuration</p>
+<h2>Configuration</h2>
 
 <p>Boxfuse is opinionated, favors <strong>convention over configuration</strong> and comes with <strong>sensible
     defaults</strong>.</p>
@@ -51,7 +51,7 @@ pill: Overview
 <p>You can override these defaults by either configuring the plugin, adding Maven properties or passing in System properties.
 You can also either specify an external config file or place a <code>boxfuse.conf</code> file in either the current directory or under .boxfuse in your home directory.</p>
 
-<p class="doc-section">Configuration Overriding Order</p>
+<h2>Configuration Overriding Order</h2>
 
 <p>Higher items on the list override lower ones:</p>
 <ul>
@@ -65,12 +65,12 @@ You can also either specify an external config file or place a <code>boxfuse.con
 
 <p><strong>Note:</strong> Setting a property to an empty string with unset that property.</p>
 
-<p class="doc-section">Authentication</p>
+<h2>Authentication</h2>
 
 <p>Besides configuring credentials through one of the configuration mechanisms described above, you have a few other
 ways to pass in authentication info.</p>
 
-<p><strong>settings.xml</strong></p>
+<h3>settings.xml</h3>
 
 <p>Maven makes it also possible to externalize credentials using its <code>settings.xml</code> file.
     Boxfuse supports both regular and encrypted passwords.</p>
@@ -87,7 +87,7 @@ ways to pass in authentication info.</p>
     &lt;/servers&gt;
 &lt;/settings&gt;</pre>
 
-<p><strong>Environment variables</strong></p>
+<h3>Environment variables</h3>
 
 <p>Alternatively you can also pass in your Boxfuse credentials by setting the <code>BOXFUSE_USER</code> and
 <code>BOXFUSE_SECRET</code> environment variables.</p>

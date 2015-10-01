@@ -4,8 +4,6 @@ menu: springboot
 subtitle: 'Spring Boot'
 ---
 <div id="springboot">
-    <p class="doc-title">Spring Boot</p>
-
     <p><img src="/assets/img/springboot.png"></p>
 
     <p>Boxfuse supports <strong>Spring Boot 1.2.x or newer</strong> Apps packaged as a <strong>Spring Boot Executable Jar</strong> using either <strong>OpenJDK 7.x or 8.x</strong>.</p>
@@ -29,19 +27,19 @@ subtitle: 'Spring Boot'
     <pre class="prettyprint">server.port=80
 management.health.diskspace.enabled=false</pre>
 
-    <p class="doc-section">Ports</p>
+    <h2>Ports</h2>
 
     <p>Boxfuse will automatically configure your application ports to be either <code>HTTP</code>
         or <code>HTTPS</code> based on the value of <code>server.ssl.enabled</code>. The actual port numbers are automatically
         configured according to the values of the <code>server.port</code> and <code>management.port</code> properties.</p>
 
-    <p class="doc-section">Healthchecks</p>
+    <h2>Healthchecks</h2>
 
     <p>If your application also includes the Spring Boot Actuator, Boxfuse will <strong>automatically configures its healthcheck
         to match the Spring Boot health endpoint</strong>. The only requirement is that if you provide your own configuration,
     you must set <code>management.health.diskspace.enabled</code> to <code>false</code>.</p>
 
-    <p id="profiles" class="doc-section">Spring Profiles</p>
+    <h2 id="profiles">Spring Profiles</h2>
 
     <p>By default Boxfuse activates a Spring Profile called <code>boxfuse</code>. You can however easily specify a different
     profile by setting the <code>SPRING_PROFILES_ACTIVE</code> environment variable to the value you need using the
@@ -51,7 +49,7 @@ management.health.diskspace.enabled=false</pre>
     set the Spring Boot profile to the value of the <code>BOXFUSE_ENV</code> environment variable which contains the name of the
         current <a href="/docs/environments.html">environment</a> (dev, test, prod): <code>envvars.SPRING_PROFILES_ACTIVE=$BOXFUSE_ENV</code></p>
 
-    <p class="doc-section">SSL (TLS) / HTTPS</p>
+    <h2>SSL (TLS) / HTTPS</h2>
 
     <p>To use <strong>HTTPS</strong> simply add the KeyStore containing your SSL certificate at the root of the classpath
         <em>inside</em> the Spring Boot jar file. Boxfuse will automatically extract all <code>.jks</code> and <code>.keystore</code>
@@ -69,7 +67,7 @@ server.ssl.enabled=true
 server.ssl.key-store=example.jks
 server.ssl.key-store-password=myS3cr3tPwd</pre>
 
-    <p class="doc-section">Root Certificates</p>
+    <h2>Root Certificates</h2>
 
     <p>By default, Boxfuse uses the <strong>same root certificate bundle as the latest version of Firefox</strong>.
         You can, however, ship your own set of root certificates, by placing them in a KeyStore inside the Jar file as <code>/cacerts</code>.
@@ -82,7 +80,7 @@ server.ssl.key-store-password=myS3cr3tPwd</pre>
     <pre class="prettyprint">server.ssl.trust-store=/cacerts/cacerts
 server.ssl.trust-store-password=my0th3rPwd</pre>
 
-    <p class="doc-section">Java Agents</p>
+    <h2>Java Agents</h2>
 
     <p>If you wish to launch the JRE with one or more Java Agents, simply place the Java Agent Jar files inside the Jar file under
         <code>/javaagents/</code>. Boxfuse will then <strong>automatically configure the JRE to use these Java Agents</strong>.

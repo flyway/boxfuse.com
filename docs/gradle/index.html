@@ -6,13 +6,13 @@ pill: Overview
 
 <p><img src="/assets/img/gradle.png"></p>
 
-<p class="doc-section">Supported Gradle versions</p>
+<h2>Supported Gradle versions</h2>
 
 <ul>
     <li>Gradle 2.1 or newer</li>
 </ul>
 
-<p class="doc-section">Prerequisites</p>
+<h2>Prerequisites</h2>
 
 <ul>
     <li>Boxfuse Account</li>
@@ -21,7 +21,7 @@ pill: Overview
     <li>AWS Account (for AWS deployments)</li>
 </ul>
 
-<p class="doc-section">Installation</p>
+<h2>Installation</h2>
 
 <p>The Boxfuse Gradle plugin is available from the <a href="https://plugins.gradle.org/plugin/com.boxfuse.client">Gradle Plugin portal</a>.
     You can start using it by adding the following to your <code>build.gradle</code>:</p>
@@ -35,7 +35,7 @@ boxfuse {
     <strong>secret='<em>your-boxfuse-client-secret</em>'</strong>
 }</pre>
 
-<p class="doc-section">Configuration</p>
+<h2>Configuration</h2>
 
 <p>Boxfuse is opinionated, favors <strong>convention over configuration</strong> and comes with <strong>sensible
     defaults</strong>.</p>
@@ -43,7 +43,7 @@ boxfuse {
 <p>You can override these defaults by either configuring the plugin, adding Gradle properties or passing in System properties.
 You can also either specify an external config file or place a <code>boxfuse.conf</code> file in either the current directory or under .boxfuse in your home directory.</p>
 
-<p class="doc-section">Configuration Overriding Order</p>
+<h2>Configuration Overriding Order</h2>
 
 <p>Higher items on the list override lower ones:</p>
 <ul>
@@ -58,7 +58,7 @@ You can also either specify an external config file or place a <code>boxfuse.con
 
 <p><strong>Note:</strong> Setting a property to an empty string with unset that property.</p>
 
-<p id="extension" class="doc-section">Extension</p>
+<h2 id="extension">Extension</h2>
 
 <p>By default the Boxfuse plugin is configured via the Boxfuse extension (<code>com.boxfuse.client.gradle.BoxfuseExtension</code>) like this:</p>
 <pre class="prettyprint">boxfuse {
@@ -66,7 +66,7 @@ You can also either specify an external config file or place a <code>boxfuse.con
     healthcheckPath='/health'
 }</pre>
 
-<p id="multiple" class="doc-section">Multiple task instances</p>
+<h2 id="multiple">Multiple task instances</h2>
 
 <p>In some build scripts however you may want to use different values for different tasks. In that case you can define
 additional instances of the tasks and configure them individually like this:</p>
@@ -89,7 +89,7 @@ task boxfuseRunProd (type: com.boxfuse.client.gradle.task.RunTask) {
 <p class="alert alert-info"><strong>Tip:</strong> Check out our <a href="/blog/gradle-plugin.html"><strong>blog post</strong></a> on how to
     set up integration tests using the Boxfuse Gradle plugin</p>
 
-<p class="doc-section">Authentication</p>
+<h2>Authentication</h2>
 
 <p>Besides configuring credentials through one of the configuration mechanisms described above,
     you can also pass in your Boxfuse credentials by setting the <code>BOXFUSE_USER</code> and

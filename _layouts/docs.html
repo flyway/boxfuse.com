@@ -3,19 +3,19 @@ layout: default
 tab: docs
 title: Documentation
 ---
-<div id="learn" class="container">
+<div id="docs" class="container">
     <div class="row">
         <div class="col-md-2">
             <div id="menu">
                 <ul class="nav nav-pills nav-stacked">
                     <li {% if page.menu == 'overview' %} class="active" {% endif %}><a href="/docs">Overview</a></li>
                     <li {% if page.menu == 'environments' %} class="active" {% endif %}><a href="/docs/environments.html">Environments</a></li>
-                    <li {% if page.menu == 'commands' %} class="active" {% endif %}><a href="/docs/commands">Commands</a></li>
+                    <li {% if page.menu == 'commands' %} class="active" {% endif %}><a href="/docs/commands.html">Commands</a></li>
 
                     <li class="nav-header">Payloads</li>
                     <li {% if page.menu == 'springboot' %} class="active" {% endif %}><a href="/docs/payloads/springboot.html">Spring Boot</a></li>
                     <li {% if page.menu == 'dropwizard' %} class="active" {% endif %}><a href="/docs/payloads/dropwizard.html">Dropwizard</a></li>
-                    <li {% if page.menu == 'war' %} class="active" {% endif %}><a href="/docs/payloads/war.html">Tomcat</a></li>
+                    <li {% if page.menu == 'war' %} class="active" {% endif %}><a href="/docs/payloads/tomcat.html">Tomcat</a></li>
                     <li {% if page.menu == 'tomee' %} class="active" {% endif %}><a href="/docs/payloads/tomee.html">TomEE</a></li>
                     <li {% if page.menu == 'jar' %} class="active" {% endif %}><a href="/docs/payloads/jar.html">Executable Jar</a></li>
 
@@ -41,6 +41,8 @@ title: Documentation
             <p>&nbsp;</p>
         </div>
         <div class="col-md-10">
+
+            <h1>{{ page.subtitle }}</h1>
 
             {{ content }}
 
