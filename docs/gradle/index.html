@@ -95,6 +95,16 @@ task boxfuseRunProd (type: com.boxfuse.client.gradle.task.RunTask) {
     you can also pass in your Boxfuse credentials by setting the <code>BOXFUSE_USER</code> and
 <code>BOXFUSE_SECRET</code> environment variables.</p>
 
+<h2 id="proxy">Proxy configuration</h2>
+<p>If your network requires you to use a proxy to connect to the outside world, you have two options.</p>
+<p>You can either <a href="https://docs.gradle.org/current/userguide/build_environment.html#sec:accessing_the_web_via_a_proxy">configure Gradle to use a proxy</a>.
+The Boxfuse Gradle plugin will then automatically pick up those settings and use them.</p>
+
+<p>Or you can tell Boxfuse directly to use a proxy (this will take precedence over any proxies configured in Gradle as described above):</p>
+<pre class="prettyprint">boxfuse {
+    proxy='https://myuser:mypwd@myproxyhost:1234'
+}</pre>
+<p>This can also be defined directly on individual tasks using the <code>proxy</code> attribute or through the Gradle/System property <code>boxfuse.proxy</code>.</p>
 <p class="next-steps">
     <a class="btn btn-primary" href="/docs/gradle/create.html">create <i class="fa fa-arrow-right"></i></a>
 </p>

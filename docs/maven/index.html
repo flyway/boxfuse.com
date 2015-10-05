@@ -92,6 +92,22 @@ ways to pass in authentication info.</p>
 <p>Alternatively you can also pass in your Boxfuse credentials by setting the <code>BOXFUSE_USER</code> and
 <code>BOXFUSE_SECRET</code> environment variables.</p>
 
+<h2 id="proxy">Proxy configuration</h2>
+<p>If your network requires you to use a proxy to connect to the outside world, you have two options.</p>
+<p>You can either <a href="https://maven.apache.org/guides/mini/guide-proxies.html">configure Maven to use a proxy</a>.
+    The Boxfuse Maven plugin will then automatically pick up those settings and use them.</p>
+
+<p>Or you can tell Boxfuse directly to use a proxy (this will take precedence over any proxies configured in Gradle as described above):</p>
+<pre class="prettyprint">&lt;plugin&gt;
+    &lt;groupId&gt;com.boxfuse.client&lt;/groupId&gt;
+    &lt;artifactId&gt;boxfuse-maven-plugin&lt;/artifactId&gt;
+    &lt;version&gt;{{site.boxfuseVersion}}&lt;/version&gt;
+    &lt;configuration&gt;
+        <strong>&lt;proxy&gt;</strong><em>https://myuser:mypwd@myproxyhost:1234</em><strong>&lt;/proxy&gt;</strong>
+    &lt;/configuration&gt;
+&lt;/plugin&gt;</pre>
+<p>This can also be defined through the Maven/System property <code>boxfuse.proxy</code>.</p>
+
 <p class="next-steps">
     <a class="btn btn-primary" href="/docs/maven/create.html">create <i class="fa fa-arrow-right"></i></a>
 </p>
