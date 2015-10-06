@@ -30,6 +30,9 @@ subtitle: 'Environments'
 
     <p>You can then use these new environments just like the default ones to deploy isolated copies of your application.</p>
 
+    <p>However, unlike the regular <code>test</code> and <code>prod</code> environments, these new custom environments
+        can be created in a different AWS region from your default Boxfuse region, enabling <strong>multi-region apps</strong>.</p>
+
     <h2>Determining the current environment</h2>
     <p>Your application can find out at any time in which environment it is deployed by reading the <code>BOXFUSE_ENV</code> variable
     which will always be set correctly to the name of the current environment (dev, test, prod, ...)</p>
