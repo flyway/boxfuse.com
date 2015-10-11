@@ -70,7 +70,8 @@ server.ssl.key-store-password=myS3cr3tPwd</pre>
     <h2>Root Certificates</h2>
 
     <p>By default, Boxfuse uses the <strong>same root certificate bundle as the latest version of Firefox</strong>.
-        You can, however, ship your own set of root certificates, by placing them in a KeyStore inside the Jar file as <code>/cacerts</code>.
+        Additionally Boxfuse also includes the <strong>root certificates for Amazon RDS</strong>, so you can connect securely to RDS databases out of the box.</p>
+    <p>You can, however, ship your own set of root certificates, by placing them in a KeyStore inside the Jar file as <code>/cacerts</code>.
         Boxfuse will then automatically configure the JRE to use these instead.
     </p>
 

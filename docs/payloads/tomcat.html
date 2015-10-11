@@ -23,7 +23,8 @@ subtitle: 'Tomcat'
     <h2>Root Certificates</h2>
 
     <p>By default, Boxfuse uses the <strong>same root certificate bundle as the latest version of Firefox</strong>.
-        You can, however, ship your own set of root certificates, by placing them in a KeyStore at <code>/WEB-INF/cacerts</code>.
+        Additionally Boxfuse also includes the <strong>root certificates for Amazon RDS</strong>, so you can connect securely to RDS databases out of the box.</p>
+    <p>You can, however, ship your own set of root certificates, by placing them in a KeyStore at <code>/WEB-INF/cacerts</code>.
         Boxfuse will then automatically configure both the JRE and Tomcat to use these instead.
     </p>
 
