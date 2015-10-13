@@ -13,15 +13,64 @@ subtitle: 'AWS'
         <li>test</li>
         <li>prod</li>
     </ul>
-    <p>As well as any <a href="/docs/environments.html#custom">additional environments</a> you have created.</p>
+    <p>As well as any <a href="/docs/environments.html#custom">additional custom environments</a> you have created.</p>
 
     <h2>Regions</h2>
 
-    <p>Boxfuse supports the ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-central-1, eu-west-1, sa-east-1,
+    <p>Boxfuse fully supports the ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-central-1, eu-west-1, sa-east-1,
         us-east-1, us-west-1 &amp; us-west-2 regions.</p>
-    <p>We recommend the <strong>eu-central-1</strong> region,
-        as it is currently the only one optimized for deployment speed with new Images <strong>deployed in under 60 seconds</strong>.
-        As Boxfuse expands its footprint, more regions will be optimized for fast deployment. The order will be based on based on customer usage and demand.
+
+    <p>We recommend the <strong>eu-central-1</strong>, <strong>eu-west-1</strong> and <strong>us-east-1</strong> regions
+        as they are <strong>optimized for deployment speed</strong> with new AMIs (Amazon Machine Images) created in under 60 seconds.
+        <strong>This is 5x to 10x faster than any other tool in the industry!</strong></p>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>AWS Region</th>
+            <th>AMI Creation Time</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>ap-northeast-1</td>
+            <td>Less than 5 minutes</td>
+        </tr>
+        <tr>
+            <td>ap-southeast-1</td>
+            <td>Less than 5 minutes</td>
+        </tr>
+        <tr>
+            <td>ap-southeast-2</td>
+            <td>Less than 5 minutes</td>
+        </tr>
+        <tr>
+            <td><strong>eu-central-1</strong></td>
+            <td><strong>Less than 60 seconds</strong></td>
+        </tr>
+        <tr>
+            <td><strong>eu-west-1</strong></td>
+            <td><strong>Less than 60 seconds</strong></td>
+        </tr>
+        <tr>
+            <td>sa-east-1</td>
+            <td>Less than 5 minutes</td>
+        </tr>
+        <tr>
+            <td><strong>us-east-1</strong></td>
+            <td><strong>Less than 60 seconds</strong></td>
+        </tr>
+        <tr>
+            <td>us-west-1</td>
+            <td>Less than 5 minutes</td>
+        </tr>
+        <tr>
+            <td>us-west-2</td>
+            <td>Less than 5 minutes</td>
+        </tr>
+        </tbody>
+    </table>
+    <p>As Boxfuse expands its footprint, further regions will be optimized for fast deployment. The order will be based on based on customer usage and demand.
         This does not affect the runtime speed of your instance, which is determined by the instance type you selected.</p>
 
     <h2>Instance Types</h2>
