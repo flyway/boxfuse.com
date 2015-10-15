@@ -10,7 +10,14 @@ subtitle: 'TomEE'
 
     <p>If your .war file contains a <code>WEB-INF/resources.xml</code> file, Boxfuse will automatically run it using TomEE instead of Tomcat.
         By default it uses TomEE Web Profile, but it will automatically select TomEE Plus if you have defined any JMS resources.</p>
-
+<pre class="filetree"><i class="fa fa-folder-open"></i> my-tomee-app
+  <i class="fa fa-folder-open"></i> src
+    <i class="fa fa-folder-open"></i> main
+      <i class="fa fa-folder"></i> java
+      <i class="fa fa-folder"></i> resources
+      <i class="fa fa-folder-open"></i> webapp
+        <i class="fa fa-folder-open"></i> WEB-INF
+          <span><i class="fa fa-file-text"></i> resources.xml</span></pre>
     <p>You can override the automatic behavior and force a particular TomEE edition to be used by passing in <code>-components.tomee-webprofile=1.7.2</code> (for TomEE Web Profile)
     or <code>-components.tomee-plus=1.7.2</code> (for TomEE Plus).</p>
 
@@ -23,8 +30,18 @@ subtitle: 'TomEE'
     <p>To use <strong>HTTPS</strong> simply add the KeyStore containing your SSL certificate inside the .war file as
         <code>/WEB-INF/keystore.jks</code>. It must be secured with the standard password <em>changeit</em>.
         Boxfuse will then automatically configure Tomcat to start serving traffic via HTTPS on port 443, as well as
-        <strong>automatically redirect any insecure HTTP traffic to a secure HTTPS connection</strong>.
+        <strong>automatically redirect any insecure HTTP traffic to the secure HTTPS connection</strong>.
     </p>
+
+    <p>If you use Maven or Gradle this means you have to put the <code>keystore.jks</code> file under <code>src/main/webapp/WEB-INF</code>:</p>
+    <pre class="filetree"><i class="fa fa-folder-open"></i> my-tomee-app
+  <i class="fa fa-folder-open"></i> src
+    <i class="fa fa-folder-open"></i> main
+      <i class="fa fa-folder"></i> java
+      <i class="fa fa-folder"></i> resources
+      <i class="fa fa-folder-open"></i> webapp
+        <i class="fa fa-folder-open"></i> WEB-INF
+          <span><i class="fa fa-file"></i> keystore.jks</span></pre>
 
     <h2>Root Certificates</h2>
 
@@ -34,14 +51,40 @@ subtitle: 'TomEE'
         Boxfuse will then automatically configure both the JRE and Tomcat to use these instead.
     </p>
 
+    <p>If you use Maven or Gradle this means you have to put the <code>cacerts</code> file under <code>src/main/webapp/WEB-INF</code>:</p>
+    <pre class="filetree"><i class="fa fa-folder-open"></i> my-tomee-app
+  <i class="fa fa-folder-open"></i> src
+    <i class="fa fa-folder-open"></i> main
+      <i class="fa fa-folder"></i> java
+      <i class="fa fa-folder"></i> resources
+      <i class="fa fa-folder-open"></i> webapp
+        <i class="fa fa-folder-open"></i> WEB-INF
+          <span><i class="fa fa-file"></i> cacerts</span></pre>
+
     <h2>Java Agents</h2>
 
     <p>By default Boxfuse will activate the OpenEJB Java Agent.</p>
 
-    <p>If you wish to launch the JRE with one or more additional Java Agents, simply place the Java Agent .jar files under
-        <code>/WEB-INF/javaagents/</code>.
-        Boxfuse will then <strong>automatically configure the JRE to use these Java Agents</strong>.
-    </p>
+    <p>If you wish to launch the JRE with one or more additional Java Agents, simply place the Java Agent files inside the Jar file under
+        <code>/WEB-INF/javaagents/</code>. In a Maven or Gradle project this means you have to put your agent jar and whatever other files it requires under <code>src/main/webapp/WEB-INF/javaagents</code>:</p>
+    <pre class="filetree"><i class="fa fa-folder-open"></i> my-tomee-app
+  <i class="fa fa-folder-open"></i> src
+    <i class="fa fa-folder-open"></i> main
+      <i class="fa fa-folder"></i> java
+      <i class="fa fa-folder"></i> resources
+      <i class="fa fa-folder-open"></i> webapp
+        <i class="fa fa-folder-open"></i> WEB-INF
+          <span><i class="fa fa-folder-open"></i> javaagents
+  <i class="fa fa-file"></i> myjavaagent.jar
+  <i class="fa fa-file-text"></i> myjavaagent.properties</span></pre>
+
+    <p>Boxfuse will then <strong>automatically configure the JRE to use these Java Agents</strong></p>
+
+    <h2>JVM Memory</h2>
+
+    <p>By default Boxfuse will dynamically configure your JVM heap to use 85% of the available memory in the instance. All other settings
+        use the JVM defaults. You can override this by specifying the required JVM arguments like <code>-Xmx</code> via the
+        <code>jvm.args</code> configuration setting.</p>
 
     <h2>Sample App</h2>
 

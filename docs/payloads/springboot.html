@@ -18,6 +18,12 @@ subtitle: 'Spring Boot'
 
     <p>If you use Maven or Gradle, this means the <code>application-boxfuse.properties</code> file should be put into the <code>src/main/resources</code> directory.
         When the Spring Boot Maven or Gradle plugin packages the executable jar, it will include it in the root of your class path, where Boxfuse can see it.</p>
+    <pre class="filetree"><i class="fa fa-folder-open"></i> my-spring-boot-app
+  <i class="fa fa-folder-open"></i> src
+    <i class="fa fa-folder-open"></i> main
+      <i class="fa fa-folder"></i> java
+      <i class="fa fa-folder-open"></i> resources
+        <span><i class="fa fa-file-text"></i> application-boxfuse.properties</span></pre>
 
     <p>Boxfuse parses <strong><code>application-boxfuse.properties</code></strong> and <strong>automatically configures the ports and the healthcheck</strong> based on the
     information it contains.</p>
@@ -57,6 +63,12 @@ management.health.diskspace.enabled=false</pre>
 
     <p>If you use Maven or Gradle, this means your <code>.jks</code> or <code>.keystore</code> KeyStore file should be put into the <code>src/main/resources</code> directory.
         When Maven or Gradle packages the jar, it will include it in the root of your Spring Boot jar file, where Boxfuse can see it.</p>
+    <pre class="filetree"><i class="fa fa-folder-open"></i> my-spring-boot-app
+  <i class="fa fa-folder-open"></i> src
+    <i class="fa fa-folder-open"></i> main
+      <i class="fa fa-folder"></i> java
+      <i class="fa fa-folder-open"></i> resources
+        <span><i class="fa fa-file"></i> example.jks</span></pre>
 
     <p>You can then configure the Spring Boot connector to use it. So if for example
         you have a KeyStore named <code>/example.jks</code> inside your Spring Boot jar file,
@@ -72,8 +84,16 @@ server.ssl.key-store-password=myS3cr3tPwd</pre>
     <p>By default, Boxfuse uses the <strong>same root certificate bundle as the latest version of Firefox</strong>.
         Additionally Boxfuse also includes the <strong>root certificates for Amazon RDS</strong>, so you can connect securely to RDS databases out of the box.</p>
     <p>You can, however, ship your own set of root certificates, by placing them in a KeyStore inside the Jar file as <code>/cacerts</code>.
+        If you use Maven or Gradle, this means your <code>cacerts</code> KeyStore file should be put into the <code>src/main/resources</code> directory.
         Boxfuse will then automatically configure the JRE to use these instead.
     </p>
+
+    <pre class="filetree"><i class="fa fa-folder-open"></i> my-spring-boot-app
+  <i class="fa fa-folder-open"></i> src
+    <i class="fa fa-folder-open"></i> main
+      <i class="fa fa-folder"></i> java
+      <i class="fa fa-folder-open"></i> resources
+        <span><i class="fa fa-file"></i> cacerts</span></pre>
 
     <p>If you choose to secure your <code>cacerts</code> TrustStore with a password different than the default <code>changeit</code>,
         you have to add the following to your Spring Boot configuration:</p>
@@ -83,9 +103,24 @@ server.ssl.trust-store-password=my0th3rPwd</pre>
 
     <h2>Java Agents</h2>
 
-    <p>If you wish to launch the JRE with one or more Java Agents, simply place the Java Agent Jar files inside the Jar file under
-        <code>/javaagents/</code>. Boxfuse will then <strong>automatically configure the JRE to use these Java Agents</strong>.
-    </p>
+    <p>If you wish to launch the JRE with one or more Java Agents, simply place the Java Agent files inside the Jar file under
+        <code>/javaagents/</code>. In a Maven or Gradle project this means you have to put your agent jar and whatever other files it requires under <code>src/main/resources/javaagents</code>:</p>
+    <pre class="filetree"><i class="fa fa-folder-open"></i> my-spring-boot-app
+  <i class="fa fa-folder-open"></i> src
+    <i class="fa fa-folder-open"></i> main
+      <i class="fa fa-folder"></i> java
+      <i class="fa fa-folder-open"></i> resources
+        <span><i class="fa fa-folder-open"></i> javaagents
+  <i class="fa fa-file"></i> myjavaagent.jar
+  <i class="fa fa-file-text"></i> myjavaagent.properties</span></pre>
+
+    <p>Boxfuse will then <strong>automatically configure the JRE to use these Java Agents</strong></p>
+
+    <h2>JVM Memory</h2>
+
+    <p>By default Boxfuse will dynamically configure your JVM heap to use 85% of the available memory in the instance. All other settings
+    use the JVM defaults. You can override this by specifying the required JVM arguments like <code>-Xmx</code> via the
+    <code>jvm.args</code> configuration setting.</p>
 
     <p class="next-steps">
         <a class="btn btn-primary" href="/docs/payloads/dropwizard.html">Dropwizard <i class="fa fa-arrow-right"></i></a>

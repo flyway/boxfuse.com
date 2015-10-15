@@ -629,6 +629,28 @@ pre.console {
     margin-bottom: 20px;
 }
 
+pre.filetree {
+    background: #555;
+    color: white;
+}
+
+pre.filetree i.fa-folder-open {
+    color: #e38d13;
+}
+
+pre.filetree i.fa-file, pre.filetree i.fa-file-text {
+    color: gold;
+}
+
+pre.filetree span {
+	display: inline-block;
+	padding: 5px;
+	margin-left: -5px;
+	background-color: #666;
+}
+
+
+
 .text-center {
     text-align: center;
 }
