@@ -19,9 +19,13 @@ subtitle: 'VirtualBox'
 
     <h2 id="portforwarding">Port forwarding</h2>
 
-    <p>Ports from your instance can be forwarded to your host using the <code>portsmap.NAME=HOST_PORT_NUMBER</code> properties.<br/>
-        Example: To forward the HTTP port from your instance to port 8080 of your host you can use the property <code>portsmap.http=8080</code>.
+    <p>Ports from your instance can be forwarded to your host using the <code>portsmap.NAME=HOST_PORT_NUMBER</code> properties.<br/></p>
+
+    <p><strong>Example:</strong> Say you have a webserver running as port <code>80</code> within the VM and would like
+        to be able to reach it using port <code>4444</code> on your physical machine you would configure Boxfuse like this:
     </p>
+
+    <pre class="console">&gt; boxfuse run myapp.jar -ports.http=80 -portsmap.http=4444</pre>
 
     <h2>CPU &amp; RAM usage</h2>
 
