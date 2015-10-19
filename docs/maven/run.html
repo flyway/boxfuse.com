@@ -151,12 +151,20 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>target/boxfuse</td>
         <td>The directory where the logs should be redirected to</td>
     </tr>
-    <tr>
+    <tr id="ports">
         <td>ports</td>
         <td>boxfuse.ports.<em>NAME</em></td>
         <td>http=80</td>
-        <td>Maps the port of the app with this name onto this number.<br/>
-            Example: boxfuse.ports.jmx=8001
+        <td><p>Exposes the port of the app with this name using this definition. Example: boxfuse.ports.jmx=8001</p><p>Supported formats:</p>
+            <table class="table">
+                <tr><td><code>80</code></td><td>TCP port 80, universally accessible</td></tr>
+                <tr><td><code>80/tcp</code></td><td>TCP port 80, universally accessible</td></tr>
+                <tr><td><code>80/udp</code></td><td>UDP port 80, universally accessible</td></tr>
+                <tr><td><code>80/tcp:@</code></td><td>TCP port 80 only accessible from your own IP</td></tr>
+                <tr><td><code>80/udp:@/20</code></td><td>UDP port 80 only accessible from the IPs in the CIDR /20 block of your own IP</td></tr>
+                <tr><td><code>80/udp:1.2.3.4</code></td><td>UDP port 80 only accessible from 1.2.3.4</td></tr>
+                <tr><td><code>80/tcp:1.2.3.4/31</code></td><td>TCP port 80 only accessible from the IPs in the CIDR /31 block of 1.2.3.4</td></tr>
+            </table>
         </td>
     </tr>
     <tr>
