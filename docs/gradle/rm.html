@@ -10,10 +10,19 @@ pill: rm
 
 <p><strong>Usage: </strong> gradle boxfuseRm -Dboxfuse.image=<em>image</em></p>
 
+<h3>Removing a single image:</h3>
 <pre class="console">&gt; gradle boxfuseRm -Dboxfuse.image=hello:1.0
 
 Destroying Image axelfontaine/hello:1.0 ...
 axelfontaine/hello:1.0 destroyed in 00:00.000s</pre>
+
+<h3>Removing all images of an app:</h3>
+<pre class="console">&gt; gradle boxfuseRm -Dboxfuse.app=hello
+
+Removing all locally available Images of axelfontaine/hello ...
+Removing Image axelfontaine/hello:0.5 ...
+Removing Image axelfontaine/hello:1.0 ...
+All locally available Images of axelfontaine/hello removed in 00:00.001s</pre>
 
 <h3>Class name</h3><p><code>com.boxfuse.client.gradle.task.RmTask</code></p>
 
