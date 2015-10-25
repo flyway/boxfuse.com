@@ -49,10 +49,10 @@ subtitle: 'Travis CI'
             <td>Your Boxfuse Secret</td>
         </tr>
     </table>
-    <p>By default, Travis CI worker nodes are configured with too little heap for the JVM to work well with Maven and Boxfuse together.
-    Add the following to your <code>.travis.yml</code> to fix this:</p>
+    <p>By default, Travis CI worker nodes are configured with <strong>too little heap</strong> for the JVM to work well with Maven and Boxfuse together.</p>
+    <p>Add the following to your <code>.travis.yml</code> to fix this:</p>
 
-    <pre class="prettyprint">before_install: echo "MAVEN_OPTS='-Xmx2048m'" > ~/.mavenrc</pre>
+    <pre class="prettyprint">before_install: echo "MAVEN_OPTS=-Xmx2048m" > ~/.mavenrc</pre>
 
     <p class="next-steps">
         <a class="btn btn-primary" href="/docs/domains.html">Custom Domains <i class="fa fa-arrow-right"></i></a>
