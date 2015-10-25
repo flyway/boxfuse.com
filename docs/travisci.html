@@ -50,17 +50,9 @@ subtitle: 'Travis CI'
         </tr>
     </table>
     <p>By default, Travis CI worker nodes are configured with too little heap for the JVM to work well with Maven and Boxfuse together.
-    Depending on the type of build infrastructure you select, you will need different settings in your <code>.travis.yml</code> to adjust this.</p>
+    Add the following to your <code>.travis.yml</code> to fix this:</p>
 
-    <h3>VM-based infrastructure</h3>
-    <pre class="prettyprint">sudo: required
-before_install:
-  - sudo rm /etc/mavenrc
-  - export MAVEN_OPTS="-Xmx2048m"</pre>
-
-    <h3>Container-based infrastructure</h3>
-    <pre class="prettyprint">sudo: false
-before_install: echo "MAVEN_OPTS='-Xmx2048m'" > ~/.mavenrc</pre>
+    <pre class="prettyprint">before_install: echo "MAVEN_OPTS='-Xmx2048m'" > ~/.mavenrc</pre>
 
     <p class="next-steps">
         <a class="btn btn-primary" href="/docs/domains.html">Custom Domains <i class="fa fa-arrow-right"></i></a>
