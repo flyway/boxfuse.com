@@ -31,16 +31,34 @@ Successfully scaled hello to 3 t2.large instances in prod</pre>
         <th>Description</th>
     </tr>
     </thead>
-    <tr>
+    <tr id="capacity">
         <td>-capacity=...</td>
         <td></td>
-        <td>The capacity to scale an app to in a certain environment.<br/>
-            Valid formats:<br/>
-            <ul>
-                <li>instanceCount -> Ex. 3</li>
-                <li>instanceType -> Ex. t2.small</li>
-                <li>instanceCount:instanceType -> Ex. 3:t2.small</li>
-            </ul>
+        <td>
+            The capacity to scale an app to in a certain environment
+            <p>Valid formats:</p>
+            <table class="table table-striped table-condensed">
+                <tr>
+                    <td><code>5:t2.small</code></td>
+                    <td>ensure there are always 5 t2.small instances running</td>
+                </tr>
+                <tr>
+                    <td><code>2-10:m3.medium:cpu30-70</code></td>
+                    <td>
+                        auto-scale between 2 (min) and 10 (max) m3.medium instances<br>
+                        based upon average CPU load over the last 300 seconds<br>
+                        scale in at 30% and below, scale out at 70% and above
+                    </td>
+                </tr>
+                <tr>
+                    <td><code><nobr>1-7:c4.large:cpu20-75:180</nobr></code></td>
+                    <td>
+                        auto-scale between 1 (min) and 7 (max) m3.medium instances<br>
+                        based upon average CPU load over the last 180 seconds<br>
+                        scale in at 20% and below, scale out at 75% and above
+                    </td>
+                </tr>
+            </table>
         </td>
     </tr>
     <tr>
