@@ -1,0 +1,79 @@
+---
+layout: blog
+subtitle: "It's Auto-Scaling time!"
+permalink: /blog/auto-scaling.html
+---
+<div>
+    <p>Two of the key design principles of Boxfuse are <a href="/blog/no-ssh.html"><strong>reliable and fast generation of minimal immutable images</strong></a>
+        and <a href="/blog/amis-30-seconds.html"><strong>outstanding integration integration with AWS</strong></a>.</p>
+
+    <p>Today we're going to leverage both together to take things even further.</p>
+
+    <p>AWS' native format for images is the AMI, the Amazon Machine Image. It is a central building block of EC2.
+        Every single EC2 instance you launch is based on an AMI. And Boxfuse makes it really easy to <a href="/blog/amis-30-seconds.html">create</a> them.
+    </p>
+
+    <p>Immutable images such as AMIs also have the great advantage that they really <a href="/blog/fast-reliable-scaling.html"><strong>simplify scaling</strong></a>.
+        Whether you have to set up 1, 10, 100 or 1000 instances, all you need to do is launch that number of identical copies
+        from the same base image and you're done. Refreshingly simple.
+    </p>
+
+    <p>In fact Boxfuse has enabled you to do this for a while. Regardless of whether you want to <strong>scale horizontally, vertically or both</strong>, Boxfuse simply lets you do:</p>
+
+    <pre class="console">&gt; boxfuse scale myapp -env=prod -capacity=7:t2.large</pre>
+
+    <p>This will effectively launch 7 new t2.large EC2 instances of your app, and once the healthchecks have passed,
+        Boxfuse will terminate any previous deployments and perform a zero-downtime transition.</p>
+
+    <p>While this is great for guaranteeing you always have the required amount of processing power available, it forces you to
+    <strong>guess your capacity needs in advance</strong>, which means that at certain times you may be <strong>paying for more capacity than you actually need</strong>.</p>
+
+    <h2 class="blog-post-section">Auto-Scaling</h2>
+
+    <p>Today we are introducing Boxfuse support for <strong>AWS Auto-Scaling</strong>. You can now let AWS automatically
+        optimize the scale of your system based on the current load.</p>
+
+    <p>All you need to do is drag a slider to indicate the minimum and the maximum number of instances you want, and
+    specify at which CPU usage thresholds the scaling activities should happen, and click Scale. Boxfuse and AWS will take care of the rest.</p>
+
+    <div class="blog-post-image center">
+        <img src="/assets/img/auto-scaling-console.png" alt="Auto-Scaling">
+    </div>
+
+    <p>In this example here, Boxfuse will automatically configure AWS CloudWatch to monitor the CPU usage of your instances.
+        Boxfuse will also automatically configure Auto-Scaling to kick in as soon as the rolling
+    average over a period of 300 seconds exceeds 75%. Auto-Scaling will then start provisioning additional EC2 instances up to a maximum of 10. If CPU usage
+    instead drops to 25% or below, EC2 instances will be terminated down to a minimum of 2.</p>
+
+    <p>The same can of course also be specified from the command-line:</p>
+
+    <pre class="console">&gt; boxfuse scale myapp -env=prod -capacity=2-10:t2.micro:cpu25-75:300
+
+Successfully configured myapp to auto-scale between 2 and 10 t2.micro instances based on average CPU load over 300 seconds, scaling in at 25% and below, scaling out at 75% and above.</pre>
+
+    <p>And voila! Done! <strong>Auto-scaling has never been this easy!</strong>.</p>
+
+    <p class="alert alert-info"><strong>Tip:</strong> To best <strong>optimize your budget</strong> with your actual usage, start with
+        auto-scaling the <strong>smallest type of general purpose instances</strong> like t2.micro and only move to larger or more specialized instances if needed.</p>
+
+    <h2 class="blog-post-section">Summary</h2>
+
+    <p>Immutable Infrastructure makes scaling fast and reliable. However having fixed capacity for your system requires you to guess your needs in advance.
+        It also means that at times you'll potentially pay more than you should.</p>
+    <p>Starting today, Boxfuse can now automatically
+    configure AWS to <strong>auto-scale your application</strong> based on average CPU usage. AWS will add or remove capacity from the system fully automatically
+    based on the current load, so that you <strong>never have to worry again about paying for more than you actually need</strong>.</p>
+
+    <p>This is available today at no extra cost to all <a href="/pricing.html">paid plans</a>.</p>
+
+    <p>&nbsp;</p>
+
+    <p><strong>Have fun and keep on deploying JVM applications to AWS with ease and pleasure!</strong></p>
+
+    <p>And if you haven't already,
+        <a href="https://console.boxfuse.com"><strong>sign up for your
+        Boxfuse account</strong></a> now. All you need is a GitHub user
+        and you'll be up and running in no time. The <a href="/pricing.html">Boxfuse free plan</a> aligns
+        perfectly with the AWS free tier, so you can deploy
+        your JVM application to EC2 <strong>completely free</strong>.</p>
+</div>
