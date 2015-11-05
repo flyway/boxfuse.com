@@ -1,22 +1,22 @@
 ---
 layout: blog
 subtitle: "Introducing Restricted Ports"
-permalink: /blog/restricted-ports.html
+permalink: /blog/restricted-ports
 ---
 <div>
-    <p>At its core, Boxfuse <a href="/learn/how.html"><strong>analyses the payload you pass it</strong></a> (like a .jar or .war file) and generates a minimal immutable
+    <p>At its core, Boxfuse <a href="/learn/how"><strong>analyses the payload you pass it</strong></a> (like a .jar or .war file) and generates a minimal immutable
         image for it. This image contains two main parts: a disk image and metadata.</p>
     <p>The metadata is what interests us here.
         It is built as part of the analysis phase and contains information about your app, such as the ports
-        and the healthcheck urls it requires. If you use <a href="/docs/payloads/springboot.html">Spring Boot</a> or
-        <a href="/docs/payloads/dropwizard.html">Dropwizard</a> this info can even be automatically extracted for you from
+        and the healthcheck urls it requires. If you use <a href="/docs/payloads/springboot">Spring Boot</a> or
+        <a href="/docs/payloads/dropwizard">Dropwizard</a> this info can even be automatically extracted for you from
         these frameworks' native configuration files.
     </p>
     <p>Boxfuse then later uses this metadata when running instances of your images to correctly provision infrastructure.
-    In the case of <a href="/docs/aws.html">AWS</a>, Boxfuse will use the port and healthcheck info to automatically set up and configure Elastic Load Balancers,
+    In the case of <a href="/docs/aws">AWS</a>, Boxfuse will use the port and healthcheck info to automatically set up and configure Elastic Load Balancers,
     Security Groups and more.</p>
 
-    <p>However so far, unless you explicitly <a href="/docs/commandline/cfg.html">configured a custom security group</a>, any port you have opened was always open to the world:</p>
+    <p>However so far, unless you explicitly <a href="/docs/commandline/cfg">configured a custom security group</a>, any port you have opened was always open to the world:</p>
 
     <div class="blog-post-image center">
         <img src="/assets/posts/restricted-ports/unrestricted.png" alt="Unrestricted ports">
@@ -78,7 +78,7 @@ permalink: /blog/restricted-ports.html
     <p>And if you haven't already,
         <a href="https://console.boxfuse.com"><strong>sign up for your
         Boxfuse account</strong></a> now. All you need is a GitHub user
-        and you'll be up and running in no time. The <a href="/pricing.html">Boxfuse free plan</a> aligns
+        and you'll be up and running in no time. The <a href="/pricing">Boxfuse free plan</a> aligns
         perfectly with the AWS free tier, so you can deploy
         your JVM application to EC2 <strong>completely free</strong>.</p>
 </div>

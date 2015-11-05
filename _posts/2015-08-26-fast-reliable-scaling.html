@@ -1,14 +1,14 @@
 ---
 layout: blog
 subtitle: "Immutable Infrastructure: Fast & Reliable Scaling"
-permalink: /blog/fast-reliable-scaling.html
+permalink: /blog/fast-reliable-scaling
 ---
 <div>
-    <p>Moving to <a href="/learn/why.html"><strong>Immutable Infrastructure</strong></a> brings many advantages. In the
-        <a href="/blog/no-ssh.html"><strong>previous article</strong></a> in this series we saw how it <strong>eliminates drift</strong>
+    <p>Moving to <a href="/learn/why"><strong>Immutable Infrastructure</strong></a> brings many advantages. In the
+        <a href="/blog/no-ssh"><strong>previous article</strong></a> in this series we saw how it <strong>eliminates drift</strong>
     and the problems associated with deferred provisioning by <strong>capturing your application and all its dependencies at the
         lowest level possible</strong>: an image of the entire system. We also looked at how to enforce immutability by creating
-    images with <strong>no SSH</strong>. With <a href="/blog/no-ssh.html">this technique</a> any change requires
+    images with <strong>no SSH</strong>. With <a href="/blog/no-ssh">this technique</a> any change requires
         rebuilding a new image through your regular automated build and deployment pipeline. In turn your system
         drastically gains in simplicity and reliability.</p>
 
@@ -43,13 +43,13 @@ permalink: /blog/fast-reliable-scaling.html
 
     <h2 class="blog-post-section">The challenges with traditional provisioning</h2>
 
-    <p>As we already saw in the <a href="/blog/no-ssh.html">previous article</a> traditional provisioning with shell
+    <p>As we already saw in the <a href="/blog/no-ssh">previous article</a> traditional provisioning with shell
     scripts or configuration management tools is very prone to drift as it flies in the face of the proven mantra:
         <strong>build your artifact only once</strong>.</p>
 
     <p>The reason for this, is that instead of building an image with all software fully configured, secured and ready to boot,
     this provisioning process happens on every instance you launch. This puts you at risk for all issues related to
-        <a href="/blog/no-ssh.html">deferred provisioning</a> as well as all potential reliability problems of having to fetch
+        <a href="/blog/no-ssh">deferred provisioning</a> as well as all potential reliability problems of having to fetch
     everything again and again from remote repositories which may have changed or temporarily gone offline.</p>
 
     <p>The other big issue with this is that it takes a very long time. Whereas with Immutable Infrastructure and
@@ -65,8 +65,8 @@ permalink: /blog/fast-reliable-scaling.html
         and replicated data store.</p>
 
     <p>This applies first and foremost to <strong>application data</strong> which should reside in data stores,
-        in-memory caches or object storage. But also to other things like <a href="/blog/logging-cloudnative.html"><strong>log files</strong></a>
-        which in 2015 should not be spread across multiple instances, but instead aggregated in a <a href="/blog/logging-cloudnative.html">central log server</a>
+        in-memory caches or object storage. But also to other things like <a href="/blog/logging-cloudnative"><strong>log files</strong></a>
+        which in 2015 should not be spread across multiple instances, but instead aggregated in a <a href="/blog/logging-cloudnative">central log server</a>
         where they can be archived, indexed, and made searchable. And last, but not least, also <strong>sessions</strong> should be moved
         to either a cookie, a data store or a central in-memory cache. We'll talk more in detail about this in a future post.
     </p>
@@ -94,8 +94,8 @@ permalink: /blog/fast-reliable-scaling.html
     <p>Have fun! And if you haven't already,
         <a href="https://console.boxfuse.com"><strong>sign up for your
             Boxfuse account</strong></a> now. All you need is a GitHub user
-        and you'll be up and running in no time. The <a href="/pricing.html">Boxfuse free plan</a> aligns
+        and you'll be up and running in no time. The <a href="/pricing">Boxfuse free plan</a> aligns
         perfectly with the AWS free tier, so you can deploy your application to EC2 completely free. And when it comes
-        to scaling both horizontally and vertically, all you need is a <a href="/docs/commandline/scale.html">single command</a>.</p>
+        to scaling both horizontally and vertically, all you need is a <a href="/docs/commandline/scale">single command</a>.</p>
 
 </div>

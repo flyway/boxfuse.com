@@ -8,7 +8,7 @@ subtitle: 'Spring Boot'
 
     <p>Boxfuse supports <strong>Spring Boot 1.2.x or newer</strong> Apps packaged as a <strong>Spring Boot Executable Jar</strong> using either <strong>OpenJDK 7.x or 8.x</strong>.</p>
 
-    <p class="alert alert-info"><strong>Tip:</strong> Check out our <a href="/blog/spring-boot-ec2.html"><strong>blog post</strong></a> on how to
+    <p class="alert alert-info"><strong>Tip:</strong> Check out our <a href="/blog/spring-boot-ec2"><strong>blog post</strong></a> on how to
         create a Spring Boot application and deploy it on EC2 using Boxfuse</p>
 
     <p id="configuration" class="doc-section">Configuration</p>
@@ -49,11 +49,11 @@ management.health.diskspace.enabled=false</pre>
 
     <p>By default Boxfuse activates a Spring Profile called <code>boxfuse</code>. You can however easily specify a different
     profile by setting the <code>SPRING_PROFILES_ACTIVE</code> environment variable to the value you need using the
-        <a href="/docs/commandline/run.html#envvars">envvars</a> argument.</p>
+        <a href="/docs/commandline/run#envvars">envvars</a> argument.</p>
 
-    <p class="alert alert-info"><strong>Tip:</strong> To use a different Spring Profile for each <a href="/docs/environments.html">Boxfuse environment</a>,
+    <p class="alert alert-info"><strong>Tip:</strong> To use a different Spring Profile for each <a href="/docs/environments">Boxfuse environment</a>,
     set the Spring Boot profile to the value of the <code>BOXFUSE_ENV</code> environment variable which contains the name of the
-        current <a href="/docs/environments.html">environment</a> (dev, test, prod): <code>envvars.SPRING_PROFILES_ACTIVE=$BOXFUSE_ENV</code></p>
+        current <a href="/docs/environments">environment</a> (dev, test, prod): <code>envvars.SPRING_PROFILES_ACTIVE=$BOXFUSE_ENV</code></p>
 
     <h2>SSL (TLS) / HTTPS</h2>
 
@@ -123,6 +123,6 @@ server.ssl.trust-store-password=my0th3rPwd</pre>
     <code>jvm.args</code> configuration setting.</p>
 
     <p class="next-steps">
-        <a class="btn btn-primary" href="/docs/payloads/dropwizard.html">Dropwizard <i class="fa fa-arrow-right"></i></a>
+        <a class="btn btn-primary" href="/docs/payloads/dropwizard">Dropwizard <i class="fa fa-arrow-right"></i></a>
     </p>
 </div>

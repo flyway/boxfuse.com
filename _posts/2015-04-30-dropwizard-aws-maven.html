@@ -2,14 +2,14 @@
 layout: blog
 subtitle: "Deploy a Dropwizard Unikernel to AWS"
 parttitle: "Part 2: Automated Maven build"
-permalink: /blog/dropwizard-aws-maven.html
+permalink: /blog/dropwizard-aws-maven
 ---
 <div>
     <div class="blog-post-image center">
         <img src="/assets/posts/dropwizard-aws-maven/dropwizard-aws-maven.png" alt="Dropwizard to AWS using Maven">
     </div>
 
-    <p>In <strong><a href="/blog/dropwizard-aws.html">part 1 of this series</a></strong> we looked at how to fuse a
+    <p>In <strong><a href="/blog/dropwizard-aws">part 1 of this series</a></strong> we looked at how to fuse a
         <strong><a href="http://www.dropwizard.io/">Dropwizard</a></strong> application into a <strong>secure unikernel image</strong>.
         We then <strong>tested it locally on VirtualBox</strong>
         and finally we <strong>deployed it unchanged to AWS</strong>.</p>
@@ -24,7 +24,7 @@ permalink: /blog/dropwizard-aws-maven.html
 
     <h2 class="blog-post-section">Prerequisites</h2>
 
-    <p>This post assumes you have everything set up as described in <a href="/blog/dropwizard-aws.html">part 1</a>.</p>
+    <p>This post assumes you have everything set up as described in <a href="/blog/dropwizard-aws">part 1</a>.</p>
 
     <h2 class="blog-post-section">Step 1: Automatically fusing the unikernel image</h2>
 
@@ -304,13 +304,13 @@ Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 
     <h2 class="blog-post-section">Done</h2>
 
-    <p>Congratulations! We have taken our <a href="/blog/dropwizard-aws.html">unikernel from part 1</a> and with just
+    <p>Congratulations! We have taken our <a href="/blog/dropwizard-aws">unikernel from part 1</a> and with just
         a few additions to the <code>pom.xml</code> you now have a <strong>fully automated deployment process</strong>.
         That includes both the dev environment, including <strong>automated testing against VirtualBox</strong>, and the production
         environment with <strong>Blue/Green deployments with zero downtime on AWS</strong>.</p>
 
     <p>Now go ahead, dive deeper and read the <a href="/docs/maven">Maven plugin documentation</a>.</p>
 
-    <p><strong><a href="/blog/dropwizard-aws-travisci.html">Continue to part 3</a></strong>, where we take this to 11 by creating a
+    <p><strong><a href="/blog/dropwizard-aws-travisci">Continue to part 3</a></strong>, where we take this to 11 by creating a
         <strong>fully automated Continuous Deployment pipeline using GitHub and TravisCI.</strong></p>
 </div>

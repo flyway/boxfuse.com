@@ -2,18 +2,18 @@
 layout: blog
 subtitle: "Deploy a Dropwizard Unikernel to AWS"
 parttitle: "Part 3: Continuous Deployment with GitHub and Travis CI"
-permalink: /blog/dropwizard-aws-travisci.html
+permalink: /blog/dropwizard-aws-travisci
 ---
 <div>
     <div class="blog-post-image center">
         <img src="/assets/posts/dropwizard-aws-travisci/dropwizard-aws-travisci.png" alt="Dropwizard continuous deployment to AWS">
     </div>
 
-    <p>In <strong><a href="/blog/dropwizard-aws.html">part 1 of this series</a></strong> we looked at how to fuse a
+    <p>In <strong><a href="/blog/dropwizard-aws">part 1 of this series</a></strong> we looked at how to fuse a
         <strong><a href="http://www.dropwizard.io/">Dropwizard</a></strong> application into a <strong>secure unikernel image</strong>.
         We then <strong>tested it locally on VirtualBox</strong> and finally we <strong>deployed it unchanged to AWS</strong>.</p>
 
-    <p>In <strong><a href="/blog/dropwizard-aws-maven.html">part 2</a></strong> we <strong>automated the workflow using Maven</strong>.
+    <p>In <strong><a href="/blog/dropwizard-aws-maven">part 2</a></strong> we <strong>automated the workflow using Maven</strong>.
         With every automated build, we fused an image, ran integration tests against it on VirtualBox and deployed it unchanged to EC2.</p>
 
     <p>Today in the final part of this series, we take this to its natural conclusion and create a full <strong>Continuous Deployment pipeline
@@ -21,8 +21,8 @@ permalink: /blog/dropwizard-aws-travisci.html
 
     <h2 class="blog-post-section">Prerequisites</h2>
 
-    <p>This post assumes you have everything set up as described in <a href="/blog/dropwizard-aws.html">part 1</a>
-        and <a href="/blog/dropwizard-aws-maven.html">part 2</a>.</p>
+    <p>This post assumes you have everything set up as described in <a href="/blog/dropwizard-aws">part 1</a>
+        and <a href="/blog/dropwizard-aws-maven">part 2</a>.</p>
 
     <h2 class="blog-post-section">Step 1: Setting up GitHub and Travis CI</h2>
 
@@ -53,7 +53,7 @@ permalink: /blog/dropwizard-aws-travisci.html
     <p>Finally, go to your Travis CI repository settings and define two <strong>secure environment variables</strong>
         for your <strong>Boxfuse credentials</strong> called
         <code>BOXFUSE_USER</code> and <code>BOXFUSE_SECRET</code>. Their values are the same as the ones you enterred in
-        your <code>pom.xml</code> in <a href="/blog/dropwizard-aws-maven.html">part 2</a>.</p>
+        your <code>pom.xml</code> in <a href="/blog/dropwizard-aws-maven">part 2</a>.</p>
 
     <p>The big advantage is that they'll be securely stored at Travis CI and will not appear in neither your public
     GitHub repository nor your Travis CI build logs, yet the Boxfuse Maven plugin will be able to use them.</p>
@@ -227,8 +227,8 @@ script: mvn deploy</pre>
     <p>Learn more:</p>
     <ul>
         <li><a href="/docs">Boxfuse documentation</a></li>
-        <li><a href="/docs/payloads/dropwizard.html">Boxfuse Dropwizard support</a></li>
-        <li><a href="/docs/aws.html">Boxfuse AWS support</a></li>
+        <li><a href="/docs/payloads/dropwizard">Boxfuse Dropwizard support</a></li>
+        <li><a href="/docs/aws">Boxfuse AWS support</a></li>
     </ul>
 
     <p>Stay tuned for much more exciting news, <strong>subscribe to this blog</strong> and <strong><a href="https://twitter.com/boxfuse">follow Boxfuse on Twitter</a></strong></p>

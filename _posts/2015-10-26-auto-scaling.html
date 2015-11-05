@@ -1,19 +1,19 @@
 ---
 layout: blog
 subtitle: "It's Auto-Scaling time!"
-permalink: /blog/auto-scaling.html
+permalink: /blog/auto-scaling
 ---
 <div>
-    <p>Two of the key design principles of Boxfuse are <a href="/blog/no-ssh.html"><strong>reliable and fast generation of minimal immutable images</strong></a>
-        and <a href="/blog/amis-30-seconds.html"><strong>outstanding integration integration with AWS</strong></a>.</p>
+    <p>Two of the key design principles of Boxfuse are <a href="/blog/no-ssh"><strong>reliable and fast generation of minimal immutable images</strong></a>
+        and <a href="/blog/amis-30-seconds"><strong>outstanding integration integration with AWS</strong></a>.</p>
 
     <p>Today we're going to leverage both together to take things even further.</p>
 
     <p>AWS' native format for images is the AMI, the Amazon Machine Image. It is a central building block of EC2.
-        Every single EC2 instance you launch is based on an AMI. And Boxfuse makes it really easy to <a href="/blog/amis-30-seconds.html">create</a> them.
+        Every single EC2 instance you launch is based on an AMI. And Boxfuse makes it really easy to <a href="/blog/amis-30-seconds">create</a> them.
     </p>
 
-    <p>Immutable images such as AMIs also have the great advantage that they really <a href="/blog/fast-reliable-scaling.html"><strong>simplify scaling</strong></a>.
+    <p>Immutable images such as AMIs also have the great advantage that they really <a href="/blog/fast-reliable-scaling"><strong>simplify scaling</strong></a>.
         Whether you have to set up 1, 10, 100 or 1000 instances, all you need to do is launch that number of identical copies
         from the same base image and you're done. Refreshingly simple.
     </p>
@@ -64,7 +64,7 @@ Successfully configured myapp to auto-scale between 2 and 10 t2.micro instances 
     configure AWS to <strong>auto-scale your application</strong> based on average CPU usage. AWS will add or remove capacity from the system fully automatically
     based on the current load, so that you <strong>never have to worry again about paying for more than you actually need</strong>.</p>
 
-    <p>This is available today at no extra cost to all <a href="/pricing.html">paid plans</a>.</p>
+    <p>This is available today at no extra cost to all <a href="/pricing">paid plans</a>.</p>
 
     <p>&nbsp;</p>
 
@@ -73,7 +73,7 @@ Successfully configured myapp to auto-scale between 2 and 10 t2.micro instances 
     <p>And if you haven't already,
         <a href="https://console.boxfuse.com"><strong>sign up for your
         Boxfuse account</strong></a> now. All you need is a GitHub user
-        and you'll be up and running in no time. The <a href="/pricing.html">Boxfuse free plan</a> aligns
+        and you'll be up and running in no time. The <a href="/pricing">Boxfuse free plan</a> aligns
         perfectly with the AWS free tier, so you can deploy
         your JVM application to EC2 <strong>completely free</strong>.</p>
 </div>

@@ -1,7 +1,7 @@
 ---
 layout: blog
 subtitle: "Deploy Java EE Apps effortlessly on AWS"
-permalink: /blog/javaee-aws.html
+permalink: /blog/javaee-aws
 ---
 <div>
     <p>At <a href="https://boxfuse.com">Boxfuse</a> we love solutions that just work. And that's why, when it comes to
@@ -9,9 +9,9 @@ permalink: /blog/javaee-aws.html
         and complex application servers, TomEE combines the swiftness of Tomcat with the benefits of standard Java EE.</p>
 
     <p>Today we are happy to announce that we have added TomEE to Boxfuse's selection of payloads that can be deployed
-        effortlessly to VirtualBox and AWS. Just like <a href="/docs/payloads/dropwizard.html">Dropwizard</a>,
-        <a href="/docs/payloads/springboot.html">Spring Boot</a>, <a href="/docs/payloads/tomcat.html">Tomcat</a> and
-        <a href="/docs/payloads/jar.html">(executable) jar files</a>, you can now fuse <a href="/docs/payloads/tomee.html">TomEE applications</a> into
+        effortlessly to VirtualBox and AWS. Just like <a href="/docs/payloads/dropwizard">Dropwizard</a>,
+        <a href="/docs/payloads/springboot">Spring Boot</a>, <a href="/docs/payloads/tomcat">Tomcat</a> and
+        <a href="/docs/payloads/jar">(executable) jar files</a>, you can now fuse <a href="/docs/payloads/tomee">TomEE applications</a> into
         immutable images with a single command. These images can then be deployed unchanged to VirtualBox and AWS
         with zero downtime updates.</p>
 
@@ -58,7 +58,7 @@ tomee&gt; mvn package</pre>
 
     <h2 class="blog-post-section">Deploying it to AWS EC2</h2>
 
-    <p>Now that you have built the application, let's deploy it to AWS. Boxfuse will start by <a href="/learn/how.html">analysing it</a>
+    <p>Now that you have built the application, let's deploy it to AWS. Boxfuse will start by <a href="/learn/how">analysing it</a>
     and determining its type. Doing so it will find the <code>WEB-INF/resources.xml</code> file. This tells it that it is a Java EE that requires TomEE instead of Tomcat.</p>
 
     <p>Boxfuse will then <strong>create a Micro-OS on-the-fly</strong> designed to do one thing and one thing only: run this version of your application.</p>
@@ -116,7 +116,7 @@ Deployment completed successfully. axelfontaine/tomee:1.0 is up and running at h
     <p>Have fun! And if you haven't already,
         <a href="https://console.boxfuse.com"><strong>sign up for your
         Boxfuse account</strong></a> now. All you need is a GitHub user
-        and you'll be up and running in no time. The <a href="/pricing.html">Boxfuse free plan</a> aligns
+        and you'll be up and running in no time. The <a href="/pricing">Boxfuse free plan</a> aligns
         perfectly with the AWS free tier, so you can deploy
         your TomEE Java EE application to EC2 <strong>completely free</strong>.</p>
 </div>

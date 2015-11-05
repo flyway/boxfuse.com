@@ -13,7 +13,7 @@ subtitle: 'Auto-Scaling'
     <p><strong>Note:</strong> This is only available for load-balanced applications.</p>
 
     <h2>Using the Boxfuse Command-line client</h2>
-    <p>You can easily set up your application to auto-scale on AWS within a specific <a href="/docs/environments.html">environment</a>:</p>
+    <p>You can easily set up your application to auto-scale on AWS within a specific <a href="/docs/environments">environment</a>:</p>
 
     <pre class="console">&gt; boxfuse scale myapp -env=prod -capacity=2-10:t2.micro:cpu25-75:300
 
@@ -38,6 +38,6 @@ Successfully configured myapp to auto-scale between 2 and 10 t2.micro instances 
         instead drops to 25% or below, EC2 instances will be terminated down to a minimum of 2.</p>
 
     <p class="next-steps">
-        <a class="btn btn-primary" href="/docs/domains.html">Custom Domains <i class="fa fa-arrow-right"></i></a>
+        <a class="btn btn-primary" href="/docs/domains">Custom Domains <i class="fa fa-arrow-right"></i></a>
     </p>
 </div>
