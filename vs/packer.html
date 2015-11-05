@@ -1,0 +1,130 @@
+---
+layout: default
+title: 'Meet Boxfuse to simple and robust alternative to Packer'
+---
+<div class="vs container">
+    <img src="/assets/img/packer-vs-boxfuse.png" alt="Boxfuse vs Packer">
+    <h1>Packer vs Boxfuse</h1>
+    <p class="subtitle">Boxfuse is a simple, fast and robust alternative to Packer for creating AWS AMIs for JVM apps.<br/>Here's why you should consider switching...</p>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <p>Thinking of making the switch to Boxfuse to produce AWS AMIs for your JVM apps?</p>
+            <p>We want to make the decision as easy as possible, so we’ve put together some info that’ll help you decide which option is best for you.</p>
+            <p>Below, you'll find information to help you compare Boxfuse and Packer, including features, pricing and thoughts from currently Boxfuse customers who have made the switch.</p>
+
+            <h2>1. Boxfuse is easier and more robust than Packer</h2>
+            <p>Boxfuse is all about making you productive so you can focus on delighting your customers instead
+                dealing with infrastructure issues. We made sure Boxfuse is a joy to use by making building AWS AMIs for
+                JVM application absolutely trivial. There are no lengthy complicated
+            descriptors and no tedious OS provisioning. Instead all you need is a single command, <strong>boxfuse convert</strong>,
+                which will take you all the way from JVM application to fully-baked AMI with no configuration required:</p>
+
+            <pre class="console">&gt; <strong>boxfuse convert</strong> myapp-1.0.jar
+
+Fusing Image for myapp-1.0.jar ...
+Image fused in 00:06.525s (55362 K) -> myuser/myapp:1.0
+Pushing myuser/myapp:1.0 ...
+Verifying myuser/myapp:1.0 ...
+Waiting for AWS to create an AMI for myuser/myapp:1.0 in eu-central-1 (this may take up to 50 seconds) ...
+AMI created in 00:19.777s -> ami-e66264fb</pre>
+
+            <p>Boxfuse does this by first analysing your application and then using that information to automatically
+                generate an image with a minimal Linux-based OS on-the-fly. Boxfuse then uploads your new image to AWS and converts it to an AMI in the region of your choice.</p>
+
+            <p>Boxfuse runs on Windows, Mac and Linux and comes with special optimizations for popular tools and frameworks
+                like Spring Boot, Dropwizard, Executable Jars, Tomcat.</p>
+
+            <h2>2. Boxfuse is faster and images are smaller</h2>
+            <p>At Boxfuse we strongly believe that being able to iterate quickly is a must. And that's why we've built
+            the industry's fastest AMI creation process. You can literally go from a jar or war file on your local
+            machine to a fully baked AMI in well under 60 seconds and sometimes even under 30 if AWS isn't under too much load.</p>
+
+            <img src="/assets/posts/amis-in-30-seconds/boxfuse-vs-packer.png">
+
+            <p>Part of the reason why we manage to do that is size of our images. The minimal OS we generate is less than
+            1% of the size of a general purpose OS like Ubuntu. This results in much smaller AMI sizes which directly
+            translates to faster instance boot times.</p>
+
+            <img src="/assets/posts/amis-in-30-seconds/boxfuse-vs-packer-size.png">
+
+            <p>In fact this graph doesn't even do it justice as Boxfuse images are usually measured in the tens of MBs,
+            but AWS shows as 1 GB as this is their smallest supported EBS volume size.</p>
+        </div>
+    </div>
+</div>
+
+<div class="marketing-testimonial-stripe marketing-testimonial-stripe-2"></div>
+<div class="marketing-testimonial marketing-testimonial-2 container">
+    <div class="row">
+        <div class="col-md-2">
+            <img src="/assets/photos/timbart.jpg" class="img-circle">
+        </div>
+        <div class="col-md-10">
+            <div>
+                <blockquote>We replaced Packer with Boxfuse which not only streamlined our deploy
+                    process, but also made it 2x faster. The Boxfuse Maven plugin made the
+                    integration extremely easy.
+                </blockquote>
+                <p><strong>Tim Bart</strong>, CTO, <a href="https://hello.is/">Hello Inc.</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="vs container">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+
+            <h2>3. Boxfuse is built for Continuous Deployment</h2>
+            <p>Continuous Deployment is critically important for many companies today, allowing them to innovate and iterate faster.</p>
+
+            <p>Boxfuse fully embraces this by treating build tool plugins as first-class citizens, making it effortless
+                to integrate AMI building into your pipeline. In addition to its command-line client,
+                Boxfuse comes with both Maven and Gradle plugins which can be readily integrated through the usual means:</p>
+
+            <p>Gradle: <code>build.gradle</code></p>
+    <pre class="prettyprint">plugins {
+    id "com.boxfuse.client" version "{{site.boxfuseVersion}}"
+}</pre>
+
+            <p>Maven: <code>pom.xml</code></p>
+    <pre class="prettyprint">&lt;plugin&gt;
+    &lt;groupId&gt;com.boxfuse.client&lt;/groupId&gt;
+    &lt;artifactId&gt;boxfuse-maven-plugin&lt;/artifactId&gt;
+    &lt;version&gt;{{site.boxfuseVersion}}&lt;/version&gt;
+&lt;/plugin&gt;</pre>
+
+            <p>For rapid turnarounds and fast feedback, Boxfuse also lets you run your images on VirtualBox. This is a
+            great way to run your integration tests locally before creating an AMI. And unlike Packer, Boxfuse's image
+            are only created once and can be run unchanged on both VirtualBox and AWS, giving you perfect environment parity.</p>
+
+
+            <h2>4. Boxfuse is affordable</h2>
+            <p>We get it, Packer is free.</p>
+            <p>And free is a great price, especially for small businesses.</p>
+            <p>But we believe that the value you’ll get from Boxfuse <em>far</em> outweighs the cost. And our customers agree.</p>
+            <p>If our zero configuration AMI building features can save your team just <em>30 minutes per month</em>,
+                then Boxfuse will more than pay for itself.</p>
+            <p>Our pricing is simple: your first application is on us and after that plans start at just $25 per month.</p>
+
+            <h2>5. Boxfuse is here to help</h2>
+            <p>We're committed to making sure that you have the best experience you possibly can using Boxfuse.</p>
+            <p>That's why our customer success team checks in with every single customer to proactively answer any questions you may have.</p>
+            <p>We're here for you with personal support, all day, every day, via email, GitHub and social media, no matter what you need.</p>
+
+
+            <h2>Ready to give Boxfuse a try?</h2>
+            <p>We hope this comparison guide was useful to you.</p>
+            <p>Making the switch is easy; you can get set up on Boxfuse in just a few minutes.</p>
+            <p>To sign up for your free, no-risk trial (no credit card required), <a href="https://console.boxfuse.com">just click here</a>.</p>
+            <p>Still have questions? Simply send us an email at <a href="mailto:hello@boxfuse.com">hello@boxfuse.com</a>.</p>
+            <p>We hope to see you in Boxfuse.</p>
+
+            <div class="final-cta">
+                <a href="https://console.boxfuse.com" class="btn btn-primary btn-large btn-jumbo">Sign up for Free</a><br/>
+            </div>
+        </div>
+    </div>
+</div>

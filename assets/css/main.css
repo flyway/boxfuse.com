@@ -35,6 +35,7 @@ h3,h4,h5,h6 {
 }
 
 pre.prettyprint {
+	text-align: left;
     padding: 5px;
     border: 1px solid #CCC;
 }
@@ -595,7 +596,7 @@ hr.soften {
 	font-size: 13px;
 }
 
-#docs h1, .doc-title {
+#docs h1, .vs h1, #pricing h1 .doc-title {
     margin-top: 5px;
     font-size: 44px;
     font-weight: 400;
@@ -624,9 +625,14 @@ hr.soften {
 }
 
 pre.console {
+	text-align: left;
     background: #555;
     color: white;
     margin-bottom: 20px;
+}
+
+pre.console strong {
+    color: yellow;
 }
 
 pre.filetree {
@@ -782,15 +788,26 @@ pre.filetree span {
 	border: 1px solid #dae6ef;
 }
 
-#pricing {
+#pricing, .vs {
 	margin-top: 50px;
 	text-align: center;
 }
 
-#pricing-subtitle {
+.vs .subtitle, #pricing-subtitle {
 	font-size: 20px;
 	color: #888;
 	margin-bottom: 50px;
+	text-align: center;
+}
+
+.vs p {
+	font-size: 20px;
+	text-align: left;
+}
+
+.vs h2 {
+	text-align: left;
+	font-size: 28px;
 }
 
 #pricing .plan {
