@@ -1,0 +1,56 @@
+---
+layout: docs
+menu: play
+subtitle: 'Play'
+---
+<div id="play">
+    <p><img src="/assets/img/play.png"></p>
+
+    <p>Boxfuse supports <strong>Play 2.3.x or newer</strong> Apps packaged as a <strong>Play dist Zip</strong> using either <strong>OpenJDK 7.x or 8.x</strong>.</p>
+
+    <h2>Root Certificates</h2>
+
+    <p>By default, Boxfuse uses the <strong>same root certificate bundle as the latest version of Firefox</strong>.
+        Additionally Boxfuse also includes the <strong>root certificates for Amazon RDS</strong>, so you can connect securely to RDS databases out of the box.</p>
+    <p>You can, however, ship your own set of root certificates, by placing them in a KeyStore inside the Zip file as <code>/conf/cacerts</code>.
+        If you use SBT or Typesafe Activator, this means your <code>cacerts</code> KeyStore file should be put into the <code>conf</code> directory.
+        Boxfuse will then automatically configure the JRE to use these instead.
+    </p>
+
+    <pre class="filetree"><i class="fa fa-folder-open"></i> my-play-app
+  <i class="fa fa-folder-open"></i> conf
+    <span><i class="fa fa-file"></i> cacerts</span></pre>
+
+    <p>If you choose to secure your <code>cacerts</code> TrustStore with a password different than the default <code>changeit</code>,
+        you have to add the following to your Spring Boot configuration:</p>
+
+    <pre class="prettyprint">play.ws.ssl {
+  trustManager = {
+      stores = [
+        { path: /cacerts/cacerts, password = "my0th3rPwd" }
+      ]
+  }
+}</pre>
+
+    <h2 id="javaagents">Java Agents</h2>
+
+    <p>If you wish to launch the JRE with one or more Java Agents, simply place the Java Agent files inside the Zip file under
+        <code>/conf/javaagents/</code>. In a SBT or Typesafe Activator project this means you have to put your agent jar and whatever other files it requires under <code>conf/javaagents</code>:</p>
+    <pre class="filetree"><i class="fa fa-folder-open"></i> my-play-app
+  <i class="fa fa-folder-open"></i> conf
+    <span><i class="fa fa-folder-open"></i> javaagents
+  <i class="fa fa-file"></i> myjavaagent.jar
+  <i class="fa fa-file-text"></i> myjavaagent.properties</span></pre>
+
+    <p>Boxfuse will then <strong>automatically configure the JRE to use these Java Agents</strong></p>
+
+    <h2>JVM Memory</h2>
+
+    <p>By default Boxfuse will <strong>dynamically configure your JVM heap to use 85% of the available memory</strong> in the instance. All other settings
+    use the JVM defaults. You can override this by specifying the required JVM arguments like <code>-Xmx</code> via the
+    <code>jvm.args</code> configuration setting.</p>
+
+    <p class="next-steps">
+        <a class="btn btn-primary" href="/docs/payloads/tomcat">Tomcat <i class="fa fa-arrow-right"></i></a>
+    </p>
+</div>

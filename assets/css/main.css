@@ -116,11 +116,11 @@ hr.soften {
 
 #wrapper {
     min-height: 100%;
-    margin: 0 auto -170px;
+    margin: 0 auto -365px;
 }
 
 #push-footer {
-    height: 170px;
+    height: 365px;
 }
 
 #footer {
@@ -129,11 +129,19 @@ hr.soften {
     font-size: 10px;
     line-height: 12px;
     text-align: center;
-    height: 170px;
+    height: 365px;
 }
 
 #footer-spacer {
 	height: 40px;
+}
+
+#footer-navigation {
+	height: 195px;
+	background: #333333;
+	padding-top: 20px;
+	font-size: 14px;
+	line-height: 150%;
 }
 
 #footer-info {

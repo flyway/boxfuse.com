@@ -82,7 +82,7 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>boxfuse.envvars.<em>NAME</em></td>
         <td></td>
         <td>Passes this environment variable into the Instance<br/>
-            Example: -env.JDBC_URL=jdbc:mydburl
+            Example: boxfuse.envvars.JDBC_URL=jdbc:mydburl
         </td>
     </tr>
     <tr>
@@ -167,12 +167,38 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
             </table>
         </td>
     </tr>
-    <tr>
+    <tr id="portsmap">
         <td>portsmap</td>
         <td>boxfuse.portsmap.<em>NAME</em></td>
-        <td>http=8888</td>
-        <td>The local ports to forward to the running Instance.<br/>
-            Example: -portsmap.jmx=8111<br/>(if ports.jmx=8001 this will forward localhost:8111 to instance:8001)
+        <td><em>same as matching image port</em></td>
+        <td><p>This is for VirtualBox only.</p>
+            <p>The local ports to map to the app inside the instance. By default Boxfuse will attempt to open the same port
+                locally as has been opened in the VirtualBox VM. On Linux &amp; Mac privileged ports (&lt;1024) will be
+                opened at 10000
+                + the port number for non-root users.<br>
+                The ports will be mapped by name (ex.: http) to the ports specified by the Image.</p>
+            <p>Example:</p>
+            <table class="table table-striped">
+                <tr>
+                    <th>Image port</th>
+                    <th>Default local mapped port</th>
+                </tr>
+                <tr>
+                    <td><code>http=80</code></td>
+                    <td>
+                        <code>http=80</code> (Windows &amp; Mac/Linux when Boxfuse is running as root)<br>
+                        <code>http=10080</code> (Mac/Linux when Boxfuse is running as a regular user)
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>https=8443</code></td>
+                    <td><code>https=8443</code> (All OSes)</td>
+                </tr>
+                <tr>
+                    <td><code>udpsrvc=12345/udp</code></td>
+                    <td><code>udpsrvc=12345/udp</code> (All OSes)</td>
+                </tr>
+            </table>
         </td>
     </tr>
     <tr>

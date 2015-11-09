@@ -41,7 +41,8 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
     <tr>
         <td>-debug.wait</td>
         <td>false</td>
-        <td>Whether the JVM should wait for the remote debugger to connect (Only applicable when debug mode is active)</td>
+        <td>Whether the JVM should wait for the remote debugger to connect (Only applicable when debug mode is active)
+        </td>
     </tr>
     <tr>
         <td>-env=dev<em>|</em>test<em>|</em>prod</td>
@@ -52,7 +53,7 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>-envvars.<em>NAME</em>=<em>value</em></td>
         <td></td>
         <td>Passes this environment variable into the Instance<br/>
-            Example: -env.JDBC_URL=jdbc:mydburl
+            Example: -envvars.JDBC_URL=jdbc:mydburl
         </td>
     </tr>
     <tr>
@@ -108,23 +109,74 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
     <tr id="ports">
         <td>-ports.<em>NAME</em>=<em>definition</em></td>
         <td>http=80</td>
-        <td><p>Exposes the port of the app with this name using this definition. Example: -ports.jmx=8001</p><p>Supported formats:</p>
+        <td><p>Exposes the port of the app with this name using this definition. Example: -ports.jmx=8001</p>
+
+            <p>Supported formats:</p>
             <table class="table table-striped">
-                <tr><td><code>80</code></td><td>TCP port 80, universally accessible</td></tr>
-                <tr><td><code>80/tcp</code></td><td>TCP port 80, universally accessible</td></tr>
-                <tr><td><code>80/udp</code></td><td>UDP port 80, universally accessible</td></tr>
-                <tr><td><code>80/tcp:@</code></td><td>TCP port 80 only accessible from your own IP</td></tr>
-                <tr><td><code>80/udp:@/20</code></td><td>UDP port 80 only accessible from the IPs in the CIDR /20 block of your own IP</td></tr>
-                <tr><td><code>80/udp:1.2.3.4</code></td><td>UDP port 80 only accessible from 1.2.3.4</td></tr>
-                <tr><td><code>80/tcp:1.2.3.4/31</code></td><td>TCP port 80 only accessible from the IPs in the CIDR /31 block of 1.2.3.4</td></tr>
+                <tr>
+                    <td><code>80</code></td>
+                    <td>TCP port 80, universally accessible</td>
+                </tr>
+                <tr>
+                    <td><code>80/tcp</code></td>
+                    <td>TCP port 80, universally accessible</td>
+                </tr>
+                <tr>
+                    <td><code>80/udp</code></td>
+                    <td>UDP port 80, universally accessible</td>
+                </tr>
+                <tr>
+                    <td><code>80/tcp:@</code></td>
+                    <td>TCP port 80 only accessible from your own IP</td>
+                </tr>
+                <tr>
+                    <td><code>80/udp:@/20</code></td>
+                    <td>UDP port 80 only accessible from the IPs in the CIDR /20 block of your own IP</td>
+                </tr>
+                <tr>
+                    <td><code>80/udp:1.2.3.4</code></td>
+                    <td>UDP port 80 only accessible from 1.2.3.4</td>
+                </tr>
+                <tr>
+                    <td><code>80/tcp:1.2.3.4/31</code></td>
+                    <td>TCP port 80 only accessible from the IPs in the CIDR /31 block of 1.2.3.4</td>
+                </tr>
             </table>
         </td>
     </tr>
-    <tr>
-        <td><nobr>-portsmap.<em>NAME</em>=<em>number</em></nobr></td>
-        <td>http=8888</td>
-        <td>The local ports to forward to the running Instance (VirtualBox only)<br/>
-            Example: -portsmap.jmx=8111<br/>(if ports.jmx=8001 this will forward localhost:8111 to instance:8001)
+    <tr id="portsmap">
+        <td>
+            <nobr>-portsmap.<em>NAME</em>=<em>definition</em></nobr>
+        </td>
+        <td><em>same as matching image port</em></td>
+        <td><p>This is for VirtualBox only.</p>
+            <p>The local ports to map to the app inside the instance. By default Boxfuse will attempt to open the same port
+                locally as has been opened in the VirtualBox VM. On Linux &amp; Mac privileged ports (&lt;1024) will be
+                opened at 10000
+                + the port number for non-root users.<br>
+                The ports will be mapped by name (ex.: http) to the ports specified by the Image.</p>
+            <p>Example:</p>
+            <table class="table table-striped">
+                <tr>
+                    <th>Image port</th>
+                    <th>Default local mapped port</th>
+                </tr>
+                <tr>
+                    <td><code>http=80</code></td>
+                    <td>
+                        <code>http=80</code> (Windows &amp; Mac/Linux when Boxfuse is running as root)<br>
+                        <code>http=10080</code> (Mac/Linux when Boxfuse is running as a regular user)
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>https=8443</code></td>
+                    <td><code>https=8443</code> (All OSes)</td>
+                </tr>
+                <tr>
+                    <td><code>udpsrvc=12345/udp</code></td>
+                    <td><code>udpsrvc=12345/udp</code> (All OSes)</td>
+                </tr>
+            </table>
         </td>
     </tr>
     <tr>
