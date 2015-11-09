@@ -14,7 +14,7 @@
 
   {% for post in site.posts %}
   <entry>
-    <id>https://boxfuse.com{{ post.permalink }}</id>
+    <id>https://boxfuse.com{{ post.permalink | split: '.html' }}</id>
     <link type="text/html" rel="alternate" href="{{ post.permalink }}"/>
     <title>{{ post.subtitle | xml_escape }}{% if post.parttitle %} - {{ post.parttitle | xml_escape }}{% endif %}</title>
     <published>{{ post.date | date_to_xmlschema }}</published>

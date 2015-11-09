@@ -46,13 +46,13 @@ title: Blog
             <div id="blog-post-nav">
                 {% if page.previous %}
                 <div id="blog-post-previous">
-                    <a href="{{page.previous.url}}">« {{ page.previous.subtitle }} {% if page.previous.parttitle %} <br/> <span class="blog-sidebar-subtitle">{{ page.previous.parttitle }}</span>{% endif %}</a>
+                    <a href="{{page.previous.url | split: '.html'}}">« {{ page.previous.subtitle }} {% if page.previous.parttitle %} <br/> <span class="blog-sidebar-subtitle">{{ page.previous.parttitle }}</span>{% endif %}</a>
                 </div>
                 {% endif %}
 
                 {% if page.next %}
                 <div id="blog-post-next">
-                    <a href="{{page.next.url}}">{{ page.next.subtitle }} »{% if page.next.parttitle %}<br/> <span class="blog-sidebar-subtitle">{{ page.next.parttitle }}</span>{% endif %}</a>
+                    <a href="{{page.next.url | split: '.html'}}">{{ page.next.subtitle }} »{% if page.next.parttitle %}<br/> <span class="blog-sidebar-subtitle">{{ page.next.parttitle }}</span>{% endif %}</a>
                 </div>
                 {% endif %}
 
@@ -89,7 +89,7 @@ title: Blog
                     {% for post in site.posts %}
                     <li
                     {% if page.permalink == post.permalink %} class="active" {% endif %}>
-                    <a href="{{ post.permalink }}"><span class="date">{{ post.date | date: "%Y-%m-%d" }}</span><br/>{{ post.subtitle | xml_escape }} {% if post.parttitle %} <br/> <span class="blog-sidebar-subtitle">{{ post.parttitle }}</span>{% endif %}</a></li>
+                    <a href="{{ post.permalink | split: '.html' }}"><span class="date">{{ post.date | date: "%Y-%m-%d" }}</span><br/>{{ post.subtitle | xml_escape }} {% if post.parttitle %} <br/> <span class="blog-sidebar-subtitle">{{ post.parttitle }}</span>{% endif %}</a></li>
                     {% endfor %}
                 </ul>
             </div>
