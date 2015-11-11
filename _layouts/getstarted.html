@@ -1,0 +1,39 @@
+---
+layout: default
+tab: getstarted
+title: Get Started
+---
+<div id="getstarted" class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <div id="menu">
+                <ul class="nav nav-pills nav-stacked">
+                    <li {% if page.menu == 'overview' %} class="active" {% endif %}><a href="/getstarted">Overview</a></li>
+                    <li {% if page.menu == 'download' %} class="active" {% endif %}><a href="/getstarted/download">Download</a></li>
+
+                    <li class="nav-header">Get Started</li>
+                    <!--
+                    <li {% if page.menu == 'springboot' %} class="active" {% endif %}><a href="/docs/payloads/springboot">Spring Boot</a></li>
+                    <li {% if page.menu == 'dropwizard' %} class="active" {% endif %}><a href="/docs/payloads/dropwizard">Dropwizard</a></li>
+                    -->
+                    <li {% if page.menu == 'play' %} class="active" {% endif %}><a href="/getstarted/play">Play</a></li>
+                    <!--
+                    <li {% if page.menu == 'tomcat' %} class="active" {% endif %}><a href="/docs/payloads/tomcat">Tomcat</a></li>
+                    <li {% if page.menu == 'tomee' %} class="active" {% endif %}><a href="/docs/payloads/tomee">TomEE</a></li>
+                    <li {% if page.menu == 'jar' %} class="active" {% endif %}><a href="/docs/payloads/jar">Executable Jar</a></li>
+                    -->
+                </ul>
+            </div>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+        </div>
+        <div class="col-md-10">
+
+            {% if page.subtitle %}<h1>{{ page.subtitle }}</h1>{% endif %}
+
+            {{ content }}
+
+        </div>
+    </div>
+</div>

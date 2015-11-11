@@ -604,26 +604,27 @@ hr.soften {
 	font-size: 13px;
 }
 
-#docs h1, .vs h1, #pricing h1 .doc-title {
-    margin-top: 5px;
+#getstarted h1, #docs h1, .vs h1, #pricing h1, .doc-title {
+    margin-top: -5px;
     font-size: 44px;
     font-weight: 400;
 }
 
-#docs h2, .doc-section {
+#getstarted h2, #docs h2, .doc-section {
     margin-top: 50px;
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 800;
-	color: rgb(51,51,51);
+	color: #404040;
 }
 
-#docs h3 {
+#getstarted h3, #docs h3 {
 	font-weight: bold;
 	margin-top: 25px;
-	font-size: 14px;
+	font-size: 20px;
+	color: #808080;
 }
 
-#docs, #learn {
+#docs, #learn, #getstarted {
     padding-top: 40px;
 }
 
@@ -641,6 +642,10 @@ pre.console {
 
 pre.console strong {
     color: yellow;
+}
+
+pre.console span {
+    color: #CCC;
 }
 
 pre.filetree {
@@ -1050,4 +1055,37 @@ pre.filetree span {
 
 .max-width-image {
 	max-width: 100%;
+}
+
+.choice {
+	float: left;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	min-width: 200px;
+}
+
+.choice a {
+	display: block;
+	padding: 20px;
+}
+
+.choice a:hover {
+	background-color: #e0e0e0;
+}
+
+.choice img {
+	height: 80px;
+	padding-bottom: 10px;
+}
+
+.choices:after {
+	content:'';
+	display:block;
+	clear: both;
+}
+
+img.screenshot {
+	border: 1px #ccc dashed;
+	padding: 5px;
 }

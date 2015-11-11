@@ -1,0 +1,49 @@
+---
+layout: getstarted
+menu: download
+subtitle: 'Download & Install the Boxfuse Client'
+---
+<div id="download">
+    <p><img src="/assets/img/logo-notext.png"></p>
+
+    <h2>Prerequisites</h2>
+    <p>Before you begin, ensure you have successfully created a <strong><a href="https://console.boxfuse.com">Boxfuse Account</a></strong> (simply log in with your GitHub account, it's free).</p>
+
+    <h2>Downloading the Boxfuse Client</h2>
+
+    <p>There are two ways to download the latest Boxfuse Client.</p>
+
+    <h3>Personalized download (recommended)</h3>
+    <p>The easiest way to download the Boxfuse Client is to <a href="https://console.boxfuse.com/#/downloads">download your <strong>personalized copy</strong> from the Boxfuse Console</a>.</p>
+    <p><a href="https://console.boxfuse.com/#/downloads" class="btn btn-primary"><i class="fa fa-download"></i> Download</a> </p>
+        <p>It already contains your Boxfuse Account credentials and is ready to be used.
+    </p>
+
+    <h3>Unpersonlized downloads</h3>
+    <p>Alternatively you can also download an unpersonalized copy:</p>
+    <a href="https://files.boxfuse.com/com/boxfuse/client/boxfuse-commandline/{{site.boxfuseVersion}}/boxfuse-commandline-{{site.boxfuseVersion}}.zip"><i class="fa fa-download"></i> boxfuse-commandline-{{site.boxfuseVersion}}.zip (no JRE)</a><br/>
+    <a href="https://files.boxfuse.com/com/boxfuse/client/boxfuse-commandline/{{site.boxfuseVersion}}/boxfuse-commandline-{{site.boxfuseVersion}}.tar.gz"><i class="fa fa-download"></i> boxfuse-commandline-{{site.boxfuseVersion}}.tar.gz (no JRE)</a><br/>
+    <a href="https://files.boxfuse.com/com/boxfuse/client/boxfuse-commandline/{{site.boxfuseVersion}}/boxfuse-commandline-{{site.boxfuseVersion}}-windows-x64.zip"><i class="fa fa-download"></i> boxfuse-commandline-{{site.boxfuseVersion}}-windows-x64.zip</a><br/>
+    <a href="https://files.boxfuse.com/com/boxfuse/client/boxfuse-commandline/{{site.boxfuseVersion}}/boxfuse-commandline-{{site.boxfuseVersion}}-macosx-x64.tar.gz"><i class="fa fa-download"></i> boxfuse-commandline-{{site.boxfuseVersion}}-macosx-x64.tar.gz</a><br/>
+    <a href="https://files.boxfuse.com/com/boxfuse/client/boxfuse-commandline/{{site.boxfuseVersion}}/boxfuse-commandline-{{site.boxfuseVersion}}-linux-x64.tar.gz"><i class="fa fa-download"></i> boxfuse-commandline-{{site.boxfuseVersion}}-linux-x64.tar.gz</a><br/>
+    <br/><span class="note">These unpersonalized downloads require you to enter your credentials to work with your Boxfuse account:</span><br>
+            <pre># <em>install-dir</em>/conf/boxfuse.conf
+<strong>user</strong>=<em>your-boxfuse-user</em>
+<strong>secret</strong>=<em>your-boxfuse-secret</em></pre>
+    <p>You can find your credentials in the <a href="https://console.boxfuse.com/#/downloads">Boxfuse Console</a>.</p>
+
+    <h2>Installing the Boxfuse Client</h2>
+
+    <p>Once you have downloaded the Boxfuse Client simply:</p>
+    <ol>
+        <li><strong>Extract</strong> the download to a directory you have write permissions in</li>
+        <li><strong>Add</strong> the extracted directory to the PATH</li>
+        <li><strong>Verify</strong> the installation by executing the <strong>boxfuse -v</strong> in a new terminal/command prompt window.</li>
+    </ol>
+
+    <p>And that's it! Boxfuse has now been successfully installed and is ready to be used.</p>
+
+    <p class="next-steps">
+        <a class="btn btn-primary" href="/getstarted#gettingstarted">Get Started <i class="fa fa-arrow-right"></i></a>
+    </p>
+</div>

@@ -47,7 +47,7 @@ title: Documentation
         </div>
         <div class="col-md-10">
 
-            <h1>{{ page.subtitle }}</h1>
+            {% if page.subtitle %}<h1>{{ page.subtitle }}</h1>{% endif %}
 
             {{ content }}
 
