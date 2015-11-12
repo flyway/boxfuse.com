@@ -1,0 +1,238 @@
+---
+layout: getstarted
+menu: springboot
+subtitle: 'Get Started with Boxfuse & Spring Boot'
+---
+<div id="springboot">
+    <p><img src="/assets/img/springboot.png"></p>
+    <p>&nbsp;</p>
+
+    <p>This tutorial will get you started with Boxfuse and Spring Boot. It should take you about <strong>5-10 minutes</strong> to complete.</p>
+
+    <h2>Prerequisites</h2>
+    <p>Before you begin, ensure you have successfully:</p>
+    <ol>
+        <li>created a <strong><a href="https://console.boxfuse.com">Boxfuse Account</a></strong> (simply log in with your GitHub account, it's free)</li>
+        <li>downloaded and installed the latest <strong><a href="/getstarted/download">Boxfuse Client</a></strong></li>
+        <li>downloaded and installed the latest version of <strong><a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a></strong></li>
+        <li>downloaded and installed the latest <strong><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">JDK</a></strong> with <code>JAVA_HOME</code> set up correctly</li>
+    </ol>
+
+    <h2>Creating the Spring Boot application</h2>
+
+    <p>Creating a new Spring Boot app is incredibly easy. The Spring Boot website provides a simple service at
+        <a href="https://start.spring.io">start.spring.io</a> to create
+        application skeletons directly via http.</p>
+
+    <h3>Option 1: Download &amp; extract</h3>
+    <p>To create the application for this post, you can
+        either <a href="https://start.spring.io/starter.zip?baseDir=getstarted-springboot&groupId=boxfuse-getstarted&artifactId=getstarted-springboot&version=1.0&name=getstarted-springboot&description=Get+Started+with+Boxfuse+and+Spring+Boot+guide&packageName=getstarted.springboot&type=maven-project&packaging=jar&javaVersion=1.8&language=java&bootVersion=1.2.7.RELEASE&style=web&style=actuator&generate-project=">click to generate the application</a> and extract it.</p>
+
+    <h3>Option 2: Use curl</h3>
+
+    <p>Alternatively, you can also type this one-liner:</p>
+    <pre class="console"><span>&gt;</span> curl "https://start.spring.io/starter.zip?baseDir=getstarted-springboot&groupId=boxfuse-getstarted&artifactId=getstarted-springboot&version=1.0&name=getstarted-springboot&description=Get+Started+with+Boxfuse+and+Spring+Boot+guide&packageName=getstarted.springboot&type=maven-project&packaging=jar&javaVersion=1.8&language=java&bootVersion=1.2.7.RELEASE&style=web&style=actuator&generate-project=" &gt; getstarted-springboot.zip &amp;&amp; unzip getstarted-springboot.zip</pre>
+
+    <h2>Adding a controller</h2>
+
+    <p>Now change to the newly created directory:</p>
+    <pre class="console"><span>&gt;</span> cd getstarted-springboot</pre>
+
+    <p>To be able to interact with the application you'll need a controller, so go ahead and create one as <code>getstarted.springboot.HelloController</code> with the following contents:</p>
+
+    <pre class="prettyprint">package getstarted.springboot;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
+import java.util.Map;
+
+@RestController
+public class HelloController {
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public Map&lt;String, Object&gt; hello(@RequestParam(value = "name", defaultValue = "Boxfuse") String name) {
+        Map&lt;String, Object&gt; result = new HashMap&lt;&gt;();
+        result.put("greeting", "Hello " + name + "!");
+        return result;
+    }
+}</pre>
+
+    <p>Once that's done, you will have the following structure:</p>
+    <pre class="filetree"><i class="fa fa-folder-open"></i> getstarted-springboot
+  <i class="fa fa-folder"></i> .mvn
+  <i class="fa fa-folder-open"></i> src
+    <i class="fa fa-folder-open"></i> main
+      <i class="fa fa-folder-open"></i> java
+        <i class="fa fa-folder-open"></i> getstarted
+          <i class="fa fa-folder-open"></i> springboot
+            <i class="fa fa-file-text"></i> GetstartedSpringbootApplication.java
+            <span><i class="fa fa-file-text"></i> HelloController.java</span>
+      <i class="fa fa-folder-open"></i> resources
+        <i class="fa fa-folder"></i> static
+        <i class="fa fa-folder"></i> templates
+        <i class="fa fa-file-text"></i> application.properties
+    <i class="fa fa-folder-open"></i> test
+      <i class="fa fa-folder-open"></i> java
+        <i class="fa fa-folder-open"></i> getstarted
+          <i class="fa fa-folder-open"></i> springboot
+            <i class="fa fa-file-text"></i> GetstartedSpringbootApplicationTests.java
+  <i class="fa fa-file-text"></i> mvnw
+  <i class="fa fa-file-text"></i> mvnw.cmd
+  <i class="fa fa-file-text"></i> pom.xml</pre>
+
+    <p>Your application is now fully set up. As your skeleton also includes Spring Boot's actuator (Spring Boot's turn-key production readiness features), you now have two urls available:</p>
+    <ul>
+        <li><code>/</code> : your controller</li>
+        <li><code>/health</code> : Spring Boot's health check page</li>
+    </ul>
+
+    <p>Go ahead and build it:</p>
+
+    <pre class="console"><span>getstarted-springboot&gt;</span> mvnw package</pre>
+
+    <p>Great. Your Spring Boot application is now available under <code>target/getstarted-springboot-1.0.jar</code>.</p>
+
+    <h2>Fusing a Boxfuse image and running it locally on VirtualBox</h2>
+
+    <p>Now it's time to fuse your application into a Boxfuse image and launch an instance of it on VirtualBox:</p>
+
+    <pre class="console"><span>getstarted-springboot&gt;</span> boxfuse run
+
+Fusing Image for getstarted-springboot-1.0.jar ...
+Image fused in 00:06.915s (54656 K) -> myuser/getstarted-springboot:1.0
+Launching Instance of myuser/getstarted-springboot:1.0 on VirtualBox ...
+Forwarding http port localhost:10080 -> vb-b18d6746:80
+Instance launched in 00:03.331s -> vb-b18d6746
+Waiting for Payload to start on Instance vb-b18d6746 ...
+Payload started in 00:06.688s -> http://127.0.0.1:10080</pre>
+
+    <p>Boxfuse has automatically detected the Spring Boot Actuator and used the <code>/health</code> endpoint to check whether the instance came up correctly.</p>
+
+    <p>Open a browser at this address to see your new application up and running within the VirtualBox VM by simply executing:</p>
+
+    <pre class="console"><span>getstarted-springboot&gt;</span> boxfuse open</pre>
+
+    <img class="screenshot" src="/assets/img/getstarted/springboot-virtualbox.png">
+
+    <p>You can also see your newly created image:</p>
+
+    <pre class="console" style="font-size: 80%"><span>getstarted-springboot&gt;</span> boxfuse ls
+
+Images available locally:
++----------------------------------+-------------------------------+-------+---------+-------------+------------+---------+---------------------+
+| Image                            |            Payload            | Debug |  Java   |  AppServer  |   Ports    |  Size   |    Generated at     |
++----------------------------------+-------------------------------+-------+---------+-------------+------------+---------+---------------------+
+| myuser/getstarted-springboot:1.0 | getstarted-springboot-1.0.jar | false | 8.60.22 | Spring Boot | http -> 80 | 54656 K | 2015-11-12 14:57:50 |
++----------------------------------+-------------------------------+-------+---------+-------------+------------+---------+---------------------+
+Total: 1</pre>
+
+    <p>As well as the instance that is running:</p>
+
+    <pre class="console" style="font-size: 80%"><span>getstarted-springboot&gt;</span> boxfuse ps
+
+Running Instances on VirtualBox in the dev environment :
++-------------+----------------------------------+---------------------+------------------------+---------------------+
+|  Instance   |              Image               |        Type         |           URL          |     Launched at     |
++-------------+----------------------------------+---------------------+------------------------+---------------------+
+| vb-b18d6746 | myuser/getstarted-springboot:1.0 | 4 CPU / 1024 MB RAM | http://127.0.0.1:10080 | 2015-11-12 14:57:56 |
++-------------+----------------------------------+---------------------+------------------------+---------------------+
+Total: 1</pre>
+
+    <h2>Deploying your application to AWS</h2>
+
+    <p>Now let's deploy the image to AWS. As Boxfuse works with your AWS account, it first needs the necessary permissions to do so.
+        So if you haven't already done it, go to the Boxfuse Console and <strong><a href="https://console.boxfuse.com/#/awsAccount">connect your AWS account</a></strong> now.</p>
+
+    <p>Every new Boxfuse account comes with 3 environments: <code>dev</code>, <code>test</code> and <code>prod</code>.
+        <code>dev</code> is your local VirtualBox environment and <code>test</code> and <code>prod</code> are on AWS.</p>
+
+    <p>So let's deploy our application to the <code>prod</code> environment on AWS:</p>
+
+    <pre class="console"><span>getstarted-springboot&gt;</span> boxfuse run -env=prod
+
+<div style="font-size: 90%">Pushing myuser/getstarted-springboot:1.0 ...
+Verifying myuser/getstarted-springboot:1.0 ...
+Waiting for AWS to create an AMI for myuser/getstarted-springboot:1.0 in eu-central-1 (this may take up to 50 seconds) ...
+AMI created in 00:34.394s in eu-central-1 -> ami-ed988b81
+Creating Elastic IP ...
+Mapping getstartedspringboot-myuser.boxfuse.io to 52.28.107.167 ...
+Creating security group boxsg-myuser-prod-getstarted-springboot-1.0 ...
+Launching t2.micro instance of myuser/getstarted-springboot:1.0 (ami-ed988b81) in prod (eu-central-1) ...
+Instance launched in 00:26.922s -> i-5de042e1
+Waiting for AWS to boot Instance i-5de042e1 and Payload to start at http://52.28.121.55/health ...
+Payload started in 00:51.516s -> http://52.28.121.55/health
+Remapping Elastic IP 52.28.107.167 to i-5de042e1 ...
+Waiting 15s for AWS to complete Elastic IP Zero Downtime transition ...
+Deployment completed successfully. myuser/getstarted-springboot:1.0 is up and running at http://getstartedspringboot-myuser.boxfuse.io/</div></pre>
+
+    <p>Notice that Boxfuse has reused your image unchanged instead fusing a new one.</p>
+
+    <p>With that one command Boxfuse has automatically pushed your image to the Boxfuse Vault as well as provisioned,
+    configured and secured all necessary AWS resources. There is no manual work necessary on your behalf.</p>
+
+    <p>All you need to do is simply navigate to your new domain to see your Play application in action on AWS:</p>
+
+    <img class="screenshot" src="/assets/img/getstarted/springboot-aws.png">
+
+    <h2>Bonus: update your application with zero downtime</h2>
+
+    <p>Now let's take things one step further and deploy an update of your application with zero downtime using blue/green deployments.</p>
+
+    <p>Start by modifying <code>getstarted.springboot.HelloController</code> and change the message:</p>
+    <pre class="prettyprint">result.put("greeting", "Updated by Boxfuse with zero downtime!");</pre>
+
+    <p>then bump the version in <code>pom.xml</code>:</p>
+
+    <pre class="prettyprint">&lt;version&gt;1.1&lt;/version&gt;</pre>
+
+    <p>and rebuild the jar:</p>
+
+    <pre class="console"><span>getstarted-springboot&gt;</span> mvnw clean package</pre>
+
+    <p>Finally deploy the new version of your application to AWS:</p>
+
+    <pre class="console"><span>getstarted-springboot&gt;</span> boxfuse run -env=prod
+
+<div style="font-size: 90%">Fusing Image for getstarted-springboot-1.1.jar ...
+Image fused in 00:06.857s (54656 K) -> myuser/getstarted-springboot:1.1
+Pushing myuser/getstarted-springboot:1.1 ...
+Verifying myuser/getstarted-springboot:1.1 ...
+Waiting for AWS to create an AMI for myuser/getstarted-springboot:1.1 in eu-central-1 (this may take up to 50 seconds) ...
+AMI created in 00:41.700s in eu-central-1 -> ami-48afbc24
+Creating security group boxsg-myuser-prod-getstarted-springboot-1.1 ...
+Launching t2.micro instance of myuser/getstarted-springboot:1.1 (ami-48afbc24) in prod (eu-central-1) ...
+Instance launched in 00:27.066s -> i-f40fad48
+Waiting for AWS to boot Instance i-f40fad48 and Payload to start at http://52.29.60.117/health ...
+Payload started in 00:55.363s -> http://52.29.60.117/health
+Remapping Elastic IP 52.29.96.95 to i-f40fad48 ...
+Waiting 15s for AWS to complete Elastic IP Zero Downtime transition ...
+Terminating instance i-5de042e1 ...
+Destroying Security Group sg-032a576a ...
+Deployment completed successfully. myuser/getstarted-springboot:1.1 is up and running at http://getstartedspringboot-myuser.boxfuse.io/</div></pre>
+
+    <p>And there it is:</p>
+
+    <img class="screenshot" src="/assets/img/getstarted/springboot-aws-update.png">
+
+    <h2>Summary</h2>
+
+    <p>In this brief guide we have seen how to:</p>
+    <ul>
+        <li>create a Spring Boot application</li>
+        <li>fuse it into a Boxfuse image</li>
+        <li>deploy the image locally on VirtualBox</li>
+        <li>deploy the image unchanged to AWS</li>
+        <li>update the application with zero downtime</li>
+    </ul>
+
+    <p>Now it's your turn. Take your favorite Spring Boot application and deploy it with ease and pleasure.</p>
+    <p>And don't forget, Boxfuse also comes with a <a href="/docs/maven">Maven</a>
+    and a <a href="/docs/gradle">Gradle</a> plugin to seamlessly integrate with your CI/CD workflow.</p>
+
+    <p class="next-steps">
+        <a class="btn btn-primary" href="/docs/payloads/springboot">Boxfuse Spring Boot Documentation <i class="fa fa-arrow-right"></i></a>
+    </p>
+</div>

@@ -1088,4 +1088,5 @@ pre.filetree span {
 img.screenshot {
 	border: 1px #ccc dashed;
 	padding: 5px;
+	margin-bottom: 15px;
 }

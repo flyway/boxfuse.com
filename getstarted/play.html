@@ -11,8 +11,9 @@ subtitle: 'Get Started with Boxfuse & Play'
     <ol>
         <li>created a <strong><a href="https://console.boxfuse.com">Boxfuse Account</a></strong> (simply log in with your GitHub account, it's free)</li>
         <li>downloaded and installed the latest <strong><a href="/getstarted/download">Boxfuse Client</a></strong></li>
+        <li>downloaded and installed the latest <strong><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">JDK</a></strong> with <code>JAVA_HOME</code> set up correctly</li>
         <li>downloaded and installed the latest <strong><a href="https://www.typesafe.com/activator/download">Typesafe Activator</a></strong></li>
-        <li>downloaded and installed <strong><a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a></strong></li>
+        <li>downloaded and installed the latest version of <strong><a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a></strong></li>
     </ol>
 
     <h2>Creating the Play application</h2>
@@ -49,6 +50,30 @@ subtitle: 'Get Started with Boxfuse & Play'
     <p>Now open your browser and navigate to this address to see your new application up and running within the VirtualBox VM:</p>
 
     <img class="screenshot" src="/assets/img/getstarted/play-virtualbox.png">
+
+    <p>You can also see your newly created image:</p>
+
+    <pre class="console"><span>hello&gt;</span> boxfuse ls
+
+Images available locally:
++------------------+---------------+-------+---------+-----------+------------+---------+---------------------+
+| Image            |    Payload    | Debug |  Java   | AppServer |   Ports    |  Size   |    Generated at     |
++------------------+---------------+-------+---------+-----------+------------+---------+---------------------+
+| myuser/hello:1.0 | hello-1.0.jar | false | 8.60.22 | Play      | http -> 80 | 75950 K | 2015-11-12 14:57:50 |
++------------------+---------------+-------+---------+-----------+------------+---------+---------------------+
+Total: 1</pre>
+
+    <p>As well as the instance that is running:</p>
+
+    <pre class="console"><span>hello&gt;</span> boxfuse ps
+
+Running Instances on VirtualBox in the dev environment :
++-------------+------------------+---------------------+------------------------+---------------------+
+|  Instance   |      Image       |        Type         |           URL          |     Launched at     |
++-------------+------------------+---------------------+------------------------+---------------------+
+| vb-b18d6746 | myuser/hello:1.0 | 4 CPU / 1024 MB RAM | http://127.0.0.1:10080 | 2015-11-12 14:57:56 |
++-------------+------------------+---------------------+------------------------+---------------------+
+Total: 1</pre>
 
     <h2>Deploying your application to AWS</h2>
 
@@ -110,7 +135,7 @@ class Application extends Controller {
 
     <pre class="console"><span>hello&gt;</span> activator clean dist</pre>
 
-    <p>You can deploy the new version of your application to AWS:</p>
+    <p>Finally, deploy the new version of your application to AWS:</p>
 
     <pre class="console"><span>hello&gt;</span> boxfuse run -env=prod
 
@@ -149,6 +174,6 @@ Deployment completed successfully. myuser/hello:1.1 is up and running at http://
     <p>Now it's your turn. Take your favorite Play application and deploy it with ease and pleasure.</p>
 
     <p class="next-steps">
-        <a class="btn btn-primary" href="/docs/payloads/play.html">Play Reference Documentation <i class="fa fa-arrow-right"></i></a>
+        <a class="btn btn-primary" href="/docs/payloads/play">Boxfuse Play Documentation <i class="fa fa-arrow-right"></i></a>
     </p>
 </div>
