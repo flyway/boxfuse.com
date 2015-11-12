@@ -13,8 +13,8 @@
 
   {% for post in site.posts %}
   <url>
-    <loc>https://boxfuse.com{{ post.permalink }}</loc>
-    <lastmod>{{ post.date | date: "%Y-%m-%d" }}</lastmod>
+    <loc>https://boxfuse.com{{ post.permalink | split: '.html' }}</loc>
+    <lastmod>{{ site.time | date: "%Y-%m-%d" }}</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.2</priority>
   </url>
@@ -22,7 +22,7 @@
 
   {% for page in site.pages %}
   <url>
-    <loc>https://boxfuse.com{{ page.url }}</loc>
+    <loc>https://boxfuse.com{{ page.url | split: '.html' }}</loc>
     <lastmod>{{ site.time | date: "%Y-%m-%d" }}</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
