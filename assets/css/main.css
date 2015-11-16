@@ -604,27 +604,28 @@ hr.soften {
 	font-size: 13px;
 }
 
-#getstarted h1, #docs h1, .vs h1, #pricing h1, .doc-title {
+#getstarted h1, #docs h1, .vs h1, #pricing h1, #blog h1, .doc-title {
     margin-top: -5px;
     font-size: 44px;
     font-weight: 400;
+	line-height: 130%;
 }
 
-#getstarted h2, #docs h2, .doc-section {
+#getstarted h2, #docs h2, #blog h2, .doc-section {
     margin-top: 50px;
     font-size: 26px;
     font-weight: 800;
 	color: #404040;
 }
 
-#getstarted h3, #docs h3 {
+#getstarted h3, #docs h3, #blog h3 {
 	font-weight: bold;
 	margin-top: 25px;
 	font-size: 20px;
 	color: #808080;
 }
 
-#docs, #learn, #getstarted {
+#docs, #learn, #getstarted, #blog {
     padding-top: 40px;
 }
 

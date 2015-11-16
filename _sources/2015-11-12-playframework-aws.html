@@ -1,0 +1,130 @@
+---
+layout: blog
+subtitle: "Cloud-Native Deployment"
+permalink: /blog/playframework-aws.html
+---
+<div>
+    <p>When it comes to creating modern JVM-based applications we have a number of excellent choices including
+        <a href="/blog/spring-boot-ec2">Spring Boot</a>, <a href="/blog/dropwizard-aws">Dropwizard</a>,
+        <a href="/blog/javaee-aws">TomEE</a> and the
+        <strong>Play Framework</strong>.
+    </p>
+
+    <p>Today we're going to look at <strong>deploying Play applications</strong> written in <strong>Scala</strong> (or Java) effortlessly on <strong>AWS</strong>.</p>
+
+    <p>We'll do so using the principles of <strong>Immutable Infrastructure</strong>, <strong>Minimal Images</strong> and <strong>Blue/Green deployments</strong>.
+        And finally we'll enable <strong>Auto-Scaling</strong> to only run and pay for the capacity we actually need.
+    </p>
+
+    <h2>What is Immutable Infrastructure?</h2>
+
+    <p>When we talk about <strong><a href="/learn/why">Immutable Infrastructure</a></strong>, we talk about <strong>creating
+        servers and never modifying them again</strong>. While this may seem unusual at first, it is all about applying the
+        techniques we have learned to appreciate in a CI environment when building our applications and extending them to the
+        remaining layers of our stack.</p>
+
+    <h3>So what are those techniques?</h3>
+    <p>When we produce an artifact (like a .jar, .war or .zip file) for release in our CI system,
+        that artifact has a fixed version and these essential qualities:</p>
+    <ol>
+        <li>First of all that artifact is <strong>one immutable
+        unit</strong> that is never modified again.</li>
+        <li>Instead it is <strong>regenerated after every change</strong> through
+        the regular CI build.</li>
+        <li>It is then <strong>promoted unchanged from environment to environment</strong> to
+        <strong>avoid the classic mistake of building a separate artifact per environment</strong> which effectively means
+        you would run a different artifact in production than the one you tested in test.</li></ol>
+
+    <h3>Why is it important to apply those techniques to the remaining layers of our stack?</h3>
+
+    <p>Every difference between environments is a potential source of failure. We should therefore aim to <strong>capture
+    our application and all its dependencies at the lowest layer possible</strong> to ensure they remain absolutely identical
+    across machines and environments.</p>
+
+    <div class="blog-post-image center">
+        <img src="/assets/posts/playframework-aws/machineimage.png" alt="Machine Image">
+    </div>
+
+    <p>In the case of Play applications this means producing an image containing both the Play application distribution
+    zip as well as the JVM and its dependencies, plus a base operating system.</p>
+
+    <h2>What are Minimal Images?</h2>
+
+    <p>The problem with this approach has traditionally been that the images produced have been very large, often measured
+    in multiple GBs. This makes them expensive to archive and very slow to transfer over the network.</p>
+
+    <p>Boxfuse addresses this by <strong><a href="/learn/how">generating a minimal tailor-made Linux-based OS on the fly</a></strong>.
+        This only just seconds and the resulting image is 100x smaller, measured in MB not GB.</p>
+
+    <div class="blog-post-image center">
+        <img src="/assets/img/learn/microos2.png" alt="Micro OS">
+    </div>
+
+    <p>These images are generated automatically as part of your build process and require zero manual configuration.
+        If anything needs to be changed you simply generate a new one. All it takes is less than 10 seconds.</p>
+
+    <p>An added benefit of having such small images is that you now have fewer moving parts and you have <strong>reduced the security
+    attack surface</strong> to the absolute minimum possible. In fact you can't even log in to them as there is
+    <a href="/blog/no-ssh"><strong>no SSH</strong></a> on board.</p>
+
+    <p>
+    Immutable images such as AMIs also have the great advantage that they really <a href="/blog/fast-reliable-scaling"><strong>simplify scaling</strong></a>.
+        Whether you have to set up 1, 10, 100 or 1000 instances, all you need to do is launch that number of identical copies
+        from the same base image and you're done. Refreshingly simple.
+    </p>
+
+    <p>In fact Boxfuse has enabled you to do this for a while. Regardless of whether you want to <strong>scale horizontally, vertically or both</strong>, Boxfuse simply lets you do:</p>
+
+    <pre class="console">&gt; boxfuse scale myapp -env=prod -capacity=7:t2.large</pre>
+
+    <p>This will effectively launch 7 new t2.large EC2 instances of your app, and once the healthchecks have passed,
+        Boxfuse will terminate any previous deployments and perform a zero-downtime transition.</p>
+
+    <p>While this is great for guaranteeing you always have the required amount of processing power available, it forces you to
+    <strong>guess your capacity needs in advance</strong>, which means that at certain times you may be <strong>paying for more capacity than you actually need</strong>.</p>
+
+    <h2 class="blog-post-section">Auto-Scaling</h2>
+
+    <p>Today we are introducing Boxfuse support for <strong>AWS Auto-Scaling</strong>. You can now let AWS automatically
+        optimize the scale of your system based on the current load.</p>
+
+    <p>All you need to do is drag a slider to indicate the minimum and the maximum number of instances you want, and
+    specify at which CPU usage thresholds the scaling activities should happen, and click Scale. Boxfuse and AWS will take care of the rest.</p>
+
+    <p>In this example here, Boxfuse will automatically configure AWS CloudWatch to monitor the CPU usage of your instances.
+        Boxfuse will also automatically configure Auto-Scaling to kick in as soon as the rolling
+    average over a period of 300 seconds exceeds 75%. Auto-Scaling will then start provisioning additional EC2 instances up to a maximum of 10. If CPU usage
+    instead drops to 25% or below, EC2 instances will be terminated down to a minimum of 2.</p>
+
+    <p>The same can of course also be specified from the command-line:</p>
+
+    <pre class="console">&gt; boxfuse scale myapp -env=prod -capacity=2-10:t2.micro:cpu25-75:300
+
+Successfully configured myapp to auto-scale between 2 and 10 t2.micro instances based on average CPU load over 300 seconds, scaling in at 25% and below, scaling out at 75% and above.</pre>
+
+    <p>And voila! Done! <strong>Auto-scaling has never been this easy!</strong>.</p>
+
+    <p class="alert alert-info"><strong>Tip:</strong> To best <strong>optimize your budget</strong> with your actual usage, start with
+        auto-scaling the <strong>smallest type of general purpose instances</strong> like t2.micro and only move to larger or more specialized instances if needed.</p>
+
+    <h2 class="blog-post-section">Summary</h2>
+
+    <p>Immutable Infrastructure makes scaling fast and reliable. However having fixed capacity for your system requires you to guess your needs in advance.
+        It also means that at times you'll potentially pay more than you should.</p>
+    <p>Starting today, Boxfuse can now automatically
+    configure AWS to <strong>auto-scale your application</strong> based on average CPU usage. AWS will add or remove capacity from the system fully automatically
+    based on the current load, so that you <strong>never have to worry again about paying for more than you actually need</strong>.</p>
+
+    <p>This is available today at no extra cost to all <a href="/pricing">paid plans</a>.</p>
+
+    <p>&nbsp;</p>
+
+    <p><strong>Have fun and keep on deploying JVM applications to AWS with ease and pleasure!</strong></p>
+
+    <p>And if you haven't already,
+        <a href="https://console.boxfuse.com"><strong>sign up for your
+        Boxfuse account</strong></a> now. All you need is a GitHub user
+        and you'll be up and running in no time. The <a href="/pricing">Boxfuse free plan</a> aligns
+        perfectly with the AWS free tier, so you can deploy
+        your JVM application to EC2 <strong>completely free</strong>.</p>
+</div>

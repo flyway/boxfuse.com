@@ -3,11 +3,11 @@ layout: default
 tab: blog
 title: Blog
 ---
-<div class="container blog">
+<div id="blog" class="container">
     <div class="row">
         <div class="col-md-9">
             <p class="blog-post-date">{{page.date | date: "%Y-%m-%d"}}</p>
-            <h1 class="blog-post-title">{{ page.subtitle }}{% if page.parttitle %} <br/><span class="blog-post-subtitle">{{page.parttitle}}</span> {% endif %}</h1>
+            <h1>{{ page.subtitle }}{% if page.parttitle %} <br/><span class="blog-post-subtitle">{{page.parttitle}}</span> {% endif %}</h1>
 
             {{ content }}
 
@@ -67,7 +67,7 @@ title: Blog
             <div id="mc_embed_signup">
                 <form action="//boxfuse.us9.list-manage.com/subscribe/post?u=0e72f61962b6b47f78568d56c&amp;id=5641e8645a" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
                     <div id="mc_embed_signup_scroll">
-                        <h2>Subscribe to blog</h2>
+                        <div class="blog-post-section" style="margin-top: 20px">Subscribe to blog</div>
                         <div class="mc-field-group">
                             <input type="email" value="" name="EMAIL" class="required email form-control" id="mce-EMAIL" placeholder="Your email address">
                             <p>Never shared. Never sold. No spam ever.</p>
@@ -83,7 +83,7 @@ title: Blog
             </div>
             <!--End mc_embed_signup-->
 
-            <h2>Recent posts</h2>
+            <div class="blog-post-section">Recent posts</div>
             <div id="menu">
                 <ul class="nav nav-pills nav-stacked">
                     {% for post in site.posts %}
