@@ -7,8 +7,19 @@ subtitle: 'Auto-Scaling'
     <p><img src="/assets/img/autoscaling.png"></p>
 
     <p>Boxfuse can automatically
-        configure AWS to <strong>auto-scale your application</strong> based on average CPU usage. AWS will add or remove capacity from the system fully automatically
-        based on the current load, so that you <strong>never have to worry again about paying for more than you actually need</strong>.</p>
+        configure AWS to <strong>auto-scale your application</strong> based on any of the following metrics:</p>
+    <ul>
+        <li>average CPU usage</li>
+        <li>incoming network traffic</li>
+        <li>outgoing network traffic</li>
+    </ul>
+
+    <p>Boxfuse will then configure AWS to monitor and act upon these metrics for your auto-scaling groups.</p>
+
+    <p>Whenever the current load of your system exceeds the thresholds defined, AWS will then automatically add or remove
+        capacity so that you <strong>never have to worry again about paying for more than you actually need</strong>.
+    All that while having the peace of mind your system will always have enough capacity to serve your users, regardless
+    of traffic spikes.</p>
 
     <p><strong>Note:</strong> This is only available for load-balanced applications.</p>
 
@@ -23,14 +34,14 @@ Successfully configured myapp to auto-scale between 2 and 10 t2.micro instances 
         average over a period of 300 seconds exceeds 75%, Auto-Scaling will kick in and additional EC2 instances will be provisioned up to a maximum of 10. If CPU usage
         instead drops to 25% or below, EC2 instances will be terminated down to a minimum of 2.</p>
 
+    <p>For more details and full syntax details for all available options, read the <a href="/docs/commandline/scale#capacity">documentation for the scale command</a>.</p>
+
     <h2>Using the Boxfuse Console</h2>
 
     <p>Alternatively to the method described above, you can also simply use the <a href="https://console.boxfuse.com">Boxfuse Console</a>
     to configure this:</p>
 
-    <div class="blog-post-image center">
-        <img src="/assets/img/auto-scaling-console.png" alt="Auto-Scaling">
-    </div>
+        <img src="/assets/img/auto-scaling-console.png" alt="Auto-Scaling" class="screenshot">
     <p>All you need to do is drag a slider to indicate the minimum and the maximum number of instances you want, and
         specify at which CPU usage thresholds the scaling activities should happen, and click Scale. Boxfuse and AWS will take care of the rest.</p>
     <p>Just as for the command-line tool, Boxfuse will automatically configure AWS CloudWatch to monitor the CPU usage of your instances. If the rolling
