@@ -1,0 +1,278 @@
+---
+layout: getstarted
+menu: dropwizard
+subtitle: 'Get Started with Boxfuse & Dropwizard'
+---
+<div id="dropwizard">
+    <p><img src="/assets/img/dropwizard.png"></p>
+    <p>&nbsp;</p>
+
+    <p>This tutorial will get you started with Boxfuse and Dropwizard. It should take you about <strong>5-10 minutes</strong> to complete.</p>
+
+    <h2>Prerequisites</h2>
+    <p>Before you begin, ensure you have successfully:</p>
+    <ol>
+        <li>created a <strong><a href="https://console.boxfuse.com">Boxfuse Account</a></strong> (simply log in with your GitHub account, it's free)</li>
+        <li>downloaded and installed the latest <strong><a href="/getstarted/download">Boxfuse Client</a></strong></li>
+        <li>downloaded and installed the latest version of <strong><a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a></strong></li>
+        <li>downloaded and installed the latest <strong><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">JDK</a></strong> with <code>JAVA_HOME</code> set up correctly</li>
+        <li>downloaded and installed the latest version of <strong><a href="http://maven.apache.org/download.cgi">Maven</a></strong></li>
+    </ol>
+
+    <h2>Creating the Dropwizard application</h2>
+
+    <p>Creating a new Dropwizard app is incredibly easy. You can use the Dropwizard Maven archetype to create all the necessary scaffolding:</p>
+    <pre class="console"><span>&gt;</span> mvn archetype:generate -B -DarchetypeGroupId=io.dropwizard.archetypes -DarchetypeArtifactId=java-simple -DarchetypeVersion=0.9.1 -DgroupId=getstarted -DartifactId=hello -Dversion=1.0 -Dpackage=hello -Dname=Hello</pre>
+
+    <h2>Adding a resource and healthcheck</h2>
+
+    <p>Now change to the newly created directory:</p>
+    <pre class="console"><span>&gt;</span> cd hello</pre>
+
+    <h3>Adding the resource</h3>
+    <p>To be able to interact with the application you'll need a resource, so go ahead and create one as <code>src/main/java/hello/resources/HelloResource.java</code> with the following contents:</p>
+
+    <pre class="prettyprint">package hello.resources;
+
+import com.google.common.base.Optional;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
+import java.util.HashMap;
+import java.util.Map;
+
+@Path("/")
+@Produces(MediaType.APPLICATION_JSON)
+public class HelloResource {
+    private final String template;
+
+    public HelloResource(String template) {
+        this.template = template;
+    }
+
+    @GET
+    public Map&lt;String, Object&gt; sayHello(@QueryParam("name") Optional&lt;String&gt; name) {
+        Map&lt;String, Object&gt; result = new HashMap&lt;&gt;();
+        result.put("hello", String.format(template, name.or("stranger")));
+        return result;
+    }
+}</pre>
+
+    <h3>Adding the healthcheck</h3>
+
+    <p>For the healthcheck, add a file named <code>src/main/java/hello/health/TemplateHealthCheck.java</code>:</p>
+
+    <pre class="prettyprint">package hello.health;
+
+import com.codahale.metrics.health.HealthCheck;
+
+public class TemplateHealthCheck extends HealthCheck {
+    private final String template;
+
+    public TemplateHealthCheck(String template) {
+        this.template = template;
+    }
+
+    @Override
+    protected Result check() throws Exception {
+        final String greeting = String.format(template, "TEST");
+        if (!greeting.contains("TEST")) {
+            return Result.unhealthy("template doesn't include a name");
+        }
+        return Result.healthy();
+    }
+}</pre>
+
+    <h3>Putting it all together</h3>
+
+    <p>Finally register both the resource and the healthcheck in the <code>hello.HelloApplication.run()</code> method:</p>
+
+    <pre class="prettyprint">@Override
+public void run(final HelloConfiguration configuration, final Environment environment) {
+    String template = "Hello, %s!";
+    environment.jersey().register(new hello.resources.HelloResource(template));
+    environment.healthChecks().register("template", new hello.health.TemplateHealthCheck(template));
+}</pre>
+
+    <p>And that's it. You now have a basic Dropwizard application we can use with the following structure:</p>
+    <pre class="filetree"><i class="fa fa-folder-open"></i> hello
+  <i class="fa fa-folder-open"></i> src
+    <i class="fa fa-folder-open"></i> main
+      <i class="fa fa-folder-open"></i> java
+        <i class="fa fa-folder-open"></i> hello
+          <i class="fa fa-folder"></i> api
+          <i class="fa fa-folder"></i> cli
+          <i class="fa fa-folder"></i> client
+          <i class="fa fa-folder"></i> core
+          <i class="fa fa-folder"></i> db
+          <i class="fa fa-folder-open"></i> health
+            <span><i class="fa fa-file-text"></i> TemplateHealthCheck.java</span>
+          <i class="fa fa-folder-open"></i> resources
+            <span><i class="fa fa-file-text"></i> HelloController.java</span>
+          <i class="fa fa-file-text"></i> HelloApplication.java
+          <i class="fa fa-file-text"></i> HelloConfiguration.java
+      <i class="fa fa-folder-open"></i> resources
+        <i class="fa fa-folder"></i> assets
+        <i class="fa fa-file-text"></i> banner.txt
+    <i class="fa fa-folder-open"></i> test
+      <i class="fa fa-folder-open"></i> java
+        <i class="fa fa-folder-open"></i> hello
+          <i class="fa fa-folder"></i> api
+          <i class="fa fa-folder"></i> client
+          <i class="fa fa-folder"></i> core
+          <i class="fa fa-folder"></i> db
+          <i class="fa fa-folder"></i> resources
+      <i class="fa fa-folder-open"></i> resources
+        <i class="fa fa-folder"></i> fixtures
+  <i class="fa fa-file-text"></i> pom.xml</pre>
+
+    <p>Your application is now fully set up. Go ahead and build it:</p>
+
+    <pre class="console"><span>hello&gt;</span> mvn package</pre>
+
+    <p>Great. Your Dropwizard application is now available under <code>target/hello-1.0.jar</code>.</p>
+
+    <h2>Fusing a Boxfuse image and running it locally on VirtualBox</h2>
+
+    <p>Now it's time to fuse your application into a Boxfuse image and launch an instance of it on VirtualBox:</p>
+
+    <pre class="console"><span>hello&gt;</span> boxfuse run
+
+Fusing Image for hello-1.0.jar ...
+Image fused in 00:07.997s (55691 K) -> myuser/hello:1.0
+Launching Instance of myuser/hello:1.0 on VirtualBox ...
+Forwarding admin-http port localhost:8081 -> vb-239113a0:8081
+Forwarding http port localhost:80 -> vb-239113a0:80
+Instance launched in 00:03.663s -> vb-239113a0
+Waiting for Payload to start on Instance vb-239113a0 ...
+Payload started in 00:06.688s -> http://127.0.0.1:10080</pre>
+
+    <p>Boxfuse has automatically detected the Dropwizard configuration and used the <code>:8081/healthcheck</code> endpoint to check whether the instance came up correctly.</p>
+
+    <p>Open a browser at this address to see your new application up and running within the VirtualBox VM by simply executing:</p>
+
+    <pre class="console"><span>hello&gt;</span> boxfuse open</pre>
+
+    <img class="screenshot" src="/assets/img/getstarted/dropwizard-virtualbox.png">
+
+    <p>You can also see your newly created image:</p>
+
+    <pre class="console" style="font-size: 90%"><span>hello&gt;</span> boxfuse ls
+
+Images available locally:
++------------------+---------------+-------+---------+------------+--------------------------------+---------+---------------------+
+| Image            |    Payload    | Debug |  Java   | AppServer  |             Ports              |  Size   |    Generated at     |
++------------------+---------------+-------+---------+------------+--------------------------------+---------+---------------------+
+| myuser/hello:1.0 | hello-1.0.jar | false | 8.60.22 | Dropwizard | admin-http -> 8081, http -> 80 | 55691 K | 2015-11-26 22:37:07 |
++------------------+---------------+-------+---------+------------+--------------------------------+---------+---------------------+
+Total: 1</pre>
+
+    <p>As well as the instance that is running:</p>
+
+    <pre class="console" style="font-size: 90%"><span>hello&gt;</span> boxfuse ps
+
+Running Instances on VirtualBox in the dev environment :
++-------------+------------------+---------------------+------------------+---------------------+
+|  Instance   |      Image       |        Type         |       URL        |     Launched at     |
++-------------+------------------+---------------------+------------------+---------------------+
+| vb-239113a0 | myuser/hello:1.0 | 4 CPU / 1024 MB RAM | http://127.0.0.1 | 2015-11-26 22:37:16 |
++-------------+------------------+---------------------+------------------+---------------------+
+Total: 1</pre>
+
+    <h2>Deploying your application to AWS</h2>
+
+    <p>Now let's deploy the image to AWS. As Boxfuse works with your AWS account, it first needs the necessary permissions to do so.
+        So if you haven't already done it, go to the Boxfuse Console and <strong><a href="https://console.boxfuse.com/#/awsAccount">connect your AWS account</a></strong> now.</p>
+
+    <p>Every new Boxfuse account comes with 3 environments: <code>dev</code>, <code>test</code> and <code>prod</code>.
+        <code>dev</code> is your local VirtualBox environment and <code>test</code> and <code>prod</code> are on AWS.</p>
+
+    <p>So let's deploy our application to the <code>prod</code> environment on AWS:</p>
+
+    <pre class="console"><span>hello&gt;</span> boxfuse run -env=prod
+
+Creating myuser/hello ...
+Pushing myuser/hello:1.0 ...
+Verifying myuser/hello:1.0 ...
+Waiting for AWS to create an AMI for myuser/hello:1.0 in eu-central-1 (this may take up to 50 seconds) ...
+AMI created in 00:42.569s in eu-central-1 -> ami-8d776ae1
+Creating Elastic IP ...
+Mapping hello-myuser.boxfuse.io to 52.29.49.4 ...
+Creating security group boxsg-myuser-prod-hello-1.0 ...
+Launching t2.micro instance of myuser/hello:1.0 (ami-8d776ae1) in prod (eu-central-1) ...
+Instance launched in 00:35.621s -> i-549833e8
+Waiting for AWS to boot Instance i-549833e8 and Payload to start at http://52.28.52.131:8081/healthcheck ...
+Payload started in 00:52.041s -> http://52.28.52.131:8081/healthcheck
+Remapping Elastic IP 52.29.49.4 to i-549833e8 ...
+Waiting 15s for AWS to complete Elastic IP Zero Downtime transition ...
+Deployment completed successfully. myuser/hello:1.0 is up and running at http://hello-myuser.boxfuse.io/</pre>
+
+    <p>Notice that Boxfuse has reused your image unchanged instead fusing a new one.</p>
+
+    <p>With that one command Boxfuse has automatically pushed your image to the Boxfuse Vault as well as provisioned,
+    configured and secured all necessary AWS resources. There is no manual work necessary on your behalf.</p>
+
+    <p>All you need to do is simply navigate to your new domain to see your Dropwizard application in action on AWS:</p>
+
+    <img class="screenshot" src="/assets/img/getstarted/dropwizard-aws.png">
+
+    <h2>Bonus: update your application with zero downtime</h2>
+
+    <p>Now let's take things one step further and deploy an update of your application with zero downtime using blue/green deployments.</p>
+
+    <p>Start by modifying <code>hello.HelloApplication.run()</code> and change the template:</p>
+    <pre class="prettyprint">String template = "Updated by Boxfuse with zero downtime, %s!";</pre>
+
+    <p>then bump the version in <code>pom.xml</code>:</p>
+
+    <pre class="prettyprint">&lt;version&gt;1.1&lt;/version&gt;</pre>
+
+    <p>and rebuild the jar:</p>
+
+    <pre class="console"><span>hello&gt;</span> mvn clean package</pre>
+
+    <p>Finally deploy the new version of your application to AWS:</p>
+
+    <pre class="console"><span>hello&gt;</span> boxfuse run -env=prod
+
+Fusing Image for hello-1.1.jar ...
+Image fused in 00:07.450s (55691 K) -> myuser/hello:1.1
+Pushing myuser/hello:1.1 ...
+Verifying myuser/hello:1.1 ...
+Waiting for AWS to create an AMI for myuser/hello:1.1 in eu-central-1 (this may take up to 50 seconds) ...
+AMI created in 00:50.998s in eu-central-1 -> ami-7074691c
+Creating security group boxsg-myuser-prod-hello-1.1 ...
+Launching t2.micro instance of myuser/hello:1.1 (ami-7074691c) in prod (eu-central-1) ...
+Instance launched in 00:20.545s -> i-ff9f3443
+Waiting for AWS to boot Instance i-ff9f3443 and Payload to start at http://52.29.102.135:8081/healthcheck ...
+Payload started in 00:56.214s -> http://52.29.102.135:8081/healthcheck
+Remapping Elastic IP 52.29.49.4 to i-ff9f3443 ...
+Waiting 15s for AWS to complete Elastic IP Zero Downtime transition ...
+Terminating instance i-549833e8 ...
+Destroying Security Group sg-37aaef5e ...
+Deployment completed successfully. myuser/hello:1.1 is up and running at http://hello-myuser.boxfuse.io/</pre>
+
+    <p>And there it is:</p>
+
+    <img class="screenshot" src="/assets/img/getstarted/dropwizard-aws-update.png">
+
+    <h2>Summary</h2>
+
+    <p>In this brief guide we have seen how to:</p>
+    <ul>
+        <li>create a Dropwizard application</li>
+        <li>fuse it into a Boxfuse image</li>
+        <li>deploy the image locally on VirtualBox</li>
+        <li>deploy the image unchanged to AWS</li>
+        <li>update the application with zero downtime</li>
+    </ul>
+
+    <p>Now it's your turn. Take your favorite Dropwizard application and deploy it with ease and pleasure.</p>
+    <p>And don't forget, Boxfuse also comes with a <a href="/docs/maven">Maven</a> plugin to seamlessly integrate with your CI/CD workflow.</p>
+
+    <p class="next-steps">
+        <a class="btn btn-primary" href="/docs/payloads/dropwizard">Boxfuse Dropwizard Documentation <i class="fa fa-arrow-right"></i></a>
+    </p>
+</div>
