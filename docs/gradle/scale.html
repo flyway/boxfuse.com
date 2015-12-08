@@ -68,25 +68,25 @@ Successfully scaled hello to 3 t2.large instances in prod</pre>
                     <td>auto-scale between 2 (min) and 10 (max) c4.large instances
                         based upon average CPU load over the last 300 seconds
                         scale in at 30% and below, scale out at 70% and above</td></tr>
-                <tr><td><code><nobr>2-10:c4.large:cpu30-70:180</nobr></code></td>
+                <tr><td><code><nobr>2-10:c4.large:cpu30-70:60</nobr></code></td>
                     <td>auto-scale between 2 (min) and 10 (max) c4.large instances
-                        based upon average CPU load over the last 180 seconds
+                        based upon average CPU load over the last 60 seconds
                         scale in at 30% and below, scale out at 70% and above</td></tr>
                 <tr><td><code><nobr>2-10:c4.large:netin1024-8300</nobr></code></td>
                     <td>auto-scale between 2 (min) and 10 (max) c4.large instances
                         based upon incoming network traffic per instance over the last 300 seconds
                         scale in at 1024 KB and below, scale out at 8300 KB and above</td></tr>
-                <tr><td><code><nobr>2-10:c4.large:netin1024-8300:95</nobr></code></td>
+                <tr><td><code><nobr>2-10:c4.large:netin1024-8300:60</nobr></code></td>
                     <td>auto-scale between 2 (min) and 10 (max) c4.large instances
-                        based upon incoming network traffic per instance over the last 95 seconds
+                        based upon incoming network traffic per instance over the last 60 seconds
                         scale in at 1024 KB and below, scale out at 8300 KB and above</td></tr>
                 <tr><td><code><nobr>2-10:c4.large:netout1024-8300</nobr></code></td>
                     <td>auto-scale between 2 (min) and 10 (max) c4.large instances
                         based upon outgoing network traffic per instance over the last 300 seconds
                         scale in at 1024 KB and below, scale out at 8300 KB and above</td></tr>
-                <tr><td><code><nobr>2-10:c4.large:netout1024-8300:95</nobr></code></td>
+                <tr><td><code><nobr>2-10:c4.large:netout1024-8300:60</nobr></code></td>
                     <td>auto-scale between 2 (min) and 10 (max) c4.large instances
-                        based upon outgoing network traffic per instance over the last 95 seconds
+                        based upon outgoing network traffic per instance over the last 60 seconds
                         scale in at 1024 KB and below, scale out at 8300 KB and above</td></tr>
             </table>
         </td>
