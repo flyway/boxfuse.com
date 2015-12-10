@@ -207,6 +207,12 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>1024</td>
         <td>The amount of RAM in MB to assign to an Instance</td>
     </tr>
+    <tr id="tmp">
+        <td>tmp</td>
+        <td>boxfuse.tmp</td>
+        <td>1</td>
+        <td>The amount of temp space to allocate to /tmp in GB</td>
+    </tr>
 </table>
 
 <h3>Sample Configuration</h3>
@@ -242,6 +248,7 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         &lt;http&gt;8080&lt;/http&gt;
     &lt;/portsmap&gt;
     &lt;ram&gt;512&lt;/ram&gt;
+    &lt;tmp&gt;16&lt;/tmp&gt;
 &lt;/configuration&gt;</pre>
 
 <h3>Dynamically defined properties</h3>

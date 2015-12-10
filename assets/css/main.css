@@ -353,6 +353,29 @@ hr.soften {
         height: 200px;
     }
 
+	#wrapper {
+		margin: 0 auto -565px;
+	}
+
+	#push-footer {
+		height: 565px;
+	}
+
+	#footer-spacer {
+		height: 25px;
+	}
+
+	#footer-navigation {
+		height: 395px;
+	}
+
+	#footer-navigation .col-md-4 {
+		margin-bottom: 25px;
+	}
+
+	#footer-info {
+		height: 150px;
+	}
 }
 
 .btn-xlarge {

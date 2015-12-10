@@ -1,0 +1,70 @@
+---
+layout: blog
+subtitle: "Provisioning temp space"
+permalink: /blog/tmp.html
+---
+<div>
+    <p>Boxfuse makes it effortless to deploy modern JVM-based applications on VirtualBox and AWS. Most of these applications
+        are based on
+        <a href="/blog/spring-boot-ec2">Spring Boot</a>,
+        <a href="/blog/dropwizard-aws">Dropwizard</a>,
+        <a href="/docs/payloads/tomcat">Tomcat</a>,
+        <a href="/blog/javaee-aws">TomEE</a>
+        or the <a href="/blog/playframework-aws">Play Frameowrk</a> and many of them are <strong>completely stateless</strong> with
+        all state stored in some external service like RDS or S3.
+    </p>
+
+    <p>This works great as it perfectly fits the core principles behind Boxfuse:
+        <a href="/learn/why"><strong><nobr>Immutable Infrastructure</nobr></strong></a>,
+        <a href="/learn/how"><strong>Minimal Images</strong></a> and <strong>Blue/Green deployments</strong>.</p>
+
+    <p>However some applications also need to temporarily store some state locally for a number of reasons including:</p>
+    <ul>
+        <li>locally caching large objects</li>
+        <li>storing intermediate steps of a larger job</li>
+        <li>staging file uploads</li>
+    </ul>
+
+    <h2>Introducing easy temp space provisioning</h2>
+
+    <p>Starting today <strong>Boxfuse can now easily provision any amount of temp space you need</strong>. Every instance going forward
+        will have 1 GB of temp space on disk. You can increase this all the way to 16384 GB (16 TB) or disable it completely by setting
+    it to 0. This storage should be considered <strong>strictly ephemeral</strong> and will be automatically destroyed once the instance
+    it is attached to terminates.</p>
+
+    <p>So how does this work in practice?</p>
+
+    <p>Say you have an application that requires 100 GB of temp space. You can now enable that by doing:</p>
+
+    <pre class="console"><span>&gt;</span> boxfuse run myapp-1.0.jar <strong>-tmp=100</strong></pre>
+
+    <p>And that's it. Boxfuse will fuse an image and launch an instance by provisioning both the root device (where your application code resides) and a new
+    temp volume of 100 GB which will be automatically available for you to use under <code>/tmp</code>. Boxfuse will also
+    automatically configure the JVM to use the <code>/tmp</code> folder for all temporary files.</p>
+
+    <p>You are fully flexible and can enable this either at image creation or at instance launch time.</p>
+
+    <p>Also note that on AWS all temp volumes are encrypted by default and auto-destroy when the instance terminates to ensure the privacy of your data.</p>
+
+
+    <h2>Conclusion</h2>
+
+    <p>While Boxfuse has always worked great with modern stateless JVM applications, today we introduced support
+    for easily provisioning from 0 to 16384 GB (16 TB) of strictly ephemeral instance temp space. This space is automatically ready to use and
+        mounted under <code>/tmp</code>.</p>
+
+    <p>This feature is available today for all Boxfuse users on both VirtualBox and AWS instances at no additional cost. (AWS charges may apply)</p>
+
+    <p>Existing users only need to update their Boxfuse client with</p>
+
+    <pre class="console"><span>&gt;</span> boxfuse -u</pre>
+
+    <p>to start using this.</p>
+
+    <p><strong>Enjoy!</strong></p>
+
+   <p>And if you haven't already,
+        <a href="https://console.boxfuse.com"><strong>sign up for your
+        Boxfuse account</strong></a> now (simply log in with your GitHub id, it's free) and start deploying
+       and <a href="/blog/auto-scaling">auto-scaling</a> your JVM applications effortlessly on AWS today.</p>
+</div>

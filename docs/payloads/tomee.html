@@ -86,12 +86,19 @@ subtitle: 'TomEE'
         use the JVM defaults. You can override this by specifying the required JVM arguments like <code>-Xmx</code> via the
         <code>jvm.args</code> configuration setting.</p>
 
-    <h2>Sample App</h2>
+  <h2>Temporary Files</h2>
 
-    <p class="alert alert-info"><strong>Tip:</strong> Check out our <a href="/blog/javaee-aws"><strong>blog post</strong></a> on how to
-        deploy TomEE Java EE applications on AWS using Boxfuse</p>
+  <p>Boxfuse configures the JVM and the TomEE ActiveMQ Broker to use <code>/tmp</code> as the directory to store temporary files and provisions <strong>1 GB of space by default</strong>.</p>
+  <p>To increase this (up to a maximum of 16 TB), simply set
+    the <code>tmp</code> configuration setting to the number of GB of temp space you need. To prevent Boxfuse from
+    provisioning any temp space set <code>tmp</code> to <code>0</code>.</p>
 
-    <p>You can find a TomEE sample app for Boxfuse on GitHub at <strong><a href="https://github.com/boxfuse/boxfuse-samples/tomee">boxfuse/boxfuse-samples/tomee</a></strong>.</p>
+  <h2>Sample App</h2>
+
+  <p class="alert alert-info"><strong>Tip:</strong> Check out our <a href="/blog/javaee-aws"><strong>blog post</strong></a> on how to
+    deploy TomEE Java EE applications on AWS using Boxfuse</p>
+
+  <p>You can find a TomEE sample app for Boxfuse on GitHub at <strong><a href="https://github.com/boxfuse/boxfuse-samples/tomee">boxfuse/boxfuse-samples/tomee</a></strong>.</p>
 
     <p class="next-steps">
         <a class="btn btn-primary" href="/docs/payloads/jar">Executable Jar <i class="fa fa-arrow-right"></i></a>
