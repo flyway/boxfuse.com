@@ -82,6 +82,37 @@ subtitle: 'AWS'
     <p>Both <strong>Elastic IP</strong> (single Instance) and <strong>ELB</strong> (multiple instances in multiple availability zones) apps are supported.
         Boxfuse always performs <strong>Zero Downtime upgrades</strong> of your apps when you redeploy them.</p>
 
+    <h2 id="tagging">Tagging</h2>
+
+    <p>Wherever supported by AWS and applicable all AWS resources created by Boxfuse are consistently tagged with one or more of the following tags:</p>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>AWS Tag Name</th>
+            <th>Description</th>
+            <th>Example</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><code>boxfuse:env</code></td>
+            <td>The Boxfuse <a href="/docs/environments">environment</a></td>
+            <td>prod</td>
+        </tr>
+        <tr>
+            <td><code>boxfuse:app</code></td>
+            <td>The Boxfuse application</td>
+            <td>myuser/myapp</td>
+        </tr>
+        <tr>
+            <td><code>boxfuse:image</code></td>
+            <td>The Boxfuse image</td>
+            <td>myuser/myapp:1.2.3</td>
+        </tr>
+        </tbody>
+    </table>
+
     <p class="next-steps">
         <a class="btn btn-primary" href="/docs/travisci">Travis CI <i class="fa fa-arrow-right"></i></a>
     </p>
