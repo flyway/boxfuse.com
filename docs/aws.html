@@ -20,7 +20,7 @@ subtitle: 'AWS'
     <p>Boxfuse fully supports the ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-central-1, eu-west-1, sa-east-1,
         us-east-1, us-west-1 &amp; us-west-2 regions.</p>
 
-    <p>We recommend the <strong>eu-central-1</strong>, <strong>eu-west-1</strong> and <strong>us-east-1</strong> regions
+    <p>We recommend the <strong>eu-central-1</strong>, <strong>eu-west-1</strong>, <strong>us-east-1</strong> and <strong>us-west-2</strong> regions
         as they are <strong>optimized for deployment speed</strong> with new AMIs (Amazon Machine Images) created in under 60 seconds.
         <strong>This is 5x to 10x faster than any other tool in the industry!</strong></p>
 
@@ -65,8 +65,8 @@ subtitle: 'AWS'
             <td>Less than 5 minutes</td>
         </tr>
         <tr>
-            <td>us-west-2</td>
-            <td>Less than 5 minutes</td>
+            <td><strong>us-west-2</strong></td>
+            <td><strong>Less than 60 seconds</strong></td>
         </tr>
         </tbody>
     </table>
@@ -109,6 +109,11 @@ subtitle: 'AWS'
             <td><code>boxfuse:image</code></td>
             <td>The Boxfuse image</td>
             <td>myuser/myapp:1.2.3</td>
+        </tr>
+        <tr>
+            <td><code>Name</code></td>
+            <td>(For EC2 instances only) The Boxfuse image and environment</td>
+            <td>boxfuse myuser/myapp:1.2.3@prod</td>
         </tr>
         </tbody>
     </table>
