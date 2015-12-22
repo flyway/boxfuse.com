@@ -116,11 +116,11 @@ hr.soften {
 
 #wrapper {
     min-height: 100%;
-    margin: 0 auto -365px;
+    margin: 0 auto -380px;
 }
 
 #push-footer {
-    height: 365px;
+    height: 380px;
 }
 
 #footer {
@@ -129,7 +129,7 @@ hr.soften {
     font-size: 10px;
     line-height: 12px;
     text-align: center;
-    height: 365px;
+    height: 380px;
 }
 
 #footer-spacer {
@@ -137,7 +137,7 @@ hr.soften {
 }
 
 #footer-navigation {
-	height: 195px;
+	height: 210px;
 	background: #333333;
 	padding-top: 20px;
 	font-size: 14px;
@@ -354,11 +354,11 @@ hr.soften {
     }
 
 	#wrapper {
-		margin: 0 auto -565px;
+		margin: 0 auto -580px;
 	}
 
 	#push-footer {
-		height: 565px;
+		height: 580px;
 	}
 
 	#footer-spacer {
@@ -366,7 +366,7 @@ hr.soften {
 	}
 
 	#footer-navigation {
-		height: 395px;
+		height: 410px;
 	}
 
 	#footer-navigation .col-md-4 {

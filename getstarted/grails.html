@@ -1,0 +1,211 @@
+---
+layout: getstarted
+menu: grails
+subtitle: 'Get Started with Boxfuse & Grails'
+---
+<div id="grails">
+    <p><img src="/assets/img/grails.png"></p>
+    <p>&nbsp;</p>
+
+    <p>This tutorial will get you started with Boxfuse and Grails. It should take you about <strong>5-10 minutes</strong> to complete.</p>
+
+    <h2>Prerequisites</h2>
+    <p>Before you begin, ensure you have successfully:</p>
+    <ol>
+        <li>created a <strong><a href="https://console.boxfuse.com">Boxfuse Account</a></strong> (simply log in with your GitHub account, it's free)</li>
+        <li>downloaded and installed the latest <strong><a href="/getstarted/download">Boxfuse Client</a></strong></li>
+        <li>downloaded and installed the latest version of <strong><a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a></strong></li>
+        <li>downloaded and installed the latest <strong><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">JDK</a></strong> with <code>JAVA_HOME</code> set up correctly</li>
+        <li>downloaded and installed the latest version of <strong><a href="https://grails.org/download.html">Grails</a></strong> with <code>GRAILS_HOME</code> set up correctly</li>
+    </ol>
+
+    <h2>Creating the Grails application</h2>
+
+    <p>Creating a new Grails app is incredibly easy. All you need is:</p>
+    <pre class="console"><span>&gt;</span> grails create-app getstarted-grails</pre>
+
+    <p>Once that's done, you will have the following structure:</p>
+    <pre class="filetree"><i class="fa fa-folder-open"></i> getstarted-grails
+  <i class="fa fa-folder"></i> gradle
+  <i class="fa fa-folder-open"></i> grails-app
+    <i class="fa fa-folder"></i> assets
+    <i class="fa fa-folder-open"></i> conf
+      <i class="fa fa-folder"></i> spring
+      <i class="fa fa-file-text"></i> application.yml
+      <i class="fa fa-file-text"></i> logback.groovy
+    <i class="fa fa-folder"></i> controllers
+    <i class="fa fa-folder"></i> domain
+    <i class="fa fa-folder"></i> i18n
+    <i class="fa fa-folder"></i> init
+    <i class="fa fa-folder"></i> services
+    <i class="fa fa-folder"></i> taglib
+    <i class="fa fa-folder"></i> utils
+    <i class="fa fa-folder"></i> views
+  <i class="fa fa-folder-open"></i> src
+    <i class="fa fa-folder-open"></i> main
+      <i class="fa fa-folder"></i> groovy
+      <i class="fa fa-folder"></i> webapp
+    <i class="fa fa-folder-open"></i> test
+      <i class="fa fa-folder"></i> groovy
+    <i class="fa fa-folder-open"></i> integration-test
+      <i class="fa fa-folder"></i> groovy
+  <i class="fa fa-file-text"></i> .gitignore
+  <i class="fa fa-file-text"></i> build.gradle
+  <i class="fa fa-file-text"></i> gradle.properties
+  <i class="fa fa-file-text"></i> gradlew
+  <i class="fa fa-file-text"></i> gradlew.bat</pre>
+
+    <p>Your application is now fully set up. As your skeleton also includes Spring Boot's actuator (Spring Boot's turn-key production readiness features), you now have two urls available:</p>
+    <ul>
+        <li><code>/</code> : your controller</li>
+        <li><code>/health</code> : Spring Boot actuator's health check page</li>
+    </ul>
+
+    <p>Go ahead and build it:</p>
+
+    <pre class="console"><span>getstarted-grails&gt;</span> grails war</pre>
+
+    <p>Great. Your Grails application is now available under <code>build/libs/getstarted-grails-0.1.jar</code>.</p>
+
+    <h2>Fusing a Boxfuse image and running it locally on VirtualBox</h2>
+
+    <p>Now it's time to fuse your application into a Boxfuse image and launch an instance of it on VirtualBox:</p>
+
+    <pre class="console"><span>getstarted-grails&gt;</span> boxfuse run
+
+Fusing Image for getstarted-grails-0.1.jar ...
+Image fused in 00:10.089s (97828 K) -> myuser/getstarted-grails:0.1
+Launching Instance of myuser/getstarted-grails:0.1 on VirtualBox ...
+Forwarding http port localhost:8080 -> vb-9feb5d7c:8080
+Instance launched in 00:04.688s -> vb-9feb5d7c
+Waiting for Payload to start on Instance vb-9feb5d7c ...
+Payload started in 00:06.029s -> http://127.0.0.1:8080</pre>
+
+    <p>Boxfuse has automatically detected the Spring Boot Actuator and used the <code>/health</code> endpoint to check whether the instance came up correctly.</p>
+
+    <p>Open a browser at this address to see your new application up and running within the VirtualBox VM by simply executing:</p>
+
+    <pre class="console"><span>getstarted-grails&gt;</span> boxfuse open</pre>
+
+    <img class="screenshot" src="/assets/img/getstarted/grails-virtualbox.png">
+
+    <p>You can also see your newly created image:</p>
+
+    <pre class="console" style="font-size: 80%"><span>getstarted-grails&gt;</span> boxfuse ls
+
+Images available locally:
++------------------------------+---------------------------+-------+---------+-----------+--------------+---------+---------------------+
+| Image                        |          Payload          | Debug |  Java   | AppServer |    Ports     |  Size   |    Generated at     |
++------------------------------+---------------------------+-------+---------+-----------+--------------+---------+---------------------+
+| myuser/getstarted-grails:0.1 | getstarted-grails-0.1.jar | false | 8.60.22 | Grails    | http -> 8080 | 97828 K | 2015-12-21 17:47:50 |
++------------------------------+---------------------------+-------+---------+-----------+--------------+---------+---------------------+
+Total: 1</pre>
+
+    <p>As well as the instance that is running:</p>
+
+    <pre class="console" style="font-size: 80%"><span>getstarted-grails&gt;</span> boxfuse ps
+
+Running Instances on VirtualBox in the dev environment :
++-------------+------------------------------+---------------------+-----------------------+---------------------+
+|  Instance   |            Image             |        Type         |          URL          |     Launched at     |
++-------------+------------------------------+---------------------+-----------------------+---------------------+
+| vb-9feb5d7c | myuser/getstarted-grails:0.1 | 4 CPU / 1024 MB RAM | http://127.0.0.1:8080 | 2015-12-21 17:47:56 |
++-------------+------------------------------+---------------------+-----------------------+---------------------+
+Total: 1</pre>
+
+    <h2>Deploying your application to AWS</h2>
+
+    <p>Now let's deploy the image to AWS. As Boxfuse works with your AWS account, it first needs the necessary permissions to do so.
+        So if you haven't already done it, go to the Boxfuse Console and <strong><a href="https://console.boxfuse.com/#/awsAccount">connect your AWS account</a></strong> now.</p>
+
+    <p>Every new Boxfuse account comes with 3 environments: <code>dev</code>, <code>test</code> and <code>prod</code>.
+        <code>dev</code> is your local VirtualBox environment and <code>test</code> and <code>prod</code> are on AWS.</p>
+
+    <p>So let's deploy our application to the <code>prod</code> environment on AWS:</p>
+
+    <pre class="console"><span>getstarted-grails&gt;</span> boxfuse run -env=prod
+
+<div style="font-size: 90%">Creating myuser/getstarted-grails ...
+Pushing myuser/getstarted-grails:0.1 ...
+Verifying myuser/getstarted-grails:0.1 ...
+Waiting for AWS to create an AMI for myuser/getstarted-grails:0.1 in eu-central-1 (this may take up to 50 seconds) ...
+AMI created in 00:19.095s in eu-central-1 -> ami-fd5b4491
+Creating Elastic IP ...
+Mapping getstartedgrails-myuser.boxfuse.io to 52.29.77.147 ...
+Creating security group boxsg-myuser-prod-getstarted-grails-0.1 ...
+Launching t2.micro instance of myuser/getstarted-grails:0.1 (ami-fd5b4491) in prod (eu-central-1) ...
+Instance launched in 00:50.707s -> i-2c1daf90
+Waiting for AWS to boot Instance i-2c1daf90 and Payload to start at http://52.59.247.126:8080/health ...
+Payload started in 00:55.567s -> http://52.59.247.126:8080/health
+Remapping Elastic IP 52.29.77.147 to i-2c1daf90 ...
+Waiting 15s for AWS to complete Elastic IP Zero Downtime transition ...
+Deployment completed successfully. myuser/getstarted-grails:0.1 is up and running at http://getstartedgrails-myuser.boxfuse.io:8080/</div></pre>
+
+    <p>Notice that Boxfuse has reused your image unchanged instead fusing a new one.</p>
+
+    <p>With that one command Boxfuse has automatically pushed your image to the Boxfuse Vault as well as provisioned,
+    configured and secured all necessary AWS resources. There is no manual work necessary on your behalf.</p>
+
+    <p>All you need to do is simply navigate to your new domain to see your Spring Boot application in action on AWS:</p>
+
+    <img class="screenshot" src="/assets/img/getstarted/grails-aws.png">
+
+    <h2>Bonus: update your application with zero downtime</h2>
+
+    <p>Now let's take things one step further and deploy an update of your application with zero downtime using blue/green deployments.</p>
+
+    <p>Start by modifying <code>grails-app/views/index.gsp</code> and change the title:</p>
+    <pre class="prettyprint">&lt;h1&gt;Welcome to Grails on Boxfuse!&lt;/h1&gt;</pre>
+
+    <p>then bump the version in <code>build.gradle</code>:</p>
+
+    <pre class="prettyprint">version "0.2"</pre>
+
+    <p>and rebuild the jar:</p>
+
+    <pre class="console"><span>getstarted-grails&gt;</span> grails clean
+<span>getstarted-grails&gt;</span> grails war</pre>
+
+    <p>Finally deploy the new version of your application to AWS:</p>
+
+    <pre class="console"><span>getstarted-grails&gt;</span> boxfuse run -env=prod
+
+<div style="font-size: 90%">Fusing Image for getstarted-grails-0.2.jar ...
+Image fused in 00:10.048s (97827 K) -> myuser/getstarted-grails:0.2
+Pushing myuser/getstarted-grails:0.2 ...
+Verifying myuser/getstarted-grails:0.2 ...
+Waiting for AWS to create an AMI for myuser/getstarted-grails:0.2 in eu-central-1 (this may take up to 50 seconds) ...
+AMI created in 00:18.013s in eu-central-1 -> ami-7b5a4517
+Creating security group boxsg-myuser-prod-getstarted-grails-0.2 ...
+Launching t2.micro instance of myuser/getstarted-grails:0.2 (ami-7b5a4517) in prod (eu-central-1) ...
+Instance launched in 00:41.174s -> i-b502b009
+Waiting for AWS to boot Instance i-b502b009 and Payload to start at http://52.59.254.138:8080/health ...
+Payload started in 01:27.645s -> http://52.59.254.138:8080/health
+Remapping Elastic IP 52.29.77.147 to i-b502b009 ...
+Waiting 15s for AWS to complete Elastic IP Zero Downtime transition ...
+Terminating instance i-2c1daf90 ...
+Destroying Security Group sg-5981cb30 ...
+Deployment completed successfully. myuser/getstarted-grails:0.2 is up and running at http://getstartedgrails-myuser.boxfuse.io:8080/</div></pre>
+
+    <p>And there it is:</p>
+
+    <img class="screenshot" src="/assets/img/getstarted/grails-aws-update.png">
+
+    <h2>Summary</h2>
+
+    <p>In this brief guide we have seen how to:</p>
+    <ul>
+        <li>create a Grails application</li>
+        <li>fuse it into a Boxfuse image</li>
+        <li>deploy the image locally on VirtualBox</li>
+        <li>deploy the image unchanged to AWS</li>
+        <li>update the application with zero downtime</li>
+    </ul>
+
+    <p>Now it's your turn. Take your favorite Grails application and deploy it with ease and pleasure.</p>
+    <p>And don't forget, Boxfuse also comes with a <a href="/docs/gradle">Gradle</a> plugin to seamlessly integrate with your CI/CD workflow.</p>
+
+    <p class="next-steps">
+        <a class="btn btn-primary" href="/docs/payloads/grails">Boxfuse Grails Documentation <i class="fa fa-arrow-right"></i></a>
+    </p>
+</div>
