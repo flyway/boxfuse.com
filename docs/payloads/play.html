@@ -19,6 +19,39 @@ subtitle: 'Play'
     <p>For Play 2.3.x, set <code>applyEvolutions.&lt;database&gt=true</code> in your Play config (<a href="https://www.playframework.com/documentation/2.3.x/Evolutions#Running-Evolutions-in-Production">reference docs</a>).</p>
     <p>For Play 2.4.x and newer, set <code>play.evolutions.autoApply=true</code> in your Play config (<a href="https://www.playframework.com/documentation/2.4.x/Evolutions#Evolutions-configuration">reference docs</a>).</p>
 
+    <h2 id="alternative-config">Alternative Play config files</h2>
+
+    <p>By default, Play loads the <code>application.conf</code> file in the <code>conf</code> directory of your app.</p>
+        <p>You can however tell play to use alternative config files by passing in a JVM system property. So for:
+    </p>
+
+    <pre class="filetree"><i class="fa fa-folder-open"></i> my-play-app
+  <i class="fa fa-folder-open"></i> conf
+    <i class="fa fa-file-text"></i> application.conf</span>
+    <span><i class="fa fa-file-text"></i> other.conf</span></pre>
+
+    <p>You could then launch your Boxfuse instance with <code>-jvm.args=-Dconfig.resource=other.conf</code> to load the
+    alternate Play config file called <code>other.conf</code> in the conf directory of your application.</p>
+
+    <p>Note: these files must be present at the time you invoke <code>activator dist</code>.</p>
+
+    <h2>Overriding Play configuration</h2>
+
+    <p>As an alternative to overriding the entire configure you can also selectively override individual configuration properties
+    on instance launch.</p>
+
+    <h3>Using JVM system properties</h3>
+    <p>The first option is to use JVM system properties. For example: <code>-jvm.args=-Dplay.crypto.secret=abcdefghijk</code></p>
+
+    <p>More info in the <a href="https://www.playframework.com/documentation/2.4.x/ProductionConfiguration#Overriding-configuration-with-system-properties">official Play documentation</a>.</p>
+
+    <h3>Using environment variables</h3>
+    <p>Play also gives you the opportunity to override configuration properties using environment variables. Say if you have
+    defined <code>my.key = ${?MY_KEY_ENV}</code> in your Play configuration file, you can now override it on instance launch
+    using <code>-envvars.MY_KEY_ENV=myvalue</code></p>
+
+    <p>More info in the <a href="https://www.playframework.com/documentation/2.4.x/ProductionConfiguration#Using-environment-variables">official Play documentation</a>.</p>
+
     <h2>Root Certificates</h2>
 
     <p>By default, Boxfuse uses the <strong>same root certificate bundle as the latest version of Firefox</strong>.

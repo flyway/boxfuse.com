@@ -1,42 +1,38 @@
 ---
 layout: docs
-menu: springboot
-subtitle: 'Spring Boot'
+menu: grails
+subtitle: 'Grails'
 ---
-<div id="springboot">
-    <p><img src="/assets/img/springboot.png"></p>
+<div id="grails">
+    <p><img src="/assets/img/grails.png"></p>
 
-    <p>Boxfuse supports <strong>Spring Boot 1.2.x or newer</strong> Apps packaged as a <strong>Spring Boot Executable Jar</strong> using either <strong>OpenJDK 7.x or 8.x</strong>.</p>
-
-    <p><strong>Note:</strong> Spring Boot 1.3.x and newer also offers the option to package your app as a "fully executable jar". Do NOT use this as the
-    resulting jar file violates the jar specification and will not be readable by Boxfuse and numerous other tools.</p>
+    <p>Boxfuse supports <strong>Grails 3.0.x or newer</strong> Apps packaged as a <strong>Grails Executable Jar</strong> using either <strong>OpenJDK 7.x or 8.x</strong>.</p>
 
     <h2>Get Started</h2>
 
-    <p>If you haven't already, start by following <strong><a href="/getstarted/springboot">Spring Boot &amp; Boxfuse tutorial</a></strong> that will get you <strong>up and running in 5-10 minutes</strong>.</p>
+    <p>If you haven't already, start by following <strong><a href="/getstarted/grails">Grails &amp; Boxfuse tutorial</a></strong> that will get you <strong>up and running in 5-10 minutes</strong>.</p>
 
-    <p>Also check out our <a href="/blog/spring-boot-ec2"><strong>blog post</strong></a> on how to
-        create a Spring Boot application and deploy it on EC2 using Boxfuse.</p>
+    <p>Also check out our <a href="/blog/grails-aws"><strong>blog post</strong></a> on how to
+        create a Grails application and deploy it effortlessly on EC2 using Boxfuse.</p>
 
     <h2 id="configuration">Configuration</h2>
 
-    <p>By default Boxfuse looks for a <code>/application-boxfuse.properties</code> file <em>inside</em> the Spring Boot jar file
+    <p>By default Boxfuse looks for an <code>application.yml</code> file <em>inside</em> the Grails jar file
         and <strong>runs your app with the Spring profile <code>boxfuse</code></strong> activated by default.</p>
 
-    <p>If you use Maven or Gradle, this means the <code>application-boxfuse.properties</code> file should be put into the <code>src/main/resources</code> directory.
-        When the Spring Boot Maven or Gradle plugin packages the executable jar, it will include it in the root of your class path, where Boxfuse can see it.</p>
-    <pre class="filetree"><i class="fa fa-folder-open"></i> my-spring-boot-app
-  <i class="fa fa-folder-open"></i> src
-    <i class="fa fa-folder-open"></i> main
-      <i class="fa fa-folder"></i> java
-      <i class="fa fa-folder-open"></i> resources
-        <span><i class="fa fa-file-text"></i> application-boxfuse.properties</span></pre>
+    <p>In your Grails project, this means the <code>application.yml</code> file should be put into the <code>grails-app/conf</code> directory.
+        When the Grails packages the executable jar, it will include it in the root of your class path, where Boxfuse can see it.</p>
+    <pre class="filetree"><i class="fa fa-folder-open"></i> my-grails-app
+  <i class="fa fa-folder-open"></i> grails-app
+    <i class="fa fa-folder-open"></i> conf
+      <span><i class="fa fa-file-text"></i> application.yml</span></pre>
 
-    <p>Boxfuse parses <strong><code>application-boxfuse.properties</code></strong> and <strong>automatically configures the ports and the healthcheck</strong> based on the
+    <p>Boxfuse parses <strong><code>application.yml</code></strong> and <strong>automatically configures the ports and the healthcheck</strong> based on the
     information it contains.</p>
 
-    <p>If no <code>application-boxfuse.properties</code> is found at the root of the jar file, Boxfuse will automatically
-        look for <code>application-default.properties</code> and <code>application.properties</code>. The overriding order
+    <p>If no <code>application.yml</code> is found at the root of the jar file, Boxfuse will automatically
+        look for <code>application-boxfuse.yml</code>, <code>application-default.yml</code>,
+        <code>application-boxfuse.properties</code>, <code>application-default.properties</code> and <code>application.properties</code>. The overriding order
     matches the default Spring Boot one.</p>
 
     <h2>Ports</h2>
@@ -67,54 +63,58 @@ subtitle: 'Spring Boot'
         <em>inside</em> the Spring Boot jar file. Boxfuse will automatically extract all <code>.jks</code> and <code>.keystore</code>
         files it finds to the same directory on the file system as your Spring Boot jar file.</p>
 
-    <p>If you use Maven or Gradle, this means your <code>.jks</code> or <code>.keystore</code> KeyStore file should be put into the <code>src/main/resources</code> directory.
-        When Maven or Gradle packages the jar, it will include it in the root of your Spring Boot jar file, where Boxfuse can see it.</p>
-    <pre class="filetree"><i class="fa fa-folder-open"></i> my-spring-boot-app
+    <p>If you use Gradle, this means your <code>.jks</code> or <code>.keystore</code> KeyStore file should be put into the <code>src/main/resources</code> directory.
+        When Gradle packages the jar, it will include it in the root of your Spring Boot jar file, where Boxfuse can see it.</p>
+    <pre class="filetree"><i class="fa fa-folder-open"></i> my-grails-app
   <i class="fa fa-folder-open"></i> src
     <i class="fa fa-folder-open"></i> main
-      <i class="fa fa-folder"></i> java
+      <i class="fa fa-folder"></i> groovy
       <i class="fa fa-folder-open"></i> resources
         <span><i class="fa fa-file"></i> example.jks</span></pre>
 
     <p>You can then configure the Spring Boot connector to use it. So if for example
         you have a KeyStore named <code>/example.jks</code> inside your Spring Boot jar file,
-        <code>application-boxfuse.properties</code> should look like this:</p>
+        <code>application.yml</code> should look like this:</p>
 
-    <pre class="prettyprint">server.port=443
-server.ssl.enabled=true
-server.ssl.key-store=example.jks
-server.ssl.key-store-password=myS3cr3tPwd</pre>
+    <pre class="prettyprint">server:
+  port: 443
+  ssl:
+    enabled: true
+    key-store: example.jks
+    key-store-password: myS3cr3tPwd</pre>
 
     <h2>Root Certificates</h2>
 
     <p>By default, Boxfuse uses the <strong>same root certificate bundle as the latest version of Firefox</strong>.
         Additionally Boxfuse also includes the <strong>root certificates for Amazon RDS</strong>, so you can connect securely to RDS databases out of the box.</p>
     <p>You can, however, ship your own set of root certificates, by placing them in a KeyStore inside the Jar file as <code>/cacerts</code>.
-        If you use Maven or Gradle, this means your <code>cacerts</code> KeyStore file should be put into the <code>src/main/resources</code> directory.
+        If you use Gradle, this means your <code>cacerts</code> KeyStore file should be put into the <code>src/main/resources</code> directory.
         Boxfuse will then automatically configure the JRE to use these instead.
     </p>
 
-    <pre class="filetree"><i class="fa fa-folder-open"></i> my-spring-boot-app
+    <pre class="filetree"><i class="fa fa-folder-open"></i> my-grails-app
   <i class="fa fa-folder-open"></i> src
     <i class="fa fa-folder-open"></i> main
-      <i class="fa fa-folder"></i> java
+      <i class="fa fa-folder"></i> groovy
       <i class="fa fa-folder-open"></i> resources
         <span><i class="fa fa-file"></i> cacerts</span></pre>
 
     <p>If you choose to secure your <code>cacerts</code> TrustStore with a password different than the default <code>changeit</code>,
-        you have to add the following to your Spring Boot configuration:</p>
+        you have to add the following to your Grails configuration:</p>
 
-    <pre class="prettyprint">server.ssl.trust-store=/cacerts/cacerts
-server.ssl.trust-store-password=my0th3rPwd</pre>
+    <pre class="prettyprint">server:
+  ssl:
+    trust-store: /cacerts/cacerts
+    trust-store-password: my0th3rPwd</pre>
 
     <h2 id="javaagents">Java Agents</h2>
 
     <p>If you wish to launch the JRE with one or more Java Agents, simply place the Java Agent files inside the Jar file under
-        <code>/javaagents/</code>. In a Maven or Gradle project this means you have to put your agent jar and whatever other files it requires under <code>src/main/resources/javaagents</code>:</p>
-    <pre class="filetree"><i class="fa fa-folder-open"></i> my-spring-boot-app
+        <code>/javaagents/</code>. In a Gradle project this means you have to put your agent jar and whatever other files it requires under <code>src/main/resources/javaagents</code>:</p>
+    <pre class="filetree"><i class="fa fa-folder-open"></i> my-grails-app
   <i class="fa fa-folder-open"></i> src
     <i class="fa fa-folder-open"></i> main
-      <i class="fa fa-folder"></i> java
+      <i class="fa fa-folder"></i> groovy
       <i class="fa fa-folder-open"></i> resources
         <span><i class="fa fa-folder-open"></i> javaagents
   <i class="fa fa-file"></i> myjavaagent.jar
@@ -138,6 +138,6 @@ server.ssl.trust-store-password=my0th3rPwd</pre>
     the temp space (by setting <code>tmp</code> to <code>0</code>), Boxfuse will also automatically disable the Actuator disk space health check.</p>
 
     <p class="next-steps">
-        <a class="btn btn-primary" href="/docs/payloads/grails">Grails <i class="fa fa-arrow-right"></i></a>
+        <a class="btn btn-primary" href="/docs/payloads/dropwizard">Dropwizard <i class="fa fa-arrow-right"></i></a>
     </p>
 </div>
