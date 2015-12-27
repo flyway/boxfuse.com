@@ -19,6 +19,18 @@ subtitle: 'Play'
     <p>For Play 2.3.x, set <code>applyEvolutions.&lt;database&gt=true</code> in your Play config (<a href="https://www.playframework.com/documentation/2.3.x/Evolutions#Running-Evolutions-in-Production">reference docs</a>).</p>
     <p>For Play 2.4.x and newer, set <code>play.evolutions.autoApply=true</code> in your Play config (<a href="https://www.playframework.com/documentation/2.4.x/Evolutions#Evolutions-configuration">reference docs</a>).</p>
 
+    <h2 id="configuration">Configuration</h2>
+
+    <p>By default Boxfuse looks for an <code>application.conf</code> file <em>inside</em> the Play dist zip file.
+        You can find this file in the <code>/conf</code> directory of your project:</p>
+
+    <pre class="filetree"><i class="fa fa-folder-open"></i> my-play-app
+  <i class="fa fa-folder-open"></i> conf
+    <span><i class="fa fa-file-text"></i> application.conf</span></pre>
+
+    <p>Boxfuse parses <strong><code>application.conf</code></strong> and <strong>automatically configures the http &amp; https ports, the payload path and the healthcheck path</strong> based on the
+        following config parameters: <code>play.server.http.port</code>, <code>play.server.https.port</code> and <code>play.http.context</code>.</p>
+
     <h2 id="alternative-config">Alternative Play config files</h2>
 
     <p>By default, Play loads the <code>application.conf</code> file in the <code>conf</code> directory of your app.</p>
@@ -27,13 +39,14 @@ subtitle: 'Play'
 
     <pre class="filetree"><i class="fa fa-folder-open"></i> my-play-app
   <i class="fa fa-folder-open"></i> conf
-    <i class="fa fa-file-text"></i> application.conf</span>
+    <i class="fa fa-file-text"></i> application.conf
     <span><i class="fa fa-file-text"></i> other.conf</span></pre>
 
     <p>You could then launch your Boxfuse instance with <code>-jvm.args=-Dconfig.resource=other.conf</code> to load the
     alternate Play config file called <code>other.conf</code> in the conf directory of your application.</p>
 
-    <p>Note: these files must be present at the time you invoke <code>activator dist</code>.</p>
+    <p><strong>Note:</strong> these files must be present at the time you invoke <code>activator dist</code>.
+        Also keep in mind that <a href="#configuration">Boxfuse auto-configuration</a> only works with the regular <code>application.conf</code> file.</p>
 
     <h2>Overriding Play configuration</h2>
 
