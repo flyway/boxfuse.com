@@ -136,6 +136,12 @@ INFO: Server startup in 302 ms</pre>
         <td>dev</td>
         <td>Use the AWS <code>test</code> or <code>prod</code> environments instead of the local <code>dev</code> one</td>
     </tr>
+    <tr id="logsTail">
+        <td>logsTail</td>
+        <td>boxfuse.logs.tail</td>
+        <td>false</td>
+        <td>Tail (keep running with live updates) the logs (VirtualBox only)</td>
+    </tr>
     <tr>
         <td>instances</td>
         <td>boxfuse.instances</td>
@@ -150,6 +156,7 @@ INFO: Server startup in 302 ms</pre>
     user='1234567890abcdef1234567890abcdef12345678'
     secret='ABCDEFGHIJKL1234567abcdefghijklmnopqrstu'
     env='prod'
+    logsTail=true
     instances='vb-ec717c5e'
 }</pre>
 

@@ -151,6 +151,12 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>target/boxfuse</td>
         <td>The directory where the logs should be redirected to</td>
     </tr>
+    <tr id="logs.tail">
+        <td>logs.tail</td>
+        <td>boxfuse.logs.tail</td>
+        <td>false</td>
+        <td>Tail (keep running with live updates) the logs (VirtualBox only)</td>
+    </tr>
     <tr id="ports">
         <td>ports</td>
         <td>boxfuse.ports.<em>NAME</em></td>
@@ -239,6 +245,7 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
     &lt;logs&gt;true&lt;/logs&gt;
     &lt;logs.auto&gt;true&lt;/logs.auto&gt;
     &lt;logs.dir&gt;${project.outputDirectory}/logs&lt;/logs.dir&gt;
+    &lt;logs.tail&gt;true&lt;/logs.tail&gt;
     &lt;ports&gt;
         &lt;https&gt;443&lt;/https&gt;
         &lt;http&gt;80&lt;/http&gt;
