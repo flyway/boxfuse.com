@@ -33,6 +33,13 @@ subtitle: 'VirtualBox'
         By default, Boxfuse assigns the same number of CPUs as the host, as well as 1024 MB of RAM to the Instance.
     </p>
 
+    <h2 id="BOXFUSE_HOST_IP">Accessing services running on the physical host</h2>
+
+    <p>To make it easy to access services running on your physical machine (outside of your Boxfuse VirtualBox instance), Boxfuse exposes an environment variable
+        named <code>BOXFUSE_HOST_IP</code> to each of its VirtualBox instances. This environment variable contains the IP address of your physical machine (example: 172.27.3.61) which you can use
+        this to construct URLs to access your services.
+    </p>
+
     <p class="next-steps">
         <a class="btn btn-primary" href="/docs/aws">AWS <i class="fa fa-arrow-right"></i></a>
     </p>
