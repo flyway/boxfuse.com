@@ -59,6 +59,24 @@ subtitle: 'Tomcat'
         <i class="fa fa-folder-open"></i> WEB-INF
           <span><i class="fa fa-file"></i> cacerts</span></pre>
 
+    <h2>Databases</h2>
+
+    <p>When using the <a href="/docs/databases">Boxfuse database auto-provisioning support</a>, Boxfuse automatically
+        inject the correct jdbc url, user and password as environment variables in your instance.</p>
+
+    <p>Here is an example on how to configure a <a href="http://tomee.apache.org/datasource-config.html">Tomcat JDBC DataSource</a> to make use of them:</p>
+
+    <pre class="prettyprint">&lt;Resource
+   name="jdbc/MyDB"
+   auth="Container"
+   type="javax.sql.DataSource"
+   driverClassName="org.postgresql.Driver"
+   url="${BOXFUSE_DATABASE_URL}"
+   username="${BOXFUSE_DATABASE_USER}"
+   password="${BOXFUSE_DATABASE_PASSWORD}"/&gt;</pre>
+
+    <p>This works identically in all environments and Boxfuse ensures you always get the correct settings.</p>
+
     <h2>Java Agents</h2>
 
     <p>If you wish to launch the JRE with one or more Java Agents, simply place the Java Agent files inside the Jar file under

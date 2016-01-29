@@ -8,6 +8,20 @@ subtitle: 'Executable Jar'
 
     <p>Boxfuse supports Apps written in Java or any other language and packaged as an <strong>Executable Jar file</strong> running on either <strong>OpenJDK 7.x or 8.x</strong>.</p>
 
+    <h2>Databases</h2>
+
+    <p>When using the <a href="/docs/databases">Boxfuse database auto-provisioning support</a>, Boxfuse automatically
+        inject the correct jdbc url, user and password as environment variables in your instance.</p>
+
+    <p>Here is an example on how to configure a <a href="https://github.com/brettwooldridge/HikariCP#initialization">HikariCP</a> DataSource to make use of them:</p>
+
+    <pre class="prettyprint">HikariDataSource ds = new HikariDataSource();
+ds.setJdbcUrl(System.getenv("BOXFUSE_DATABASE_URL"));
+ds.setUsername(System.getenv("BOXFUSE_DATABASE_USER"));
+ds.setPassword(System.getenv("BOXFUSE_DATABASE_PASSWORD"));</pre>
+
+    <p>This works identically in all environments and Boxfuse ensures you always get the correct settings.</p>
+
     <h2>Root Certificates</h2>
 
     <p>By default, Boxfuse uses the <strong>same root certificate bundle as the latest version of Firefox</strong>.

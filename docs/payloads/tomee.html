@@ -6,10 +6,13 @@ subtitle: 'TomEE'
 <div id="tomee">
     <p><img src="/assets/img/tomee.png"></p>
 
-    <p>Boxfuse supports Java EE apps written in Java or any other language and packaged as a <strong>.war file</strong> running on <strong>TomEE 1.7.x</strong> using either <strong>OpenJDK 7.x or 8.x</strong>.</p>
+    <p>Boxfuse supports Java EE apps written in Java or any other language and packaged as a <strong>.war file</strong>
+        running on <strong>TomEE 1.7.x</strong> using either <strong>OpenJDK 7.x or 8.x</strong>.</p>
 
-    <p>If your .war file contains a <code>WEB-INF/resources.xml</code> file, Boxfuse will automatically run it using TomEE instead of Tomcat.
-        By default it uses TomEE Web Profile, but it will automatically select TomEE Plus if you have defined any JMS resources.</p>
+    <p>If your .war file contains a <code>WEB-INF/resources.xml</code> file, Boxfuse will automatically run it using
+        TomEE instead of Tomcat.
+        By default it uses TomEE Web Profile, but it will automatically select TomEE Plus if you have defined any JMS
+        resources.</p>
 <pre class="filetree"><i class="fa fa-folder-open"></i> my-tomee-app
   <i class="fa fa-folder-open"></i> src
     <i class="fa fa-folder-open"></i> main
@@ -18,8 +21,9 @@ subtitle: 'TomEE'
       <i class="fa fa-folder-open"></i> webapp
         <i class="fa fa-folder-open"></i> WEB-INF
           <span><i class="fa fa-file-text"></i> resources.xml</span></pre>
-    <p>You can override the automatic behavior and force a particular TomEE edition to be used by passing in <code>-components.tomee-webprofile=1.7.2</code> (for TomEE Web Profile)
-    or <code>-components.tomee-plus=1.7.2</code> (for TomEE Plus).</p>
+    <p>You can override the automatic behavior and force a particular TomEE edition to be used by passing in <code>-components.tomee-webprofile=1.7.2</code>
+        (for TomEE Web Profile)
+        or <code>-components.tomee-plus=1.7.2</code> (for TomEE Plus).</p>
 
     <h2>HTTP</h2>
 
@@ -33,7 +37,8 @@ subtitle: 'TomEE'
         <strong>automatically redirect any insecure HTTP traffic to the secure HTTPS connection</strong>.
     </p>
 
-    <p>If you use Maven or Gradle this means you have to put the <code>keystore.jks</code> file under <code>src/main/webapp/WEB-INF</code>:</p>
+    <p>If you use Maven or Gradle this means you have to put the <code>keystore.jks</code> file under <code>src/main/webapp/WEB-INF</code>:
+    </p>
     <pre class="filetree"><i class="fa fa-folder-open"></i> my-tomee-app
   <i class="fa fa-folder-open"></i> src
     <i class="fa fa-folder-open"></i> main
@@ -46,12 +51,15 @@ subtitle: 'TomEE'
     <h2>Root Certificates</h2>
 
     <p>By default, Boxfuse uses the <strong>same root certificate bundle as the latest version of Firefox</strong>.
-        Additionally Boxfuse also includes the <strong>root certificates for Amazon RDS</strong>, so you can connect securely to RDS databases out of the box.</p>
-    <p>You can, however, ship your own set of root certificates, by placing them in a KeyStore at <code>/WEB-INF/cacerts</code>.
+        Additionally Boxfuse also includes the <strong>root certificates for Amazon RDS</strong>, so you can connect
+        securely to RDS databases out of the box.</p>
+    <p>You can, however, ship your own set of root certificates, by placing them in a KeyStore at
+        <code>/WEB-INF/cacerts</code>.
         Boxfuse will then automatically configure both the JRE and Tomcat to use these instead.
     </p>
 
-    <p>If you use Maven or Gradle this means you have to put the <code>cacerts</code> file under <code>src/main/webapp/WEB-INF</code>:</p>
+    <p>If you use Maven or Gradle this means you have to put the <code>cacerts</code> file under <code>src/main/webapp/WEB-INF</code>:
+    </p>
     <pre class="filetree"><i class="fa fa-folder-open"></i> my-tomee-app
   <i class="fa fa-folder-open"></i> src
     <i class="fa fa-folder-open"></i> main
@@ -61,12 +69,32 @@ subtitle: 'TomEE'
         <i class="fa fa-folder-open"></i> WEB-INF
           <span><i class="fa fa-file"></i> cacerts</span></pre>
 
+    <h2>Databases</h2>
+
+    <p>When using the <a href="/docs/databases">Boxfuse database auto-provisioning support</a>, Boxfuse automatically
+        inject the correct jdbc url, user and password as environment variables in your instance.</p>
+
+    <p>Here is an example on how to configure a <a
+            href="https://tomcat.apache.org/tomcat-8.0-doc/jndi-resources-howto.html#JDBC_Data_Sources">TomEE JDBC
+        DataSource</a> to make use of them:</p>
+
+    <pre class="prettyprint">&lt;Resource id="MyDB" type="DataSource"&gt;
+    JdbcDriver  org.postgresql.Driver
+    JdbcUrl     ${BOXFUSE_DATABASE_URL}
+    UserName    ${BOXFUSE_DATABASE_USER}
+    Password    ${BOXFUSE_DATABASE_PASSWORD}
+&lt;/Resource&gt;</pre>
+
+    <p>This works identically in all environments and Boxfuse ensures you always get the correct settings.</p>
+
     <h2>Java Agents</h2>
 
     <p>By default Boxfuse will activate the OpenEJB Java Agent.</p>
 
-    <p>If you wish to launch the JRE with one or more additional Java Agents, simply place the Java Agent files inside the Jar file under
-        <code>/WEB-INF/javaagents/</code>. In a Maven or Gradle project this means you have to put your agent jar and whatever other files it requires under <code>src/main/webapp/WEB-INF/javaagents</code>:</p>
+    <p>If you wish to launch the JRE with one or more additional Java Agents, simply place the Java Agent files inside
+        the Jar file under
+        <code>/WEB-INF/javaagents/</code>. In a Maven or Gradle project this means you have to put your agent jar and
+        whatever other files it requires under <code>src/main/webapp/WEB-INF/javaagents</code>:</p>
     <pre class="filetree"><i class="fa fa-folder-open"></i> my-tomee-app
   <i class="fa fa-folder-open"></i> src
     <i class="fa fa-folder-open"></i> main
@@ -82,23 +110,28 @@ subtitle: 'TomEE'
 
     <h2>JVM Memory</h2>
 
-    <p>By default Boxfuse will <strong>dynamically configure your JVM heap to use 85% of the available memory</strong> in the instance. All other settings
-        use the JVM defaults. You can override this by specifying the required JVM arguments like <code>-Xmx</code> via the
+    <p>By default Boxfuse will <strong>dynamically configure your JVM heap to use 85% of the available memory</strong>
+        in the instance. All other settings
+        use the JVM defaults. You can override this by specifying the required JVM arguments like <code>-Xmx</code> via
+        the
         <code>jvm.args</code> configuration setting.</p>
 
-  <h2>Temporary Files</h2>
+    <h2>Temporary Files</h2>
 
-  <p>Boxfuse configures the JVM and the TomEE ActiveMQ Broker to use <code>/tmp</code> as the directory to store temporary files and provisions <strong>1 GB of space by default</strong>.</p>
-  <p>To increase this (up to a maximum of 16 TB), simply set
-    the <code>tmp</code> configuration setting to the number of GB of temp space you need. To prevent Boxfuse from
-    provisioning any temp space set <code>tmp</code> to <code>0</code>.</p>
+    <p>Boxfuse configures the JVM and the TomEE ActiveMQ Broker to use <code>/tmp</code> as the directory to store
+        temporary files and provisions <strong>1 GB of space by default</strong>.</p>
+    <p>To increase this (up to a maximum of 16 TB), simply set
+        the <code>tmp</code> configuration setting to the number of GB of temp space you need. To prevent Boxfuse from
+        provisioning any temp space set <code>tmp</code> to <code>0</code>.</p>
 
-  <h2>Sample App</h2>
+    <h2>Sample App</h2>
 
-  <p class="alert alert-info"><strong>Tip:</strong> Check out our <a href="/blog/javaee-aws"><strong>blog post</strong></a> on how to
-    deploy TomEE Java EE applications on AWS using Boxfuse</p>
+    <p class="alert alert-info"><strong>Tip:</strong> Check out our <a href="/blog/javaee-aws"><strong>blog
+        post</strong></a> on how to
+        deploy TomEE Java EE applications on AWS using Boxfuse</p>
 
-  <p>You can find a TomEE sample app for Boxfuse on GitHub at <strong><a href="https://github.com/boxfuse/boxfuse-samples/tomee">boxfuse/boxfuse-samples/tomee</a></strong>.</p>
+    <p>You can find a TomEE sample app for Boxfuse on GitHub at <strong><a
+            href="https://github.com/boxfuse/boxfuse-samples/tomee">boxfuse/boxfuse-samples/tomee</a></strong>.</p>
 
     <p class="next-steps">
         <a class="btn btn-primary" href="/docs/payloads/jar">Executable Jar <i class="fa fa-arrow-right"></i></a>
