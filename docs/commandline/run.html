@@ -6,9 +6,12 @@ pill: run
 
 <h2>run</h2>
 
-<p>Runs an <em>Instance</em> of this <em>Image</em> on your machine or on AWS.</p>
+<p>Runs one or more <em>Instances</em> of this <em>Image</em> in the specified <a href="/docs/environments">environment</a> (on your machine or on AWS).</p>
 
-<p><strong>Usage: </strong> boxfuse run <em>payload | image</em></p>
+<p>All necessary resources (Elastic IPs, ELBs, Security Groups, Auto-Scaling Groups, Databases, ...) will be provisioned
+    automatically if they don't already exist. Already running applications will be updated with zero-downtime blue/green deployments.</p>
+
+<p><strong>Usage: </strong> boxfuse run <em>payload | image</em> -env=<em>environment</em></p>
 
 <pre class="console">&gt; boxfuse run hello:1.0
 
@@ -47,7 +50,7 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
     <tr id="env">
         <td>-env=dev<em>|</em>test<em>|</em>prod</td>
         <td>dev</td>
-        <td>Use the AWS test or prod environments instead of the local dev one</td>
+        <td>Use the AWS test or prod <a href="/docs/environments">environments</a> instead of the local dev one</td>
     </tr>
     <tr id="envvars">
         <td>-envvars.<em>NAME</em>=<em>value</em></td>

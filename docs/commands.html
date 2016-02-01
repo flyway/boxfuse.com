@@ -62,7 +62,10 @@ subtitle: 'Commands'
     <img src="/assets/img/commands/rm.png" alt="rm">
 
     <h2 id="run">run</h2>
-    <p>Runs an <em>Instance</em> of this <em>Image</em> on your machine or on AWS.</p>
+    <p>Runs one or more <em>Instances</em> of this <em>Image</em> in the specified <em>Environment</em> (on your machine or on AWS).</p>
+
+    <p>All necessary resources (Elastic IPs, ELBs, Security Groups, Auto-Scaling Groups, Databases, ...) will be provisioned
+        automatically if they don't already exist. Already running applications will be updated with zero-downtime blue/green deployments.</p>
     <img src="/assets/img/commands/run.png" alt="run">
 
     <h2 id="scale">scale</h2>
