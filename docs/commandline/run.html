@@ -6,10 +6,12 @@ pill: run
 
 <h2>run</h2>
 
-<p>Runs one or more <em>Instances</em> of this <em>Image</em> in the specified <a href="/docs/environments">environment</a> (on your machine or on AWS).</p>
+<p>Runs one or more <em>Instances</em> of this <em>Image</em> in the specified <a
+        href="/docs/environments">environment</a> (on your machine or on AWS).</p>
 
 <p>All necessary resources (Elastic IPs, ELBs, Security Groups, Auto-Scaling Groups, Databases, ...) will be provisioned
-    automatically if they don't already exist. Already running applications will be updated with zero-downtime blue/green deployments.</p>
+    automatically if they don't already exist. Already running applications will be updated with zero-downtime
+    blue/green deployments.</p>
 
 <p><strong>Usage: </strong> boxfuse run <em>payload | image</em> -env=<em>environment</em></p>
 
@@ -20,6 +22,12 @@ Forwarding http port localhost:8888 -> vb-ec717c5e:80
 Instance launched in 00:04.006s -> vb-ec717c5e
 Waiting for Payload to start on Instance vb-ec717c5e ...
 Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
+
+<p><strong>Note:</strong>
+    When neither a payload (jar/war/zip file) nor an image is specified, Boxfuse will automatically search for a
+    compatible payload to fuse within the current directory. If the command is executed at the root of a Maven, Gradle or SBT project,
+    the output directory of that project will be automatically scanned as well.
+</p>
 
 <p><strong>Arguments:</strong></p>
 
@@ -158,7 +166,8 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         </td>
         <td><em>same as matching image port</em></td>
         <td><p>This is for VirtualBox only.</p>
-            <p>The local ports to map to the app inside the instance. By default Boxfuse will attempt to open the same port
+            <p>The local ports to map to the app inside the instance. By default Boxfuse will attempt to open the same
+                port
                 locally as has been opened in the VirtualBox VM. On Linux &amp; Mac privileged ports (&lt;1024) will be
                 opened at 10000
                 + the port number for non-root users.<br>
