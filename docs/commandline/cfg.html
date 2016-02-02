@@ -8,7 +8,7 @@ pill: cfg
 
 <p>Configures an <em>App</em> for a specific <em>Environment</em>.</p>
 
-<p><strong>Usage: </strong> boxfuse cfg <em>app</em></p>
+<p><strong>Usage: </strong> boxfuse cfg <em>app</em> -env=<em>environment</em></p>
 
 <pre class="console">&gt; boxfuse cfg hello -env=test -securitygroup=sg-12345678
 
@@ -26,7 +26,7 @@ Successfully configured hello in test</pre>
     </tr>
     </thead>
     <tr id="env">
-        <td>-env=</em>test<em>|</em>prod</td>
+        <td>-env=<em>test</em>|<em>prod</em></td>
         <td>dev</td>
         <td>Configure the AWS test or prod <a href="/docs/environments">environments</a></td>
     </tr>
