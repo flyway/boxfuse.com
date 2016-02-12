@@ -1,20 +1,29 @@
 ---
 layout: maven
-pill: open
+pill: info
 ---
-<img src="/assets/img/commands/open.png" alt="open">
+<img src="/assets/img/commands/info.png" alt="info">
 
-<h2>boxfuse:open</h2>
+<h2>boxfuse:info</h2>
 
-<p>Opens a web browser pointing at the https or http port of an <em>Instance</em> running either on your machine or on AWS.</p>
+<p>Displays information about an <em>App</em> for a specific <em>Environment</em>.</p>
 
-<p>Set <code>boxfuse.db</code> to <code>true</code> to open a <a href="/docs/databases">database connection</a> instead.</p>
+<p><strong>Usage: </strong> mvn boxfuse:info -Dboxfuse.app=<em>appName</em></p>
 
-<p><strong>Usage: </strong> mvn boxfuse:open -Dboxfuse.instances=<em>instance</em></p>
+<pre class="console">&gt; mvn boxfuse:info -Dboxfuse.app=hello -Dboxfuse.env=test
 
-<pre class="console">&gt; mvn boxfuse:open -Dboxfuse.instances=vb-5f3cf9387
+Info about myuser/hello in the test environment:
 
-Launching default browser to access Instance 'vb-5f3cf9387' (Url: http://127.0.0.1:8888) ...</pre>
+App Type    : Single Instance with Zero Downtime updates
+App URL     : http://hello-test-myuser.boxfuse.io/
+DB Type     : PostgreSQL database
+DB URL      : jdbc:postgresql://boxdb-myuser-test-hello.ca53c5vrhrzn.eu-central-1.rds.amazonaws.com:5432/hello
+DB Host     : boxdb-myuser-test-hello.ca53c5vrhrzn.eu-central-1.rds.amazonaws.com
+DB Port     : 5432
+DB Database : hello
+DB User     : qbGh5bYandLAYiXBHXp5L8jQliU9qwAkEFRf1R7JzJJ3azNwWmauKfYJe1TCoUW
+DB Password : JDBsCkFuDUCqLwDhbWZcZWmaeFCN7W8aAIzy0MjYA5ICXKCf3zMO7azw9092VFFqsnKayqWefAaklZchfATAbLsvShdsOWjKJBaU
+DB Status   : available</pre>
 
 <h3>Properties</h3>
 
@@ -52,22 +61,16 @@ Launching default browser to access Instance 'vb-5f3cf9387' (Url: http://127.0.0
         </td>
     </tr>
     <tr>
+        <td>app</td>
+        <td>boxfuse.app</td>
+        <td></td>
+        <td>The name of the application</td>
+    </tr>
+    <tr>
         <td>env</td>
         <td>boxfuse.env</td>
         <td>dev</td>
         <td>Use the AWS <code>test</code> or <code>prod</code> environments instead of the local <code>dev</code> one</td>
-    </tr>
-    <tr>
-        <td>db</td>
-        <td>boxfuse.db</td>
-        <td>false</td>
-        <td>Open a <a href="/docs/databases">database connection</a> instead of a browser window</td>
-    </tr>
-    <tr>
-        <td>instances</td>
-        <td>boxfuse.instances</td>
-        <td></td>
-        <td>The comma-separated list of ids of the Instance to work with</td>
     </tr>
 </table>
 
@@ -76,11 +79,10 @@ Launching default browser to access Instance 'vb-5f3cf9387' (Url: http://127.0.0
 <pre class="prettyprint">&lt;configuration&gt;
     &lt;user&gt;1234567890abcdef1234567890abcdef12345678&lt;/user&gt;
     &lt;secret&gt;ABCDEFGHIJKL1234567abcdefghijklmnopqrstu&lt;/secret&gt;
+    &lt;app&gt;hello&lt;/app&gt;
     &lt;env&gt;prod&lt;/env&gt;
-    &lt;db&gt;false&lt;/db&gt;
-    &lt;instances&gt;vb-ec717c5e&lt;/instances&gt;
 &lt;/configuration&gt;</pre>
 
 <p class="next-steps">
-    <a class="btn btn-primary" href="/docs/maven/logs">logs <i class="fa fa-arrow-right"></i></a>
+    <a class="btn btn-primary" href="/docs/maven/fuse">fuse <i class="fa fa-arrow-right"></i></a>
 </p>

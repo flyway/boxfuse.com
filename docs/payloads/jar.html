@@ -13,6 +13,10 @@ subtitle: 'Executable Jar'
     <p>When using the <a href="/docs/databases">Boxfuse database auto-provisioning support</a>, Boxfuse automatically
         inject the correct jdbc url, user and password as environment variables in your instance.</p>
 
+    <p>If your app includes the PostgreSQL or MySQL JDBC driver, Boxfuse will automatically provision the necessary PostgreSQL or MySQL database
+        in each environment. This can be disabled by setting
+        <code>dbtype</code> to <code>none</code> when <a href="/docs/commandline/create#dbtype">creating your app</a>.</p>
+
     <p>Here is an example on how to configure a <a href="https://github.com/brettwooldridge/HikariCP#initialization">HikariCP</a> DataSource to make use of them:</p>
 
     <pre class="prettyprint">HikariDataSource ds = new HikariDataSource();

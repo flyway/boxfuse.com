@@ -71,13 +71,13 @@ subtitle: 'TomEE'
 
     <h2>Databases</h2>
 
-    <p>If your app includes the PostgreSQL JDBC driver, Boxfuse will automatically provision the necessary PostgreSQL database
-        in each environment and trigger the Dropwizard DataSource auto-configuration. This can be disabled by setting
+    <p>If your app includes the PostgreSQL or MySQL JDBC driver, Boxfuse will automatically provision the necessary PostgreSQL or MySQL database
+        in each environment. This can be disabled by setting
         <code>dbtype</code> to <code>none</code> when <a href="/docs/commandline/create#dbtype">creating your app</a>.</p>
 
     <p>When using the <a href="/docs/databases">Boxfuse database auto-provisioning support</a>, Boxfuse automatically
         inject the correct jdbc url, user and password as environment variables in your instance.</p>
-
+<!--
     <p>Here is an example on how to configure a <a
             href="http://tomee.apache.org/datasource-config.html">TomEE JDBC
         DataSource</a> to make use of them:</p>
@@ -88,7 +88,7 @@ subtitle: 'TomEE'
     UserName    ${BOXFUSE_DATABASE_USER}
     Password    ${BOXFUSE_DATABASE_PASSWORD}
 &lt;/Resource&gt;</pre>
-
+-->
     <p>This works identically in all environments and Boxfuse ensures you always get the correct settings.</p>
 
     <h2>Java Agents</h2>

@@ -6,9 +6,11 @@ pill: open
 
 <h2>open</h2>
 
-<p>Opens a web browser pointing at the https or http port of an <em>Instance</em> running either on your machine or on AWS.</p>
+<p>Opens a web browser pointing at the https or http port of an  or <em>app</em> or individual <em>Instance</em> running either on your machine or on AWS.</p>
 
-<p><strong>Usage: </strong> boxfuse open <em>instance</em></p>
+<p>Add <code>-db</code> to open a <a href="/docs/databases">database connection</a> instead.</p>
+
+<p><strong>Usage: </strong> boxfuse open <em>app</em>|<em>instance</em></p>
 
 <pre class="console">&gt; boxfuse open vb-5f3cf9387
 
@@ -28,6 +30,11 @@ Launching default browser to access Instance 'vb-5f3cf9387' (Url: http://127.0.0
         <td>-env=dev<em>|</em>test<em>|</em>prod</td>
         <td>dev</td>
         <td>Use the AWS test or prod environments instead of the local dev one</td>
+    </tr>
+    <tr>
+        <td>-db</td>
+        <td>false</td>
+        <td>Open a <a href="/docs/databases">database connection</a> instead of a browser window</td>
     </tr>
 </table>
 

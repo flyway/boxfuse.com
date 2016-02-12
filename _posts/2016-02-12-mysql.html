@@ -1,0 +1,125 @@
+---
+layout: blog
+subtitle: "Hello MySQL!"
+permalink: /blog/mysql.html
+---
+<div>
+    <p>In our <a href="/blog/databases">previous post</a> we introduced Boxfuse's new support for
+        <a href="/docs/databases">managing databases</a>. In addition to being able to quickly fuse VM images and run
+        those un changed locally on VirtualBox and in the Cloud on AWS, Boxfuse now also makes it trivial to run the
+        relational databases that those services need.
+    </p>
+
+    <p>Today we are extending Boxfuse's database support beyond PostgreSQL and adding <strong>full support for MySQL</strong>.</p>
+
+    <p>Additionally we are spicing up our <a href="/docs/databases">database management</a> with two new great features:
+        <strong><a href="/docs/commandline/info">boxfuse info</a></strong> and <strong><a href="/docs/commandline/open">boxfuse open -db</a></strong>.
+    </p>
+
+    <h2>MySQL</h2>
+
+    <div class="blog-post-image">
+        <img src="/assets/img/mysql.png" alt="MySQL" title="MySQL">
+    </div>
+
+    <p>No more management headaches for your MySQL databases. Boxfuse now takes care of provisioning, starting, stopping
+        and deleting them for you (Boxfuse always creates a snapshot before deleting a database, so you can restore it at any time).</p>
+
+    <p>What do you need to do to enable this? You can either specify that you want a MySQL database when you create your
+        app via your client of choice (<a href="/docs/commandline">Command-line tool</a>, <a href="/docs/maven">Maven plugin</a>
+        or <a href="/docs/gradle">Gradle plugin</a>) or simply the Boxfuse Console:
+    </p>
+
+    <div class="blog-post-image">
+        <img class="screenshot" src="/assets/posts/mysql/mysql.png">
+    </div>
+
+    <p>However in most case you won't need to even do this because if your application includes the MySQL JDBC driver
+        Boxfuse will <strong>detect it automatically</strong> for you and configure your application accordingly. If want to manage your
+        database yourself, this can of course be disabled by explicitly setting the database type to <code>none</code>
+        when you create your app.
+    </p>
+
+    <p>Boxfuse then automatically <strong>provisions a MySQL database</strong> for you. It does this both locally using the <a href="/docs/databases#dev">Boxfuse Dev VM</a>
+        and on AWS using RDS.
+    </p>
+
+    <p>And just like for PostgreSQL, if your
+    application is based on <a href="/docs/payloads/springboot">Spring Boot</a>,
+    <a href="/docs/payloads/grails">Grails</a>,
+    <a href="/docs/payloads/play">Play</a> or
+    <a href="/docs/payloads/dropwizard">Dropwizard</a>, Boxfuse will <strong>automatically configure your frameworks's
+    default datasource</strong> with the correct database driver class name, URL, user and password. This works identically
+        in every environment, both locally and on AWS.</p>
+
+    <h2>boxfuse info</h2>
+
+    <p>Sometimes however you also want to access your database from outside the application itself. To make it easy
+        to get the database url, user name, password and more we are introducing a new command called <strong><a href="/docs/commandline/info">boxfuse info</a></strong>.
+        This command will then quickly give you all the information you need:
+    </p>
+
+    <pre class="console"><span>&gt;</span> boxfuse info hello -env=test
+
+Info about myuser/hello in the test environment:
+
+App Type    : Single Instance with Zero Downtime updates
+App URL     : http://hello-test-myuser.boxfuse.io/
+DB Type     : PostgreSQL database
+DB URL      : jdbc:postgresql://boxdb-myuser-test-hello.ca53c5vrhrzn.eu-central-1.rds.amazonaws.com:5432/hello
+DB Host     : boxdb-myuser-test-hello.ca53c5vrhrzn.eu-central-1.rds.amazonaws.com
+DB Port     : 5432
+DB Database : hello
+DB User     : qbGh5bYandLAYiXBHXp5L8jQliU9qwAkEFRf1R7JzJJ3azNwWmauKfYJe1TCoUW
+DB Password : JDBsCkFuDUCqLwDhbWZcZWmaeFCN7W8aAIzy0MjYA5ICXKCf3zMO7azw9092VFFqsnKayqWefAaklZchfATAbLsvShdsOWjKJBaU
+DB Status   : available</pre>
+
+    <p>You can then easily copy this information to configure the client of your choice.</p>
+
+    <h2>boxfuse open -db</h2>
+
+    <p>While being to copy this information is nice, we think not having to copy-paste anything is even better!</p>
+
+    <p>To be able to quickly access the database (MySQL or PostgreSQL) of your app in any environment using that database's
+    native client (<code>mysql</code> or <code>psql</code>) via a secure connection with the character encoring properly
+    set, we are introducing a new option to the <a href="/docs/commandline/open">open</a> command: <strong><a href="/docs/commandline/open">boxfuse open -db</a></strong>.</p>
+
+    <p>So now if you run an application on your test environment on AWS and you want to access its database (say PostgreSQL in this case) running on RDS securily via SSL, all you need to do is:</p>
+
+    <pre class="console"><span>&gt;</span> boxfuse open hello -env=test -db
+
+Launching psql to access the myuser/hello PostgreSQL database in the test environment ...
+psql (9.4.5, Server 9.4.5)
+SSL connection (Cipher: ECDHE-RSA-AES256-SHA, Bits: 256)
+Type "help" for help.
+
+<span>hello=></span>\conninfo
+You are connected with the database „hello“ as user „qbGh5bYandLAYiXBHXp5L8jQliU9qwAkEFRf1R7JzJJ3azNwWmauKfYJe1TCoUW“ on host „boxdb-myuser-test-hello.ca53c5vrhrzn.eu-central-1.rds.amazonaws.com“ on port „5432“.
+SSL connection (Cipher: ECDHE-RSA-AES256-SHA, Bits: 256)
+<span>hello=></span>\q</pre>
+
+    <p>And there you have it! You are now is a secure connection with your database using its native client. All the
+        character encoding and RDS root certificate management is done automatically for you.</p>
+
+    <h2 class="blog-post-section">Summary</h2>
+
+    <p>In this post, we introduced <strong>full MySQL support</strong> for Boxfuse's dead-easy database management capabilities.</p>
+
+    <p>Boxfuse now <strong>automatically detects the MySQL JDBC driver</strong> in your application and proceeds to provision MySQL
+        databases both locally and on AWS RDS. Boxfuse exposes
+        the database URL, user and password as environment variables within the application instances. And if your
+        application is based on Spring Boot, Grails, Play or Dropwizard, Boxfuse <strong>automatically configures your frameworks's
+        default datasource</strong> with those settings.</p>
+
+    <p>However sometimes you also want to access your database through some external tool, so we introduced
+        <strong><a href="/docs/commandline/info">boxfuse info</a></strong> to be able to quickly and conveniently
+    get the information you need.</p>
+
+    <p>But if you want an even easier solution you can now use Boxfuse's new <strong><a href="/docs/commandline/open">boxfuse open -db</a></strong>
+    switch to drop straight into a secure connection to the database of your application in that environment using your
+    database's native client.</p>
+
+    <p>So if you haven't already, start deploying your applications and their databases effortlessly with Boxfuse today.
+        Simply log in to the <a href="https://console.boxfuse.com"><strong>Boxfuse Console</strong></a> with your GitHub id, download the Boxfuse Client and enjoy!
+    </p>
+</div>

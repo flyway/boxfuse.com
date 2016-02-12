@@ -8,6 +8,8 @@ pill: open
 
 <p>Opens a web browser pointing at the https or http port of an <em>Instance</em> running either on your machine or on AWS.</p>
 
+<p>Set <code>boxfuse.db</code> to <code>true</code> to open a <a href="/docs/databases">database connection</a> instead.</p>
+
 <p><strong>Usage: </strong> gradle boxfuseOpen -Dboxfuse.instances=<em>instance</em></p>
 
 <pre class="console">&gt; gradle boxfuseOpen -Dboxfuse.instances=vb-5f3cf9387
@@ -48,6 +50,12 @@ Launching default browser to access Instance 'vb-5f3cf9387' (Url: http://127.0.0
         <td>Use the AWS <code>test</code> or <code>prod</code> environments instead of the local <code>dev</code> one</td>
     </tr>
     <tr>
+        <td>db</td>
+        <td>boxfuse.db</td>
+        <td>false</td>
+        <td>Open a <a href="/docs/databases">database connection</a> instead of a browser window</td>
+    </tr>
+    <tr>
         <td>instances</td>
         <td>boxfuse.instances</td>
         <td></td>
@@ -61,6 +69,7 @@ Launching default browser to access Instance 'vb-5f3cf9387' (Url: http://127.0.0
     user='1234567890abcdef1234567890abcdef12345678'
     secret='ABCDEFGHIJKL1234567abcdefghijklmnopqrstu'
     env='prod'
+    db=false
     instances='vb-ec717c5e'
 }</pre>
 

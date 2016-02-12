@@ -4,9 +4,9 @@ menu: databases
 subtitle: 'Databases'
 ---
 <div id="databases">
-    <p><img src="/assets/img/postgresql.png"></p>
+    <p><img src="/assets/img/postgresql.png"> <img src="/assets/img/mysql.png" style="margin-left: 30px"></p>
 
-    <p>Boxfuse is able to <strong>automatically provision PostgreSQL databases</strong> both locally and on AWS RDS.
+    <p>Boxfuse is able to <strong>automatically provision</strong> both <strong>PostgreSQL</strong> and <strong>MySQL</strong> databases <strong>locally</strong> and on <strong>AWS RDS</strong>.
         Boxfuse exposes
         the database URL, user and password as environment variables within the application instances. And if your
         application is based on <a href="/docs/payloads/springboot">Spring Boot</a>,
@@ -19,27 +19,22 @@ subtitle: 'Databases'
         microservices that follow the <a href="http://microservices.io/patterns/data/database-per-service.html">database
             per service</a>:</p>
 
-    <div class="center">
-        <img src="/assets/posts/databases/database-per-service.png" alt="Database per service"
-             title="Database per service">
-    </div>
+    <img src="/assets/img/database-per-service.png" alt="Database per service" title="Database per service">
 
-    <h2>dev environment</h2>
+    <h2 id="dev">dev environment</h2>
     <p>Locally on your machine, for your <a href="/docs/environments">dev environment</a> Boxfuse installs and launches
         a dev VM that contains a
         fully-configured PostgreSQL database. The PostgreSQL service from that VM is then exposed to your app by mapping
         its port.</p>
-    <div class="center">
-        <img src="/assets/img/dev-vm.png">
-    </div>
+
+    <img src="/assets/img/dev-vm.png">
 
     <h2>test and prod environments</h2>
     <p>On AWS, for your <a href="/docs/environments">test and prod environment</a> Boxfuse <strong>automatically
         provisions
         either single- or multi-AZ RDS instances</strong> for your application.</p>
-    <div class="center">
-        <img src="/assets/img/rds.png">
-    </div>
+
+    <p><img src="/assets/img/rds.png"></p>
 
     <p>To ensure your infrastructure can survive in the face of failure, Boxfuse can make your RDS database highly
         available
@@ -89,7 +84,7 @@ subtitle: 'Databases'
 
     <p>The user provided has superuser privileges.</p>
 
-    <p>All JDBC URLs are designed for SSL connections. Boxfuse ships with RDS certificates out of the box.</p>
+    <p><strong>All database connection use SSL</strong> (TLS). Every Boxfuse instances comes with RDS root certificates out of the box.</p>
 
     <h2>Auto-configuration</h2>
     <p>If your
@@ -98,6 +93,38 @@ subtitle: 'Databases'
     <a href="/docs/payloads/play">Play</a> or
     <a href="/docs/payloads/dropwizard">Dropwizard</a>, Boxfuse will automatically configure your frameworks's
     default datasource with the correct database driver class name, URL, user and password.</p>
+
+    <h2>Schema evolution / database migration</h2>
+    <p>Evolving your schema works best with <strong><a href="https://flywaydb.org">Flyway</a></strong>.</p>
+
+    <p>We strongly recommend you apply datbase migrations on application startup. You can either use a plugin for your framework of choice or call Flyway programmatically:</p>
+
+    <pre class="prettyprint">Flyway flyway = new Flyway();
+flyway.migrate();</pre>
+
+    <p>Flyway 4.0 and newer comes with out of the box support for Boxfuse. When running inside a Boxfuse instance Flyway will automatically pick up the database URL and credentials exposed by Boxfuse.</p>
+
+    <h2>Character encoding</h2>
+    <p>These are the default character encodings for the databases created by Boxfuse:</p>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Database</th><th>Character encoding</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>PostgreSQL</td><td><code>UTF8</code></td>
+        </tr>
+        <tr>
+            <td>MySQL</td><td><code>utf8mb4</code></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2>Time Zones</h2>
+    <p>All databases created by Boxfuse are created with their time zone set to <code>UTC</code>.</p>
+
     <p class="next-steps">
         <a class="btn btn-primary" href="/docs/travisci">Travis CI <i class="fa fa-arrow-right"></i></a>
     </p>

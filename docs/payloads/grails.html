@@ -62,8 +62,8 @@ subtitle: 'Grails'
     <p>When using the <a href="/docs/databases">Boxfuse database auto-provisioning support</a>, Boxfuse automatically configures Grails' DataSource
         to use the correct jdbc url, user and password.</p>
 
-    <p>If your app includes the PostgreSQL JDBC driver, Boxfuse will automatically provision the necessary PostgreSQL database
-        in each environment and trigger the Dropwizard DataSource auto-configuration. This can be disabled by setting
+    <p>If your app includes the PostgreSQL or MySQL JDBC driver, Boxfuse will automatically provision the necessary PostgreSQL or MySQL database
+        in each environment and auto-configure Grails' DataSource. This can be disabled by setting
         <code>dbtype</code> to <code>none</code> when <a href="/docs/commandline/create#dbtype">creating your app</a>.</p>
 
     <h2>SSL (TLS) / HTTPS</h2>
