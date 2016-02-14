@@ -15,7 +15,7 @@ subtitle: 'AWS'
     </ul>
     <p>As well as any <a href="/docs/environments#custom">additional custom environments</a> you have created.</p>
 
-    <h2>Regions</h2>
+    <h2 id="regions">Regions</h2>
 
     <p>Boxfuse fully supports the ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-central-1, eu-west-1, sa-east-1,
         us-east-1, us-west-1 &amp; us-west-2 regions.</p>
@@ -77,6 +77,14 @@ subtitle: 'AWS'
     </table>
     <p>As Boxfuse expands its footprint, further regions will be optimized for fast deployment. The order will be based on based on customer usage and demand.
         This does not affect the runtime speed of your instance, which is determined by the instance type you selected.</p>
+
+    <p><strong>Note:</strong> It is currently not possible to select an AWS region that does not have a default VPC. If your AWS account is missing a default VPC, you can ask AWS support to (re-)create it. Requests are usually fulfilled within a few hours.</p>
+
+    <h2 id="vpcs">VPCs</h2>
+
+    <p>Both the <code>test</code> and the <code>prod</code> <a href="/docs/environments">environment</a> are created within the default VPC of the AWS region you selected for your Boxfuse account.</p>
+
+    <p>You can use non-default VPCs as well as alternate regions in any <a href="/docs/environments#custom">custom environment</a> you create.</p>
 
     <h2>Instance Types</h2>
 
