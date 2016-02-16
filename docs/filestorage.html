@@ -1,0 +1,39 @@
+---
+layout: docs
+menu: filestorage
+subtitle: 'File Storage'
+---
+<div id="files">
+    <img src="/assets/img/filestorage.png">
+
+    <p>Boxfuse instances are strictly ephemeral. Not only are they completely destroyed once the are terminated, but
+    their file system also lives exclusively in RAM.</p>
+
+    <h2>Persistent files</h2>
+
+    <p>Apps that need to store files durably and persistently should do so off-instance. We recommend using an
+        <strong>S3 bucket</strong> for this. Not only is it cost effective, but you can also serve large files directly
+    to clients either via unsecured buckets or pre-signed URLs.</p>
+
+    <p>Alternatively you can also consider mounting an <strong>Elastic File System</strong>. This comes with trade-offs though. The
+    clear advantage is that from an application's perspective this is just a regular NFS directory. However not only
+    is this service not currently available in all all AWS regions, but you also lose the advantage of being able to
+        offload large file up- and downloads as you can with S3.</p>
+
+    <h2>Temporary files</h2>
+
+    <p>If your application needs to temporarily store files it can afford to lose should the instance die, then the
+        <strong><code>/tmp</code> directory</strong> in your instance is the perfect place for this. It is a separate filesystem that
+        resides on disk (unlike the other directories in your Boxfuse instance which reside in RAM).</p>
+
+    <p>With the <code>-tmp=...</code> parameter Boxfuse can automatically provision between 1 (default) and 16384 GB of space.</p>
+
+    <p>Every application (and its JVM) are automatically configured by Boxfuse to use the <code>/tmp</code> directory for
+    creating temporary files. There is no manual configuration necessary on your part.</p>
+
+    <p><strong>Tip:</strong> Check out our <a href="/blog/tmp">blog post</a> about temporary files support for more info and examples.</p>
+
+    <p class="next-steps">
+        <a class="btn btn-primary" href="/docs/travisci">Travis CI <i class="fa fa-arrow-right"></i></a>
+    </p>
+</div>
