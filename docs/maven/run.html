@@ -72,13 +72,13 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>debug</td>
         <td>boxfuse.debug</td>
         <td>false</td>
-        <td>Start the Payload in debug mode when an Instance launches</td>
+        <td>Start the Payload in <a href="/docs/debugging">debug mode</a> when an Instance launches</td>
     </tr>
     <tr>
         <td>debug.wait</td>
         <td>boxfuse.debug.wait</td>
         <td>false</td>
-        <td>Whether the JVM should wait for the remote debugger to connect (Only applicable when debug mode is active)</td>
+        <td>Whether the JVM should wait for the remote debugger to connect (Only applicable when <a href="/docs/debugging">debug mode</a> is active)</td>
     </tr>
     <tr>
         <td>env</td>
@@ -123,6 +123,12 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>boxfuse.jvm.args</td>
         <td></td>
         <td>Extra arguments to pass to the JVM</td>
+    </tr>
+    <tr id="jvm.jmx">
+        <td>jvm.jmx</td>
+        <td>boxfuse.jvm.jmx</td>
+        <td>false</td>
+        <td>Enable the JMX remote <a href="/docs/profiling">management and profiling</a> interface for the JVM</td>
     </tr>
     <tr>
         <td>jvm.main.class</td>
@@ -248,6 +254,7 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
     &lt;healthcheck.path&gt;/health&lt;/healthcheck.path&gt;
     &lt;healthcheck.timeout&gt;120&lt;/healthcheck.timeout&gt;
     &lt;jvm.args&gt;-DmycustomProp=abc&lt;/jvm.args&gt;
+    &lt;jvm.jmx&gt;true&lt;/jvm.jmx&gt;
     &lt;jvm.main.class&gt;com.mycorp.MyApp&lt;/jvm.main.class&gt;
     &lt;jvm.main.args&gt;-abc -def&lt;/jvm.main.args&gt;
     &lt;image&gt;hello:1.0&lt;/image&gt;

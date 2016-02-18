@@ -1,0 +1,50 @@
+---
+layout: docs
+menu: debugging
+subtitle: 'Debugging'
+---
+<div id="debugging">
+    <p><span class="fa-stack fa-5x">
+  <i class="fa fa-bug fa-stack-1x"></i>
+  <i class="fa fa-ban fa-stack-2x text-danger"></i>
+</span></p>
+
+    <p>Sometimes you need to understand exactly what's going on inside your instances.
+    Boxfuse makes it trivial to remotely debug your apps, regardless of whether they run on VirtualBox or AWS.</p>
+
+    <h2>Enabling remote debugging</h2>
+
+    <p>To enable remote debugging simply fuse or run your image with <code>-debug</code>. This will open an additional
+    port to which your debugger can connect. As the JVM debugging protocol doesn't have any authentication, by default
+        this <a href="/blog/restricted-ports">port is restricted</a> to only allow connections from the IP address of
+    your local machine.</p>
+
+    <p>When you launch an instance of an image set up for remote debugging you should see a message like this:</p>
+
+    <pre class="console"><span>&gt;</span> boxfuse run myapp.jar -debug
+
+...
+
+Ready to accept remote debugger connections -> tcp://127.0.0.1:5005</pre>
+
+    <p>If you need to debug an application startup issue, you can add <code>-debug.wait</code> to make the app wait
+    for a remote debugger connection before starting up.</p>
+
+    <h2>Configuring the debug port</h2>
+
+    <p>You can configure both the port number as well as the restrictions by manually specifying <code>-ports.debug=...</code>
+    when fusing or running your image. You can use any of the <a href="/docs/commandline/fuse#ports">usual formats</a> for
+    defining the port. Just remember that the protocol must be <code>tcp</code> and that you of course should be able to access it.</p>
+
+    <h2>Connecting from your IDE</h2>
+
+    <p>You can then simply connect the debugger of your favorite IDE to that address:</p>
+
+    <img src="/assets/img/debug.png" class="screenshot">
+
+    <p>And now simply add breakpoints, step through the code, and evaluate expressions as you normally would.</p>
+
+    <p class="next-steps">
+        <a class="btn btn-primary" href="/docs/profiling">Profiling <i class="fa fa-arrow-right"></i></a>
+    </p>
+</div>

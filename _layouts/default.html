@@ -7,7 +7,7 @@
     <link rel="alternate" type="application/atom+xml" title="Boxfuse" href="/blog/atom.xml" />
     <link rel="canonical" href="https://boxfuse.com{{page.url | split: '.html'}}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Boxfuse - Immutable Infrastructure Made Easy">
+    <meta name="description" content="{% if page.pill %} {{ page.pill }} -{% endif %}{% if page.subtitle %} {{ page.subtitle }} -{% endif %}{% if page.parttitle %} {{ page.parttitle }} -{% endif %}{% if page.title %} {{ page.title }} -{% endif %} Boxfuse &bull; Immutable Infrastructure Made Easy">
     <meta charset="UTF-8"/>
     <link rel="icon" type="image/png" href="/favicon.png"/>
     <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
@@ -17,12 +17,8 @@
     <link href="/assets/font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <link href="/assets/prettify-20130304/prettify.css" type="text/css" rel="stylesheet" />
     <link href="/assets/css/main.css" rel="stylesheet">
-    <style id="antiClickjack">body{display:none !important;}</style>
     <script type="text/javascript">
-        if (self === top) {
-            var antiClickjack = document.getElementById("antiClickjack");
-            antiClickjack.parentNode.removeChild(antiClickjack);
-        } else {
+        if (self !== top) {
             top.location = self.location;
         }
     </script>

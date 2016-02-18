@@ -47,12 +47,12 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
     <tr>
         <td>-debug</td>
         <td>false</td>
-        <td>Start the Payload in debug mode when an Instance launches</td>
+        <td>Start the Payload in <a href="/docs/debugging">debug mode</a> when an Instance launches</td>
     </tr>
     <tr>
         <td>-debug.wait</td>
         <td>false</td>
-        <td>Whether the JVM should wait for the remote debugger to connect (Only applicable when debug mode is active)
+        <td>Whether the JVM should wait for the remote debugger to connect (Only applicable when <a href="/docs/debugging">debug mode</a> is active)
         </td>
     </tr>
     <tr id="env">
@@ -91,6 +91,11 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>-jvm.args=...</td>
         <td></td>
         <td>Extra arguments to pass to the JVM</td>
+    </tr>
+    <tr id="jvm.jmx">
+        <td>-jvm.jmx</td>
+        <td>false</td>
+        <td>Enable the JMX remote <a href="/docs/profiling">management and profiling</a> interface for the JVM</td>
     </tr>
     <tr>
         <td>-jvm.main.class=...</td>

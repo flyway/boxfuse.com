@@ -25,14 +25,25 @@ subtitle: 'FAQ'
         application logs you should use a central log server. Great hosted solutions include <a href="https://www.loggly.com/">Loggly</a>,
         <a href="https://logentries.com/">Logentries</a> and <a href="https://papertrailapp.com/">Papertrail</a>. You can read more about this in our <a href="/blog/logging-cloudnative">blog post</a>.</p>
 
-    <h2 id="tmp">Can I store temporary files on the filesystem of an instance?</h2>
+    <h2>My instance runs into a health check timeout. What could be the issue?</h2>
 
-    <p>Filesystems on Boxfuse images are strictly ephemeral and all changes are lost upon reboot. To store data permanently we highly
-    recommend using a service like S3 or RDS. Some application however do require local storage of temporary data. By default
-    Boxfuse provisions 1 GB (configurable up to 16 TB) of space under <code>/tmp</code> for this. <strong>All writes should happen
-    to <code>/tmp</code></strong> as anywhere else will cause the system to use up more RAM.</p>
+    <p>A health check timeout typically occurs for one of two reasons:</p>
+    <ol>
+        <li>Your application startup is effectively slower as the health check timeout</li>
+        <li>The health check and the application configuration don't match</li>
+    </ol>
 
-    <!--p class="next-steps">
-        <a class="btn btn-primary" href="/docs/aws">AWS <i class="fa fa-arrow-right"></i></a>
-    </p-->
+    <p>The first problem can be solved by either moving to a larger and faster instance, increasing
+        <code>healthcheck.timeout</code> or optimizing the application startup.</p>
+
+    <p>The second problem can be due to either the <code>healthcheck.path</code> being incorrect,
+        <code>healthcheck.port</code> being incorrect or the ports configuration simply not matching the ports
+        opened up by the application. Example: the http port is configured to be 80, yet the application listens on 8080.
+        The solution for all of these is the same, carefully review your configuration and check the <a href="/docs/commands#logs">logs</a>
+        to make sure everything matches.
+    </p>
+
+    <p class="next-steps">
+        <a class="btn btn-primary" href="/docs/releasenotes">Release Notes <i class="fa fa-arrow-right"></i></a>
+    </p>
 </div>

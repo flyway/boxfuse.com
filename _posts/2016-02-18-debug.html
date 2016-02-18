@@ -1,0 +1,101 @@
+---
+layout: blog
+subtitle: "Debugging and Profiling"
+permalink: /blog/debug.html
+---
+<div>
+    <p>Boxfuse makes it trivial to <a href="/blog/welcome">fuse and run your JVM-based applications</a> unchanged both
+        on VirtualBox and on AWS. This perfect <strong>environment parity</strong>, where your machine in prod is absolutely identical to the one in dev,
+        makes it much easier to discover and correct issues sooner. But sometimes you still
+        need to dig deeper into your running application to fully understand what's going on.
+    </p>
+
+    <p>Today we are introducing support for <strong>dead easy debugging and profiling</strong>, both locally on VirtualBox and in the cloud on AWS.</p>
+
+    <h2>Debugging</h2>
+
+    <p><span class="fa-stack fa-5x">
+  <i class="fa fa-bug fa-stack-1x"></i>
+  <i class="fa fa-ban fa-stack-2x text-danger"></i>
+</span></p>
+
+    <p>When the logs aren't helping anymore, it is time to roll up your sleeves and pull up your favorite debugger to
+        step through the code and truly understand exactly what's going on.
+        Boxfuse now makes it trivial to remotely debug your apps, regardless of whether they run on VirtualBox or on AWS.</p>
+
+    <p>Start by launching an instance set up for remote debugging:</p>
+
+    <pre class="console"><span>&gt;</span> boxfuse run myapp.jar <strong>-debug</strong>
+
+...
+
+Ready to accept remote debugger connections -> tcp://127.0.0.1:5005</pre>
+
+    <p>The <code>-debug</code> flag opens an additional
+        port to which your debugger can connect. As the JVM debugging protocol doesn't have any authentication, by default
+        this <strong><a href="/blog/restricted-ports">port is restricted</a> to only allow connections from your local machine</strong>.</p>
+
+    <p>Now pull up your favorite IDE and connect its debugger to the address shown above:</p>
+
+    <img src="/assets/img/debug.png" class="screenshot">
+
+    <p>And that's it! Simply add breakpoints, step through the code, and evaluate expressions as you normally would, regardless of whether your instance runs on VirtualBox or on AWS.</p>
+
+    <h2>Profiling</h2>
+
+    <p>Do you suspect a memory leak, a thread dead-lock or unusually high CPU usage? Boxfuse now makes it trivial to profile your apps, regardless of whether they run locally or in the cloud.</p>
+
+    <p>Start by launching an instance set up for JMX remote management:</p>
+
+    <pre class="console"><span>&gt;</span> boxfuse run myapp.jar <strong>-jvm.jmx</strong>
+
+...
+
+Ready to accept JMX connections -> 127.0.0.1:1099 (user: boxfuse / password: boxfuse)</pre>
+
+    <p>The <code>-jvm.jmx</code> flag opens an additional
+        port to which your JMX client (like Java VisualVM or Java Mission Control) can connect. By default
+        this <strong><a href="/blog/restricted-ports">port is restricted</a> to only allow connections from
+            your local machine</strong>.</p>
+
+    <h3>Profiling with Java VisualVM</h3>
+
+    <p>Simply launch Java VisualVM:</p>
+
+    <pre class="console"><span>&gt;</span> jvisualvm</pre>
+
+    <p>And connect to the address above:</p>
+
+    <img src="/assets/img/jvisualvm-setup.png" class="screenshot">
+
+    <p>And that's it! Go ahead and profile and analyse CPU, memory and threads as you normally would:</p>
+
+    <img src="/assets/img/jvisualvm.png" class="screenshot">
+
+    <h3>Profiling and Managing with Java Mission Control</h3>
+
+    <p>Alternatively you can also use the newer Java Mission Control to profile and manage your app:</p>
+
+    <pre class="console"><span>&gt;</span> jmc</pre>
+
+    <p>Simply connect Java Mission Control to the address above by creating a JVM connection:</p>
+
+    <img src="/assets/img/jmc-setup.png" class="screenshot">
+
+    <p>Finally select <strong>MBean Server</strong> and profile CPU, memory and threads as well as inspect and invoke actions on MBeans as you normally would:</p>
+
+    <img src="/assets/img/jmc.png" class="screenshot">
+
+    <p>As you would expect this of course works identically on both VirtualBox and AWS.</p>
+
+    <h2 class="blog-post-section">Summary</h2>
+
+    <p>In this post, we introduced <strong>dead easy debugging and profiling</strong> for Boxfuse instances, both locally on VirtualBox and in the cloud on AWS.</p>
+
+    <p>Boxfuse now makes it trivial to remotely debug your application directly from your favorite IDE. Additionally you
+    can now enable JMX remote management to easily profile and manage your JVMs using tools like Java VisualVM and Java Mission Control.</p>
+
+    <p>So if you haven't already, simply log in to the <a href="https://console.boxfuse.com"><strong>Boxfuse Console</strong></a> with your GitHub id
+        and download the Boxfuse Client to run, debug and profile your JVM application on AWS today. Enjoy!
+    </p>
+</div>
