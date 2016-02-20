@@ -15,6 +15,17 @@ subtitle: 'Dropwizard'
     <p>Also check out our 3 part <a href="/blog/dropwizard-aws"><strong>blog post series</strong></a> on how to
         set up a CD pipeline from GitHub to AWS for Dropwizard apps using Boxfuse.</p>
 
+    <h2>OpenJDK version</h2>
+
+    <p>By default Boxfuse uses the <strong>latest OpenJDK 8.x version</strong> (headless JRE). If you want to switch to OpenJDK 7.x or simply an
+        older version, you can do so using the <code>-components.openjdk</code> configuration setting:</p>
+
+    <pre class="console"><span>&gt;</span> boxfuse run my-app-1.0.jar <strong>-components.openjdk=</strong>7.80.32</pre>
+
+    <p>To find out which OpenJDK versions are available from the Boxfuse Inventory you can simply issue:</p>
+
+    <pre class="console"><span>&gt;</span> boxfuse inventory openjdk</pre>
+
     <h2 id="configuration">Configuration</h2>
 
     <p>By default Boxfuse looks for a <code>/boxfuse.yml</code> file <em>inside</em> the Dropwizard jar file and runs your app

@@ -25,6 +25,17 @@ subtitle: 'TomEE'
         (for TomEE Web Profile)
         or <code>-components.tomee-plus=1.7.2</code> (for TomEE Plus).</p>
 
+    <h2>OpenJDK version</h2>
+
+    <p>By default Boxfuse uses the <strong>latest OpenJDK 8.x version</strong> (headless JRE). If you want to switch to OpenJDK 7.x or simply an
+        older version, you can do so using the <code>-components.openjdk</code> configuration setting:</p>
+
+    <pre class="console"><span>&gt;</span> boxfuse run my-webapp-1.0.war <strong>-components.openjdk=</strong>7.80.32</pre>
+
+    <p>To find out which OpenJDK versions are available from the Boxfuse Inventory you can simply issue:</p>
+
+    <pre class="console"><span>&gt;</span> boxfuse inventory openjdk</pre>
+
     <h2>HTTP</h2>
 
     <p>By default, Boxfuse will automatically configure TomEE to listen to HTTP traffic on port 80.</p>

@@ -8,12 +8,23 @@ subtitle: 'Tomcat'
 
     <p>Boxfuse supports Apps written in Java or any other language and packaged as a <strong>War file</strong> running on either <strong>Tomcat 7.x or 8.x</strong> using either <strong>OpenJDK 7.x or 8.x</strong>.</p>
 
+    <h2>OpenJDK version</h2>
+
+    <p>By default Boxfuse uses the <strong>latest OpenJDK 8.x version</strong> (headless JRE). If you want to switch to OpenJDK 7.x or simply an
+        older version, you can do so using the <code>-components.openjdk</code> configuration setting:</p>
+
+    <pre class="console"><span>&gt;</span> boxfuse run my-webapp-1.0.war <strong>-components.openjdk=</strong>7.80.32</pre>
+
+    <p>To find out which OpenJDK versions are available from the Boxfuse Inventory you can simply issue:</p>
+
+    <pre class="console"><span>&gt;</span> boxfuse inventory openjdk</pre>
+
     <h2>Tomcat version</h2>
 
-    <p>By default Boxfuse will use the latest Tomcat 8.0.x version. If you want to switch to Tomcat 7.0.x or simply an
+    <p>By default Boxfuse uses the <strong>latest Tomcat 8.0.x version</strong>. If you want to switch to Tomcat 7.0.x or simply an
         older version, you can do so using the <code>-components.tomcat</code> configuration setting:</p>
 
-    <pre class="console"><span>&gt;</span> boxfuse run my-webapp-1.0.war -components.tomcat=7.0.67</pre>
+    <pre class="console"><span>&gt;</span> boxfuse run my-webapp-1.0.war <strong>-components.tomcat=</strong>7.0.67</pre>
 
     <p>To find out which Tomcat versions are available from the Boxfuse Inventory you can simply issue:</p>
 
