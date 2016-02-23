@@ -93,6 +93,25 @@ subtitle: 'Play'
     <p>For Play 2.3.x, set <code>applyEvolutions.&lt;database&gt=true</code> in your Play config (<a href="https://www.playframework.com/documentation/2.3.x/Evolutions#Running-Evolutions-in-Production">reference docs</a>).</p>
     <p>For Play 2.4.x and newer, set <code>play.evolutions.autoApply=true</code> in your Play config (<a href="https://www.playframework.com/documentation/2.4.x/Evolutions#Evolutions-configuration">reference docs</a>).</p>
 
+    <h2 id="tls">SSL (TLS) / HTTPS</h2>
+
+    <p>To use <strong>HTTPS</strong> simply add a keystore containing your SSL certificate inside the zip file at <code>/conf/boxfuse.jks</code>.
+        If you use SBT or Typesafe Activator, this means your <code>boxfuse.jks</code> keystore file should be put into the <code>conf</code> directory.</p>
+    <p>Both the keystore itself as well as the certificate should be secured with the password <code>boxfuse</code>.</p>
+
+    <pre class="filetree"><i class="fa fa-folder-open"></i> my-play-app
+  <i class="fa fa-folder-open"></i> conf
+    <span><i class="fa fa-file"></i> boxfuse.jks</span></pre>
+
+    <p>If present, Boxfuse automatically configures your Play application to use it. All you need to do is set the <code>https</code>
+        port to the one you want. This can be done either in your Boxfuse or in your Play config. Example:</p>
+
+    <pre class="console"><span>&gt;</span> boxfuse run <strong>-ports.https</strong>=443</pre>
+
+    <p>To use an alternative keystore called say <code>mykeystore.jks</code>, simply place it in the <code>conf</code> directory and refer to it using a relative path like <code>conf/mykeystore.jks</code>.
+        You can then also specify its password as usual in your <code>application.conf</code> file.
+    </p>
+
     <h2>Root Certificates</h2>
 
     <p>By default, Boxfuse uses the <strong>same root certificate bundle as the latest version of Firefox</strong>.
@@ -107,7 +126,7 @@ subtitle: 'Play'
     <span><i class="fa fa-file"></i> cacerts</span></pre>
 
     <p>If you choose to secure your <code>cacerts</code> TrustStore with a password different than the default <code>changeit</code>,
-        you have to add the following to your Spring Boot configuration:</p>
+        you have to add the following to your Play configuration:</p>
 
     <pre class="prettyprint">play.ws.ssl {
   trustManager = {
