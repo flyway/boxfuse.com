@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
-    <title>
-        {% if page.pill %} {{ page.pill }} -{% endif %}{% if page.subtitle %} {{ page.subtitle }} -{% endif %}{% if page.parttitle %} {{ page.parttitle }} -{% endif %}{% if page.title %} {{ page.title }} -{% endif %}
-        Boxfuse &bull; Immutable Infrastructure Made Easy</title>
+    <title>{% if page.pill %} {{ page.pill }} -{% endif %}{% if page.subtitle == '' %}{% elsif page.subtitle %} {{ page.subtitle }} -{% elsif layout.subtitle %} {{ layout.subtitle }} -{% endif %}{% if page.parttitle %} {{ page.parttitle }} -{% endif %}{% if page.title2 == '' %}{% elsif page.title2 %} {{ page.title2 }} -{% elsif layout.title2 %} {{ layout.title2 }} -{% endif %} Boxfuse &bull; Immutable Infrastructure Made Easy</title>
     <link rel="alternate" type="application/atom+xml" title="Boxfuse" href="/blog/atom.xml" />
     <link rel="canonical" href="https://boxfuse.com{{page.url | split: '.html'}}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{% if page.pill %} {{ page.pill }} -{% endif %}{% if page.subtitle %} {{ page.subtitle }} -{% endif %}{% if page.parttitle %} {{ page.parttitle }} -{% endif %}{% if page.title %} {{ page.title }} -{% endif %} Boxfuse &bull; Immutable Infrastructure Made Easy">
+    <meta name="description" content="{% if page.pill %} {{ page.pill }} -{% endif %}{% if page.subtitle == '' %}{% elsif page.subtitle %} {{ page.subtitle }} -{% elsif layout.subtitle %} {{ layout.subtitle }} -{% endif %}{% if page.parttitle %} {{ page.parttitle }} -{% endif %}{% if page.title2 == '' %}{% elsif page.title2 %} {{ page.title2 }} -{% elsif layout.title2 %} {{ layout.title2 }} -{% endif %} Boxfuse &bull; Immutable Infrastructure Made Easy">
     <meta charset="UTF-8"/>
     <link rel="icon" type="image/png" href="/favicon.png"/>
     <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
@@ -32,12 +30,12 @@
             </div>
             <div class="col-md-10">
                 <ul id="tabs" class="nav nav-tabs navbar-right">
-                    <li {% if page.tab == 'learn' %} class="active" {% endif %}><a href="/learn/why">Learn More</a></li>
-                    <li {% if page.tab == 'getstarted' %} class="active" {% endif %}><a href="/getstarted">Get Started</a></li>
+                    <li {% if layout.tab == 'learn' and page.tab == null %} class="active" {% endif %}><a href="/learn/why">Learn More</a></li>
+                    <li {% if layout.tab == 'getstarted' and page.tab == null %} class="active" {% endif %}><a href="/getstarted">Get Started</a></li>
                     <li {% if page.tab == 'pricing' %} class="active" {% endif %}><a href="/pricing">Pricing</a></li>
-                    <li {% if page.tab == 'docs' %} class="active" {% endif %}><a href="/docs">Documentation</a></li>
+                    <li {% if layout.tab == 'docs' and page.tab == null %} class="active" {% endif %}><a href="/docs">Documentation</a></li>
                     <li {% if page.tab == 'events' %} class="active" {% endif %}><a href="/events">Events</a></li>
-                    <li {% if page.tab == 'blog' %} class="active" {% endif %}><a href="/blog">Blog</a></li>
+                    <li {% if layout.tab == 'blog' and page.tab == null %} class="active" {% endif %}><a href="/blog">Blog</a></li>
                     <li><p class="navbar-btn"><a id="navbar-login" href="https://console.boxfuse.com" class="btn btn-primary btn-large">Log in / Sign up</a></p></li>
                 </ul>
             </div>
