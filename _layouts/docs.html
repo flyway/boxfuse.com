@@ -22,9 +22,9 @@ title2: Documentation
                     <li {% if page.menu == 'jar' %} class="active" {% endif %}><a href="/docs/payloads/jar">Executable Jar</a></li>
 
                     <li class="nav-header">Clients</li>
-                    <li {% if layout.menu == 'commandline' and page.menu == null %} class="active" {% endif %}><a href="/docs/commandline">Command-line</a></li>
-                    <li {% if layout.menu == 'maven' and page.menu == null %} class="active" {% endif %}><a href="/docs/maven">Maven</a></li>
-                    <li {% if layout.menu == 'gradle' and page.menu == null %} class="active" {% endif %}><a href="/docs/gradle">Gradle</a></li>
+                    <li {% if page.menu == 'commandline' %} class="active" {% endif %}><a href="/docs/commandline">Command-line</a></li>
+                    <li {% if page.menu == 'maven' %} class="active" {% endif %}><a href="/docs/maven">Maven</a></li>
+                    <li {% if page.menu == 'gradle' %} class="active" {% endif %}><a href="/docs/gradle">Gradle</a></li>
 
                     <li class="nav-header">Platforms</li>
                     <li {% if page.menu == 'virtualbox' %} class="active" {% endif %}><a href="/docs/virtualbox">VirtualBox</a></li>
