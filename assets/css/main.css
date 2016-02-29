@@ -151,7 +151,7 @@ hr.soften {
 	height: 130px;
 }
 
-#footer i {
+.fa-heart {
     color: #990000;
 }
 
@@ -576,7 +576,7 @@ hr.soften {
 }
 
 .nav-tabs {
-    font-size: 18px;
+    font-size: 16px;
 	border-bottom: 0;
 }
 
