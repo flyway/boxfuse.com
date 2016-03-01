@@ -67,7 +67,7 @@ permalink: /blog/databases.html
 
     <h2>Step 0: Creating the Spring Boot microservice</h2>
 
-    <p>Let's first create a basic Spring Boot application. Go to <a href="">start.spring.io</a>, select the
+    <p>Let's first create a basic Spring Boot application. Go to <a href="https://start.spring.io">start.spring.io</a>, select the
         PostgreSQL, JDBC and Web dependencies and click Generate Project:</p>
 
     <div class="blog-post-image">
@@ -144,7 +144,7 @@ public class DatabaseDemoApplication {
 
     <p>And last but not least, compile it into an executable jar file:</p>
 
-    <pre class="console"><span>&gt;</span> mvnw package</pre>
+    <pre class="console"><span>&gt;</span> mvnw package -DskipTests</pre>
 
     <p>Great. Your Spring Boot microservice executable jar is now available under
         <code>target/database-demo-1.0.jar</code>.</p>
