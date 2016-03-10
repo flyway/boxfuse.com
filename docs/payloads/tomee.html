@@ -7,7 +7,7 @@ subtitle: 'TomEE'
     <p><img src="/assets/img/tomee.png"></p>
 
     <p>Boxfuse supports Java EE apps written in Java or any other language and packaged as a <strong>.war file</strong>
-        running on <strong>TomEE 1.7.x</strong> using either <strong>OpenJDK 7.x or 8.x</strong>.</p>
+        running on <strong>TomEE 1.7.x</strong> or <strong>TomEE 7.0.x</strong> using either <strong>OpenJDK 7.x or 8.x</strong>.</p>
 
     <p>If your .war file contains a <code>WEB-INF/resources.xml</code> file, Boxfuse will automatically run it using
         TomEE instead of Tomcat.
@@ -21,9 +21,9 @@ subtitle: 'TomEE'
       <i class="fa fa-folder-open"></i> webapp
         <i class="fa fa-folder-open"></i> WEB-INF
           <span><i class="fa fa-file-text"></i> resources.xml</span></pre>
-    <p>You can override the automatic behavior and force a particular TomEE edition to be used by passing in <code>-components.tomee-webprofile=1.7.2</code>
+    <p>You can override the automatic behavior and force a particular TomEE edition to be used by passing in <code>-components.tomee-webprofile=1.7.4</code>
         (for TomEE Web Profile)
-        or <code>-components.tomee-plus=1.7.2</code> (for TomEE Plus).</p>
+        or <code>-components.tomee-plus=1.7.4</code> (for TomEE Plus).</p>
 
     <h2>OpenJDK version</h2>
 
@@ -35,6 +35,17 @@ subtitle: 'TomEE'
     <p>To find out which OpenJDK versions are available from the Boxfuse Inventory you can simply issue:</p>
 
     <pre class="console"><span>&gt;</span> boxfuse inventory openjdk</pre>
+
+    <h2>TomEE version</h2>
+
+    <p>By default Boxfuse uses the <strong>latest TomEE 1.7.x version</strong>. If you want to switch to TomEE 7.0.x or simply an
+        older version, you can do so using the <code>-components.tomee-webprofile</code> and <code>-components.tomee-plus</code> configuration settings:</p>
+
+    <pre class="console"><span>&gt;</span> boxfuse run my-webapp-1.0.war <strong>-components.tomee-webprofile=</strong>7.0.0-M3</pre>
+
+    <p>To find out which TomEE versions are available from the Boxfuse Inventory you can simply issue:</p>
+
+    <pre class="console"><span>&gt;</span> boxfuse inventory tomee-webprofile</pre>
 
     <h2>HTTP</h2>
 
