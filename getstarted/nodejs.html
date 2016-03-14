@@ -1,0 +1,180 @@
+---
+layout: getstarted
+menu: nodejs
+subtitle: 'Get Started with Boxfuse & Node.js'
+---
+<div id="nodejs">
+    <p><img src="/assets/img/nodejs.png"></p>
+    <p>&nbsp;</p>
+
+    <p>This tutorial will get you started with Boxfuse and Node.js. It should take you about <strong>5-10 minutes</strong> to complete.</p>
+
+    <h2>Prerequisites</h2>
+    <p>Before you begin, ensure you have successfully:</p>
+    <ol>
+        <li>created a <strong><a href="https://console.boxfuse.com">Boxfuse Account</a></strong> (simply log in with your GitHub account, it's free)</li>
+        <li>downloaded and installed the latest <strong><a href="/getstarted/download">Boxfuse Client</a></strong></li>
+        <li>downloaded and installed the latest version of <strong><a href="https://nodejs.org/en/">Node.js</a></strong></li>
+        <li>downloaded and installed the latest version of <strong><a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a></strong></li>
+    </ol>
+
+    <h2>Creating the Node.js application</h2>
+
+    <p>In this tutorial we are going to create and deploy a simple Node.js application based on Express.</p>
+
+    <p>Start by installing the necessary npm packages:</p>
+
+    <pre class="console"><span>&gt;</span> npm install -g express-generator npm-bundle</pre>
+
+    <p>Now generate the project:</p>
+
+    <pre class="console"><span>&gt;</span> express getstarted-nodejs</pre>
+
+    <p>And navigate to the newly created directory:</p>
+
+    <pre class="console"><span>&gt;</span> cd getstarted-nodejs</pre>
+
+    <p>Then simply create the bundle <code>tgz</code> in the directory based on your <code>package.json</code>:</p>
+
+    <pre class="console"><span>getstarted-nodejs&gt;</span> npm-bundle</pre>
+
+    <h2>Fusing a Boxfuse image and running it locally on VirtualBox</h2>
+
+    <p>Now it's time to fuse your application into a Boxfuse image and launch an instance of it on VirtualBox:</p>
+
+    <pre class="console"><span>getstarted-nodejs&gt;</span> boxfuse run</pre>
+
+    <p>This command will run for a few seconds. During this time, Boxfuse will find your application, detect its type,
+    generating an image for it and launch it on VirtualBox. When it completes you should see a message like this:</p>
+
+    <pre class="console">Payload started in 00:06.688s -> http://127.0.0.1</pre>
+
+    <p>Now open your browser and navigate to this address to see your new application up and running within the VirtualBox VM:</p>
+
+    <img class="screenshot" src="/assets/img/getstarted/nodejs-virtualbox.png">
+
+    <p>You can also see your newly created image:</p>
+
+    <pre class="console" style="font-size: 90%"><span>getstarted-nodejs&gt;</span> boxfuse ls
+
+Images available locally:
++--------------------------------+-----------------------------+-------+---------------+------------+---------+---------------------+
+| Image                          |           Payload           | Debug |    Runtime    |   Ports    |  Size   |    Generated at     |
++--------------------------------+-----------------------------+-------+---------------+------------+---------+---------------------+
+| myuser/getstarted-nodejs:0.0.0 | getstarted-nodejs-0.0.0.tgz | false | Node.js 5.8.0 | http -> 80 | 15076 K | 2016-03-12 14:57:50 |
++--------------------------------+-----------------------------+-------+---------------+------------+---------+---------------------+
+Total: 1</pre>
+
+    <p>As well as the instance that is running:</p>
+
+    <pre class="console"><span>getstarted-nodejs&gt;</span> boxfuse ps
+
+Running Instances on VirtualBox in the dev environment :
++-------------+--------------------------------+---------------------+------------------+---------------------+
+|  Instance   |             Image              |        Type         |        URL       |     Launched at     |
++-------------+--------------------------------+---------------------+------------------+---------------------+
+| vb-b18d6746 | myuser/getstarted-nodejs:0.0.0 | 4 CPU / 1024 MB RAM | http://127.0.0.1 | 2015-11-12 14:57:56 |
++-------------+--------------------------------+---------------------+------------------+---------------------+
+Total: 1</pre>
+
+    <h2>Deploying your application to AWS</h2>
+
+    <p>Now let's deploy the image to AWS. As Boxfuse works with your AWS account, it first needs the necessary permissions to do so.
+        So if you haven't already done it, go to the Boxfuse Console and <strong><a href="https://console.boxfuse.com/#/awsAccount">connect your AWS account</a></strong> now.</p>
+
+    <p>Every new Boxfuse account comes with 3 environments: <code>dev</code>, <code>test</code> and <code>prod</code>.
+        <code>dev</code> is your local VirtualBox environment and <code>test</code> and <code>prod</code> are on AWS.</p>
+
+    <p>So let's deploy our application to the <code>prod</code> environment on AWS:</p>
+
+    <pre class="console"><span>getstarted-nodejs&gt;</span> boxfuse run -env=prod
+
+Creating myuser/getstarted-nodejs ...
+Pushing myuser/getstarted-nodejs:0.0.0 ...
+Verifying myuser/getstarted-nodejs:0.0.0 ...
+Waiting for AWS to create an AMI for myuser/getstarted-nodejs:0.0.0 in eu-central-1 (this may take up to 50 seconds) ...
+AMI created in 00:17.463s in eu-central-1 -> ami-d98364b6
+Creating Elastic IP ...
+Mapping getstartednodejs-myuser.boxfuse.io to 52.58.12.244 ...
+Creating security group boxsg-myuser-prod-getstarted-nodejs-0.0.0 ...
+Launching t2.micro instance of myuser/getstarted-nodejs:0.0.0 (ami-d98364b6) in prod (eu-central-1) ...
+Instance launched in 00:40.942s -> i-af499712
+Waiting for AWS to boot Instance i-af499712 and Payload to start at http://54.93.101.157/ ...
+Payload started in 00:10.313s -> http://54.93.101.157/
+Remapping Elastic IP 52.58.12.244 to i-af499712 ...
+Waiting 15s for AWS to complete Elastic IP Zero Downtime transition ...
+Deployment completed successfully. myuser/getstarted-nodejs:0.0.0 is up and running at http://getstartednodejs-myuser.boxfuse.io/</pre>
+
+    <p>Notice that we have now specified an image, as we want to reuse our image unchanged instead fusing a new one.</p>
+
+    <p>With that one command Boxfuse has automatically pushed your image to the Boxfuse Vault as well as provisioned,
+    configured and secured all necessary AWS resources. There is no manual work necessary on your behalf.</p>
+
+    <p>All you need to do is simply navigate to your new domain to see your Play application in action on AWS:</p>
+
+    <img class="screenshot" src="/assets/img/getstarted/nodejs-aws.png">
+
+    <h2>Bonus: update your application using blue/green deployments</h2>
+
+    <p>Now let's take things one step further and deploy an update of your application with <strong>zero downtime</strong>.</p>
+
+    <p>Start by modifying <code>views/index.jade</code> with a simple change:</p>
+    <pre class="prettyprint">extends layout
+
+block content
+  h1= title
+  p Updated by Boxfuse with zero downtime!</pre>
+
+    <p>then bump the version in <code>package.json</code>:</p>
+
+    <pre class="prettyprint">"version": "0.0.1",</pre>
+
+    <p>clean the old bundle:</p>
+
+    <pre class="console"><span>getstarted-nodejs&gt;</span> <span class="os">del</span> *.tgz</pre>
+
+    <p>and rebuild the tgz:</p>
+    <pre class="console"><span>getstarted-nodejs&gt;</span> npm-bundle</pre>
+
+    <p>Finally, deploy the new version of your application to AWS:</p>
+
+    <pre class="console"><span>getstarted-nodejs&gt;</span> boxfuse run -env=prod
+
+Fusing Image for getstarted-nodejs-0.0.1.tgz ...
+Image fused in 00:02.679s (15077 K) -> myuser/getstarted-nodejs:0.0.1
+Pushing myuser/getstarted-nodejs:0.0.1 ...
+Verifying myuser/getstarted-nodejs:0.0.1 ...
+Waiting for AWS to create an AMI for myuser/getstarted-nodejs:0.0.1 in eu-central-1 (this may take up to 50 seconds) ...
+AMI created in 00:28.465s in eu-central-1 -> ami-738b6c1c
+Creating security group boxsg-myuser-prod-getstarted-nodejs-0.0.1 ...
+Launching t2.micro instance of myuser/getstarted-nodejs:0.0.1 (ami-738b6c1c) in prod (eu-central-1) ...
+Instance launched in 00:42.912s -> i-3649978b
+Waiting for AWS to boot Instance i-3649978b and Payload to start at http://52.59.244.133/ ...
+Payload started in 00:11.316s -> http://52.59.244.133/
+Remapping Elastic IP 52.58.12.244 to i-3649978b ...
+Waiting 15s for AWS to complete Elastic IP Zero Downtime transition ...
+Terminating instance i-af499712 ...
+Destroying Security Group sg-1defe174 (boxsg-myuser-prod-getstarted-nodejs-0.0.0) ...
+Deployment completed successfully. myuser/getstarted-nodejs:0.0.1 is up and running at http://getstartednodejs-myuser.boxfuse.io/</pre>
+
+    <p>And there it is:</p>
+
+    <img class="screenshot" src="/assets/img/getstarted/nodejs-aws-update.png">
+
+    <h2>Summary</h2>
+
+    <p>In this brief guide we have seen how to:</p>
+    <ul>
+        <li>create a Node.js application</li>
+        <li>fuse it into a Boxfuse image</li>
+        <li>deploy the image locally on VirtualBox</li>
+        <li>deploy the image unchanged to AWS</li>
+        <li>update the application with zero downtime</li>
+    </ul>
+
+    <p>Now it's your turn. Take your favorite Node.js application and deploy it with ease and pleasure.</p>
+
+    <p class="next-steps">
+        <a class="btn btn-primary" href="/docs/payloads/nodejs">Boxfuse Node.js Documentation <i class="fa fa-arrow-right"></i></a>
+    </p>
+</div>
