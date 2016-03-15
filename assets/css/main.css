@@ -314,6 +314,15 @@ hr.soften {
 	#intro {
 	margin-top:45px;
 	}
+
+	#footer-navigation .col-md-4,
+	#footer-navigation .col-md-3 {
+		margin-bottom: 25px;
+	}
+
+	#footer-navigation {
+		height: 330px;
+	}
 }
 
 @media (max-width: 767px) {
@@ -324,11 +333,7 @@ hr.soften {
 	}
 
 	#footer-navigation {
-		height: 430px;
-	}
-
-	#footer-navigation .col-md-4 {
-		margin-bottom: 25px;
+		height: 630px;
 	}
 }
 
@@ -361,11 +366,11 @@ hr.soften {
     }
 
 	#wrapper {
-		margin: 0 auto -600px;
+		margin: 0 auto -800px;
 	}
 
 	#push-footer {
-		height: 600px;
+		height: 800px;
 	}
 
 	#footer-spacer {
