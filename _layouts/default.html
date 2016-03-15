@@ -49,12 +49,12 @@
     <div id="footer-spacer"></div>
     <div id="footer-navigation">
         <div class="container">
-            <div class="col-md-4">
+            <div class="col-md-4 col-sm-4">
                 <p><strong>INTRO</strong></p>
                 <a href="/learn/why.html">Why Immutable Infrastructure?</a><br/>
                 <a href="/learn/how.html">How Boxfuse works</a>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 col-sm-4">
                 <p><strong>GET STARTED</strong></p>
                 <a href="/getstarted/springboot">Spring Boot</a><br/>
                 <a href="/getstarted/grails">Grails</a><br/>
@@ -62,10 +62,12 @@
                 <a href="/getstarted/play">Play</a><br/>
                 <a href="/docs/payloads/tomcat">Tomcat</a><br/>
                 <a href="/blog/javaee-aws">TomEE</a><br/>
-                <a href="/docs/payloads/jar">Executable Jar</a>
+                <a href="/docs/payloads/jar">Executable Jar</a><br/>
+                <a href="/getstarted/nodejs">Node.js</a>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 col-sm-4">
                 <p><strong>COMPARE TO</strong></p>
+                <a href="/vs/docker">Docker</a><br>
                 <a href="/vs/packer">Packer</a>
             </div>
         </div>
@@ -135,7 +137,25 @@
     ga('set', 'anonymizeIp', true);
     ga('send', 'pageview');
 
-    prettyPrint();
+    if (navigator.platform.indexOf('Win') == -1) {
+        // Not windows
+        // Fix line continuation marks
+        $("pre.console").html(function () {
+            return $(this).html().replace(/\^\n/g, "\\\n");
+        });
+        // And prompt char
+        $("pre.console span.os").html(function () {
+            return $(this).html().replace("del", "rm");
+        });
+        // And prompt char
+        $("pre.console>span").html(function () {
+            return $(this).html().replace("&gt;", "$");
+        });
+    }
+
+    $(function () {
+        prettyPrint();
+    });
 </script>
 <script type="text/javascript" src="/assets/bootstrap-3.2.0/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/assets/js/main.js"></script>

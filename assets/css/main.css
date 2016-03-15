@@ -116,11 +116,11 @@ hr.soften {
 
 #wrapper {
     min-height: 100%;
-    margin: 0 auto -380px;
+    margin: 0 auto -400px;
 }
 
 #push-footer {
-    height: 380px;
+    height: 400px;
 }
 
 #footer {
@@ -129,7 +129,7 @@ hr.soften {
     font-size: 10px;
     line-height: 12px;
     text-align: center;
-    height: 380px;
+    height: 400px;
 }
 
 #footer-spacer {
@@ -137,7 +137,7 @@ hr.soften {
 }
 
 #footer-navigation {
-	height: 210px;
+	height: 230px;
 	background: #333333;
 	padding-top: 20px;
 	font-size: 14px;
@@ -322,7 +322,14 @@ hr.soften {
 		padding-left:0;
 		background-size:500%;
 	}
-	
+
+	#footer-navigation {
+		height: 430px;
+	}
+
+	#footer-navigation .col-md-4 {
+		margin-bottom: 25px;
+	}
 }
 
 @media (max-width: 480px) {
@@ -354,23 +361,15 @@ hr.soften {
     }
 
 	#wrapper {
-		margin: 0 auto -580px;
+		margin: 0 auto -600px;
 	}
 
 	#push-footer {
-		height: 580px;
+		height: 600px;
 	}
 
 	#footer-spacer {
 		height: 25px;
-	}
-
-	#footer-navigation {
-		height: 410px;
-	}
-
-	#footer-navigation .col-md-4 {
-		margin-bottom: 25px;
 	}
 
 	#footer-info {
@@ -628,7 +627,7 @@ hr.soften {
 }
 
 #getstarted h1, #docs h1, .vs h1, #pricing h1, #blog h1, .doc-title {
-    margin-top: -5px;
+    margin-top: -10px;
     font-size: 44px;
     font-weight: 400;
 	line-height: 130%;
@@ -668,7 +667,7 @@ pre.console strong {
     color: yellow;
 }
 
-pre.console span {
+pre.console>span:first-child {
     color: #CCC;
 }
 
