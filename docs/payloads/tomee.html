@@ -91,6 +91,26 @@ subtitle: 'TomEE'
         <i class="fa fa-folder-open"></i> WEB-INF
           <span><i class="fa fa-file"></i> cacerts</span></pre>
 
+    <h2>JCE unlimited strength cryptography</h2>
+
+    <p>To enable JCE unlimited cryptography (for AES-256, RSA-4096, ...), download the policy zip from the Oracle website
+        for either <a href="http://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html">Java 7</a>
+        or <a href="http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html">Java 8</a>.</p>
+    <p>Extract both <code>local_policy.jar</code> and <code>US_export_policy.jar</code> and place them under <code>/WEB-INF</code> inside your war file.
+        If you use Maven or Gradle, this means both policy jar files should be put into the <code>src/main/webapp/WEB-INF</code> directory.
+        Boxfuse will then automatically configure the JRE to use these instead.
+    </p>
+
+    <pre class="filetree"><i class="fa fa-folder-open"></i> my-dropwizard-app
+  <i class="fa fa-folder-open"></i> src
+    <i class="fa fa-folder-open"></i> main
+      <i class="fa fa-folder"></i> java
+      <i class="fa fa-folder"></i> resources
+      <i class="fa fa-folder-open"></i> webapp
+        <i class="fa fa-folder-open"></i> WEB-INF
+          <span><i class="fa fa-file"></i> local_policy.jar
+<i class="fa fa-file"></i> US_export_policy.jar</span></pre>
+
     <h2>Databases</h2>
 
     <p>If your app includes the PostgreSQL or MySQL JDBC driver, Boxfuse will automatically provision the necessary PostgreSQL or MySQL database
