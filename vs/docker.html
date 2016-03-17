@@ -14,7 +14,7 @@ subtitle : ''
             <p>We want to make the decision as easy as possible, so we’ve put together some info that’ll help you decide which option is best for you.</p>
             <p>Below, you'll find information to help you compare Boxfuse and Docker, including features, pricing and thoughts from current Boxfuse customers who have made the switch.</p>
 
-            <h2>1. Boxfuse is much easier and better integrated than Docker</h2>
+            <h2>1. Boxfuse is much easier to use and better integrated than Docker</h2>
             <p>Boxfuse is all about making you productive so you can focus on delighting your customers instead
                 dealing with infrastructure issues. We made sure Boxfuse is a joy to use by making running
                 JVM and Node.js applications on AWS absolutely trivial. There are no lengthy tool chains to master,
@@ -50,12 +50,12 @@ Deployment completed successfully. myuser/myapp:1.0 is up and running at http://
 
             <p>Boxfuse goes well beyond what you would expect and is able to read your framework's native configuration files
                 and automatically configures security groups, load balancers and more based on the port and healthcheck information
-                they contain, with no additional effort required on your part (needless to say, you are of course able to override these defaults should you want to).</p>
+                they contain, with no additional effort required on your part (needless to say, you can of course override these defaults should you want to).</p>
 
             <h2>2. Boxfuse images are smaller and deployment is simpler</h2>
             <p>At Boxfuse we strongly believe that being able to iterate quickly is a must. And that's why we've built
             a unique image creation process that produces ultra small images in seconds. See for yourself how the images for the
-                Spring Boot application from the getting started pages on this site compare:</p>
+                Spring Boot application from our getting started pages compare:</p>
 
             <img src="/assets/img/docker-vs-boxfuse-image-size.png">
 
@@ -64,7 +64,7 @@ Deployment completed successfully. myuser/myapp:1.0 is up and running at http://
 
             <img src="/assets/img/docker-vs-boxfuse-stack.png">
 
-            <p>Boxfuse images are converter into very small AMIs which tie in natively with all the important native AWS
+            <p>Boxfuse images are converted into very small AMIs which tie in natively with all the important native AWS
             services like ELB health checks, auto-scaling and security groups.</p>
         </div>
     </div>
@@ -99,7 +99,7 @@ Deployment completed successfully. myuser/myapp:1.0 is up and running at http://
             <p>Continuous Deployment is critically important for many companies today, allowing them to innovate and iterate faster.</p>
 
             <p>Boxfuse fully embraces this by treating build tool plugins as first-class citizens, making it effortless
-                to integrate AMI building into your pipeline. In addition to its command-line client,
+                to integrate AWS deployment directly into your pipeline. In addition to its command-line client,
                 Boxfuse comes with both Maven and Gradle plugins which can be readily integrated through the usual means:</p>
 
             <p>Gradle: <code>build.gradle</code></p>
@@ -115,7 +115,7 @@ Deployment completed successfully. myuser/myapp:1.0 is up and running at http://
 &lt;/plugin&gt;</pre>
 
             <p>For rapid turnarounds and fast feedback, Boxfuse also lets you run your images on VirtualBox. This is a
-            great way to run your integration tests locally before creating an AMI. And unlike Docker, Boxfuse's client
+            great way to run your integration tests locally before deploying to AWS. And unlike Docker, Boxfuse's client
                 runs natively on Windows, Mac and Linux with no special shell or setup required.</p>
 
             <h2>4. Boxfuse is affordable</h2>
