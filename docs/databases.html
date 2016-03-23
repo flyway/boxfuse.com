@@ -52,6 +52,7 @@ subtitle: 'Databases'
     <p>Boxfuse automatically exposes the correct database URL, user and password for the database of your app in the current
     environment as environment variables within your instance:</p>
 
+    <h3>JVM apps</h3>
 
     <table class="table table-striped">
         <thead>
@@ -76,6 +77,50 @@ subtitle: 'Databases'
             <td><code>BOXFUSE_DATABASE_PASSWORD</code></td>
             <td>The database password</td>
             <td style="word-break: break-all">OIHQGikugfdieweqwfgUFuDuzkDtERwTSCHJdfIZtdziDjZdtTIdZTUtDSdikdfOULOpOiHhiUGIOgOiGFOFfUI</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h3>Node.js apps</h3>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Environment Variable Name</th>
+            <th>Description</th>
+            <th>Example</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><code>BOXFUSE_DATABASE_HOST</code></td>
+            <td>The database host</td>
+            <td style="word-break: break-all">my-app-prod-db.ca53c5vrhrzn.eu-central-1.rds.amazonaws.com</td>
+        </tr>
+        <tr>
+            <td><code>BOXFUSE_DATABASE_PORT</code></td>
+            <td>The database port</td>
+            <td style="word-break: break-all">5432</td>
+        </tr>
+        <tr>
+            <td><code>BOXFUSE_DATABASE_NAME</code></td>
+            <td>The database port</td>
+            <td style="word-break: break-all">my_app_db</td>
+        </tr>
+        <tr>
+            <td><code>BOXFUSE_DATABASE_USER</code></td>
+            <td>The database user</td>
+            <td style="word-break: break-all">kgbdvfcbweikgewVBZUWKSVBvwzwkvbVIVW</td>
+        </tr>
+        <tr>
+            <td><code>BOXFUSE_DATABASE_PASSWORD</code></td>
+            <td>The database password</td>
+            <td style="word-break: break-all">OIHQGikugfdieweqwfgUFuDuzkDtERwTSCHJdfIZtdziDjZdtTIdZTUtDSdikdfOULOpOiHhiUGIOgOiGFOFfUI</td>
+        </tr>
+        <tr>
+            <td><code>BOXFUSE_DATABASE_CA_CERT</code></td>
+            <td>The CA root certificate to use to connect via TLS (SSL)</td>
+            <td style="word-break: break-all">/cacerts/rds.pem</td>
         </tr>
         </tbody>
     </table>
@@ -124,6 +169,19 @@ flyway.migrate();</pre>
 
     <h2>Time Zones</h2>
     <p>All databases created by Boxfuse are created with their time zone set to <code>UTC</code>.</p>
+
+    <h2>Manual connections</h2>
+    <p>You can manually connect to the correct database for each environment by using the <a href="/docs/commandline/open">open -db</a> command.
+    This will automatically create a secure connection using your database's native client:</p>
+
+    <pre class="console"><span>&gt;</span> boxfuse <strong>open -db</strong> -env=test
+
+Launching psql to access the myuser/myapp PostgreSQL database in the test environment ...
+psql (9.4.5, Server 9.4.5)
+SSL Connection (Encryption cipher: ECDHE-RSA-AES256-SHA, Bits: 256)
+Type „help“ for help.
+
+myapp=></pre>
 
     <p class="next-steps">
         <a class="btn btn-primary" href="/docs/filestorage">File Storage <i class="fa fa-arrow-right"></i></a>

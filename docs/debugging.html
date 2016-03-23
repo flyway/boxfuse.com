@@ -15,7 +15,7 @@ subtitle: 'Debugging'
     <h2>Enabling remote debugging</h2>
 
     <p>To enable remote debugging simply fuse or run your image with <code>-debug</code>. This will open an additional
-    port to which your debugger can connect. As the JVM debugging protocol doesn't have any authentication, by default
+    port to which your debugger can connect. As the JVM and Node.js debugging protocols don't have any authentication, by default
         this <a href="/blog/restricted-ports">port is restricted</a> to only allow connections from the IP address of
     your local machine.</p>
 
@@ -27,9 +27,6 @@ subtitle: 'Debugging'
 
 Ready to accept remote debugger connections -> tcp://127.0.0.1:5005</pre>
 
-    <p>If you need to debug an application startup issue, you can add <code>-debug.wait</code> to make the app wait
-    for a remote debugger connection before starting up.</p>
-
     <h2>Configuring the debug port</h2>
 
     <p>You can configure both the port number as well as the restrictions by manually specifying <code>-ports.debug=...</code>
@@ -40,7 +37,18 @@ Ready to accept remote debugger connections -> tcp://127.0.0.1:5005</pre>
 
     <p>You can then simply connect the debugger of your favorite IDE to that address:</p>
 
+    <h3>JVM apps</h3>
+
     <img src="/assets/img/debug.png" class="screenshot">
+
+    <p>And now simply add breakpoints, step through the code, and evaluate expressions as you normally would.</p>
+
+    <p class="alert alert-info"><strong>Tip:</strong> If you need to debug an application startup issue, you can add <code>-debug.wait</code> to make the app wait
+        for a remote debugger connection before starting up.</p>
+
+    <h3>Node.js apps</h3>
+
+    <img src="/assets/img/debug-nodejs.png" class="screenshot">
 
     <p>And now simply add breakpoints, step through the code, and evaluate expressions as you normally would.</p>
 
