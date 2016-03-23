@@ -1,16 +1,54 @@
 ---
-layout: getstarted
-menu: nodejs
-subtitle: 'Get Started with Boxfuse & Node.js'
+layout: blog
+subtitle: "Deploying 15 MB Node.js VMs effortlessly to AWS"
+permalink: /blog/nodejs-aws.html
 ---
-<div id="nodejs">
-    <p><img src="/assets/img/nodejs.png"></p>
-    <p>&nbsp;</p>
+<div>
+    <p>Node.js is a highly productive platform with a broad ecosystem for developing modern web applications and microservices.
+    </p>
 
-    <p>This tutorial will get you started with Boxfuse and Node.js. It should take you about <strong>5-10 minutes</strong> to complete.</p>
+    <p>Today we're going to look at <strong>deploying Node.js applications effortlessly to AWS</strong>
+        using <strong><a href="/blog/welcome">Boxfuse</a></strong>.</p>
+
+    <div class="blog-post-image center">
+        <img src="/assets/posts/nodejs-aws/nodejs-aws.png" alt="Node.js App deployed to AWS using Boxfuse">
+    </div>
+
+    <p><a href="/">Boxfuse</a> is based upon 3 core principles:</p>
+    <table class="table">
+        <tr>
+            <td>1.</td>
+            <td><a href="/learn/why"><strong><nobr>Immutable Infrastructure</nobr></strong></a></td>
+            <td>Creating servers and never modifying them again by treating a server as one immutable
+                unit that is regenerated after every change and promoted unchanged from environment to environment.
+                This eliminates drift and increases reliability by ensuring you run the exact same code in production as
+                the code you tested in test.</td>
+        </tr>
+        <tr>
+            <td>2.</td>
+            <td><a href="/learn/how"><strong>Minimal Images</strong></a></td>
+            <td>Analysing your application and generating minimal tailor-made Linux-based images on the fly that
+                are 100x smaller than a typical Linux system and take just seconds to produce.</td>
+        </tr>
+        <tr>
+            <td>3.</td>
+            <td><strong>Blue/Green deployments</strong></td>
+            <td>Deploying a new version of an app in parallel to the existing one and only making the switch at the elastic IP
+                or elastic load balancer level once the configured health checks of the new version have passed. Deployments are fully
+                automated and effectively transactional, providing you with zero-downtime updates.</td>
+        </tr>
+    </table>
+
+    <h2>The plan</h2>
+    <p>Our plan is to first <strong>create a new Node.js app</strong> which we'll <strong>fuse into a minimal Boxfuse image</strong> that can be deployed unchanged both on VirtualBox and AWS.</p>
+
+    <p>We'll then <strong>deploy our image to VirtualBox</strong> (great for rapid feedback and quick local tests),
+        push it to the Boxfuse Vault (our secure online repository) and <strong>run it on AWS</strong>.</p>
+
+    <p>And finally we'll <strong>update it on AWS with zero-downtime</strong> blue/green deployments.</p>
 
     <h2>Prerequisites</h2>
-    <p>Before you begin, ensure you have successfully:</p>
+    <p>Before we begin, ensure you have successfully:</p>
     <ol>
         <li>created a <strong><a href="https://console.boxfuse.com">Boxfuse Account</a></strong> (simply log in with your GitHub account, it's free)</li>
         <li>downloaded and installed the latest <strong><a href="/getstarted/download">Boxfuse Client</a></strong></li>
@@ -45,7 +83,7 @@ subtitle: 'Get Started with Boxfuse & Node.js'
     <pre class="console"><span>getstarted-nodejs&gt;</span> boxfuse run
 
 Fusing Image for getstarted-nodejs-0.0.0.tgz ...
-Image fused in 00:02.481s (14809 K) -> myuser/getstarted-nodejs:0.0.0
+Image fused in 00:02.481s (15076 K) -> myuser/getstarted-nodejs:0.0.0
 Launching Instance of myuser/getstarted-nodejs:0.0.0 on VirtualBox ...
 Forwarding http port localhost:80 -> vb-b18d6746:80
 Instance launched in 00:03.139s -> vb-b18d6746
@@ -53,7 +91,7 @@ Waiting for Payload to start on Instance vb-b18d6746 ...
 Payload started in 00:04.688s -> http://127.0.0.1</pre>
 
     <p>In just a few seconds Boxfuse found your application, detected its type,
-    generated an image for it and launched an instance of that image on VirtualBox.</p>
+        generated an image for it and launched an instance of that image on VirtualBox.</p>
 
     <p>Now open your browser and navigate to this address to see your new application up and running within the VirtualBox VM:</p>
 
@@ -61,7 +99,7 @@ Payload started in 00:04.688s -> http://127.0.0.1</pre>
 
     <p>You can also see your newly created image:</p>
 
-    <pre class="console" style="font-size: 90%"><span>getstarted-nodejs&gt;</span> boxfuse ls
+    <pre class="console" style="font-size: 80%"><span>getstarted-nodejs&gt;</span> boxfuse ls
 
 Images available locally:
 +--------------------------------+-----------------------------+-------+---------------+------------+---------+---------------------+
@@ -73,7 +111,7 @@ Total: 1</pre>
 
     <p>As well as the instance that is running:</p>
 
-    <pre class="console"><span>getstarted-nodejs&gt;</span> boxfuse ps
+    <pre class="console" style="font-size: 80%"><span>getstarted-nodejs&gt;</span> boxfuse ps
 
 Running Instances on VirtualBox in the dev environment :
 +-------------+--------------------------------+---------------------+------------------+---------------------+
@@ -93,7 +131,7 @@ Total: 1</pre>
 
     <p>So let's deploy our application to the <code>prod</code> environment on AWS:</p>
 
-    <pre class="console"><span>getstarted-nodejs&gt;</span> boxfuse run -env=prod
+    <pre class="console" style="font-size: 80%"><span>getstarted-nodejs&gt;</span> boxfuse run -env=prod
 
 Creating myuser/getstarted-nodejs ...
 Pushing myuser/getstarted-nodejs:0.0.0 ...
@@ -169,18 +207,27 @@ Deployment completed successfully. myuser/getstarted-nodejs:0.0.1 is up and runn
 
     <h2>Summary</h2>
 
-    <p>In this brief guide we have seen how to:</p>
-    <ul>
-        <li>create a Node.js application</li>
-        <li>fuse it into a Boxfuse image</li>
-        <li>deploy the image locally on VirtualBox</li>
-        <li>deploy the image unchanged to AWS</li>
-        <li>update the application with zero downtime</li>
-    </ul>
+    <p>In this post, we saw how to <strong>deploy and update a Node.js application to AWS</strong> using <strong>Boxfuse</strong> in 3 easy steps.</p>
 
-    <p>Now it's your turn. Take your favorite Node.js application and deploy it with ease and pleasure.</p>
+    <p>First
+        we fused our application into a <strong>15 MB Boxfuse image</strong> in under <strong>3 seconds</strong> and ran an instance of it on VirtualBox. We then
+        deployed the same image unchanged to AWS. And finally we updated our application on AWS with zero downtime using
+        blue/green deployments.</p>
 
-    <p class="next-steps">
-        <a class="btn btn-primary" href="/docs/payloads/nodejs">Boxfuse Node.js Documentation <i class="fa fa-arrow-right"></i></a>
-    </p>
+    <p>To do so we used <strong><a href="/">Boxfuse</a></strong> and its 3 core principles:
+        <a href="/learn/why"><strong><nobr>Immutable Infrastructure</nobr></strong></a>,
+        <a href="/learn/how"><strong>Minimal Images</strong></a> and
+        <strong>Blue/Green deployments</strong>.</p>
+
+    <div class="blog-post-image center">
+        <img src="/assets/posts/nodejs-aws/nodejs-aws.png" alt="Node.js App deployed to AWS using Boxfuse">
+    </div>
+
+    <p>And that's not it! Boxfuse also supports dead-easy <strong><a href="/docs/debugging">debugging</a></strong>,
+        <strong><a href="/blog/auto-scaling">auto-scaling</a></strong>, <strong><a href="/docs/databases">database auto-provisioning</a></strong> and much more.</p>
+
+    <p>So if you haven't already,
+        <a href="https://console.boxfuse.com"><strong>sign up for your
+            Boxfuse account</strong></a> now (simply log in with your GitHub id, it's free) to start deploying
+            your Node.js applications effortlessly on AWS in minutes.</p>
 </div>
