@@ -71,9 +71,14 @@ subtitle: 'Spring Boot'
     profile by setting the <code>SPRING_PROFILES_ACTIVE</code> environment variable to the value you need using the
         <a href="/docs/commandline/run#envvars">envvars</a> argument.</p>
 
-    <p class="alert alert-info"><strong>Tip:</strong> To use a different Spring Profile for each <a href="/docs/environments">Boxfuse environment</a>,
-    set the Spring Boot profile to the value of the <code>BOXFUSE_ENV</code> environment variable which contains the name of the
+    <p>To use a different Spring Profile for each <a href="/docs/environments">Boxfuse environment</a>,
+        set the Spring Boot profile to the value of the <code>BOXFUSE_ENV</code> environment variable which contains the name of the
         current <a href="/docs/environments">environment</a> (dev, test, prod): <code>envvars.SPRING_PROFILES_ACTIVE=$BOXFUSE_ENV</code></p>
+
+    <p class="alert alert-info"><strong>Tip:</strong>
+        The <code>BOXFUSE_ENV</code> environment variable is only available within the Boxfuse instance, so when using
+        the Boxfuse command-line client with a unix shell you must prevent variable expansion by using single quotes: <code>'-envvars.SPRING_PROFILES_ACTIVE=$BOXFUSE_ENV'</code>
+    </p>
 
     <h2>Databases</h2>
 
