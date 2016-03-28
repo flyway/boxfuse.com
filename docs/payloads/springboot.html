@@ -75,9 +75,9 @@ subtitle: 'Spring Boot'
         set the Spring Boot profile to the value of the <code>BOXFUSE_ENV</code> environment variable which contains the name of the
         current <a href="/docs/environments">environment</a> (dev, test, prod): <code>envvars.SPRING_PROFILES_ACTIVE=$BOXFUSE_ENV</code></p>
 
-    <p class="alert alert-info"><strong>Tip:</strong>
-        The <code>BOXFUSE_ENV</code> environment variable is only available within the Boxfuse instance, so when using
-        the Boxfuse command-line client with a unix shell you must prevent variable expansion by using single quotes: <code>'-envvars.SPRING_PROFILES_ACTIVE=$BOXFUSE_ENV'</code>
+    <p class="alert alert-info"><strong>Tip for Mac OSX and Linux users:</strong>
+        The <code>BOXFUSE_ENV</code> environment variable is only available within the Boxfuse instance, so
+        you must prevent variable expansion by using single quotes: <code>'-envvars.SPRING_PROFILES_ACTIVE=$BOXFUSE_ENV'</code>
     </p>
 
     <h2>Databases</h2>
