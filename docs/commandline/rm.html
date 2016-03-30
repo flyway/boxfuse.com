@@ -6,7 +6,7 @@ pill: rm
 
 <h2>rm</h2>
 
-<p>Removes this <em>Image</em> from your machine or the Boxfuse Vault.</p>
+<p>Removes this <em>Image</em> from your machine or the Boxfuse Vault. When removing an image from the Boxfuse Vault all corresponding AMIs are removed as well.</p>
 
 <p><strong>Usage: </strong> boxfuse rm <em>image</em>|<em>app</em></p>
 
@@ -37,7 +37,7 @@ All locally available Images of axelfontaine/hello removed in 00:00.001s</pre>
     <tr>
         <td>-vault</td>
         <td>false</td>
-        <td>Removes the Image from the Boxfuse Vault instead of your local machine</td>
+        <td>Removes the Image from the Boxfuse Vault instead of your local machine. All corresponding AMIs will be removed as well.</td>
     </tr>
 </table>
 

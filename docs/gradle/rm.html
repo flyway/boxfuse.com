@@ -6,7 +6,7 @@ pill: rm
 
 <h2>boxfuseRm</h2>
 
-<p>Removes this <em>Image</em> from your machine.</p>
+<p>Removes this <em>Image</em> from your machine or the Boxfuse Vault. When removing an image from the Boxfuse Vault all corresponding AMIs are removed as well.</p>
 
 <p><strong>Usage: </strong> gradle boxfuseRm -Dboxfuse.image=<em>image</em></p>
 
@@ -61,7 +61,7 @@ All locally available Images of axelfontaine/hello removed in 00:00.001s</pre>
         <td>vault</td>
         <td>boxfuse.vault</td>
         <td>false</td>
-        <td>Removes the Image from the Boxfuse Vault instead of your local machine</td>
+        <td>Removes the Image from the Boxfuse Vault instead of your local machine. All corresponding AMIs will be removed as well.</td>
     </tr>
 </table>
 
