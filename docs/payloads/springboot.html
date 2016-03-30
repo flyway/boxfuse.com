@@ -80,6 +80,14 @@ subtitle: 'Spring Boot'
         you must prevent variable expansion by using single quotes: <code>'-envvars.SPRING_PROFILES_ACTIVE=$BOXFUSE_ENV'</code>
     </p>
 
+    <p>Note that selecting a Spring Profile via an environment variables or any other means does not affect how Boxfuse
+    <a href="#configuration">configures ports and healthchecks</a>. Boxfuse will only read the files described in that
+        section to extract that information, regardless of which Spring profile gets selected at runtime. You can
+        override those auto-configured values by explicitly setting the port numbers and healthcheck paths using Boxfuse
+        parameters when fusing images or launching instances. At runtime those parameters will then override any other
+        Spring Boot configuration.
+    </p>
+
     <h2>Databases</h2>
 
     <p>When using the <a href="/docs/databases">Boxfuse database auto-provisioning support</a>, Boxfuse automatically configures Spring Boot's DataSource
