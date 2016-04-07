@@ -58,7 +58,7 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>cpus</td>
         <td>boxfuse.cpus</td>
         <td><em>same as host</em></td>
-        <td>The number of CPUs to assign to an Instance</td>
+        <td><p><i>VirtualBox only</i></p>The number of CPUs to assign to an Instance</td>
     </tr>
     <tr>
         <td>debug</td>
@@ -70,7 +70,7 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>debugWait</td>
         <td>boxfuse.debug.wait</td>
         <td>false</td>
-        <td>(JVM only) Whether the JVM should wait for the remote debugger to connect (Only applicable when <a href="/docs/debugging">debug mode</a> is active)</td>
+        <td><p><i>JVM only</i></p>Whether the JVM should wait for the remote debugger to connect (Only applicable when <a href="/docs/debugging">debug mode</a> is active)</td>
     </tr>
     <tr>
         <td>env</td>
@@ -114,25 +114,25 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>jvmArgs</td>
         <td>boxfuse.jvm.args</td>
         <td></td>
-        <td>(JVM only) Extra arguments to pass to the JVM</td>
+        <td><p><i>JVM only</i></p>Extra arguments to pass to the JVM</td>
     </tr>
     <tr id="jvmJmx">
         <td>jvmJmx</td>
         <td>boxfuse.jvm.jmx</td>
         <td>false</td>
-        <td>(JVM only) Enable the JMX remote <a href="/docs/profiling">management and profiling</a> interface for the JVM</td>
+        <td><p><i>JVM only</i></p>Enable the JMX remote <a href="/docs/profiling">management and profiling</a> interface for the JVM</td>
     </tr>
     <tr>
         <td>jvmMainClass</td>
         <td>boxfuse.jvm.main.class</td>
         <td><em>autodetected</em></td>
-        <td>(JVM only) Main class to invoke on JVM startup</td>
+        <td><p><i>JVM only</i></p>Main class to invoke on JVM startup</td>
     </tr>
     <tr>
         <td>jvmMainArgs</td>
         <td>boxfuse.jvm.main.args</td>
         <td></td>
-        <td>(JVM only) Arguments to pass to the main class</td>
+        <td><p><i>JVM only</i></p>Arguments to pass to the main class</td>
     </tr>
     <tr>
         <td>image</td>
@@ -162,7 +162,7 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>logsTail</td>
         <td>boxfuse.logs.tail</td>
         <td>false</td>
-        <td>Tail (keep running with live updates) the logs (VirtualBox only)</td>
+        <td><p><i>VirtualBox only</i></p>Tail (keep running with live updates) the logs</td>
     </tr>
     <tr id="ports">
         <td>ports</td>
@@ -184,7 +184,7 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>portsmap</td>
         <td>boxfuse.portsmap.<em>NAME</em></td>
         <td><em>same as matching image port</em></td>
-        <td><p>This is for VirtualBox only.</p>
+        <td><p><i>VirtualBox only</i></p>
             <p>The local ports to map to the app inside the instance. By default Boxfuse will attempt to open the same port
                 locally as has been opened in the VirtualBox VM. On Linux &amp; Mac privileged ports (&lt;1024) will be
                 opened at 10000
@@ -218,7 +218,7 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>ram</td>
         <td>boxfuse.ram</td>
         <td>1024</td>
-        <td>The amount of RAM in MB to assign to an Instance</td>
+        <td><p><i>VirtualBox only</i></p>The amount of RAM in MB to assign to an Instance</td>
     </tr>
     <tr id="tmp">
         <td>tmp</td>
