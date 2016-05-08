@@ -43,6 +43,20 @@ subtitle: 'FAQ'
         to make sure everything matches.
     </p>
 
+    <h2 id="jdbc">My application includes the MySQL or PostgreSQL JDBC driver, but Boxfuse doesn't provision any databases. What could be the issue?</h2>
+
+    <p>When you first fuse an image for a Boxfuse application that hasn't been explicitly created in the Boxfuse Console, Boxfuse will
+    automatically create that application for you. To do so, Boxfuse detects the any compatible JDBC drivers you have included and
+        configures the application to use the correct type of database</p>
+
+    <p>Once the application has been created, the type of database it uses cannot be changed anymore.</p>
+
+    <p>This means that if you initially created the application without a database, or fused an image when it did not contain a JDBC driver,
+    even adding a JDBC driver later will not trigger Boxfuse's autodetection anymore.</p>
+
+    <p>To use Boxfuse's <a href="/docs/databases">database auto-provisioning</a> anyway, simply delete your application in the Boxfuse Console
+    and recreate it with the correct database type or fuse a new image based on a payload that contains a compatible JDBC driver.</p>
+
     <p class="next-steps">
         <a class="btn btn-primary" href="/docs/releasenotes">Release Notes <i class="fa fa-arrow-right"></i></a>
     </p>
