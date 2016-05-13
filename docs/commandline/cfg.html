@@ -42,9 +42,9 @@ Successfully configured hello in test</pre>
              This is only for apps using the AWS API. The value <code>none</code> unsets any instance profile.</td>
     </tr>
     <tr>
-        <td>-subnet=...</td>
+        <td>-subnets=...</td>
         <td>auto</td>
-        <td>The AWS subnet to deploy to in the specified environment (single instance apps only)</td>
+        <td>Comma-separated list of AWS subnets to deploy to in the specified environment. AWS supports maximum one subnet per availability zone. <code>auto</code> to let AWS automatically select the subnet(s).</td>
     </tr>
     <tr>
         <td>-elb=...</td>

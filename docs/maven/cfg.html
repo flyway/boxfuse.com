@@ -10,7 +10,7 @@ pill: cfg
 
 <p><strong>Usage: </strong> mvn boxfuse:cfg -Dboxfuse.app=<em>appName</em></p>
 
-<pre class="console">&gt; mvn boxfuse:cfg -Dboxfuse.app=hello -Dboxfuse.env=test -Dboxfuse.securitygroup=sg-12345678
+<pre class="console">&gt; mvn boxfuse:cfg -Dboxfuse.app=hello -Dboxfuse.env=test -Dboxfuse.subnets=subnet-abcd1234,subnet-efgh5678
 
 Configuring hello in test ...
 Successfully configured hello in test</pre>
@@ -76,10 +76,10 @@ Successfully configured hello in test</pre>
             This is only for apps using the AWS API. The value <code>none</code> unsets any instance profile.</td>
     </tr>
     <tr>
-        <td>subnet</td>
-        <td>boxfuse.subnet</td>
+        <td>subnets</td>
+        <td>boxfuse.subnets</td>
         <td>auto</td>
-        <td>The AWS subnet to deploy to in the specified environment (single instance apps only)</td>
+        <td>The AWS subnets to deploy to in the specified environment. AWS supports maximum one subnet per availability zone. <code>auto</code> to let AWS automatically select the subnet(s).</td>
     </tr>
     <tr>
         <td>elb</td>
@@ -98,7 +98,10 @@ Successfully configured hello in test</pre>
     &lt;env&gt;prod&lt;/env&gt;
     &lt;securitygroup&gt;sg-12345678&lt;/securitygroup&gt;
     &lt;instanceprofile&gt;none&lt;/instanceprofile&gt;
-    &lt;subnet&gt;auto&lt;subnet&gt;
+    &lt;subnets&gt;
+        &lt;subnet&gt;subnet-abcd1234&lt;/subnet&gt;
+        &lt;subnet&gt;subnet-efgh5678&lt;/subnet&gt;
+    &lt;/subnets&gt;
     &lt;elb&gt;my-elb&lt;/elb&gt;
 &lt;/configuration&gt;</pre>
 
