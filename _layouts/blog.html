@@ -9,7 +9,9 @@ title2: Blog
             <p class="blog-post-date">{{page.date | date: "%Y-%m-%d"}}</p>
             <h1>{{ page.subtitle }}{% if page.parttitle %} <br/><span class="blog-post-subtitle">{{page.parttitle}}</span> {% endif %}</h1>
 
+            <div>
             {{ content }}
+            </div>
 
             <div id="social-buttons">
                 <table>
