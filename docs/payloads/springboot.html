@@ -193,7 +193,7 @@ server.ssl.trust-store-password=my0th3rPwd</pre>
     <p>Boxfuse also automatically configures the Spring Boot Actuator disk space health check to monitor <code>/tmp</code>. When you disable
     the temp space (by setting <code>tmp</code> to <code>0</code>), Boxfuse will also automatically disable the Actuator disk space health check.</p>
 
-    <h2>Linux Kernel Tuning (experts only)</h2>
+    <h2 id="sysctl">Linux Kernel Tuning (experts only)</h2>
 
     <p>If you need to tune the Linux kernel running in your instance, simply place a <code>sysctl.conf</code> file at the root inside your jar file.
         In a Maven or Gradle project this means you have to put it under <code>src/main/resources</code>:</p>
