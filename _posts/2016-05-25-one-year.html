@@ -1,0 +1,150 @@
+---
+layout: blog
+subtitle: "One Year of Boxfuse"
+permalink: /blog/one-year.html
+---
+<p>Last month marked one year since the <a href="/blog/welcome">initial version of Boxfuse was released</a>. We are now
+    many many features and over 100 Boxfuse Client releases further. And what a
+    ride it's been!</p>
+
+<p>Boxfuse set out to make the deployment of applications to the cloud absolutely effortless by leveraging its three
+    core principles:</p>
+<table class="table">
+    <tr>
+        <td>1.</td>
+        <td><a href="/learn/why"><strong>
+            <nobr>Immutable Infrastructure</nobr>
+        </strong></a></td>
+        <td>Creating servers and never modifying them again by treating a server as one immutable
+            unit that is regenerated after every change and promoted unchanged from environment to environment.
+            This eliminates drift and increases reliability by ensuring you run the exact same code in production as
+            the code you tested in test.
+        </td>
+    </tr>
+    <tr>
+        <td>2.</td>
+        <td><a href="/learn/how"><strong>Minimal Images</strong></a></td>
+        <td>Analysing your application and generating minimal tailor-made Linux-based images on the fly that
+            are 100x smaller than a typical Linux system and take just seconds to produce.
+        </td>
+    </tr>
+    <tr>
+        <td>3.</td>
+        <td><strong>Blue/Green deployments</strong></td>
+        <td>Deploying a new version of an app in parallel to the existing one and only making the switch at the elastic
+            IP
+            or elastic load balancer level once the configured health checks of the new version have passed. Deployments
+            are fully
+            automated and effectively transactional, providing you with zero-downtime updates.
+        </td>
+    </tr>
+</table>
+
+<h2>The humble beginnings</h2>
+<p>We had to start out somewhere and so we picked one problem and decided to solve it better than anyone else out there:
+    <a href="/blog/dropwizard-aws">deploying Dropwizard applications to AWS</a>:</p>
+
+<div class="blog-post-image">
+    <img style="height: 250px" src="/assets/posts/dropwizard-aws/dropwizard-aws.png">
+</div>
+
+<p>This provided us with a great testbed to both validate our innovative technology
+    (<a href="/learn/how">generating minimal images on-the-fly in seconds</a>) as well as to
+    pioneer our deep integration features (<a href="/docs/payloads/dropwizard">extracting port and healthcheck configuration directly
+        out of Dropwizard's native configuration files</a>)</p>
+
+<p>We launched with support for testing locally on VirtualBox and performing blue/green deployments atomically on AWS with zero downtime updates.
+We introduced this both for single instance applications (using an Elastic IP) as well as load balanced applications (using an Elastic Load Balancer).</p>
+
+<p>We have always been strong proponents of Continuous Deployments and making Boxfuse a natural fit for this was a no-brainer.
+From day one we shipped both a cross-platform CLI (the <a href="/docs/commandline">Boxfuse Command-line Client</a>) as well
+as a build tool plugin (the <a href="/docs/maven">Boxfuse Maven plugin</a>) to make it trivial to automate
+your deployment workflows.</p>
+
+<h2>Expanding to more JVM frameworks</h2>
+<p>Building upon the foundation laid out with Dropwizard, Boxfuse successively added deep integration for most common modern JVM
+application frameworks. Over the course of this first year, Boxfuse added support for
+    <a href="/blog/springboot-ec2">Spring Boot</a>, <a href="/blog/playframework-aws">Play</a>,
+    <a href="/blog/grails-aws">Grails</a>, <a href="/docs/payloads/jar">plain executable Jars</a>,
+    <a href="/docs/payloads/tomcat">Tomcat</a> and even <a href="/blog/javaee-aws">TomEE</a> for JavaEE applications.</p>
+
+<div style="padding-bottom: 15px">
+    <img style="height: 60px; margin-right: 20px;" src="/assets/img/springboot.png">
+    <img style="height: 60px; margin-right: 20px;" src="/assets/img/play.png">
+    <img style="height: 60px; margin-right: 20px;" src="/assets/img/grails.png">
+    <img style="height: 60px; margin-right: 20px;" src="/assets/img/tomcat.png">
+    <img style="height: 60px; margin-right: 20px;" src="/assets/img/tomee.png">
+</div>
+
+<p>We also made sure it is easy for users of those frameworks to discover Boxfuse by contributing sections to the
+official documentation of both Spring Boot and the Play framework.</p>
+
+<p>And we introduced the <a href="/blog/gradle-plugin">Boxfuse Gradle Plugin</a> (available directly from
+the <a href="/blog/gradle-plugin-portal">Gradle Plugin Portal</a>) to make the integration even nicer.</p>
+
+<h2>Auto-scaling</h2>
+<p>Auto-scaling is one of those true innovations of the cloud and it fits Boxfuse's immutable minimal images like a glove.
+So it was only natural that we added first-class support to <a href="/blog/auto-scaling">dynamically scale the capacity of your system</a> based on either
+CPU or network usage:</p>
+
+<div class="blog-post-image"><img style="height: 300px" src="/assets/img/auto-scaling-console.png"></div>
+
+<h2>Database auto-provisioning</h2>
+<p>As many users rely on relational databases to store their data, Boxfuse stepped in to make sure it became
+absolutely trivial to <a href="/blog/databases">provision PostgreSQL and MySQL databases</a> reliably across all <a href="/docs/environments">environments</a> from dev on VirtualBox
+to test and prod on AWS.</p>
+
+<div class="blog-post-image">
+    <img style="height: 150px" src="/assets/img/rds.png">
+</div>
+
+<p>This also marked the introduction of the Boxfuse Dev VM on VirtualBox, providing you with fully
+configured database instances ready to be used by your application, without the need to install those yourself on your machine.</p>
+
+<p>Wherever your framework of choices supports it, Boxfuse also automatically configures it to automatically use
+the correct database instance with the correct credentials in each environment.</p>
+
+<p>And of course to easily and reliably evolve your database schema over time, our database migration tool
+    <a href="https://flywaydb.org">Flyway</a> is there to help you too.</p>
+
+<h2>Debugging and Profiling</h2>
+<p>To make it easier to see what's going on with your application, Boxfuse introduced
+first class support for <a href="/blog/debug">debugging and profiling</a>, both locally on VirtualBox
+    and directly in the cloud for your instances running on AWS.</p>
+
+<div class="blog-post-image">
+    <img style="height: 200px;" src="/assets/img/jvisualvm.png">
+</div>
+
+<p>As many of those protocols are insecure, Boxfuse automatically makes use of its support
+for <a href="/blog/restricted-ports">restricted ports</a> to ensure that by default those
+interfaces are only accessible from your current IP.</p>
+
+<h2>Node.js</h2>
+<p>Based on widespread demand from our customers, we added support for our first
+    language platform beyond the JVM with first class <a href="/blog/nodejs-aws">Node.js support</a>.</p>
+
+<div class="blog-post-image">
+    <img style="height: 150px;" src="/assets/posts/nodejs-aws/nodejs-aws.png">
+</div>
+
+<p>As the Node.js runtime is more compact this resulted in super fast fusing times with images as small as 15 MB!</p>
+
+<h2>This is just the beginning</h2>
+
+<p>To mark the beginning of our second year, we are kicking things off with a bang and have released
+support for three new features:</p>
+<ol>
+    <li><strong>Node.js LTS releases</strong>: you can now use all current Node.js releases with Boxfuse in addition to the latest one</li>
+    <li><strong>Instance auto-recovery</strong>: all single instance applications now automatically recover to new hardware with no manual intervention required if the current underlying EC2 hardware becomes impaired</li>
+    <li><strong>Subnets restrictions</strong>: load balanced applications can now restrict exactly which subnets they wish to use within a VPC</li>
+</ol>
+
+<p>Enjoy!</p>
+
+<p>But remember, this is just the beginning. <strong>We are only getting started!</strong></p>
+
+<p>So if you haven't already,
+    <a href="https://console.boxfuse.com"><strong>sign up for your
+        Boxfuse account</strong></a> now (simply log in with your GitHub id, it's free) to start deploying
+        your JVM and Node.js applications effortlessly on AWS in minutes.</p>
