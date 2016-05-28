@@ -176,6 +176,17 @@ subtitle: 'Play'
         the <code>tmp</code> configuration setting to the number of GB of temp space you need. To prevent Boxfuse from
         provisioning any temp space set <code>tmp</code> to <code>0</code>.</p>
 
+    <h2>Linux Kernel Tuning (experts only)</h2>
+
+    <p>If you need to tune the Linux kernel running in your instance, simply place a <code>sysctl.conf</code> file inside the Zip file under
+        <code>/conf</code>.
+        In a SBT or Typesafe Activator project this means you have to put it under <code>/conf</code>:</p>
+    <pre class="filetree"><i class="fa fa-folder-open"></i> my-play-app
+  <i class="fa fa-folder-open"></i> conf
+    <span><i class="fa fa-file-text"></i> sysctl.conf</span></pre>
+
+    <p>Boxfuse will then <strong>automatically configure the Linux kernel to use these settings</strong>.</p>
+
     <p class="next-steps">
         <a class="btn btn-primary" href="/docs/payloads/tomcat">Tomcat <i class="fa fa-arrow-right"></i></a>
     </p>

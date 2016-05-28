@@ -175,6 +175,19 @@ subtitle: 'Grails'
     <p>Boxfuse also automatically configures the Spring Boot Actuator disk space health check to monitor <code>/tmp</code>. When you disable
     the temp space (by setting <code>tmp</code> to <code>0</code>), Boxfuse will also automatically disable the Actuator disk space health check.</p>
 
+    <h2>Linux Kernel Tuning (experts only)</h2>
+
+    <p>If you need to tune the Linux kernel running in your instance, simply place a <code>sysctl.conf</code> file at the root inside your jar file.
+        In a Gradle project this means you have to put it under <code>src/main/resources</code>:</p>
+    <pre class="filetree"><i class="fa fa-folder-open"></i> my-grails-app
+  <i class="fa fa-folder-open"></i> src
+    <i class="fa fa-folder-open"></i> main
+      <i class="fa fa-folder"></i> java
+      <i class="fa fa-folder-open"></i> resources
+        <span><i class="fa fa-file-text"></i> sysctl.conf</span></pre>
+
+    <p>Boxfuse will then <strong>automatically configure the Linux kernel to use these settings</strong>.</p>
+
     <p class="next-steps">
         <a class="btn btn-primary" href="/docs/payloads/dropwizard">Dropwizard <i class="fa fa-arrow-right"></i></a>
     </p>

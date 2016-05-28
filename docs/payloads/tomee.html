@@ -25,6 +25,15 @@ subtitle: 'TomEE'
         (for TomEE Web Profile)
         or <code>-components.tomee-plus=1.7.4</code> (for TomEE Plus).</p>
 
+    <h2>Sample App</h2>
+
+    <p class="alert alert-info"><strong>Tip:</strong> Check out our <a href="/blog/javaee-aws"><strong>blog
+        post</strong></a> on how to
+        deploy TomEE Java EE applications on AWS using Boxfuse</p>
+
+    <p>You can find a TomEE sample app for Boxfuse on GitHub at <strong><a
+            href="https://github.com/boxfuse/boxfuse-samples/tomee">boxfuse/boxfuse-samples/tomee</a></strong>.</p>
+
     <h2>OpenJDK version</h2>
 
     <p>By default Boxfuse uses the <strong>latest OpenJDK 8.x version</strong> (headless JRE). If you want to switch to OpenJDK 7.x or simply an
@@ -138,7 +147,7 @@ subtitle: 'TomEE'
     <p>By default Boxfuse will activate the OpenEJB Java Agent.</p>
 
     <p>If you wish to launch the JRE with one or more additional Java Agents, simply place the Java Agent files inside
-        the Jar file under
+        the war file under
         <code>/WEB-INF/javaagents/</code>. In a Maven or Gradle project this means you have to put your agent jar and
         whatever other files it requires under <code>src/main/webapp/WEB-INF/javaagents</code>:</p>
     <pre class="filetree"><i class="fa fa-folder-open"></i> my-tomee-app
@@ -170,14 +179,20 @@ subtitle: 'TomEE'
         the <code>tmp</code> configuration setting to the number of GB of temp space you need. To prevent Boxfuse from
         provisioning any temp space set <code>tmp</code> to <code>0</code>.</p>
 
-    <h2>Sample App</h2>
+    <h2>Linux Kernel Tuning (experts only)</h2>
 
-    <p class="alert alert-info"><strong>Tip:</strong> Check out our <a href="/blog/javaee-aws"><strong>blog
-        post</strong></a> on how to
-        deploy TomEE Java EE applications on AWS using Boxfuse</p>
+    <p>If you need to tune the Linux kernel running in your instance, simply place a <code>sysctl.conf</code> file inside your war file under <code>/WEB-INF</code>.
+        In a Maven or Gradle project this means you have to put it under <code>src/main/webapp/WEB-INF</code>:</p>
+    <pre class="filetree"><i class="fa fa-folder-open"></i> my-tomee-app
+  <i class="fa fa-folder-open"></i> src
+    <i class="fa fa-folder-open"></i> main
+      <i class="fa fa-folder"></i> java
+      <i class="fa fa-folder"></i> resources
+      <i class="fa fa-folder-open"></i> webapp
+        <i class="fa fa-folder-open"></i> WEB-INF
+          <span><i class="fa fa-file-text"></i> sysctl.conf</span></pre>
 
-    <p>You can find a TomEE sample app for Boxfuse on GitHub at <strong><a
-            href="https://github.com/boxfuse/boxfuse-samples/tomee">boxfuse/boxfuse-samples/tomee</a></strong>.</p>
+    <p>Boxfuse will then <strong>automatically configure the Linux kernel to use these settings</strong>.</p>
 
     <p class="next-steps">
         <a class="btn btn-primary" href="/docs/payloads/jar">Executable Jar <i class="fa fa-arrow-right"></i></a>
