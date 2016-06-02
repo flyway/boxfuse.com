@@ -1,0 +1,101 @@
+---
+layout: blog
+subtitle: "Oracle JRE and Kernel Tuning"
+permalink: /blog/oracle-jre.html
+---
+<p>Boxfuse's goal is to make you productive by making deployments of your Node.js and JVM-based applications truly effortless.
+    And that's why we worked tirelessly to make it possible to deploy most applications out-of-the-box by issuing just a single
+    <code>boxfuse run</code> command that uses convention-over-configuration with sensible defaults.</p>
+
+<p>Some applications however require finer grained control, which is why we introduced
+    <a href="/blog/tmp">customizing temp space allocation</a>,
+    <a href="/blog/restricted-ports">restricting ports</a>,
+    <a href="/blog/debug">dead-easy debugging and profiling</a> and more.
+</p>
+
+<p>Today we are introducing two new features to give you even more control: <strong>custom JREs</strong> and <strong>kernel tuning</strong>.</p>
+
+<h2>Custom JREs</h2>
+
+<p>By default Boxfuse uses OpenJDK for JVM-based applications, with the possibility to opt for either the OpenJDK 7 or 8 headless JREs.
+This is a great open-source choice for the vast majority of the applications, both from a technical as well as from a legal perspective.</p>
+
+<p>Some users however require commercial support or features only available with the Oracle JRE. Due to Oracle licensing restrictions
+we unfortunately cannot offer it as a component from the Boxfuse Inventory as the Oracle JRE license explicitly prohibits
+    standalone redistribution of the Oracle JRE.</p>
+
+<p>However, starting today Boxfuse now supports custom JREs. You can now bundle any <strong>Linux x64 Java Runtime Environment</strong> of your choice, including the Oracle JRE,
+directly with your application. Boxfuse will then automatically use that JRE instead of the default OpenJDK one.</p>
+
+<h3>Using the Oracle JRE</h3>
+
+<p>Here is a small example of how to use the Oracle JRE with a <a href="/docs/payloads/springboot">Spring Boot</a> application:</p>
+
+<p>1. Download the <strong>Linux x64</strong> JRE of your choice directly from the <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Oracle website</a>.</p>
+
+<p>2. Extract the <code>/jre</code> directory from the tar.gz distribution and add it to the <code>src/main/resources</code> folder of your application:</p>
+<pre class="filetree"><i class="fa fa-folder-open"></i> my-spring-boot-app
+  <i class="fa fa-folder-open"></i> src
+    <i class="fa fa-folder-open"></i> main
+      <i class="fa fa-folder"></i> java
+      <i class="fa fa-folder-open"></i> resources
+        <span><i class="fa fa-folder-open"></i> jre
+  <i class="fa fa-folder-open"></i> bin
+    <i class="fa fa-file"></i> java
+    <i class="fa fa-file"></i> ...
+  <i class="fa fa-folder-open"></i> lib
+    <i class="fa fa-folder"></i> amd64
+    <i class="fa fa-folder"></i> ...
+    <i class="fa fa-file"></i> rt.jar
+    <i class="fa fa-file"></i> ...
+  <i class="fa fa-file-text"></i> COPYRIGHT
+  <i class="fa fa-file-text"></i> LICENSE
+  <i class="fa fa-file"></i> ...</span></pre>
+
+<p>3. Package your application:</p>
+
+<pre class="console"><span>my-spring-boot-app&gt;</span> mvn package</pre>
+
+<p>4. Fuse a Boxfuse image:</p>
+
+<pre class="console"><span>my-spring-boot-app&gt;</span> boxfuse fuse</pre>
+
+<p>5. Done! Your application now uses the Oracle JRE instead of the OpenJDK one when launched from that image.</p>
+
+<h2>Kernel Tuning</h2>
+
+<p>The other feature we are introducing today is kernel tuning. While most users will never need this, this is advanced
+    feature can be a life-saver for expert users who require low-level tuning of the Linux kernel.</p>
+
+<p>All you need for this is simply to ship a <code>sysctl.conf</code> file like the one below with their application:</p>
+
+<pre class="prettyprint">net.ipv4.tcp_fastopen = 1
+net.ipv4.tcp_fastopen_key = 00000000-00000000-00000000-00000000
+net.ipv4.tcp_fin_timeout = 60
+net.ipv4.tcp_frto = 2
+net.ipv4.tcp_keepalive_intvl = 75
+net.ipv4.tcp_keepalive_probes = 9
+net.ipv4.tcp_keepalive_time = 7200
+net.ipv4.tcp_limit_output_bytes = 131072
+</pre>
+
+<p>Boxfuse will then automatically apply these settings on instance startup.</p>
+
+<h2>Conclusion</h2>
+
+<p>Boxfuse is all about making you productive by making deployment of your apps truly effortless.
+    With custom JREs and kernel tuning Boxfuse now gives advanced users additional ways to customize their images.</p>
+
+<p>Custom JREs now also allow you to easily run your applications using the Oracle JRE instead of OpenJDK and kernel
+    tuning lets expert users to perform low-level tuning of the Linux kernel inside their images.</p>
+
+<p>Existing Boxfuse users can simply update with</p>
+
+<pre class="console"><span>&gt;</span> boxfuse -u</pre>
+
+<p>to use these features. Enjoy!</p>
+
+<p>So if you haven't already,
+    <a href="https://console.boxfuse.com"><strong>sign up for your
+        Boxfuse account</strong></a> now (simply log in with your GitHub id, it's free) to start deploying
+    your JVM and Node.js applications effortlessly on AWS in minutes.</p>

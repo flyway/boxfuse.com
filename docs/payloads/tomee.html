@@ -34,16 +34,45 @@ subtitle: 'TomEE'
     <p>You can find a TomEE sample app for Boxfuse on GitHub at <strong><a
             href="https://github.com/boxfuse/boxfuse-samples/tomee">boxfuse/boxfuse-samples/tomee</a></strong>.</p>
 
-    <h2>OpenJDK version</h2>
 
-    <p>By default Boxfuse uses the <strong>latest OpenJDK 8.x version</strong> (headless JRE). If you want to switch to OpenJDK 7.x or simply an
+    <h2>Java Runtime Environment</h2>
+    <p>By default Boxfuse uses the <strong>latest OpenJDK 8.x version</strong> (headless JRE).</p>
+
+    <h3>OpenJDK version</h3>
+    <p>If you want to switch to OpenJDK 7.x or simply an
         older version, you can do so using the <code>-components.openjdk</code> configuration setting:</p>
 
-    <pre class="console"><span>&gt;</span> boxfuse run my-webapp-1.0.war <strong>-components.openjdk=</strong>7.80.32</pre>
+    <pre class="console"><span>&gt;</span> boxfuse run my-app-1.0.jar <strong>-components.openjdk=</strong>7.80.32</pre>
 
     <p>To find out which OpenJDK versions are available from the Boxfuse Inventory you can simply issue:</p>
 
     <pre class="console"><span>&gt;</span> boxfuse inventory openjdk</pre>
+
+    <h3>Custom JRE</h3>
+    <p>If you prefer to use a different JRE, including the <strong>Oracle JRE</strong>, rather than the default OpenJDK one,
+        you can do so by including the <strong>Linux x64</strong> JRE distribution of your choice in a <code>/WEB-INF/jre</code> folder <em>inside</em> the war file.</p>
+
+    <p>If you use Maven or Gradle, this means the <code>jre</code> folder should be put into the <code>src/main/webapp/WEB-INF</code> directory:</p>
+
+    <pre class="filetree"><i class="fa fa-folder-open"></i> my-tomee-app
+  <i class="fa fa-folder-open"></i> src
+    <i class="fa fa-folder-open"></i> main
+      <i class="fa fa-folder"></i> java
+      <i class="fa fa-folder"></i> resources
+      <i class="fa fa-folder-open"></i> webapp
+        <i class="fa fa-folder-open"></i> WEB-INF
+          <span><i class="fa fa-folder-open"></i> jre
+  <i class="fa fa-folder-open"></i> bin
+    <i class="fa fa-file"></i> java
+    <i class="fa fa-file"></i> ...
+  <i class="fa fa-folder-open"></i> lib
+    <i class="fa fa-folder"></i> amd64
+    <i class="fa fa-folder"></i> ...
+    <i class="fa fa-file"></i> rt.jar
+    <i class="fa fa-file"></i> ...
+  <i class="fa fa-file-text"></i> COPYRIGHT
+  <i class="fa fa-file-text"></i> LICENSE
+  <i class="fa fa-file"></i> ...</span></pre>
 
     <h2>TomEE version</h2>
 
