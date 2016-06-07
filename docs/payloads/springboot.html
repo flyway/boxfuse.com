@@ -122,8 +122,9 @@ subtitle: 'Spring Boot'
         to use the correct driver class name, jdbc url, user and password.</p>
 
     <p>If your app includes the PostgreSQL or MySQL JDBC driver, Boxfuse will automatically provision the necessary PostgreSQL or MySQL database
-        in each environment and auto-configure Spring Boot's DataSource. This can be disabled by setting
-        <code>dbtype</code> to <code>none</code> when <a href="/docs/commandline/create#dbtype">creating your app</a>.</p>
+        in each environment and auto-configure Spring Boot's DataSource.</p>
+
+    <p>To disable database auto-provisioning set <code>dbtype</code> to <code>none</code> when <a href="/docs/commandline/create#dbtype">creating your app</a>.</p>
 
     <div class="alert alert-info"><p><strong>Tip:</strong> If your application experiences long periods of inactivity your
         database connections may time out and throw errors upon checkout.</p>
