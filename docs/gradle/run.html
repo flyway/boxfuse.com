@@ -111,6 +111,13 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td><p><i>JVM apps only</i></p>Whether the JVM should wait for the remote debugger to connect (Only applicable when <a href="/docs/debugging">debug mode</a> is active)</td>
     </tr>
     <tr>
+        <td>elb</td>
+        <td>boxfuse.elb</td>
+        <td>auto</td>
+        <td><p><i>AWS only</i></p>
+            The name of the AWS ELB to use when deploying this application in the specified environment (load balanced apps only). <code>auto</code> to let Boxfuse automatically create a new ELB for you.</td>
+    </tr>
+    <tr>
         <td>env</td>
         <td>boxfuse.env</td>
         <td>dev</td>
@@ -147,6 +154,14 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>boxfuse.healthcheck.timeout</td>
         <td>60</td>
         <td>The number of seconds to wait for the Payload to come up</td>
+    </tr>
+    <tr>
+        <td><nobr>instanceprofile</nobr></td>
+        <td><nobr>boxfuse.instanceprofile</nobr></td>
+        <td>none</td>
+        <td><p><i>AWS only</i></p>
+            The name of the AWS instance profile to use in the specified environment.
+            This is only for apps using the AWS API. The value <code>none</code> unsets any instance profile.</td>
     </tr>
     <tr>
         <td>jvmArgs</td>
@@ -258,6 +273,20 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>1024</td>
         <td><p><i>VirtualBox only</i></p>The amount of RAM in MB to assign to an Instance</td>
     </tr>
+    <tr>
+        <td>securitygroup</td>
+        <td>boxfuse.securitygroup</td>
+        <td>auto</td>
+        <td><p><i>AWS only</i></p>
+            The id of the AWS security group to use in the specified environment. <code>auto</code> will auto-create a new security group based on the configured ports.</td>
+    </tr>
+    <tr>
+        <td>subnets</td>
+        <td>boxfuse.subnets</td>
+        <td>auto</td>
+        <td><p><i>AWS only</i></p>
+            The AWS subnets to deploy to in the specified environment. AWS supports maximum one subnet per availability zone. <code>auto</code> to let AWS automatically select the subnet(s).</td>
+    </tr>
     <tr id="tmp">
         <td>tmp</td>
         <td>boxfuse.tmp</td>
@@ -276,6 +305,7 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
     cpus=2
     debug=true
     debugWait=false
+    elb='my-elb'
     envvars=[
         'JDBC_URL':'jdbc:mydburl',
         'MY_OTHER_VAR':'abc'
@@ -284,6 +314,7 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
     healthcheckPort='https'
     healthcheckPath='/health'
     healthcheckTimeout=120
+    instanceprofile='none'
     jvmArgs='-DmycustomProp=abc'
     jvmJmx=true
     jvmMainClass='com.mycorp.MyApp'
@@ -303,6 +334,8 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         'http':8080
     ]
     ram=512
+    securitygroup='sg-12345678'
+    subnets=['subnet-abcd1234','subnet-efgh5678']
     tmp=16
 }</pre>
 
