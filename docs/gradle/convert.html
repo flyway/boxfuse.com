@@ -58,6 +58,23 @@ AMI created in 00:12.603s -> ami-74d4d369</pre>
     image='myapp:123'
 }</pre>
 
+<h3 id="dynamic-properties">Dynamically defined properties</h3>
+
+<p>After you execute convert, Boxfuse will automatically define the following Gradle properties</p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Gradle property</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tr>
+        <td>boxfuse.image</td>
+        <td>The image that was used to create the AMI</td>
+    </tr>
+</table>
+
 <p class="next-steps">
     <a class="btn btn-primary" href="/docs/gradle/pull">pull <i class="fa fa-arrow-right"></i></a>
 </p>
