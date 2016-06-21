@@ -88,7 +88,7 @@ var connectionInfo = {
   user     : process.env.BOXFUSE_DATABASE_USER,
   password : process.env.BOXFUSE_DATABASE_PASSWORD,
   database : process.env.BOXFUSE_DATABASE_NAME
-}
+};
 if (process.env.BOXFUSE_DATABASE_CA_CERT) {
   connectionInfo.ssl = {
     ca: [fs.readFileSync(process.env.BOXFUSE_DATABASE_CA_CERT, 'utf8')]
