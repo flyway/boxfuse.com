@@ -62,7 +62,7 @@ subtitle: 'Tomcat'
 
     <p>By default, Boxfuse will automatically configure Tomcat to listen to HTTP traffic on port 80.</p>
 
-    <h2>SSL (TLS) / HTTPS</h2>
+    <h2 id="tls">SSL (TLS) / HTTPS</h2>
 
     <p>To use <strong>HTTPS</strong> simply add the KeyStore containing your SSL certificate inside the .war file as
         <code>/WEB-INF/keystore.jks</code>. It must contain a certificate with the alias <code>tomcat</code> and
@@ -81,7 +81,7 @@ subtitle: 'Tomcat'
         <i class="fa fa-folder-open"></i> WEB-INF
           <span><i class="fa fa-file"></i> keystore.jks</span></pre>
 
-    <h2>Root Certificates</h2>
+    <h2 id="rootcertificates">Root Certificates</h2>
 
     <p>By default, Boxfuse uses the <strong>same root certificate bundle as the latest version of Firefox</strong>.
         Additionally Boxfuse also includes the <strong>root certificates for Amazon RDS</strong>, so you can connect securely to RDS databases out of the box.</p>
