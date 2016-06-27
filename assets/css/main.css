@@ -55,6 +55,14 @@ hr.soften {
 	border: 0;
 }
 
+.anchor {
+	cursor: pointer;
+}
+.anchor:after {
+	content: ' §';
+	color: #ccc;
+}
+
 .dark {
 	color:#fff;
 }
