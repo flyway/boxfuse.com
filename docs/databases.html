@@ -125,7 +125,7 @@ subtitle: 'Databases'
         </tbody>
     </table>
 
-    <h2>Security</h2>
+    <h2 id="security">Security</h2>
 
     <p>The user provided has superuser privileges.</p>
 
@@ -149,7 +149,7 @@ flyway.migrate();</pre>
 
     <p>Flyway 4.0 and newer comes with out of the box support for Boxfuse. When running inside a Boxfuse instance Flyway will automatically pick up the database URL and credentials exposed by Boxfuse.</p>
 
-    <h2>Character encoding</h2>
+    <h2 id="encoding">Character encoding</h2>
     <p>These are the default character encodings for the databases created by Boxfuse:</p>
     <table class="table table-striped">
         <thead>
@@ -167,10 +167,10 @@ flyway.migrate();</pre>
         </tbody>
     </table>
 
-    <h2>Time Zones</h2>
+    <h2 id="timezones">Time Zones</h2>
     <p>All databases created by Boxfuse are created with their time zone set to <code>UTC</code>.</p>
 
-    <h2>Manual connections</h2>
+    <h2 id="connections">Manual connections</h2>
     <p>You can manually connect to the correct database for each environment by using the <a href="/docs/commandline/open">open -db</a> command.
     This will automatically create a secure connection using your database's native client:</p>
 
