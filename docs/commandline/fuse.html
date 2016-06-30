@@ -42,12 +42,12 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
             Example: -components.tomcat=8.0.9
         </td>
     </tr>
-    <tr>
+    <tr id="debug">
         <td>-debug</td>
         <td>false</td>
         <td>Start the Payload in <a href="/docs/debugging">debug mode</a> when an Instance launches</td>
     </tr>
-    <tr>
+    <tr id="debug.wait">
         <td>-debug.wait</td>
         <td>false</td>
         <td><p><i>JVM apps only</i></p>Whether the JVM should wait for the remote debugger to connect (Only applicable when <a href="/docs/debugging">debug mode</a> is active)</td>
@@ -102,11 +102,11 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
         <td></td>
         <td><p><i>JVM apps only</i></p>Arguments to pass to the main class</td>
     </tr>
-    <!--tr>
-        <td>-mode=dev</td>
-        <td>prod</td>
-        <td>Switch to dev mode for live Payload reloading on your local machine</td>
-    </tr-->
+    <tr id="live">
+        <td>-live</td>
+        <td>false</td>
+        <td>Enable <a href="/docs/live">live reloading</a> of changes in dev for super fast round-trips. Note that images with live reloading cannot be pushed to the Boxfuse Vault.</td>
+    </tr>
     <tr id="ports">
         <td>-ports.<em>NAME</em>=<em>definition</em></td>
         <td>http=80</td>

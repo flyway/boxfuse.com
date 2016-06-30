@@ -193,6 +193,12 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td></td>
         <td>The Image to use</td>
     </tr>
+    <tr id="live">
+        <td>live</td>
+        <td>boxfuse.live</td>
+        <td>false</td>
+        <td><p><i>When fusing new images only</i></p>Enable <a href="/docs/live">live reloading</a> of changes in dev for super fast round-trips. Note that images with live reloading cannot be pushed to the Boxfuse Vault.</td>
+    </tr>
     <tr>
         <td>logs</td>
         <td>boxfuse.logs</td>
@@ -320,6 +326,7 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
     jvmMainClass='com.mycorp.MyApp'
     jvmMainArgs='-abc -def'
     image='hello:1.0'
+    live=true
     logs=true
     logsAuto=true
     logsDir='target/logs'

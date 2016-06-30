@@ -26,7 +26,7 @@ subtitle: 'File Storage'
         <strong><code>/tmp</code> directory</strong> in your instance is the perfect place for this. It is a separate filesystem that
         resides on disk (unlike the other directories in your Boxfuse instance which reside in RAM).</p>
 
-    <p>With the <code>-tmp=...</code> parameter Boxfuse can automatically provision between 1 (default) and 16384 GB of space.</p>
+    <p>With the <code>-tmp=...</code> parameter Boxfuse can automatically provision between 0 and 16384 GB of space, with 1 GB being the default.</p>
 
     <p>Every application (and its JVM) are automatically configured by Boxfuse to use the <code>/tmp</code> directory for
     creating temporary files. There is no manual configuration necessary on your part.</p>
