@@ -23,20 +23,23 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
     <li>Executable jar file</li>
     <li>War file</li>
     <li>Play dist zip</li>
+    <li>Node.js tgz</li>
 </ul>
 
-<h3>Arguments</h3>
+<h3>Settings</h3>
 
 <table class="table">
     <thead>
     <tr>
-        <th>Name</th>
+        <th>Argument</th>
+        <th>boxfuse.conf property</th>
         <th>Default</th>
         <th>Description</th>
     </tr>
     </thead>
     <tr>
         <td><nobr>-components.<em>NAME</em>=<em>version</em></nobr></td>
+        <td><nobr>components.<em>NAME</em></nobr></td>
         <td><em>latest version</em></td>
         <td>Pins the component with this name onto this version.<br/>
             Example: -components.tomcat=8.0.9
@@ -44,71 +47,85 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
     </tr>
     <tr id="debug">
         <td>-debug</td>
+        <td>debug</td>
         <td>false</td>
         <td>Start the Payload in <a href="/docs/debugging">debug mode</a> when an Instance launches</td>
     </tr>
     <tr id="debug.wait">
         <td>-debug.wait</td>
+        <td>debug.wait</td>
         <td>false</td>
         <td><p><i>JVM apps only</i></p>Whether the JVM should wait for the remote debugger to connect (Only applicable when <a href="/docs/debugging">debug mode</a> is active)</td>
     </tr>
     <tr>
         <td>-payload.port</td>
+        <td>payload.port</td>
         <td><em>autodetected</em></td>
         <td>The main port on which the payload starts (usually http or https)</td>
     </tr>
     <tr id="payload.path">
         <td>-payload.path</td>
+        <td>payload.path</td>
         <td>/</td>
         <td>The path where the payload starts</td>
     </tr>
     <tr>
         <td>-healthcheck</td>
+        <td>healthcheck</td>
         <td>true</td>
         <td>Check whether to payload started correctly</td>
     </tr>
     <tr>
         <td>-healthcheck.port=...</td>
+        <td>healthcheck.port</td>
         <td><em>autodetected</em></td>
-        <td>The port to check whether to payload started correctly</td>
+        <td>The port to check whether to payload started correctly (ex.: <code>http</code>)</td>
     </tr>
     <tr>
         <td>-healthcheck.path=...</td>
+        <td>healthcheck.path</td>
         <td>/</td>
         <td>The path to check whether to payload started correctly</td>
     </tr>
     <tr id="healthcheck.timeout">
         <td>-healthcheck.timeout=...</td>
+        <td>healthcheck.timeout</td>
         <td>60</td>
         <td>The number of seconds to wait for the Payload to come up</td>
     </tr>
     <tr id="jvm.args">
         <td>-jvm.args=...</td>
+        <td>jvm.args</td>
         <td></td>
         <td><p><i>JVM apps only</i></p>Extra arguments to pass to the JVM</td>
     </tr>
     <tr id="jvm.jmx">
         <td>-jvm.jmx</td>
+        <td>jvm.jmx</td>
         <td>false</td>
         <td><p><i>JVM apps only</i></p>Enable the JMX remote <a href="/docs/profiling">management and profiling</a> interface for the JVM</td>
     </tr>
     <tr id="jvm.main.class">
         <td>-jvm.main.class=...</td>
+        <td>jvm.main.class</td>
         <td><em>autodetected</em></td>
         <td><p><i>JVM apps only</i></p>Main class to invoke on JVM startup</td>
     </tr>
     <tr id="jvm.main.args">
         <td>-jvm.main.args=...</td>
+        <td>jvm.main.args</td>
         <td></td>
         <td><p><i>JVM apps only</i></p>Arguments to pass to the main class</td>
     </tr>
     <tr id="live">
         <td>-live</td>
+        <td>live</td>
         <td>false</td>
         <td>Enable <a href="/docs/live">live reloading</a> of changes in dev for super fast round-trips. Note that images with live reloading cannot be pushed to the Boxfuse Vault.</td>
     </tr>
     <tr id="ports">
         <td>-ports.<em>NAME</em>=<em>definition</em></td>
+        <td>ports.<em>NAME</em></td>
         <td>http=80</td>
         <td><p>Exposes the port of the app with this name using this definition. Example: -ports.jmx=8001</p><p>Supported formats:</p>
             <table class="table table-striped table-condensed">
@@ -124,11 +141,13 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
     </tr>
     <tr id="tmp">
         <td>-tmp=...</td>
+        <td>tmp</td>
         <td>1</td>
         <td>The amount of temp space to allocate to /tmp in GB</td>
     </tr>
     <tr id="vault">
         <td>-vault</td>
+        <td>vault</td>
         <td>false</td>
         <td>Immediately upload the new Image to the Boxfuse Vault</td>
     </tr>

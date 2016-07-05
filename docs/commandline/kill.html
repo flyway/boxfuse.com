@@ -17,20 +17,22 @@ Specifying an App will kill all Instances of that App.</p>
 Killing Instance vb-ec717c5e on VirtualBox ...
 Instance killed in 00:03.493s</pre>
 
-<h3>Arguments</h3>
+<h3>Settings</h3>
 
 <table class="table">
     <thead>
     <tr>
-        <th>Name</th>
+        <th>Argument</th>
+        <th>boxfuse.conf property</th>
         <th>Default</th>
         <th>Description</th>
     </tr>
     </thead>
-    <tr>
-        <td>-env=dev<em>|</em>test<em>|</em>prod</td>
+    <tr id="env">
+        <td>-env=...</td>
+        <td>env</td>
         <td>dev</td>
-        <td>Use the AWS test or prod environments instead of the local dev one</td>
+        <td>Select the specified <a href="/docs/environments">environment</a> (ex.: <code>test</code> or <code>prod</code>)</td>
     </tr>
 </table>
 

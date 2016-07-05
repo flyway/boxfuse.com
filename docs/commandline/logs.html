@@ -103,23 +103,26 @@ INFO: Starting ProtocolHandler ["http-nio-80"]
 Mar 03, 2015 8:47:09 PM org.apache.catalina.startup.Catalina start
 INFO: Server startup in 302 ms</pre>
 
-<h3>Arguments</h3>
+<h3>Settings</h3>
 
 <table class="table">
     <thead>
     <tr>
-        <th>Name</th>
+        <th>Argument</th>
+        <th>boxfuse.conf property</th>
         <th>Default</th>
         <th>Description</th>
     </tr>
     </thead>
-    <tr>
-        <td>-env=dev<em>|</em>test<em>|</em>prod</td>
+    <tr id="env">
+        <td>-env=...</td>
+        <td>env</td>
         <td>dev</td>
-        <td>Use the AWS test or prod environments instead of the local dev one</td>
+        <td>Select the specified <a href="/docs/environments">environment</a> (ex.: <code>test</code> or <code>prod</code>)</td>
     </tr>
     <tr id="logs.tail">
         <td>-logs.tail</td>
+        <td>logs.tail</td>
         <td>false</td>
         <td>Tail (keep running with live updates) the logs (VirtualBox only)</td>
     </tr>

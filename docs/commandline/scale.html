@@ -21,18 +21,20 @@ Terminating instance i-053de18e ...
 Deployment completed successfully. axelfontaine/hello:1.0 is up and running at http://hello-axelfontaine.boxfuse.io
 Successfully scaled hello to 3 t2.large instances in prod</pre>
 
-<h3>Arguments</h3>
+<h3>Settings</h3>
 
 <table class="table">
     <thead>
     <tr>
-        <th>Name</th>
+        <th>Argument</th>
+        <th>boxfuse.conf property</th>
         <th>Default</th>
         <th>Description</th>
     </tr>
     </thead>
     <tr id="capacity">
         <td><nobr>-capacity=...</nobr></td>
+        <td>capacity</td>
         <td></td>
         <td>
             The capacity to scale an app to in a certain environment
@@ -67,10 +69,11 @@ Successfully scaled hello to 3 t2.large instances in prod</pre>
             </table>
         </td>
     </tr>
-    <tr>
+    <tr id="env">
         <td>-env=...</td>
-        <td></td>
-        <td>The environment to scale the app in (for example <code>test</code> or <code>prod</code>)</td>
+        <td>env</td>
+        <td>dev</td>
+        <td>Select the specified <a href="/docs/environments">environment</a> (ex.: <code>test</code> or <code>prod</code>)</td>
     </tr>
 </table>
 

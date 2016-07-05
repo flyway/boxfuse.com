@@ -25,20 +25,22 @@ Total: 1</pre>
 <p>You can optionally add a filter to limit results to either a specific app, a specific image or a specific instance.<br/>
     Example: boxfuse ps myapp:123</p>
 
-<h3>Arguments</h3>
+<h3>Settings</h3>
 
 <table class="table">
     <thead>
     <tr>
-        <th>Name</th>
+        <th>Argument</th>
+        <th>boxfuse.conf property</th>
         <th>Default</th>
         <th>Description</th>
     </tr>
     </thead>
-    <tr>
-        <td>-env=dev<em>|</em>test<em>|</em>prod</td>
+    <tr id="env">
+        <td>-env=...</td>
+        <td>env</td>
         <td>dev</td>
-        <td>Use the AWS test or prod environments instead of the local dev one</td>
+        <td>Select the specified <a href="/docs/environments">environment</a> (ex.: <code>test</code> or <code>prod</code>)</td>
     </tr>
 </table>
 

@@ -29,18 +29,20 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
     the output directory of that project will be automatically scanned as well.
 </p>
 
-<p><strong>Arguments:</strong></p>
+<h3>Settings</h3>
 
 <table class="table">
     <thead>
     <tr>
-        <th>Name</th>
+        <th>Argument</th>
+        <th>boxfuse.conf property</th>
         <th>Default</th>
         <th>Description</th>
     </tr>
     </thead>
     <tr id="capacity">
         <td>-capacity=...</td>
+        <td>capacity</td>
         <td></td>
         <td>
             <p><i>AWS only</i></p>
@@ -78,33 +80,39 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
     </tr>
     <tr>
         <td>-cpus=...</td>
+        <td>cpus</td>
         <td><em>same as host</em></td>
         <td><p><i>VirtualBox only</i></p>The number of CPUs to assign to an Instance</td>
     </tr>
     <tr>
         <td>-debug</td>
+        <td>debug</td>
         <td>false</td>
         <td>Start the Payload in <a href="/docs/debugging">debug mode</a> when an Instance launches</td>
     </tr>
     <tr>
         <td>-debug.wait</td>
+        <td>debug.wait</td>
         <td>false</td>
         <td><p><i>JVM apps only</i></p>Whether the JVM should wait for the remote debugger to connect (Only applicable when <a href="/docs/debugging">debug mode</a> is active)
         </td>
     </tr>
     <tr id="elb">
         <td>-elb=...</td>
+        <td>elb</td>
         <td>auto</td>
         <td><p><i>AWS only</i></p>
             The name of the AWS ELB to use when deploying this application in the specified environment (load balanced apps only). <code>auto</code> to let Boxfuse automatically create a new ELB for you.</td>
     </tr>
     <tr id="env">
-        <td>-env=dev<em>|</em>test<em>|</em>prod</td>
+        <td>-env=...</td>
+        <td>env</td>
         <td>dev</td>
-        <td>Use the AWS test or prod <a href="/docs/environments">environments</a> instead of the local dev one</td>
+        <td>Select the specified <a href="/docs/environments">environment</a> (ex.: <code>test</code> or <code>prod</code>)</td>
     </tr>
     <tr id="envvars">
         <td>-envvars.<em>NAME</em>=<em>value</em></td>
+        <td>envvars.<em>NAME</em></td>
         <td></td>
         <td>Passes this environment variable into the Instance<br/>
             Example: -envvars.JDBC_URL=jdbc:mydburl
@@ -112,26 +120,31 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
     </tr>
     <tr>
         <td>-healthcheck</td>
+        <td>healthcheck</td>
         <td>true</td>
         <td>Check whether to payload started correctly</td>
     </tr>
     <tr>
         <td>-healthcheck.port=...</td>
+        <td>healthcheck.port</td>
         <td><em>autodetected</em></td>
         <td>The port to check whether to payload started correctly</td>
     </tr>
     <tr>
         <td>-healthcheck.path=...</td>
+        <td>healthcheck.path</td>
         <td>/</td>
         <td>The path to check whether to payload started correctly</td>
     </tr>
     <tr id="healthcheck.timeout">
         <td>-healthcheck.timeout=...</td>
+        <td>healthcheck.timeout</td>
         <td>60</td>
         <td>The number of seconds to wait for the Payload to come up</td>
     </tr>
     <tr>
         <td><nobr>-instanceprofile=...</nobr></td>
+        <td><nobr>instanceprofile</nobr></td>
         <td>none</td>
         <td><p><i>AWS only</i></p>
             The name of the AWS instance profile to use in the specified environment.
@@ -139,51 +152,61 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
     </tr>
     <tr id="jvm.args">
         <td>-jvm.args=...</td>
+        <td>jvm.args</td>
         <td></td>
         <td><p><i>JVM apps only</i></p>Extra arguments to pass to the JVM</td>
     </tr>
     <tr id="jvm.jmx">
         <td>-jvm.jmx</td>
+        <td>jvm.jmx</td>
         <td>false</td>
         <td><p><i>JVM apps only</i></p>Enable the JMX remote <a href="/docs/profiling">management and profiling</a> interface for the JVM</td>
     </tr>
     <tr>
         <td>-jvm.main.class=...</td>
+        <td>jvm.main.class</td>
         <td><em>autodetected</em></td>
         <td><p><i>JVM apps only</i></p>Main class to invoke on JVM startup</td>
     </tr>
     <tr id="jvm.main.args">
         <td>-jvm.main.args=...</td>
+        <td>jvm.main.args</td>
         <td></td>
         <td><p><i>JVM apps only</i></p>Arguments to pass to the main class</td>
     </tr>
     <tr id="live">
         <td>-live</td>
+        <td>live</td>
         <td>false</td>
         <td><p><i>When fusing new images only</i></p>Enable <a href="/docs/live">live reloading</a> of changes in dev for super fast round-trips. Note that images with live reloading cannot be pushed to the Boxfuse Vault.</td>
     </tr>
     <tr>
         <td>-logs</td>
+        <td>logs</td>
         <td>true</td>
-        <td>Logs may slow down the Instance. Set to false to disable. (VirtualBox on Windows only)</td>
+        <td><p><i>VirtualBox on Windows only</i></p>Logs may slow down the Instance. Set to <code>false</code> to disable.</td>
     </tr>
     <tr>
         <td>-logs.auto</td>
+        <td>logs.auto</td>
         <td>true</td>
         <td>Whether to automatically display the instance logs on startup</td>
     </tr>
     <tr>
         <td>-logs.dir=...</td>
+        <td>logs.dir</td>
         <td></td>
         <td>The directory where the logs should be redirected to</td>
     </tr>
     <tr id="logs.tail">
         <td>-logs.tail</td>
+        <td>logs.tail</td>
         <td>false</td>
         <td><p><i>VirtualBox only</i></p>Tail (keep running with live updates) the logs</td>
     </tr>
     <tr id="ports">
         <td>-ports.<em>NAME</em>=<em>definition</em></td>
+        <td>ports.<em>NAME</em></td>
         <td>http=80</td>
         <td><p>Exposes the port of the app with this name using this definition. Example: -ports.jmx=8001</p>
 
@@ -224,6 +247,7 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>
             <nobr>-portsmap.<em>NAME</em>=<em>definition</em></nobr>
         </td>
+        <td>portsmap.<em>NAME</em></td>
         <td><em>same as matching image port</em></td>
         <td><p><i>VirtualBox only</i></p>
             <p>The local ports to map to the app inside the instance. By default Boxfuse will attempt to open the same
@@ -258,23 +282,27 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
     </tr>
     <tr>
         <td>-ram=...</td>
+        <td>ram</td>
         <td>1024</td>
         <td><p><i>VirtualBox only</i></p><p>The amount of RAM in MB to assign to an Instance (VirtualBox only)</p></td>
     </tr>
     <tr>
         <td>-securitygroup=...</td>
+        <td>securitygroup</td>
         <td>auto</td>
         <td><p><i>AWS only</i></p>
             The id of the AWS security group to use in the specified environment. <code>auto</code> will auto-create a new security group based on the configured ports.</td>
     </tr>
     <tr id="subnets">
         <td>-subnets=...</td>
+        <td>subnets</td>
         <td>auto</td>
         <td><p><i>AWS only</i></p>
             Comma-separated list of AWS subnets to deploy to in the specified environment. AWS supports maximum one subnet per availability zone. <code>auto</code> to let AWS automatically select the subnet(s).</td>
     </tr>
     <tr id="tmp">
         <td>-tmp=...</td>
+        <td>tmp</td>
         <td>1</td>
         <td>The amount of temp space to allocate to /tmp in GB</td>
     </tr>

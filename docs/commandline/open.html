@@ -16,23 +16,26 @@ pill: open
 
 Launching default browser to access Instance 'vb-5f3cf9387' (Url: http://127.0.0.1:8888) ...</pre>
 
-<h3>Arguments</h3>
+<h3>Settings</h3>
 
 <table class="table">
     <thead>
     <tr>
-        <th>Name</th>
+        <th>Argument</th>
+        <th>boxfuse.conf property</th>
         <th>Default</th>
         <th>Description</th>
     </tr>
     </thead>
-    <tr>
-        <td>-env=dev<em>|</em>test<em>|</em>prod</td>
+    <tr id="env">
+        <td>-env=...</td>
+        <td>env</td>
         <td>dev</td>
-        <td>Use the AWS test or prod environments instead of the local dev one</td>
+        <td>Select the specified <a href="/docs/environments">environment</a> (ex.: <code>test</code> or <code>prod</code>)</td>
     </tr>
     <tr>
         <td>-db</td>
+        <td>db</td>
         <td>false</td>
         <td>Open a <a href="/docs/databases">database connection</a> instead of a browser window</td>
     </tr>

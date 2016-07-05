@@ -15,23 +15,26 @@ pill: create
 Creating myuser/hello ...
 Successfully created myuser/hello</pre>
 
-<h3>Arguments</h3>
+<h3>Settings</h3>
 
 <table class="table">
     <thead>
     <tr>
-        <th>Name</th>
+        <th>Argument</th>
+        <th>boxfuse.conf property</th>
         <th>Default</th>
         <th>Description</th>
     </tr>
     </thead>
     <tr id="apptype">
         <td><nobr>-apptype=...</nobr></td>
+        <td>apptype</td>
         <td><nobr>single-instance</nobr></td>
         <td>The type of app to create. Possible values: Create a <code>single-instance</code> (elastic IP) or a <code>load-balanced</code> app (ELB)</td>
     </tr>
     <tr id="dbtype">
         <td>-dbtype=...</td>
+        <td>dbtype</td>
         <td>none</td>
         <td>The type of database your app needs. Possible values: <code>none</code> (no database) or <code>postgresql</code> (Boxfuse-managed PostgreSQL database)</td>
     </tr>

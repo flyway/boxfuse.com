@@ -15,39 +15,45 @@ pill: cfg
 Configuring hello in test ...
 Successfully configured hello in test</pre>
 
-<h3>Arguments</h3>
+<h3>Settings</h3>
 
 <table class="table">
     <thead>
     <tr>
-        <th>Name</th>
+        <th>Argument</th>
+        <th>boxfuse.conf property</th>
         <th>Default</th>
         <th>Description</th>
     </tr>
     </thead>
     <tr id="env">
-        <td>-env=<em>test</em>|<em>prod</em></td>
+        <td>-env=...</td>
+        <td>env</td>
         <td>dev</td>
-        <td>Configure the AWS test or prod <a href="/docs/environments">environments</a></td>
+        <td>Select the specified <a href="/docs/environments">environment</a> (ex.: <code>test</code> or <code>prod</code>)</td>
     </tr>
     <tr>
         <td>-securitygroup=...</td>
+        <td>securitygroup</td>
         <td>auto</td>
         <td>The id of the AWS security group to use in the specified environment. <code>auto</code> will auto-create a new security group based on the configured ports.</td>
     </tr>
     <tr id="instanceprofile">
         <td><nobr>-instanceprofile=...</nobr></td>
+        <td>instanceprofile</td>
         <td>none</td>
         <td>The name of the AWS instance profile to use in the specified environment.
              This is only for apps using the AWS API. The value <code>none</code> unsets any instance profile.</td>
     </tr>
     <tr>
         <td>-subnets=...</td>
+        <td>subnets</td>
         <td>auto</td>
         <td>Comma-separated list of AWS subnets to deploy to in the specified environment. AWS supports maximum one subnet per availability zone. <code>auto</code> to let AWS automatically select the subnet(s).</td>
     </tr>
     <tr>
         <td>-elb=...</td>
+        <td>elb</td>
         <td>auto</td>
         <td>The name of the AWS ELB to use when deploying this application in the specified environment (load balanced apps only). <code>auto</code> to let Boxfuse automatically create a new ELB for you.</td>
     </tr>
