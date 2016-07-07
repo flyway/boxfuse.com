@@ -78,7 +78,8 @@ subtitle: 'Spring Boot'
     information it contains.</p>
 
     <p>If no <code>application-boxfuse.properties</code> is found at the root of the jar file, Boxfuse will automatically
-        look for <code>application-default.properties</code> and <code>application.properties</code>. The overriding order
+        look for <code>application-default.properties</code> and <code>application.properties</code> as well as the corresponding
+        yml files, both at the root of the classpath and in the <code>config</code> package. The overriding order
     matches the default Spring Boot one.</p>
 
     <h2>Ports</h2>
