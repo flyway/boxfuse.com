@@ -8,16 +8,14 @@ subtitle: 'Live Reloading'
   <i class="fa fa-folder-o fa-stack-2x"></i>
 </span></p>
 
-<p><i>This feature in currently available on Windows and Mac OSX machines only.</i></p>
-
 <p>In the <a href="/docs/environments">dev environment</a> on <a href="/docs/virtualbox">VirtualBox</a> Boxfuse supports
-    creating instances with <strong>live reloading</strong> by using the <code>-live</code> flag when fusing them. The is great for super-fast turnarounds,
+    creating instances with <strong>live reloading</strong> by using the <code>-live</code> flag when fusing them. This is great for super-fast turnarounds,
     with <strong>changes visible immediately</strong>. This avoids the need to wait for a full kill/fuse/run cycle
     (which is still pretty fast and usually takes less than 10 seconds).</p>
 
 <p>Boxfuse achieves this by combining two techniques:</p>
 <ol>
-    <li><strong>mounting your application files directory</strong> as an NFS share within your instance</li>
+    <li><strong>mounting your application files directory</strong> as a live directory within your instance</li>
     <li>adding a <strong>reloading agent</strong> to your instance to reload your application when needed</li>
 </ol>
 
@@ -40,6 +38,9 @@ configures your JVM to use the <strong>Spring Loaded</strong> Java Agent for aut
 </p>
 
 <p>You can also combine this with <a href="/docs/debugging">debugging</a> for a great local dev experience.</p>
+
+<p class="alert alert-info"><strong>Tip:</strong> Check out our <a href="/blog/live-reloading"><strong>blog
+    post</strong></a> on how to reload Node.js application live on VirtualBox!</p>
 
 <p class="next-steps">
     <a class="btn btn-primary" href="/docs/travisci">Travis CI <i class="fa fa-arrow-right"></i></a>

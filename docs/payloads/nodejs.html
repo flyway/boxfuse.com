@@ -109,9 +109,16 @@ client.connect(function(err) {
         the <code>tmp</code> configuration setting to the number of GB of temp space you need. To prevent Boxfuse from
         provisioning any temp space set <code>tmp</code> to <code>0</code>.</p>
 
-    <p class="next-steps">
-        <a class="btn btn-primary" href="/docs/commandline">Command-line <i class="fa fa-arrow-right"></i></a>
-    </p>
+    <h2 id="live">Live Reloading</h2>
+
+    <p>In the <a href="/docs/environments">dev environment</a>, you can reload changes live by running Boxfuse at the
+    root of your Node.js project with <code>-live</code>:</p>
+
+    <pre class="console">&gt; npm install
+&gt; boxfuse run <strong>-live</strong></pre>
+
+    <p>Also check out our <a href="/blog/live-reloading"><strong>blog post</strong></a> on how to
+        reload Node.js application live on VirtualBox with Boxfuse.</p>
 
     <h2 id="sysctl">Linux Kernel Tuning (experts only)</h2>
 
@@ -122,4 +129,8 @@ client.connect(function(err) {
   <span><i class="fa fa-file-text"></i> sysctl.conf</span></pre>
 
     <p>Boxfuse will then <strong>automatically configure the Linux kernel to use these settings</strong>.</p>
+
+    <p class="next-steps">
+        <a class="btn btn-primary" href="/docs/commandline">Command-line <i class="fa fa-arrow-right"></i></a>
+    </p>
 </div>
