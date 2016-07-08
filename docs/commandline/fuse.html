@@ -28,7 +28,7 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
 
 <h3 id="settings">Settings</h3>
 
-<table class="table">
+<table class="table table-hover">
     <thead>
     <tr>
         <th>Argument</th>
@@ -57,17 +57,13 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
         <td>false</td>
         <td><p><i>JVM apps only</i></p>Whether the JVM should wait for the remote debugger to connect (Only applicable when <a href="/docs/debugging">debug mode</a> is active)</td>
     </tr>
-    <tr>
-        <td>-payload.port</td>
-        <td>payload.port</td>
-        <td><em>autodetected</em></td>
-        <td>The main port on which the payload starts (usually http or https)</td>
-    </tr>
-    <tr id="payload.path">
-        <td>-payload.path</td>
-        <td>payload.path</td>
-        <td>/</td>
-        <td>The path where the payload starts</td>
+    <tr id="envvars">
+        <td>-envvars.<em>NAME</em>=<em>value</em></td>
+        <td>envvars.<em>NAME</em></td>
+        <td></td>
+        <td>Fuses this environment variable into the image and make it available at runtime<br/>
+            Example: -envvars.JDBC_URL=jdbc:mydburl
+        </td>
     </tr>
     <tr>
         <td>-healthcheck</td>
@@ -122,6 +118,18 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
         <td>live</td>
         <td>false</td>
         <td>Enable <a href="/docs/live">live reloading</a> of changes in dev for super fast round-trips. Note that images with live reloading cannot be pushed to the Boxfuse Vault.</td>
+    </tr>
+    <tr id="payload.port">
+        <td>-payload.port</td>
+        <td>payload.port</td>
+        <td><em>autodetected</em></td>
+        <td>The main port on which the payload starts (usually http or https)</td>
+    </tr>
+    <tr id="payload.path">
+        <td>-payload.path</td>
+        <td>payload.path</td>
+        <td>/</td>
+        <td>The path where the payload starts</td>
     </tr>
     <tr id="ports">
         <td>-ports.<em>NAME</em>=<em>definition</em></td>

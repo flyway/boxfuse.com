@@ -29,7 +29,7 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
 
 <h3>Properties</h3>
 
-<table class="table">
+<table class="table table-hover">
     <thead>
     <tr>
         <th>Plugin Parameter</th>
@@ -89,6 +89,14 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
         <td>boxfuse.debug.wait</td>
         <td>false</td>
         <td><p><i>JVM apps only</i></p>Whether the JVM should wait for the remote debugger to connect (Only applicable when <a href="/docs/debugging">debug mode</a> is active)</td>
+    </tr>
+    <tr id="envvars">
+        <td>envvars</td>
+        <td>boxfuse.envvars.<em>NAME</em></td>
+        <td></td>
+        <td>Fuses this environment variable into the image and make it available at runtime<br/>
+            Example: boxfuse.envvars.JDBC_URL=jdbc:mydburl
+        </td>
     </tr>
     <tr>
         <td>healthcheck</td>
@@ -188,6 +196,10 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
     ]
     debug=true
     debugWait=false
+    envvars=[
+        'JDBC_URL':'jdbc:mydburl',
+        'MY_OTHER_VAR':'abc'
+    ]
     healthcheck=true
     healthcheckPort='https'
     healthcheckPath='/health'

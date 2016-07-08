@@ -1,6 +1,6 @@
-$(document).ready(function() {
-    $("a[href^=http]").each(function(){
-        if(this.href.indexOf(location.hostname) == -1) {
+$(document).ready(function () {
+    $("a[href^=http]").each(function () {
+        if (this.href.indexOf(location.hostname) == -1) {
             $(this).attr({
                 target: "_blank",
                 title: "Opens in a new window"
@@ -21,7 +21,7 @@ $(document).ready(function() {
         $('.scroller').click(function () {
             var section = $($(this).data("section"));
             var top = section.offset().top - 82;
-            $("html, body").animate({ scrollTop: top }, 700);
+            $("html, body").animate({scrollTop: top}, 700);
             return false;
         });
 
@@ -69,11 +69,10 @@ $(document).ready(function() {
         prettyPrint();
     });
 
-    $("h2[id]").hover(function(){
-        $(this).addClass('anchor').bind("click", function() {
-            window.location.hash = $(this).attr("id");
-        });
-    },function(){
-        $(this).removeClass('anchor').unbind('click');
+    $("h2[id],h3[id]").click(function () {
+        window.location.hash = $(this).attr("id");
+    });
+    $("tr[id]>td:first-child").click(function () {
+        window.location.hash = $(this).parent().attr("id");
     });
 });

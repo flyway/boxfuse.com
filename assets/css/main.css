@@ -55,10 +55,10 @@ hr.soften {
 	border: 0;
 }
 
-.anchor {
+h2[id], h3[id], tr[id]>td:first-child {
 	cursor: pointer;
 }
-.anchor:after {
+h2[id]:hover:after, h3[id]:hover:after, tr[id]:hover>td:first-child:after {
 	content: ' §';
 	color: #ccc;
 }
