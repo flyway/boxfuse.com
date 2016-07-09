@@ -55,12 +55,18 @@ passed in via the <code>user</code> and <code>secret</code> configuration parame
 <p>Higher items on the list override lower ones:</p>
 <ul>
     <li>Program arguments</li>
+    <li>Config file as specified with <code>-configfile=...</code></li>
+    <li><em>&lt;current-dir&gt;</em>/boxfuse-<em>&lt;env&gt;</em>.conf</li>
     <li><em>&lt;current-dir&gt;</em>/boxfuse.conf</li>
+    <li><em>&lt;home-dir&gt;</em>/.boxfuse/boxfuse-<em>&lt;env&gt;</em>.conf</li>
     <li><em>&lt;home-dir&gt;</em>/.boxfuse/boxfuse.conf</li>
+    <li><em>&lt;boxfuse-install-dir&gt;</em>/conf/boxfuse-<em>&lt;env&gt;</em>.conf</li>
     <li><em>&lt;boxfuse-install-dir&gt;</em>/conf/boxfuse.conf</li>
 </ul>
 
-<p><strong>Note:</strong> Setting a property to an empty string with unset that property.</p>
+<p>Setting a property to an empty string with unset that property.</p>
+
+<p><strong>Note:</strong> Config files with <em>&lt;env&gt;</em> are <a href="/docs/environments">environment-specific</a>, for example <code>boxfuse-prod.conf</code></p>
 
 <h2 id="general">General Options</h2>
 <table class="table">

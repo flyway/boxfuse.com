@@ -61,11 +61,15 @@ You can also either specify an external config file or place a <code>boxfuse.con
     <li>Maven properties</li>
     <li>Plugin configuration</li>
     <li>External config file as specified with <code>configfile</code></li>
+    <li><em>&lt;current-dir&gt;</em>/boxfuse-<em>&lt;env&gt;</em>.conf</li>
     <li><em>&lt;current-dir&gt;</em>/boxfuse.conf</li>
+    <li><em>&lt;home-dir&gt;</em>/.boxfuse/boxfuse-<em>&lt;env&gt;</em>.conf</li>
     <li><em>&lt;home-dir&gt;</em>/.boxfuse/boxfuse.conf</li>
 </ul>
 
-<p><strong>Note:</strong> Setting a property to an empty string with unset that property.</p>
+<p>Setting a property to an empty string with unset that property.</p>
+
+<p><strong>Note:</strong> Config files with <em>&lt;env&gt;</em> are <a href="/docs/environments">environment-specific</a>, for example <code>boxfuse-prod.conf</code></p>
 
 <h2>Authentication</h2>
 
