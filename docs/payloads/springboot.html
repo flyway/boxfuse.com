@@ -117,10 +117,11 @@ subtitle: 'Spring Boot'
         Spring Boot configuration.
     </p>
 
-    <h2>Databases</h2>
+    <h2 id="databases">Databases</h2>
 
     <p>When using the <a href="/docs/databases">Boxfuse database auto-provisioning support</a>, Boxfuse <strong>automatically configures Spring Boot's DataSource</strong>
-        to use the correct driver class name, jdbc url, user and password.</p>
+        to use the correct JDBC url, user and password. Boxfuse does so by automatically setting the <code>SPRING_DATASOURCE_URL</code>,
+        <code>SPRING_DATASOURCE_USERNAME</code> and <code>SPRING_DATASOURCE_PASSWORD</code> to the correct values for your app in the current <a href="/docs/environments">environment</a>.</p>
 
     <p>If your app includes the PostgreSQL or MySQL JDBC driver, Boxfuse will automatically provision the necessary PostgreSQL or MySQL database
         in each environment and auto-configure Spring Boot's DataSource.</p>
