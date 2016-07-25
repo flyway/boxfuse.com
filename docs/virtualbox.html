@@ -40,6 +40,22 @@ subtitle: 'VirtualBox'
         this to construct URLs to access your services.
     </p>
 
+    <h2 id="aws-credentials">AWS Credentials</h2>
+
+    <p>To make it easy to access AWS services from your VirtualBox instances, Boxfuse automatically exposes the AWS
+        credentials stored by the AWS CLI on your local machine to the running instances.</p>
+
+    <p>Boxfuse will attempt to load credentials in the following order:</p>
+
+    <ol>
+        <li>The <code>boxfuse</code> profile in <code>~/.aws/credentials</code></li>
+        <li>The <code>default</code> profile in <code>~/.aws/credentials</code></li>
+        <li>The <code>default</code> section in <code>~/.aws/config</code></li>
+    </ol>
+
+    <p>You can also manually override this by explicitly setting the <code>AWS_ACCESS_KEY_ID</code> and <code>AWS_SECRET_ACCESS_KEY</code>
+    <a href="/docs/commandline/run#envvars">environment variables</a>.</p>
+
     <p class="next-steps">
         <a class="btn btn-primary" href="/docs/aws">AWS <i class="fa fa-arrow-right"></i></a>
     </p>
