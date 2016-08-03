@@ -114,6 +114,16 @@ ways to pass in authentication info.</p>
 &lt;/plugin&gt;</pre>
 <p>This can also be defined through the Maven/System property <code>boxfuse.proxy</code>.</p>
 
+<h2 id="virtualbox-networking">VirtualBox Networking configuration</h2>
+
+<p>Boxfuse handles networking on <a href="/docs/virtualbox">VirtualBox</a> differently based on the version.</p>
+
+<p>By default, on VirtualBox 5.1 and above, Boxfuse creates a separate VirtualBox NAT Network.
+    On VirtualBox 5.0 and older Boxfuse uses regular VirtualBox NAT instead.</p>
+
+<p>VirtualBox 5.1+ users also have the possibility to force Boxfuse to use regular VirtualBox NAT instead of the NAT Network
+    by explicitly setting the <code>virtualbox.natnetwork</code> Boxfuse configuration property to <code>false</code>.</p>
+
 <p class="next-steps">
     <a class="btn btn-primary" href="/docs/maven/create">create <i class="fa fa-arrow-right"></i></a>
 </p>

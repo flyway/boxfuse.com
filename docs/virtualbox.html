@@ -17,23 +17,44 @@ subtitle: 'VirtualBox'
 
     <p>Boxfuse supports <strong>VirtualBox 4.2.x, 4.3.x, 5.0.x and 5.1.x</strong> running on Windows, Mac OSX or Linux.</p>
 
-    <h2 id="portforwarding">Port forwarding</h2>
-
-    <p>Ports from your instance can be forwarded to your host using the <code>portsmap.NAME=HOST_PORT_NUMBER</code> properties.<br/></p>
-
-    <p><strong>Example:</strong> Say you have a webserver running as port <code>80</code> within the VM and would like
-        to be able to reach it using port <code>4444</code> on your physical machine you would configure Boxfuse like this:
-    </p>
-
-    <pre class="console">&gt; boxfuse run myapp.jar -ports.http=80 -portsmap.http=4444</pre>
-
     <h2>CPU &amp; RAM usage</h2>
 
     <p>You can control the number of CPUs exposed to the VM using the <code>cpus</code> property and the number of MB of RAM using the <code>ram</code> property.
         By default, Boxfuse assigns the same number of CPUs as the host, as well as 1024 MB of RAM to the Instance.
     </p>
 
-    <h2 id="BOXFUSE_HOST_IP">Accessing services running on the physical host</h2>
+    <h2 id="networking">Networking</h2>
+
+    <p>By default, on <strong>VirtualBox 5.1 and above</strong>, Boxfuse creates a separate VirtualBox <strong>NAT Network</strong>.
+    All Boxfuse instances are automatically assigned their own IP address via DHCP in the <code>192.168.15.0/24</code> range
+        on that network and can communicate with each other directly using their respective addresses.</p>
+
+    <p>On <strong>VirtualBox 5.0 and older</strong> Boxfuse uses regular VirtualBox <strong>NAT</strong> instead where
+        each instance has its own network and is assigned the exact same <code>10.0.2.15</code> IP address. Instances do have the
+        possibility to communicate with each other, albeit only via forwarded ports (see below) on the <code>10.0.2.2</code> gateway.</p>
+
+    <p>VirtualBox 5.1+ users also have the possibility to force Boxfuse to use regular VirtualBox NAT instead of the NAT Network
+    by explicitly setting the <code>virtualbox.natnetwork</code> Boxfuse configuration property to <code>false</code>.</p>
+
+    <h3 id="portforwarding">Port forwarding</h3>
+
+    <p>To <strong>access the apps running on your VirtualBox instances from your physical machine</strong>, the ports of the instances must be forwarded
+    to ports of your physical machine. Boxfuse does this automatically for you for any port defined in the image of the instance.</p>
+
+    <p>By default Boxfuse tries to expose the same port on your physical machine as was exposed on your instance. This
+    means that if your instance has a service that listens to HTTP on TCP port <code>8080</code> of your instance, Boxfuse
+    will then also attempt to make it available at <code>localhost:8080</code> on your physical machine. If this port is occupied,
+    Boxfuse will automatically select the next available port and use that instead.</p>
+
+    <p>You can also customize the port forwarding using the <code>portsmap.NAME=HOST_PORT_NUMBER</code> properties.<br/></p>
+
+    <p><strong>Example:</strong> Say you have a webserver running as port <code>80</code> within the VM and would like
+        to be able to reach it using port <code>4444</code> on your physical machine you would configure Boxfuse like this:
+    </p>
+
+    <pre class="console"><span>&gt;</span> boxfuse run myapp.jar -ports.http=80 <strong>-portsmap.</strong>http=4444</pre>
+
+    <h3 id="BOXFUSE_HOST_IP">Accessing services running on the physical host</h3>
 
     <p>To make it easy to access services running on your physical machine (outside of your Boxfuse VirtualBox instance), Boxfuse exposes an environment variable
         named <code>BOXFUSE_HOST_IP</code> to each of its VirtualBox instances. This environment variable contains the IP address of your physical machine (example: 172.27.3.61) which you can use

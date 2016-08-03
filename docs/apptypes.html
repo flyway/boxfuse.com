@@ -1,0 +1,48 @@
+---
+layout: docs
+menu: apptypes
+subtitle: 'App Types'
+---
+<p>Boxfuse offers you 3 types of apps you can use:</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Type</th>
+        <th>Entry point</th>
+        <th>Max instances</th>
+        <th>Auto-Scaling</th>
+        <th>Auto recovery</th>
+        <th>Usage</th>
+    </tr>
+    </thead>
+    <tr>
+        <th><nobr>single-instance</nobr></th>
+        <td>Elastic IP</td>
+        <td>1</td>
+        <td>no</td>
+        <td>yes (with minimal downtime)</td>
+        <td>Simple, non-critical applications using HTTP(S)</td>
+    </tr>
+    <tr>
+        <th>load-balanced</th>
+        <td>Elastic Load Balancer</td>
+        <td><em>AWS limit</em></td>
+        <td>yes</td>
+        <td>yes</td>
+        <td>Robust production workloads using HTTP(S)</td>
+    </tr>
+    <tr>
+        <th>worker</th>
+        <td><em>custom</em></td>
+        <td><em>AWS limit</em></td>
+        <td>yes</td>
+        <td>yes</td>
+        <td>Robust production workloads using queuing, time-based triggers or client-side load balancing</td>
+    </tr>
+</table>
+
+<p>All apps are updated with zero-downtime blue/green deployments.</p>
+
+<p class="next-steps">
+    <a class="btn btn-primary" href="/docs/environments">Environments <i class="fa fa-arrow-right"></i></a>
+</p>

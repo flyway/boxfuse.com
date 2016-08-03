@@ -52,7 +52,14 @@ Successfully created axelfontaine/hello</pre>
         <td>apptype</td>
         <td>boxfuse.apptype</td>
         <td>single-instance</td>
-        <td>The type of app to create. Possible values: Create a <code>single-instance</code> (elastic IP) or a <code>load-balanced</code> app (ELB)</td>
+        <td><p>The <a href="/docs/apptypes">type of app</a> to create.</p>
+            <p>Possible values:</p>
+            <ul>
+                <li><code>single-instance</code> (Elastic IP)</li>
+                <li><code>load-balanced</code> (ELB + Auto-Scaling)</li>
+                <li><code>worker</code> (Auto-Scaling)</li>
+            </ul>
+        </td>
     </tr>
     <tr id="dbtype">
         <td>dbtype</td>
