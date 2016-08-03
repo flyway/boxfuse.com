@@ -3,40 +3,49 @@ layout: docs
 menu: apptypes
 subtitle: 'App Types'
 ---
-<p>Boxfuse offers you 3 types of apps you can use:</p>
+<p>Boxfuse offers you 3 types of apps:</p>
+<img src="/assets/img/apptypes.png" alt="App Types">
+<p>&nbsp;</p>
+<p>This is how they compare:</p>
 <table class="table">
     <thead>
     <tr>
-        <th>Type</th>
-        <th>Entry point</th>
-        <th>Max instances</th>
-        <th>Auto-Scaling</th>
-        <th>Auto recovery</th>
-        <th>Usage</th>
+        <th></th>
+        <th>
+            <nobr>single-instance</nobr>
+        </th>
+        <th>load-balanced</th>
+        <th>worker</th>
     </tr>
     </thead>
     <tr>
-        <th><nobr>single-instance</nobr></th>
+        <th>Entry point</th>
         <td>Elastic IP</td>
-        <td>1</td>
-        <td>no</td>
-        <td>yes (with minimal downtime)</td>
-        <td>Simple, non-critical applications using HTTP(S)</td>
-    </tr>
-    <tr>
-        <th>load-balanced</th>
         <td>Elastic Load Balancer</td>
-        <td><em>AWS limit</em></td>
-        <td>yes</td>
-        <td>yes</td>
-        <td>Robust production workloads using HTTP(S)</td>
+        <td><em>custom</em></td>
     </tr>
     <tr>
-        <th>worker</th>
-        <td><em>custom</em></td>
+        <th><nobr>Max instances</nobr></th>
+        <td>1</td>
         <td><em>AWS limit</em></td>
+        <td><em>AWS limit</em></td>
+    </tr>
+    <tr>
+        <th>Auto-Scaling</th>
+        <td>no</td>
         <td>yes</td>
         <td>yes</td>
+    </tr>
+    <tr>
+        <th><nobr>Auto recovery</nobr></th>
+        <td>yes (with minimal downtime)</td>
+        <td>yes</td>
+        <td>yes</td>
+    </tr>
+    <tr>
+        <th>Usage</th>
+        <td>Simple, non-critical applications using HTTP(S)</td>
+        <td>Robust production workloads using HTTP(S)</td>
         <td>Robust production workloads using queuing, time-based triggers or client-side load balancing</td>
     </tr>
 </table>
