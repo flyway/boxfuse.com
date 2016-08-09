@@ -1,16 +1,63 @@
 ---
-layout: getstarted
-menu: go
-subtitle: 'Get Started with Boxfuse & Go'
+layout: blog
+subtitle: "Deploy 7 MB Go VMs effortlessly to AWS"
+permalink: /blog/go-aws.html
 ---
-<p><img src="/assets/img/go.png" height="150"></p>
-<p>&nbsp;</p>
+<p>Go is a highly productive language with a broad ecosystem for developing modern applications and
+    microservices. It has the unique advantage of combining a great standard library with garbage collection
+    and fast compilation down to a single native binary.
+</p>
 
-<p>This tutorial will get you started with Boxfuse and Go. It should take you about <strong>5-10 minutes</strong>
-    to complete.</p>
+<p>Today we're going to look at <strong>deploying Go applications effortlessly to AWS</strong>
+    using <strong><a href="/blog/welcome">Boxfuse</a></strong>.</p>
+
+<div class="blog-post-image center">
+    <img src="/assets/posts/go-aws/go-aws.png" alt="Go App deployed to AWS using Boxfuse" style="height: 300px">
+</div>
+
+<p><a href="/">Boxfuse</a> is based upon 3 core principles:</p>
+<table class="table">
+    <tr>
+        <td>1.</td>
+        <td><a href="/learn/why"><strong>
+            <nobr>Immutable Infrastructure</nobr>
+        </strong></a></td>
+        <td>Creating servers and never modifying them again by treating a server as one immutable
+            unit that is regenerated after every change and promoted unchanged from environment to environment.
+            This eliminates drift and increases reliability by ensuring you run the exact same code in production as
+            the code you tested in test.
+        </td>
+    </tr>
+    <tr>
+        <td>2.</td>
+        <td><a href="/learn/how"><strong>Minimal Images</strong></a></td>
+        <td>Analysing your application and generating minimal tailor-made Linux-based images on the fly that
+            are 100x smaller than a typical Linux system and take just seconds to produce.
+        </td>
+    </tr>
+    <tr>
+        <td>3.</td>
+        <td><strong>Blue/Green deployments</strong></td>
+        <td>Deploying a new version of an app in parallel to the existing one and only making the switch at the elastic
+            IP
+            or elastic load balancer level once the configured health checks of the new version have passed. Deployments
+            are fully
+            automated and effectively transactional, providing you with zero-downtime updates.
+        </td>
+    </tr>
+</table>
+
+<h2>The plan</h2>
+<p>To see this in action, our plan is to first <strong>create a new Go web app</strong> which we'll <strong>fuse into a minimal Boxfuse
+    image</strong> that can be deployed unchanged both on VirtualBox and AWS.</p>
+
+<p>We'll then <strong>deploy our image to VirtualBox</strong> (great for rapid feedback and quick local tests),
+    push it to the Boxfuse Vault (our secure online repository) and <strong>run it on AWS</strong>.</p>
+
+<p>And finally we'll <strong>update it on AWS with zero-downtime</strong> blue/green deployments.</p>
 
 <h2>Prerequisites</h2>
-<p>Before you begin, ensure you have an x64 machine and have successfully:</p>
+<p>Before we begin, ensure you have successfully:</p>
 <ol>
     <li>created a <strong><a href="https://console.boxfuse.com">Boxfuse Account</a></strong> (simply log in with your
         GitHub account, it's free)
@@ -196,18 +243,35 @@ Deployment completed successfully. myuser/getstarted-go:2.0 is up and running at
 
 <h2>Summary</h2>
 
-<p>In this brief guide we have seen how to:</p>
-<ul>
-    <li>create a Go application</li>
-    <li>fuse it into a Boxfuse image</li>
-    <li>deploy the image locally on VirtualBox</li>
-    <li>deploy the image unchanged to AWS</li>
-    <li>update the application with zero downtime</li>
-</ul>
+<p>In this post, we saw how to <strong>deploy and update a Go application to AWS</strong> using
+    <strong>Boxfuse</strong> in 3 easy steps.</p>
 
-<p>Now it's your turn. Take your favorite Go application and deploy it with ease and pleasure.</p>
+<p>First
+    we fused our application into a <strong>7 MB Boxfuse image</strong> in <strong>under 1 second</strong> and ran an
+    instance of it on VirtualBox. We then
+    deployed the same image unchanged to AWS. And finally we updated our application on AWS with zero downtime using
+    blue/green deployments.</p>
 
-<p class="next-steps">
-    <a class="btn btn-primary" href="/docs/payloads/elf64">Boxfuse Go Documentation <i
-            class="fa fa-arrow-right"></i></a>
+<p>To do so we used <strong><a href="/">Boxfuse</a></strong> and its 3 core principles:
+    <a href="/learn/why"><strong>
+        <nobr>Immutable Infrastructure</nobr>
+    </strong></a>,
+    <a href="/learn/how"><strong>Minimal Images</strong></a> and
+    <strong>Blue/Green deployments</strong>.
 </p>
+
+<div class="blog-post-image center">
+    <img src="/assets/posts/go-aws/go-aws.png" alt="Go App deployed to AWS using Boxfuse" style="height: 300px">
+</div>
+
+<p>And if you are a <strong>Revel</strong> fan, Boxfuse has you covered with first-class support for <a href="/getstarted/revel">running Revel applications</a>!</p>
+
+<p>However this is just the beginning! Boxfuse also supports dead-easy
+<strong><a href="/blog/auto-scaling">auto-scaling</a></strong>, <strong><a href="/docs/databases">database
+auto-provisioning</a></strong> and much more. Not only for Go apps, but also for Node.js and JVM ones.</p>
+
+
+<p>So if you haven't already,
+    <a href="https://console.boxfuse.com"><strong>sign up for your
+        Boxfuse account</strong></a> now (simply log in with your GitHub id, it's free) and start deploying
+    your Go applications effortlessly to AWS in minutes.</p>
