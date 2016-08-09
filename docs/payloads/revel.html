@@ -1,0 +1,65 @@
+---
+layout: docs
+menu: revel
+subtitle: 'Revel'
+---
+<p><img src="/assets/img/revel.png" height="150"></p>
+
+<p>Boxfuse supports Revel apps written in Go and packaged as a <strong>Revel tar.gz</strong> archive.</p>
+
+<h2>Get Started</h2>
+
+<p>If you haven't already, start by following <strong><a href="/getstarted/revel">Revel &amp; Boxfuse tutorial</a></strong> that will get you <strong>up and running in 5-10 minutes</strong>.</p>
+
+<h2>Packaging</h2>
+
+<p>Applications should be packaged as a Revel tar.gz containing a Linux ELF64 binary.</p>
+
+<p>To properly set up cross-compilation in order to create Linux x64 binaries Windows users should invoke:</p>
+
+<pre class="console"><span>&gt;</span> set <strong>GOOS=linux</strong></pre>
+
+<p>And Mac OSX users:</p>
+
+<pre class="console"><span>&gt;</span> export <strong>GOOS=linux</strong></pre>
+
+<p>To further decrease the size of Boxfuse images, use the newest version of Go.</p>
+
+<h2>Ports</h2>
+
+<p>Boxfuse will automatically configure your application port based on the information contained in  in <code>app.conf</code>.</p>
+
+<p>The port will be either <code>http</code>
+    or <code>https</code> based on the value of <code>http.ssl</code>. The actual port number is automatically
+    configured according to the value of the <code>http.port</code> property.</p>
+
+<h2 id="root-certificates">Root Certificates</h2>
+
+<p>Boxfuse uses the <strong>same root certificate bundle as the latest version of Firefox</strong>.
+    Additionally Boxfuse also includes the <strong>root certificates for Amazon RDS</strong>, so you can connect securely to RDS databases out of the box.</p>
+
+<h2>Temporary Files</h2>
+
+<p>Boxfuse configures the instance to use <code>/tmp</code> as the directory to store temporary files and provisions <strong>1
+    GB of space by default</strong>.</p>
+<p>To increase this (up to a maximum of 16 TB), simply set
+    the <code>tmp</code> configuration setting to the number of GB of temp space you need. To prevent Boxfuse from
+    provisioning any temp space set <code>tmp</code> to <code>0</code>.</p>
+
+<h2 id="sysctl">Linux Kernel Tuning (experts only)</h2>
+
+<p>If you need to tune the Linux kernel running in your instance, simply place a <code>sysctl.conf</code> file in the <code>conf</code> directory of your app:</p>
+<pre class="filetree"><i class="fa fa-folder-open"></i> my-revel-app
+  <i class="fa fa-folder"></i> app
+  <i class="fa fa-folder-open"></i> conf
+    <span><i class="fa fa-file-text"></i> sysctl.conf</span>
+  <i class="fa fa-folder"></i> log
+  <i class="fa fa-folder"></i> messages
+  <i class="fa fa-folder"></i> public
+  <i class="fa fa-folder"></i> test</pre>
+
+<p>Boxfuse will then <strong>automatically configure the Linux kernel to use these settings</strong>.</p>
+
+<p class="next-steps">
+    <a class="btn btn-primary" href="/docs/commandline">Command-line <i class="fa fa-arrow-right"></i></a>
+</p>
