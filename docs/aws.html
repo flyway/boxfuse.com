@@ -96,8 +96,22 @@ subtitle: 'AWS'
 
     <h2>App Types</h2>
 
-    <p>Both <strong>Elastic IP</strong> (single Instance) and <strong>ELB</strong> (multiple instances in multiple availability zones) apps are supported.
+    <p>All <a href="/docs/apptypes">app types</a> are supported.
         Boxfuse always performs <strong>Zero Downtime upgrades</strong> of your apps when you redeploy them.</p>
+
+    <h2 id="security-groups">Security Groups</h2>
+
+    <p>By default Boxfuse will create a security group for each deployment. This security group will be tagged with the
+        app, the version and the environment. It will
+    automatically have the correct ports for your image open with the appropriate
+        <a href="/blog/restricted-ports">restrictions</a> if any were defined.</p>
+
+    <p>Additionally every instance of an app also receives a marker security group tagged with the app and environment names.
+    This makes it easy to refer to all instances of an app from other security groups, regardless of the version.</p>
+
+    <p>Alternatively you can also explicitly configure a custom security group for every app in each <a href="/docs/environments">environment</a>.</p>
+
+    <p>All security groups that have been created by Boxfuse are automatically removed when they are no longer in use.</p>
 
     <h2 id="tagging">Tagging</h2>
 
