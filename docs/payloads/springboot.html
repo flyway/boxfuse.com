@@ -237,7 +237,11 @@ server.ssl.trust-store-password=my0th3rPwd</pre>
         Details and setup instructions on our <a href="/docs/profiling">profiling page</a>.</p>
 
     <h2 id="live">Live Reloading</h2>
-    <p>Boxfuse supports <a href="/docs/live">Live Reloading</a> of exploded Spring Boot jar files.</p>
+    <p>Boxfuse supports <a href="/docs/live">Live Reloading</a> of <em>exploded</em> Spring Boot jar and war files. However
+    in most cases you're probably better off using Spring Boot's own solution, the <a href="#spring-boot-devtools">Spring Boot Dev Tools</a>,
+        as they work great on both VirtualBox and AWS.</p>
+
+    <p>Check out our <strong><a href="/blog/spring-boot-devtools-aws">blog post</a></strong> for details.</p>
 
     <h2 id="spring-boot-devtools">Spring Boot Dev Tools</h2>
     <p>Boxfuse supports the <a href="http://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html">Spring Boot Dev Tools</a>,
