@@ -88,9 +88,9 @@ subtitle: 'Spring Boot'
 
     <h2>Healthchecks</h2>
 
-    <p>If your application also includes the Spring Boot Actuator, Boxfuse will <strong>automatically configures its healthcheck
-        to match the Spring Boot health endpoint</strong>. The only requirement is that if you provide your own configuration,
-    you must set <code>management.health.diskspace.enabled</code> to <code>false</code>.</p>
+    <p>Boxfuse will automatically configure the healthcheck port and path based on the discovered Spring Boot configuration.
+        If your application also includes the Spring Boot Actuator, Boxfuse will <strong>automatically configures its healthcheck
+        to match the Spring Boot health endpoint</strong>.</p>
 
     <h2 id="profiles">Spring Profiles</h2>
 
@@ -306,6 +306,6 @@ Payload started in 00:07.682s -> http://127.0.0.1:8080</pre>
     <p>Boxfuse will then <strong>automatically configure the Linux kernel to use these settings</strong>.</p>
 
     <p class="next-steps">
-        <a class="btn btn-primary" href="/docs/payloads/grails">Grails <i class="fa fa-arrow-right"></i></a>
+        <a class="btn btn-primary" href="/docs/payloads/jhipster">JHipster <i class="fa fa-arrow-right"></i></a>
     </p>
 </div>

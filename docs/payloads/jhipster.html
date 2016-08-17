@@ -1,0 +1,302 @@
+---
+layout: docs
+menu: jhipster
+subtitle: 'JHipster'
+---
+<p><img src="/assets/img/jhipster.png" height="150"></p>
+
+<p>Boxfuse supports <strong>JHipster 3.6.x or newer</strong> Apps packaged as either a <strong>JHipster Executable
+    War</strong> using either <strong>OpenJDK 7.x or 8.x</strong>.</p>
+
+<h2>Get Started</h2>
+
+<p>If you haven't already, start by following <strong><a href="/getstarted/springboot">Spring Boot &amp; Boxfuse
+    tutorial</a></strong> that will get you <strong>up and running in 5-10 minutes</strong>.</p>
+
+<p>For databases, check out our <a href="/blog/databases"><strong>blog post</strong></a> on how to build a Spring Boot
+    microservice that uses a Boxfuse-managed PostgreSQL database.</p>
+
+<h2>Java Runtime Environment</h2>
+<p>By default Boxfuse uses the <strong>latest OpenJDK 8.x version</strong> (headless JRE).</p>
+
+<h3>OpenJDK version</h3>
+<p>If you want to switch to OpenJDK 7.x or simply an
+    older version, you can do so using the <code>-components.openjdk</code> configuration setting:</p>
+
+<pre class="console"><span>&gt;</span> boxfuse run my-app-1.0.war <strong>-components.openjdk=</strong>7.80.32</pre>
+
+<p>To find out which OpenJDK versions are available from the Boxfuse Inventory you can simply issue:</p>
+
+<pre class="console"><span>&gt;</span> boxfuse inventory openjdk</pre>
+
+<h3 id="custom-jre">Custom JRE</h3>
+<p>If you prefer to use a different JRE, including the <strong>Oracle JRE</strong>, rather than the default OpenJDK one,
+    you can do so by including the <strong>Linux x64</strong> JRE distribution of your choice in a <code>/jre</code>
+    folder <em>inside</em> the Spring Boot jar file.</p>
+
+<p>If you use Maven or Gradle, this means the <code>/jre</code> folder should be put into the
+    <code>src/main/resources</code> directory:</p>
+
+<pre class="filetree"><i class="fa fa-folder-open"></i> my-jhipster-app
+  <i class="fa fa-folder-open"></i> src
+    <i class="fa fa-folder-open"></i> main
+      <i class="fa fa-folder"></i> java
+      <i class="fa fa-folder-open"></i> resources
+        <span><i class="fa fa-folder-open"></i> jre
+  <i class="fa fa-folder-open"></i> bin
+    <i class="fa fa-file"></i> java
+    <i class="fa fa-file"></i> ...
+  <i class="fa fa-folder-open"></i> lib
+    <i class="fa fa-folder"></i> amd64
+    <i class="fa fa-folder"></i> ...
+    <i class="fa fa-file"></i> rt.jar
+    <i class="fa fa-file"></i> ...
+  <i class="fa fa-file-text"></i> COPYRIGHT
+  <i class="fa fa-file-text"></i> LICENSE
+  <i class="fa fa-file"></i> ...</span></pre>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>By default Boxfuse looks for a <code>config/application-prod.yml</code> file <em>inside</em> the JHipster war
+    file and <strong>runs your app with the Spring profile <code>prod</code></strong> activated by default.</p>
+
+<p>If you use Maven or Gradle, this means the <code>application-prod.yml</code> file should be kept into the
+    <code>src/main/resources/config</code> directory where JHipster has generated it.
+    When the Spring Boot Maven or Gradle plugin packages the executable war, it will include it in the
+    class path, where Boxfuse can see it.</p>
+<pre class="filetree"><i class="fa fa-folder-open"></i> my-jhipster-app
+  <i class="fa fa-folder-open"></i> src
+    <i class="fa fa-folder-open"></i> main
+      <i class="fa fa-folder"></i> java
+      <i class="fa fa-folder-open"></i> resources
+        <i class="fa fa-folder-open"></i> config
+          <span><i class="fa fa-file-text"></i> application-prod.yml</span></pre>
+
+<p>Boxfuse parses <strong><code>application-prod.yml</code></strong> and <strong>automatically configures the
+    ports and the healthcheck</strong> based on the
+    information it contains.</p>
+
+<p>If no <code>application-prod.yml</code> is found in the war file, Boxfuse will automatically
+    look for <code>application-default.yml</code> and <code>application.yml</code> as well as the
+    corresponding
+    property files, both at the root of the classpath and in the <code>config</code> package. The overriding order
+    matches the default Spring Boot one.</p>
+
+<h2>Ports</h2>
+
+<p>Boxfuse will automatically configure your application ports to be either <code>http</code>
+    or <code>https</code> based on the value of <code>server.ssl.enabled</code>. The actual port numbers are
+    automatically
+    configured according to the values of the <code>server.port</code> and <code>management.port</code> properties.</p>
+
+<h2>Healthchecks</h2>
+
+<p>Boxfuse will automatically configure the healthcheck port and path based on the discovered Spring Boot configuration.</p>
+
+<h2 id="profiles">Spring Profiles</h2>
+
+<p>By default Boxfuse activates a Spring Profile called <code>prod</code>. You can however easily specify a different
+    profile by setting the <code>SPRING_PROFILES_ACTIVE</code> environment variable to the value you need using the
+    <a href="/docs/commandline/run#envvars">envvars</a> argument.</p>
+
+<p>To use a different Spring Profile for each <a href="/docs/environments">Boxfuse environment</a>,
+    set the Spring Boot profile to the value of the <code>BOXFUSE_ENV</code> environment variable which contains the
+    name of the
+    current <a href="/docs/environments">environment</a> (dev, test, prod): <code>envvars.SPRING_PROFILES_ACTIVE=$BOXFUSE_ENV</code>
+</p>
+
+<p class="alert alert-info"><strong>Tip for Mac OSX and Linux users:</strong>
+    The <code>BOXFUSE_ENV</code> environment variable is only available within the Boxfuse instance, so
+    you must prevent variable expansion by using single quotes:
+    <code>'-envvars.SPRING_PROFILES_ACTIVE=$BOXFUSE_ENV'</code>
+</p>
+
+<p>Note that selecting a Spring Profile via an environment variables or any other means does not affect how Boxfuse
+    <a href="#configuration">configures ports and healthchecks</a>. Boxfuse will only read the files described in that
+    section to extract that information, regardless of which Spring profile gets selected at runtime. You can
+    override those auto-configured values by explicitly setting the port numbers and healthcheck paths using Boxfuse
+    parameters when fusing images or launching instances. At runtime those parameters will then override any other
+    Spring Boot configuration.
+</p>
+
+<h2 id="databases">Databases</h2>
+
+<p>If your app includes the PostgreSQL or MySQL JDBC driver, Boxfuse will <a href="/docs/databases">automatically
+    provision the necessary PostgreSQL or MySQL database</a>
+    in each environment and <strong>auto-configure Spring Boot's DataSource</strong>.</p>
+
+<p>Boxfuse auto-configures Spring Boot's DataSource by setting the <code>SPRING_DATASOURCE_URL</code>,
+    <code>SPRING_DATASOURCE_USERNAME</code> and <code>SPRING_DATASOURCE_PASSWORD</code> environment variables
+    to the correct JDBC url, user and password for the current <a href="/docs/environments">environment</a>.
+</p>
+
+<p>To disable database auto-provisioning set <code>dbtype</code> to <code>none</code> when <a
+        href="/docs/commandline/create#dbtype">creating your app</a>.</p>
+
+<div class="alert alert-info"><p><strong>Tip:</strong> If your application experiences long periods of inactivity your
+    database connections may time out and throw errors upon checkout.</p>
+    <p>Add the following configuration to your <code>application.properties</code> to fix this:</p>
+    <pre class="prettyprint" style="margin-bottom: 0">spring.datasource.testOnBorrow=true
+spring.datasource.validationQuery=SELECT 1</pre>
+</div>
+
+<h2 id="tls">SSL (TLS) / HTTPS</h2>
+
+<p>To use <strong>HTTPS</strong> simply add the KeyStore containing your SSL certificate at the root of the classpath
+    <em>inside</em> the Spring Boot jar file. Boxfuse will automatically extract all <code>.jks</code> and <code>.keystore</code>
+    files it finds to the same directory on the file system as your Spring Boot jar file.</p>
+
+<p>If you use Maven or Gradle, this means your <code>.jks</code> or <code>.keystore</code> KeyStore file should be put
+    into the <code>src/main/resources</code> directory.
+    When Maven or Gradle packages the jar, it will include it in the root of your Spring Boot jar file, where Boxfuse
+    can see it.</p>
+<pre class="filetree"><i class="fa fa-folder-open"></i> my-jhipster-app
+  <i class="fa fa-folder-open"></i> src
+    <i class="fa fa-folder-open"></i> main
+      <i class="fa fa-folder"></i> java
+      <i class="fa fa-folder-open"></i> resources
+        <span><i class="fa fa-file"></i> example.jks</span></pre>
+
+<p>You can then configure the Spring Boot connector to use it. So if for example
+    you have a KeyStore named <code>example.jks</code> inside your JHipster war file,
+    <code>application-prod.xml</code> should look like this:</p>
+
+<pre class="prettyprint">server:
+  port: 443
+  ssl:
+    enabled: true
+    key-store: example.jks
+    key-store-password: myS3cr3tPwd</pre>
+
+<h2 id="root-certificates">Root Certificates</h2>
+
+<p>By default, Boxfuse uses the <strong>same root certificate bundle as the latest version of Firefox</strong>.
+    Additionally Boxfuse also includes the <strong>root certificates for Amazon RDS</strong>, so you can connect
+    securely to RDS databases out of the box.</p>
+<p>You can, however, ship your own set of root certificates, by placing them in a KeyStore inside the War file as <code>WEB-INF/classes/cacerts</code>.
+    If you use Maven or Gradle, this means your <code>cacerts</code> KeyStore file should be put into the <code>src/main/resources</code>
+    directory.
+    Boxfuse will then automatically configure the JRE to use these instead.
+</p>
+
+<pre class="filetree"><i class="fa fa-folder-open"></i> my-jhipster-app
+  <i class="fa fa-folder-open"></i> src
+    <i class="fa fa-folder-open"></i> main
+      <i class="fa fa-folder"></i> java
+      <i class="fa fa-folder-open"></i> resources
+        <span><i class="fa fa-file"></i> cacerts</span></pre>
+
+<p>If you choose to secure your <code>cacerts</code> TrustStore with a password different than the default <code>changeit</code>,
+    you have to add the following to your Spring Boot configuration:</p>
+
+<pre class="prettyprint">server:
+  ssl:
+    trust-store: /cacerts/cacerts
+    trust-store-password: my0th3rPwd</pre>
+
+<h2 id="jce">JCE unlimited strength cryptography</h2>
+
+<p>To enable JCE unlimited cryptography (for AES-256, RSA-4096, ...), download the policy zip from the Oracle website
+    for either <a href="http://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html">Java 7</a>
+    or <a href="http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html">Java 8</a>.</p>
+<p>Extract both <code>local_policy.jar</code> and <code>US_export_policy.jar</code> and place them inside your
+    war file.
+    If you use Maven or Gradle, this means both policy jar files should be put into the <code>src/main/resources</code>
+    directory.
+    Boxfuse will then automatically configure the JRE to use these instead.
+</p>
+
+<pre class="filetree"><i class="fa fa-folder-open"></i> my-jhipster-app
+  <i class="fa fa-folder-open"></i> src
+    <i class="fa fa-folder-open"></i> main
+      <i class="fa fa-folder"></i> java
+      <i class="fa fa-folder-open"></i> resources
+        <span><i class="fa fa-file"></i> local_policy.jar
+<i class="fa fa-file"></i> US_export_policy.jar</span></pre>
+
+<h2 id="javaagents">Java Agents</h2>
+
+<p>If you wish to launch the JRE with one or more Java Agents, simply place the Java Agent files inside the war file
+    under
+    <code>WEB-INF/classes/javaagents/</code>. In a Maven or Gradle project this means you have to put your agent jar and whatever other
+    files it requires under <code>src/main/resources/javaagents</code>:</p>
+<pre class="filetree"><i class="fa fa-folder-open"></i> my-jhipster-app
+  <i class="fa fa-folder-open"></i> src
+    <i class="fa fa-folder-open"></i> main
+      <i class="fa fa-folder"></i> java
+      <i class="fa fa-folder-open"></i> resources
+        <span><i class="fa fa-folder-open"></i> javaagents
+  <i class="fa fa-file"></i> myjavaagent.jar
+  <i class="fa fa-file-text"></i> myjavaagent.properties</span></pre>
+
+<p>Boxfuse will then <strong>automatically configure the JRE to use these Java Agents</strong></p>
+
+<h2>JVM Memory</h2>
+
+<p>By default Boxfuse will <strong>dynamically configure your JVM heap to use 85% of the available memory</strong> in
+    the instance. All other settings
+    use the JVM defaults. You can override this by specifying the required JVM arguments like <code>-Xmx</code> via the
+    <code>jvm.args</code> configuration setting.</p>
+
+<h2>Temporary Files</h2>
+
+<p>Boxfuse configures the JVM to use <code>/tmp</code> as the directory to store temporary files and provisions <strong>1
+    GB of space by default</strong>.</p>
+<p>To increase this (up to a maximum of 16 TB), simply set
+    the <code>tmp</code> configuration setting to the number of GB of temp space you need. To prevent Boxfuse from
+    provisioning any temp space set <code>tmp</code> to <code>0</code>.</p>
+<p>Boxfuse also automatically configures the Spring Boot Actuator disk space health check to monitor <code>/tmp</code>.
+    When you disable
+    the temp space (by setting <code>tmp</code> to <code>0</code>), Boxfuse will also automatically disable the Actuator
+    disk space health check.</p>
+
+<h2 id="debugging">Debugging</h2>
+<p>Remote debugging (including hot-code replace) with your favorite IDE is fully supported.
+    Details and setup instructions on our <a href="/docs/debugging">debugging page</a>.</p>
+
+<h2 id="profiling">Profiling</h2>
+<p>Profiling with tools like JVisualVM and Java Flight Recorder is fully supported.
+    Details and setup instructions on our <a href="/docs/profiling">profiling page</a>.</p>
+
+<h2 id="live">Live Reloading</h2>
+<p>Boxfuse supports <a href="/docs/live">Live Reloading</a> of <em>exploded</em> JHipster war files. However
+    in most cases you're probably better off using Spring Boot's own solution, the <a href="#spring-boot-devtools">Spring
+        Boot Dev Tools</a>,
+    as they work great on both VirtualBox and AWS.</p>
+
+<p>Check out our <strong><a href="/blog/spring-boot-devtools-aws">blog post</a></strong> for details.</p>
+
+<h2 id="spring-boot-devtools">Spring Boot Dev Tools</h2>
+<p>Boxfuse supports the <a
+        href="http://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html">Spring Boot Dev
+    Tools</a>,
+    including running as a <a
+            href="http://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html#using-boot-devtools-remote">remote
+        application</a> both on VirtualBox and on AWS.</p>
+
+<p>JHipster enables them by default for the Spring Boot <code>dev</code> profile. To use them with Boxfuse you must
+also enable them for the Spring Boot <code>prod</code> profile.</p>
+
+<p>Any change you now make in your IDE (don't forget to save and build) will be reflected within your running Boxfuse
+    instance,
+    regardless of whether it is on VirtualBox or AWS.</p>
+
+<p>More details and info in our <strong><a href="/blog/spring-boot-devtools-aws">blog post</a></strong>.</p>
+
+<h2 id="sysctl">Linux Kernel Tuning (experts only)</h2>
+
+<p>If you need to tune the Linux kernel running in your instance, simply place a <code>sysctl.conf</code> file at the
+    root inside your jar file.
+    In a Maven or Gradle project this means you have to put it under <code>src/main/resources</code>:</p>
+<pre class="filetree"><i class="fa fa-folder-open"></i> my-jhipster-app
+  <i class="fa fa-folder-open"></i> src
+    <i class="fa fa-folder-open"></i> main
+      <i class="fa fa-folder"></i> java
+      <i class="fa fa-folder-open"></i> resources
+        <span><i class="fa fa-file-text"></i> sysctl.conf</span></pre>
+
+<p>Boxfuse will then <strong>automatically configure the Linux kernel to use these settings</strong>.</p>
+
+<p class="next-steps">
+    <a class="btn btn-primary" href="/docs/payloads/grails">Grails <i class="fa fa-arrow-right"></i></a>
+</p>
