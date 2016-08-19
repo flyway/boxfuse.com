@@ -6,7 +6,7 @@ subtitle: 'JHipster'
 <p><img src="/assets/img/jhipster.png" height="150"></p>
 
 <p>Boxfuse supports <strong>JHipster 3.6.x or newer</strong> Apps packaged as either a <strong>JHipster Executable
-    War</strong> using either <strong>OpenJDK 7.x or 8.x</strong>.</p>
+    War</strong> using <strong>OpenJDK 8.x</strong>.</p>
 
 <h2>Get Started</h2>
 
@@ -20,10 +20,9 @@ subtitle: 'JHipster'
 <p>By default Boxfuse uses the <strong>latest OpenJDK 8.x version</strong> (headless JRE).</p>
 
 <h3>OpenJDK version</h3>
-<p>If you want to switch to OpenJDK 7.x or simply an
-    older version, you can do so using the <code>-components.openjdk</code> configuration setting:</p>
+<p>If you want to switch to a different version of OpenJDK, you can do so using the <code>-components.openjdk</code> configuration setting:</p>
 
-<pre class="console"><span>&gt;</span> boxfuse run my-app-1.0.war <strong>-components.openjdk=</strong>7.80.32</pre>
+<pre class="console"><span>&gt;</span> boxfuse run my-app-1.0.war <strong>-components.openjdk=</strong>8.102.14</pre>
 
 <p>To find out which OpenJDK versions are available from the Boxfuse Inventory you can simply issue:</p>
 
@@ -197,8 +196,7 @@ spring.datasource.validationQuery=SELECT 1</pre>
 <h2 id="jce">JCE unlimited strength cryptography</h2>
 
 <p>To enable JCE unlimited cryptography (for AES-256, RSA-4096, ...), download the policy zip from the Oracle website
-    for either <a href="http://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html">Java 7</a>
-    or <a href="http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html">Java 8</a>.</p>
+    for <a href="http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html">Java 8</a>.</p>
 <p>Extract both <code>local_policy.jar</code> and <code>US_export_policy.jar</code> and place them inside your
     war file.
     If you use Maven or Gradle, this means both policy jar files should be put into the <code>src/main/resources</code>
