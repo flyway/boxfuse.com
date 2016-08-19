@@ -104,13 +104,18 @@ subtitle: 'Play'
 
     <p>To disable database auto-provisioning set <code>dbtype</code> to <code>none</code> when <a href="/docs/commandline/create#dbtype">creating your app</a>.</p>
 
-    <h2 id="slick">Slick</h2>
+    <h3 id="slick">Slick</h3>
 
     <p>For Play 2.4 and newer apps that include the PostgreSQL or MySQL JDBC driver and use Slick instead of the regular Play database access, Boxfuse also automatically configures
         Slick's driver, the jdbc driver class name, jdbc url, user and password. This can be disabled by setting
         <code>dbtype</code> to <code>none</code> when <a href="/docs/commandline/create#dbtype">creating your app</a>.</p>
 
-    <h2 id="evolutions">Evolutions</h2>
+    <p>You can also override these auto-configured values by explicitly passing them as <a href="/docs/commandline/fuse#jvm.args">JVM arguments</a>. For example, to
+    override the Slick driver you can do so like this:</p>
+
+    <pre class="console"><span>&gt;</span> boxfuse fuse my-play-app-1.0.zip <strong>-jvm.args=-Dslick.dbs.default.driver=my.custom.SlickDriver</strong></pre>
+
+    <h3 id="evolutions">Evolutions</h3>
 
     <p>If you choose to use Play Evolutions to migrate your database schema (as opposed to <a href="http://flywaydb.org">Flyway</a>) you have to ensure evolutions
         are applied automatically to prevent application startup issues.</p>

@@ -25,16 +25,17 @@ subtitle: 'VirtualBox'
 
     <h2 id="networking">Networking</h2>
 
-    <p>By default, on <strong>VirtualBox 5.1 and above</strong>, Boxfuse creates a separate VirtualBox <strong>NAT Network</strong>.
-    All Boxfuse instances are automatically assigned their own IP address via DHCP in the <code>192.168.15.0/24</code> range
-        on that network and can communicate with each other directly using their respective addresses.</p>
-
-    <p>On <strong>VirtualBox 5.0 and older</strong> Boxfuse uses regular VirtualBox <strong>NAT</strong> instead where
+    <p>By default Boxfuse uses regular VirtualBox <strong>NAT</strong> where
         each instance has its own network and is assigned the exact same <code>10.0.2.15</code> IP address. Instances do have the
         possibility to communicate with each other, albeit only via forwarded ports (see below) on the <code>10.0.2.2</code> gateway.</p>
 
-    <p>VirtualBox 5.1+ users also have the possibility to force Boxfuse to use regular VirtualBox NAT instead of the NAT Network
-    by explicitly setting the <code>virtualbox.natnetwork</code> Boxfuse configuration property to <code>false</code>.</p>
+    <p><strong>VirtualBox 5.1+</strong> users also have the possibility to let Boxfuse use a <strong>NAT Network</strong> instead of regular VirtualBox NAT
+        by explicitly setting the <code>virtualbox.natnetwork</code> Boxfuse configuration property to <code>true</code>.
+        Boxfuse then creates a separate VirtualBox NAT Network and all Boxfuse instances are automatically assigned
+        their own IP address via DHCP in the <code>192.168.15.0/24</code> range
+        on that network and can communicate with each other directly using their respective addresses. This is great for
+        microservices and client-side load balancing with Eureka.
+    </p>
 
     <h3 id="portforwarding">Port forwarding</h3>
 

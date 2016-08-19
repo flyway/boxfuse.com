@@ -127,7 +127,8 @@ subtitle: 'Tomcat'
     <p>To disable database auto-provisioning set <code>dbtype</code> to <code>none</code> when <a href="/docs/commandline/create#dbtype">creating your app</a>.</p>
 
     <p>When using the <a href="/docs/databases">Boxfuse database auto-provisioning support</a>, Boxfuse automatically
-        inject environment variables with the correct jdbc url (<code>BOXFUSE_DATABASE_URL</code>), user (<code>BOXFUSE_DATABASE_USER</code>) and password (<code>BOXFUSE_DATABASE_PASSWORD</code>) in your instance.</p>
+        injects environment variables in your instance with the correct details: <code>BOXFUSE_DATABASE_URL</code> (jdbc url),
+        <code>BOXFUSE_DATABASE_USER</code> (database user) and <code>BOXFUSE_DATABASE_PASSWORD</code> (database password).</p>
 
     <p>This works identically in all environments and Boxfuse ensures you always get the correct settings.</p>
 <!--

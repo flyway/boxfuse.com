@@ -149,7 +149,7 @@ subtitle: 'TomEE'
           <span><i class="fa fa-file"></i> local_policy.jar
 <i class="fa fa-file"></i> US_export_policy.jar</span></pre>
 
-    <h2>Databases</h2>
+    <h2 id="databases">Databases</h2>
 
     <p>If your app includes the PostgreSQL or MySQL JDBC driver, Boxfuse will automatically provision the necessary PostgreSQL or MySQL database
         in each environment.</p>
@@ -157,19 +157,22 @@ subtitle: 'TomEE'
     <p>To disable database auto-provisioning set <code>dbtype</code> to <code>none</code> when <a href="/docs/commandline/create#dbtype">creating your app</a>.</p>
 
     <p>When using the <a href="/docs/databases">Boxfuse database auto-provisioning support</a>, Boxfuse automatically
-        inject environment variables with the correct jdbc url (<code>BOXFUSE_DATABASE_URL</code>), user (<code>BOXFUSE_DATABASE_USER</code>) and password (<code>BOXFUSE_DATABASE_PASSWORD</code>) in your instance.</p>
-<!--
-    <p>Here is an example on how to configure a <a
-            href="http://tomee.apache.org/datasource-config.html">TomEE JDBC
-        DataSource</a> to make use of them:</p>
+        injects environment variables in your instance with the correct details: <code>BOXFUSE_DATABASE_URL</code> (jdbc url),
+        <code>BOXFUSE_DATABASE_USER</code> (database user) and <code>BOXFUSE_DATABASE_PASSWORD</code> (database password).</p>
 
-    <pre class="prettyprint">&lt;Resource id="MyDB" type="DataSource"&gt;
-    JdbcDriver  org.postgresql.Driver
-    JdbcUrl     ${BOXFUSE_DATABASE_URL}
-    UserName    ${BOXFUSE_DATABASE_USER}
-    Password    ${BOXFUSE_DATABASE_PASSWORD}
-&lt;/Resource&gt;</pre>
--->
+    <p>To make this easy to use, Boxfuse also automatically creates a <a
+            href="http://tomee.apache.org/datasource-config.html">TomEE JDBC
+        DataSource</a> called <code>boxfuseDatabase</code> that you can then easily reference in your application.</p>
+    
+    <p>When using <code>persistence.xml</code>, integration looks like this:</p>
+
+    <pre class="prettyprint">&lt;persistence ... &gt;
+  &lt;persistence-unit name="..."&gt;
+    <strong>&lt;jta-data-source&gt;boxfuseDatabase&lt;/jta-data-source&gt;</strong>
+    ...
+  &lt;/persistence-unit&gt;
+&lt;/persistence&gt;</pre>
+
     <p>This works identically in all environments and Boxfuse ensures you always get the correct settings.</p>
 
     <h2>Java Agents</h2>
