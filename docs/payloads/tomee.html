@@ -85,6 +85,23 @@ subtitle: 'TomEE'
 
     <pre class="console"><span>&gt;</span> boxfuse inventory tomee-webprofile</pre>
 
+    <h2 id="configuration">TomEE configuration</h2>
+
+    <p>By default, Boxfuse installs TomEE using TomEE's default <code>tomee.xml</code>. To override this, you can
+    supply your own <code>tomee.xml</code> file (under <code>WEB-INF</code> inside your war file) which Boxfuse will
+        then use instead.</p>
+
+    <p>If you use Maven or Gradle, this means your <code>tomee.xml</code> folder should be put into the <code>src/main/webapp/WEB-INF</code> directory:</p>
+
+    <pre class="filetree"><i class="fa fa-folder-open"></i> my-tomee-app
+  <i class="fa fa-folder-open"></i> src
+    <i class="fa fa-folder-open"></i> main
+      <i class="fa fa-folder"></i> java
+      <i class="fa fa-folder"></i> resources
+      <i class="fa fa-folder-open"></i> webapp
+        <i class="fa fa-folder-open"></i> WEB-INF
+          <span><i class="fa fa-file-text"></i> tomee.xml</span></pre>
+
     <h2>HTTP</h2>
 
     <p>By default, Boxfuse will automatically configure TomEE to listen to HTTP traffic on port 80.</p>
@@ -157,7 +174,7 @@ subtitle: 'TomEE'
     <p>To disable database auto-provisioning set <code>dbtype</code> to <code>none</code> when <a href="/docs/commandline/create#dbtype">creating your app</a>.</p>
 
     <p>When using the <a href="/docs/databases">Boxfuse database auto-provisioning support</a>, Boxfuse automatically
-        inject the correct jdbc url, user and password as environment variables in your instance.</p>
+        inject environment variables with the correct jdbc url (<code>BOXFUSE_DATABASE_URL</code>), user (<code>BOXFUSE_DATABASE_USER</code>) and password (<code>BOXFUSE_DATABASE_PASSWORD</code>) in your instance.</p>
 <!--
     <p>Here is an example on how to configure a <a
             href="http://tomee.apache.org/datasource-config.html">TomEE JDBC
