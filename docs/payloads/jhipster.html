@@ -16,10 +16,16 @@ subtitle: 'JHipster'
 <p>For databases, check out our <a href="/blog/databases"><strong>blog post</strong></a> on how to build a Spring Boot
     microservice that uses a Boxfuse-managed PostgreSQL database.</p>
 
-<h2>Java Runtime Environment</h2>
+<h2 id="packaging">Packaging</h2>
+
+<p>Your JHipster app should be packaged from production use as follows:</p>
+
+<pre class="console"><span>&gt;</span> mvnw <strong>-Pprod</strong> -DskipTests package</pre>
+
+<h2 id="jre">Java Runtime Environment</h2>
 <p>By default Boxfuse uses the <strong>latest OpenJDK 8.x version</strong> (headless JRE).</p>
 
-<h3>OpenJDK version</h3>
+<h3 id="openjdk">OpenJDK version</h3>
 <p>If you want to switch to a different version of OpenJDK, you can do so using the <code>-components.openjdk</code> configuration setting:</p>
 
 <pre class="console"><span>&gt;</span> boxfuse run my-app-1.0.war <strong>-components.openjdk=</strong>8.102.14</pre>
