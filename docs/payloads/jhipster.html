@@ -18,9 +18,15 @@ subtitle: 'JHipster'
 
 <h2 id="packaging">Packaging</h2>
 
-<p>Your JHipster app should be packaged from production use as follows:</p>
+<p>Your JHipster app should be packaged from production.</p>
+
+<p>If you are using Maven this is how to do it:</p>
 
 <pre class="console"><span>&gt;</span> mvnw <strong>-Pprod</strong> -DskipTests package</pre>
+
+<p>And when using gradle:</p>
+
+<pre class="console"><span>&gt;</span> gradlew <strong>-Pprod</strong> bootRepackage -x test</pre>
 
 <h2 id="jre">Java Runtime Environment</h2>
 <p>By default Boxfuse uses the <strong>latest OpenJDK 8.x version</strong> (headless JRE).</p>
