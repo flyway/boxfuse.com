@@ -213,13 +213,13 @@ server.ssl.trust-store-password=my0th3rPwd</pre>
 
     <p>Boxfuse will then <strong>automatically configure the JRE to use these Java Agents</strong></p>
 
-    <h2>JVM Memory</h2>
+    <h2 id="memory">JVM Memory</h2>
 
     <p>By default Boxfuse will <strong>dynamically configure your JVM heap to use 85% of the available memory</strong> in the instance. All other settings
     use the JVM defaults. You can override this by specifying the required JVM arguments like <code>-Xmx</code> via the
     <code>jvm.args</code> configuration setting.</p>
 
-    <h2>Temporary Files</h2>
+    <h2 id="tmp">Temporary Files</h2>
 
     <p>Boxfuse configures the JVM to use <code>/tmp</code> as the directory to store temporary files and provisions <strong>1 GB of space by default</strong>.</p>
     <p>To increase this (up to a maximum of 16 TB), simply set
