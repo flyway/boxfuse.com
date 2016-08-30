@@ -60,7 +60,7 @@ subtitle: 'Spring Boot'
 
     <h2 id="configuration">Configuration</h2>
 
-    <p>By default Boxfuse looks for a <code>/application-boxfuse.properties</code> file <em>inside</em> the Spring Boot jar file
+    <p>By default Boxfuse looks for an <code>application-boxfuse.properties</code> file <em>inside</em> the Spring Boot jar file
         and <strong>runs your app with the Spring profile <code>boxfuse</code></strong> activated by default.</p>
 
     <p>If you use Maven or Gradle, this means the <code>application-boxfuse.properties</code> file should be put into the <code>src/main/resources</code> directory.
@@ -75,10 +75,19 @@ subtitle: 'Spring Boot'
     <p>Boxfuse parses <strong><code>application-boxfuse.properties</code></strong> and <strong>automatically configures the ports and the healthcheck</strong> based on the
     information it contains.</p>
 
-    <p>If no <code>application-boxfuse.properties</code> is found at the root of the jar file, Boxfuse will automatically
-        look for <code>application-default.properties</code> and <code>application.properties</code> as well as the corresponding
-        yml files, both at the root of the classpath and in the <code>config</code> package. The overriding order
-    matches the default Spring Boot one.</p>
+    <p>If no <code>application-boxfuse.properties</code> is found in the jar file, Boxfuse will automatically
+        look for the following configuration files both at the root of the classpath and in the <code>config</code> package:</p>
+    <ul>
+        <li><code>application-boxfuse.yml</code></li>
+        <li><code>application-default.properties</code></li>
+        <li><code>application-default.yml</code></li>
+        <li><code>application.properties</code></li>
+        <li><code>application.yml</code></li>
+    </ul>
+    <p>The overriding order matches the default Spring Boot one.</p>
+
+    <p><strong>Note:</strong> Other config files (including the ones for other specific Spring profiles) are not taken
+        into account for auto-configuration and you will have to specify the appropriate port and healthcheck configuration settings yourself.</p>
 
     <h2>Ports</h2>
 
