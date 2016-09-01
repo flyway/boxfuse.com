@@ -45,6 +45,14 @@ pill: Overview
 
 <p>You can find your credentials on the downloads tab in the <a href="https://console.boxfuse.com/#/downloads">Boxfuse Console</a>.</p>
 
+<h2 id="authentication">Authentication</h2>
+
+<p>The Boxfuse Maven plugin is unpersonalized and requires credentials to connect to your Boxfuse Account.</p>
+
+<p>You can obtain those credentials from the Downloads tab in the Boxfuse Console. Credentials can then be
+    passed in via the <code>user</code> and <code>secret</code> configuration parameters or via the
+    <code>BOXFUSE_USER</code> and <code>BOXFUSE_SECRET</code> environment variables.</p>
+
 <h2 id="configuration">Configuration</h2>
 
 <p>Boxfuse is opinionated, favors <strong>convention over configuration</strong> and comes with <strong>sensible
@@ -65,6 +73,7 @@ You can also either specify an external config file or place a <code>boxfuse.con
     <li><em>&lt;current-dir&gt;</em>/boxfuse.conf</li>
     <li><em>&lt;home-dir&gt;</em>/.boxfuse/boxfuse-<em>&lt;env&gt;</em>.conf</li>
     <li><em>&lt;home-dir&gt;</em>/.boxfuse/boxfuse.conf</li>
+    <li>The <code>BOXFUSE_USER</code> and <code>BOXFUSE_SECRET</code> environment variables</li>
 </ul>
 
 <p>Setting a property to an empty string with unset that property.</p>
