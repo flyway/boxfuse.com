@@ -58,6 +58,11 @@ subtitle: 'Spring Boot'
   <i class="fa fa-file-text"></i> LICENSE
   <i class="fa fa-file"></i> ...</span></pre>
 
+    <div class="alert alert-info"><p><strong>Tip for Git users</strong></p>
+        <p>To avoid file corruption due to Git line-ending normalization, add the following line to <code>.gitattributes</code></p>
+        <pre class="prettyprint" style="margin-bottom: 0">src/main/resources/jre/* binary</pre>
+    </div>
+
     <h2 id="configuration">Configuration</h2>
 
     <p>By default Boxfuse looks for an <code>application-boxfuse.properties</code> file <em>inside</em> the Spring Boot jar file
@@ -111,10 +116,10 @@ subtitle: 'Spring Boot'
         set the Spring Boot profile to the value of the <code>BOXFUSE_ENV</code> environment variable which contains the name of the
         current <a href="/docs/environments">environment</a> (dev, test, prod): <code>envvars.SPRING_PROFILES_ACTIVE=$BOXFUSE_ENV</code></p>
 
-    <p class="alert alert-info"><strong>Tip for Mac OSX and Linux users:</strong>
-        The <code>BOXFUSE_ENV</code> environment variable is only available within the Boxfuse instance, so
-        you must prevent variable expansion by using single quotes: <code>'-envvars.SPRING_PROFILES_ACTIVE=$BOXFUSE_ENV'</code>
-    </p>
+    <div class="alert alert-info"><p><strong>Tip for Mac OSX and Linux users</strong></p>
+        <p>The <code>BOXFUSE_ENV</code> environment variable is only available within the Boxfuse instance, so
+        you must prevent variable expansion by using single quotes: <code>'-envvars.SPRING_PROFILES_ACTIVE=$BOXFUSE_ENV'</code></p>
+    </div>
 
     <p>Note that selecting a Spring Profile via an environment variables or any other means does not affect how Boxfuse
     <a href="#configuration">configures ports and healthchecks</a>. Boxfuse will only read the files described in that
@@ -136,7 +141,7 @@ subtitle: 'Spring Boot'
 
     <p>To disable database auto-provisioning set <code>dbtype</code> to <code>none</code> when <a href="/docs/commandline/create#dbtype">creating your app</a>.</p>
 
-    <div class="alert alert-info"><p><strong>Tip:</strong> If your application experiences long periods of inactivity your
+    <div class="alert alert-info"><p><strong>Tip</strong></p><p>If your application experiences long periods of inactivity your
         database connections may time out and throw errors upon checkout.</p>
         <p>Add the following configuration to your <code>application.properties</code> to fix this:</p>
     <pre class="prettyprint" style="margin-bottom: 0">spring.datasource.testOnBorrow=true

@@ -54,6 +54,11 @@ subtitle: 'Dropwizard'
   <i class="fa fa-file-text"></i> LICENSE
   <i class="fa fa-file"></i> ...</span></pre>
 
+    <div class="alert alert-info"><p><strong>Tip for Git users</strong></p>
+        <p>To avoid file corruption due to Git line-ending normalization, add the following line to <code>.gitattributes</code></p>
+        <pre class="prettyprint" style="margin-bottom: 0">src/main/resources/jre/* binary</pre>
+    </div>
+
     <h2 id="configuration">Configuration</h2>
 
     <p>By default Boxfuse looks for a <code>/boxfuse.yml</code> file <em>inside</em> the Dropwizard jar file and runs your app

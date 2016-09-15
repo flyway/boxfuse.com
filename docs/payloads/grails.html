@@ -52,6 +52,11 @@ subtitle: 'Grails'
   <i class="fa fa-file-text"></i> LICENSE
   <i class="fa fa-file"></i> ...</span></pre>
 
+    <div class="alert alert-info"><p><strong>Tip for Git users</strong></p>
+        <p>To avoid file corruption due to Git line-ending normalization, add the following line to <code>.gitattributes</code></p>
+        <pre class="prettyprint" style="margin-bottom: 0">src/main/resources/jre/* binary</pre>
+    </div>
+
     <h2 id="configuration">Configuration</h2>
 
     <p>By default Boxfuse looks for an <code>application.yml</code> file <em>inside</em> the Grails jar file
@@ -90,9 +95,10 @@ subtitle: 'Grails'
     profile by setting the <code>SPRING_PROFILES_ACTIVE</code> environment variable to the value you need using the
         <a href="/docs/commandline/run#envvars">envvars</a> argument.</p>
 
-    <p class="alert alert-info"><strong>Tip:</strong> To use a different Spring Profile for each <a href="/docs/environments">Boxfuse environment</a>,
+    <div class="alert alert-info"><p><strong>Tip</strong></p>
+        <p>To use a different Spring Profile for each <a href="/docs/environments">Boxfuse environment</a>,
     set the Spring Boot profile to the value of the <code>BOXFUSE_ENV</code> environment variable which contains the name of the
-        current <a href="/docs/environments">environment</a> (dev, test, prod): <code>envvars.SPRING_PROFILES_ACTIVE=$BOXFUSE_ENV</code></p>
+        current <a href="/docs/environments">environment</a> (dev, test, prod): <code>envvars.SPRING_PROFILES_ACTIVE=$BOXFUSE_ENV</code></p></div>
 
     <h2>Databases</h2>
 
