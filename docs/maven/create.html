@@ -56,7 +56,7 @@ Successfully created axelfontaine/hello</pre>
         <td></td>
         <td>The name of the application</td>
     </tr>
-    <tr>
+    <tr id="app.type">
         <td>app.type</td>
         <td>boxfuse.app.type</td>
         <td>single-instance</td>
@@ -75,6 +75,12 @@ Successfully created axelfontaine/hello</pre>
         <td>none</td>
         <td>The type of database your app needs. Possible values: <code>none</code> (no database) or <code>postgresql</code> (Boxfuse-managed PostgreSQL database)</td>
     </tr>
+    <tr id="logs.type">
+        <td>logs.type</td>
+        <td>boxfuse.logs.type</td>
+        <td>none</td>
+        <td>The type of centralized logging service your app needs. Possible values: <code>none</code> (no centralized logging) or <code>cloudwatch-logs</code> (AWS CloudWatch Logs)</td>
+    </tr>
 </table>
 
 <h3>Sample Configuration</h3>
@@ -85,6 +91,7 @@ Successfully created axelfontaine/hello</pre>
     &lt;app&gt;hello&lt;/app&gt;
     &lt;app.type&gt;load-balanced&lt;/app.type&gt;
     &lt;db.type&gt;postgresql&lt;/db.type&gt;
+    &lt;logs.type&gt;cloudwatch-logs&lt;/logs.type&gt;
 &lt;/configuration&gt;</pre>
 
 <p class="next-steps">
