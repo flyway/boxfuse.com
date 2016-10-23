@@ -144,6 +144,12 @@ INFO: Server startup in 302 ms</pre>
         <td>dev</td>
         <td>Use the AWS <code>test</code> or <code>prod</code> environments instead of the local <code>dev</code> one</td>
     </tr>
+    <tr id="logs.boot">
+        <td>logs.boot</td>
+        <td>boxfuse.logs.boot</td>
+        <td>false</td>
+        <td>Shows the instance boot logs instead of the application logs</td>
+    </tr>
     <tr id="logs.tail">
         <td>logs.tail</td>
         <td>boxfuse.logs.tail</td>
@@ -163,6 +169,7 @@ INFO: Server startup in 302 ms</pre>
 <pre class="prettyprint">&lt;configuration&gt;
     &lt;user&gt;1234567890abcdef1234567890abcdef12345678&lt;/user&gt;
     &lt;secret&gt;ABCDEFGHIJKL1234567abcdefghijklmnopqrstu&lt;/secret&gt;
+    &lt;logs.boot&gt;true&lt;/logs.boot&gt;
     &lt;logs.tail&gt;true&lt;/logs.tail&gt;
     &lt;instances&gt;vb-ec717c5e&lt;/instances&gt;
 &lt;/configuration&gt;</pre>
