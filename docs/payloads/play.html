@@ -221,6 +221,25 @@ subtitle: 'Play'
     <h2 id="live">Live Reloading</h2>
     <p>Boxfuse supports <a href="/docs/live">Live Reloading</a> of exploded Play zip files.</p>
 
+    <h2 id="newrelic">New Relic support</h2>
+
+    <p>To monitor your app using <a href="/docs/newrelic">New Relic</a> simply pass in your New Relic license key when
+        fusing your image and Boxfuse will automatically install and configure the New Relic Servers Linux x64 and New Relic Java agents for you.</p>
+
+    <pre class="console"><span>&gt;</span> boxfuse fuse <strong>-newrelic.licensekey=</strong>0123456789abcdef0123456789abcdef01234567</pre>
+
+    <p>Alternatively you can also supply a <code>newrelic.yml</code> configuration file for the Java agent and Boxfuse will
+        automatically use that instead. Boxfuse will then install the agent for you, but won't override any application name you may have configured.
+        If you haven't configured a New Relic license key as described above, Boxfuse will use
+        the license key contained in your <code>newrelic.yml</code> configuration file instead.</p>
+
+    <p>In a SBT or Typesafe Activator project, the <code>newrelic.yml</code> file should be put into the <code>conf</code> directory.
+        Boxfuse will then automatically configure the New Relic Java agent to use it.</p>
+
+    <pre class="filetree"><i class="fa fa-folder-open"></i> my-play-app
+  <i class="fa fa-folder-open"></i> conf
+    <span><i class="fa fa-file"></i> newrelic.yml</span></pre>
+
     <h2 id="sysctl">Linux Kernel Tuning (experts only)</h2>
 
     <p>If you need to tune the Linux kernel running in your instance, simply place a <code>sysctl.conf</code> file inside the Zip file under

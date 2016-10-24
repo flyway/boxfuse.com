@@ -211,6 +211,12 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>true</td>
         <td>Whether to automatically display the instance logs on startup</td>
     </tr>
+    <tr id="logsBoot">
+        <td>logsBoot</td>
+        <td>boxfuse.logs.boot</td>
+        <td>true</td>
+        <td>Shows the instance boot logs</td>
+    </tr>
     <tr>
         <td>logsDir</td>
         <td>boxfuse.logs.dir</td>
@@ -222,6 +228,12 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>boxfuse.logs.tail</td>
         <td>false</td>
         <td><p><i>VirtualBox only</i></p>Tail (keep running with live updates) the logs</td>
+    </tr>
+    <tr id="newrelicLicensekey">
+        <td>newrelicLicensekey</td>
+        <td>boxfuse.newrelic.licensekey</td>
+        <td></td>
+        <td><p><i>When fusing new images only</i></p>Installs and configures the <a href="/docs/newrelic">New Relic</a> agents to monitor your instance.</td>
     </tr>
     <tr id="ports">
         <td>ports</td>
@@ -329,9 +341,10 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
     live=true
     logs=true
     logsAuto=true
+    logsBoot=true
     logsDir='target/logs'
     logsTail=true
-    mode='dev'
+    newrelicLicensekey='0123456789abcdef0123456789abcdef012345'
     ports=[
         'https':443,
         'http':80

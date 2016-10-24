@@ -155,6 +155,12 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
         <td>false</td>
         <td>Enable <a href="/docs/live">live reloading</a> of changes in dev for super fast round-trips. Note that images with live reloading cannot be pushed to the Boxfuse Vault.</td>
     </tr>
+    <tr id="newrelicLicensekey">
+        <td>newrelicLicensekey</td>
+        <td>boxfuse.newrelic.licensekey</td>
+        <td></td>
+        <td>Installs and configures the <a href="/docs/newrelic">New Relic</a> agents to monitor your instance.</td>
+    </tr>
     <tr id="ports">
         <td>ports</td>
         <td>boxfuse.ports.<em>NAME</em></td>
@@ -212,6 +218,7 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
     jvmMainClass='com.mycorp.MyApp'
     jvmMainArgs='-abc -def'
     live=true
+    newrelicLicensekey='0123456789abcdef0123456789abcdef012345'
     ports=[
         'https':443,
         'http':80
