@@ -223,6 +223,19 @@ subtitle: 'Grails'
     <h2 id="live">Live Reloading</h2>
     <p>Boxfuse supports <a href="/docs/live">Live Reloading</a> of exploded Grails jar files.</p>
 
+    <h2 id="timezone">Time Zone</h2>
+
+    <p>By default all Boxfuse instance use the <strong><code>UTC</code> time zone</strong>.</p>
+
+    <p>We <strong>don't recommend changing this</strong> as this greatly simplifies time zone issues in machine to machine communication
+        and cleanly relegates all time zones related aspects to a pure presentation layer concern.</p>
+
+    <p>If however you still do want to change this, you can override the default time zone of the JVM using the Boxfuse
+        <code>jvm.args</code> configuration property. For example to change the time zone of your JVM to <code>America/Los_Angeles</code>
+        you would do so like this:</p>
+
+    <pre class="console"><span>&gt;</span> boxfuse fuse <strong>-jvm.args=-Duser.timezone=</strong>America/Los_Angeles</pre>
+
     <h2 id="newrelic">New Relic support</h2>
 
     <p>To monitor your app using <a href="/docs/newrelic">New Relic</a> simply pass in your New Relic license key when
