@@ -54,13 +54,17 @@ subtitle: 'Node.js'
 
     <h2 id="databases">Databases</h2>
 
+    <h3>Database auto-provisioning</h3>
+
     <p>When using the <a href="/docs/databases">Boxfuse database auto-provisioning support</a>, Boxfuse automatically
         exposes your database's host, port, name, user and password for the current environment as environment variables.</p>
 
     <p>If your app includes the <strong><a href="https://github.com/brianc/node-postgres">pg</a></strong> or <strong><a href="https://github.com/felixge/node-mysql">mysql</a></strong> npm module, Boxfuse will automatically provision the necessary PostgreSQL or MySQL database
         in each environment.</p>
 
-    <p>To disable database auto-provisioning set <code>db.type</code> to <code>none</code> when <a href="/docs/commandline/create#dbtype">creating your app</a>.</p>
+    <h3>Using an existing database</h3>
+    <p>To disable database auto-provisioning and use an existing database set <code>db.type</code> to <code>none</code> when <a
+            href="/docs/commandline/create#dbtype">creating your app</a>.</p>
 
     <h3>MySQL</h3>
 

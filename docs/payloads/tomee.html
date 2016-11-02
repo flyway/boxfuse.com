@@ -156,10 +156,10 @@ subtitle: 'TomEE'
 
     <h2 id="databases">Databases</h2>
 
+    <h3>Database auto-provisioning</h3>
+
     <p>If your app includes the PostgreSQL or MySQL JDBC driver, Boxfuse will automatically provision the necessary PostgreSQL or MySQL database
         in each environment.</p>
-
-    <p>To disable database auto-provisioning set <code>db.type</code> to <code>none</code> when <a href="/docs/commandline/create#dbtype">creating your app</a>.</p>
 
     <p>When using the <a href="/docs/databases">Boxfuse database auto-provisioning support</a>, Boxfuse automatically
         injects environment variables in your instance with the correct details: <code>BOXFUSE_DATABASE_URL</code> (jdbc url),
@@ -168,7 +168,7 @@ subtitle: 'TomEE'
     <p>To make this easy to use, Boxfuse also automatically creates a <a
             href="http://tomee.apache.org/datasource-config.html">TomEE JDBC
         DataSource</a> called <code>boxfuseDatabase</code> that you can then easily reference in your application.</p>
-    
+
     <p>When using <code>persistence.xml</code>, integration looks like this:</p>
 
     <pre class="prettyprint">&lt;persistence ... &gt;
@@ -179,6 +179,10 @@ subtitle: 'TomEE'
 &lt;/persistence&gt;</pre>
 
     <p>This works identically in all environments and Boxfuse ensures you always get the correct settings.</p>
+
+    <h3>Using an existing database</h3>
+    <p>To disable database auto-provisioning and use an existing database set <code>db.type</code> to <code>none</code> when <a
+            href="/docs/commandline/create#dbtype">creating your app</a>.</p>
 
     <h2>Java Agents</h2>
 

@@ -136,6 +136,8 @@ subtitle: 'JHipster'
 
 <h2 id="databases">Databases</h2>
 
+<h3>Database auto-provisioning</h3>
+
 <p>If your app includes the PostgreSQL or MySQL JDBC driver, Boxfuse will <a href="/docs/databases">automatically
     provision the necessary PostgreSQL or MySQL database</a>
     in each environment and <strong>auto-configure Spring Boot's DataSource</strong>.</p>
@@ -145,9 +147,6 @@ subtitle: 'JHipster'
     to the correct JDBC url, user and password for the current <a href="/docs/environments">environment</a>.
 </p>
 
-<p>To disable database auto-provisioning set <code>db.type</code> to <code>none</code> when <a
-        href="/docs/commandline/create#dbtype">creating your app</a>.</p>
-
 <div class="alert alert-info"><p><strong>Tip</strong></p><p>If your application experiences long periods of inactivity your
     database connections may time out and throw errors upon checkout.</p>
     <p>Add the following configuration to your <code>application-prod.yml</code> to fix this:</p>
@@ -156,6 +155,10 @@ subtitle: 'JHipster'
     testOnBorrow: true
     validationQuery: SELECT 1</pre>
 </div>
+
+<h3>Using an existing database</h3>
+<p>To disable database auto-provisioning and use an existing database set <code>db.type</code> to <code>none</code> when <a
+        href="/docs/commandline/create#dbtype">creating your app</a>.</p>
 
 <h2 id="tls">SSL (TLS) / HTTPS</h2>
 

@@ -52,13 +52,13 @@ subtitle: 'Executable Jar'
 
     <h2>Databases</h2>
 
+    <h3>Database auto-provisioning</h3>
+
     <p>When using the <a href="/docs/databases">Boxfuse database auto-provisioning support</a>, Boxfuse automatically
         inject the correct jdbc url, user and password as environment variables in your instance.</p>
 
     <p>If your app includes the PostgreSQL or MySQL JDBC driver, Boxfuse will automatically provision the necessary PostgreSQL or MySQL database
         in each environment.</p>
-
-    <p>To disable database auto-provisioning set <code>db.type</code> to <code>none</code> when <a href="/docs/commandline/create#dbtype">creating your app</a>.</p>
 
     <p>Here is an example on how to configure a <a href="https://github.com/brettwooldridge/HikariCP#initialization">HikariCP</a> DataSource to make use of them:</p>
 
@@ -68,6 +68,10 @@ ds.setUsername(System.getenv("BOXFUSE_DATABASE_USER"));
 ds.setPassword(System.getenv("BOXFUSE_DATABASE_PASSWORD"));</pre>
 
     <p>This works identically in all environments and Boxfuse ensures you always get the correct settings.</p>
+
+    <h3>Using an existing database</h3>
+    <p>To disable database auto-provisioning and use an existing database set <code>db.type</code> to <code>none</code> when <a
+            href="/docs/commandline/create#dbtype">creating your app</a>.</p>
 
     <h2>Root Certificates</h2>
 

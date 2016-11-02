@@ -126,38 +126,43 @@ subtitle: 'Tomcat'
 
     <h2 id="databases">Databases</h2>
 
+    <h3>Database auto-provisioning</h3>
+
     <p>If your app includes the PostgreSQL or MySQL JDBC driver, Boxfuse will automatically provision the necessary PostgreSQL or MySQL database
         in each environment.</p>
-
-    <p>To disable database auto-provisioning set <code>db.type</code> to <code>none</code> when <a href="/docs/commandline/create#dbtype">creating your app</a>.</p>
 
     <p>When using the <a href="/docs/databases">Boxfuse database auto-provisioning support</a>, Boxfuse automatically
         injects environment variables in your instance with the correct details: <code>BOXFUSE_DATABASE_URL</code> (jdbc url),
         <code>BOXFUSE_DATABASE_USER</code> (database user) and <code>BOXFUSE_DATABASE_PASSWORD</code> (database password).</p>
 
     <p>This works identically in all environments and Boxfuse ensures you always get the correct settings.</p>
-<!--
-    <p>Here is an example on how to configure a <a href="https://tomcat.apache.org/tomcat-8.0-doc/jndi-resources-howto.html#JDBC_Data_Sources">Tomcat JDBC DataSource</a> to make use of them:</p>
+    <!--
+        <p>Here is an example on how to configure a <a href="https://tomcat.apache.org/tomcat-8.0-doc/jndi-resources-howto.html#JDBC_Data_Sources">Tomcat JDBC DataSource</a> to make use of them:</p>
 
-    <pre class="prettyprint">&lt;Resource
-   name="jdbc/MyDB"
-   auth="Container"
-   type="javax.sql.DataSource"
-   driverClassName="org.postgresql.Driver"
-   url="${BOXFUSE_DATABASE_URL}"
-   username="${BOXFUSE_DATABASE_USER}"
-   password="${BOXFUSE_DATABASE_PASSWORD}"/&gt;</pre>
+        <pre class="prettyprint">&lt;Resource
+       name="jdbc/MyDB"
+       auth="Container"
+       type="javax.sql.DataSource"
+       driverClassName="org.postgresql.Driver"
+       url="${BOXFUSE_DATABASE_URL}"
+       username="${BOXFUSE_DATABASE_USER}"
+       password="${BOXFUSE_DATABASE_PASSWORD}"/&gt;</pre>
 
-    <p>If you use Maven or Gradle you have to store this in <code>/META-INF/context.xml</code>:</p>
-    <pre class="filetree"><i class="fa fa-folder-open"></i> my-tomcat-app
-  <i class="fa fa-folder-open"></i> src
-    <i class="fa fa-folder-open"></i> main
-      <i class="fa fa-folder"></i> java
-      <i class="fa fa-folder-open"></i> resources
-        <i class="fa fa-folder-open"></i> META-INF
-          <span><i class="fa fa-file"></i> context.xml</span>
-      <i class="fa fa-folder"></i> webapp</pre>
--->
+        <p>If you use Maven or Gradle you have to store this in <code>/META-INF/context.xml</code>:</p>
+        <pre class="filetree"><i class="fa fa-folder-open"></i> my-tomcat-app
+      <i class="fa fa-folder-open"></i> src
+        <i class="fa fa-folder-open"></i> main
+          <i class="fa fa-folder"></i> java
+          <i class="fa fa-folder-open"></i> resources
+            <i class="fa fa-folder-open"></i> META-INF
+              <span><i class="fa fa-file"></i> context.xml</span>
+          <i class="fa fa-folder"></i> webapp</pre>
+    -->
+
+    <h3>Using an existing database</h3>
+    <p>To disable database auto-provisioning and use an existing database set <code>db.type</code> to <code>none</code> when <a
+            href="/docs/commandline/create#dbtype">creating your app</a>.</p>
+
     <h2>Java Agents</h2>
 
     <p>If you wish to launch the JRE with one or more Java Agents, simply place the Java Agent files inside the war file under
