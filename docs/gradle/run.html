@@ -200,12 +200,6 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td><p><i>When fusing new images only</i></p>Enable <a href="/docs/live">live reloading</a> of changes in dev for super fast round-trips. Note that images with live reloading cannot be pushed to the Boxfuse Vault.</td>
     </tr>
     <tr>
-        <td>logs</td>
-        <td>boxfuse.logs</td>
-        <td>true</td>
-        <td>Only for Windows &amp; VirtualBox. Logs may slow down the Instance. Set to false to disable.</td>
-    </tr>
-    <tr>
         <td>logsAuto</td>
         <td>boxfuse.logs.auto</td>
         <td>true</td>
@@ -339,7 +333,6 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
     jvmMainArgs='-abc -def'
     image='hello:1.0'
     live=true
-    logs=true
     logsAuto=true
     logsBoot=true
     logsDir='target/logs'
