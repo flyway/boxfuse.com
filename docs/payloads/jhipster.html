@@ -42,10 +42,10 @@ subtitle: 'JHipster'
 
 <h3 id="custom-jre">Custom JRE</h3>
 <p>If you prefer to use a different JRE, including the <strong>Oracle JRE</strong>, rather than the default OpenJDK one,
-    you can do so by including the <strong>Linux x64</strong> JRE distribution of your choice in a <code>/jre</code>
-    folder <em>inside</em> the Spring Boot jar file.</p>
+    you can do so by including the <strong>Linux x64</strong> JRE distribution of your choice in a <code>jre</code>
+    folder <em>inside</em> the JHipster war file.</p>
 
-<p>If you use Maven or Gradle, this means the <code>/jre</code> folder should be put into the
+<p>If you use Maven or Gradle, this means the <code>jre</code> folder should be put into the
     <code>src/main/resources</code> directory:</p>
 
 <pre class="filetree"><i class="fa fa-folder-open"></i> my-jhipster-app
@@ -154,12 +154,12 @@ spring.datasource.validationQuery=SELECT 1</pre>
 <h2 id="tls">SSL (TLS) / HTTPS</h2>
 
 <p>To use <strong>HTTPS</strong> simply add the KeyStore containing your SSL certificate at the root of the classpath
-    <em>inside</em> the Spring Boot jar file. Boxfuse will automatically extract all <code>.jks</code> and <code>.keystore</code>
-    files it finds to the same directory on the file system as your Spring Boot jar file.</p>
+    <em>inside</em> the JHipster war file. Boxfuse will automatically extract all <code>.jks</code> and <code>.keystore</code>
+    files it finds to the same directory on the file system as your JHipster war file.</p>
 
 <p>If you use Maven or Gradle, this means your <code>.jks</code> or <code>.keystore</code> KeyStore file should be put
     into the <code>src/main/resources</code> directory.
-    When Maven or Gradle packages the jar, it will include it in the root of your Spring Boot jar file, where Boxfuse
+    When Maven or Gradle packages your JHipster war, it will be included in the war file, where Boxfuse
     can see it.</p>
 <pre class="filetree"><i class="fa fa-folder-open"></i> my-jhipster-app
   <i class="fa fa-folder-open"></i> src
@@ -295,8 +295,7 @@ also enable them for the Spring Boot <code>prod</code> profile.</p>
 
 <h2 id="sysctl">Linux Kernel Tuning (experts only)</h2>
 
-<p>If you need to tune the Linux kernel running in your instance, simply place a <code>sysctl.conf</code> file at the
-    root inside your jar file.
+<p>If you need to tune the Linux kernel running in your instance, simply place a <code>sysctl.conf</code> file inside your war file.
     In a Maven or Gradle project this means you have to put it under <code>src/main/resources</code>:</p>
 <pre class="filetree"><i class="fa fa-folder-open"></i> my-jhipster-app
   <i class="fa fa-folder-open"></i> src
