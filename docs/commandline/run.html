@@ -78,19 +78,19 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
             </table>
         </td>
     </tr>
-    <tr>
+    <tr id="cpus">
         <td>-cpus=...</td>
         <td>cpus</td>
         <td><em>same as host</em></td>
         <td><p><i>VirtualBox only</i></p>The number of CPUs to assign to an Instance</td>
     </tr>
-    <tr>
+    <tr id="debug">
         <td>-debug</td>
         <td>debug</td>
         <td>false</td>
         <td>Start the Payload in <a href="/docs/debugging">debug mode</a> when an Instance launches</td>
     </tr>
-    <tr>
+    <tr id="debug.wait">
         <td>-debug.wait</td>
         <td>debug.wait</td>
         <td>false</td>
@@ -162,7 +162,7 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>false</td>
         <td><p><i>JVM apps only</i></p>Enable the JMX remote <a href="/docs/profiling">management and profiling</a> interface for the JVM</td>
     </tr>
-    <tr>
+    <tr id="jvm.main.class">
         <td>-jvm.main.class=...</td>
         <td>jvm.main.class</td>
         <td><em>autodetected</em></td>
@@ -180,29 +180,108 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>false</td>
         <td><p><i>When fusing new images only</i></p>Enable <a href="/docs/live">live reloading</a> of changes in dev for super fast round-trips. Note that images with live reloading cannot be pushed to the Boxfuse Vault.</td>
     </tr>
-    <tr>
-        <td>-logs</td>
-        <td>logs</td>
-        <td>true</td>
-        <td><p><i>VirtualBox on Windows only</i></p>Logs may slow down the Instance. Set to <code>false</code> to disable.</td>
-    </tr>
-    <tr>
+    <tr id="logs.auto">
         <td>-logs.auto</td>
         <td>logs.auto</td>
         <td>true</td>
         <td>Whether to automatically display the instance logs on startup</td>
     </tr>
-    <tr>
+    <tr id="logs.boot">
+        <td>-logs.boot</td>
+        <td>logs.boot</td>
+        <td>true</td>
+        <td>Shows the instance boot logs</td>
+    </tr>
+    <tr id="logs.dir">
         <td>-logs.dir=...</td>
         <td>logs.dir</td>
         <td></td>
         <td>The directory where the logs should be redirected to</td>
+    </tr>
+    <tr id="logs.filter">
+        <td>
+            <nobr>-logs.filter.<em>FILTER</em>=<em>value</em></nobr>
+        </td>
+        <td>logs.filter.<em>FILTER</em></td>
+        <td></td>
+        <td><p><i>CloudWatch Logs apps only</i></p>
+            <p>The filter to apply when viewing the application logs.</p>
+            <p>Supported filters:</p>
+            <table class="table table-striped">
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+                <tr>
+                    <td><code>instance</code></td>
+                    <td>Only show logs for the instance with this id</td>
+                    <td>i-12345678</td>
+                </tr>
+                <tr>
+                    <td><code>image</code></td>
+                    <td>Only show logs for instances of this Boxfuse image</td>
+                    <td>myuser/myapp:123</td>
+                </tr>
+                <tr>
+                    <td><code>level</code></td>
+                    <td>Only show log events at this log level or higher (possible values: <code>DEBUG</code>,<code>INFO</code>,<code>WARN</code>,<code>ERROR</code>)</td>
+                    <td>WARN</td>
+                </tr>
+                <tr>
+                    <td><code>event</code></td>
+                    <td>Only show logs events with this exact event id</td>
+                    <td>USER_CREATED</td>
+                </tr>
+                <tr>
+                    <td><code>logger</code></td>
+                    <td>Only show logs events with this exact logger</td>
+                    <td>com.myapp.MyClass</td>
+                </tr>
+                <tr>
+                    <td><code>thread</code></td>
+                    <td>Only show logs events created on this exact thread</td>
+                    <td>main</td>
+                </tr>
+                <tr>
+                    <td><code>account</code></td>
+                    <td>Only show logs events in relation to this account in the system</td>
+                    <td>my-account</td>
+                </tr>
+                <tr>
+                    <td><code>action</code></td>
+                    <td>Only show logs events in relation to a domain-specific element in the system (like an customer order for example)</td>
+                    <td>order-12345</td>
+                </tr>
+                <tr>
+                    <td><code>user</code></td>
+                    <td>Only show logs events in relation to this user of the account (for systems with the concept of teams or multiple users per account)</td>
+                    <td>MyUser</td>
+                </tr>
+                <tr>
+                    <td><code>session</code></td>
+                    <td>Only show logs events for the session with this id</td>
+                    <td>session-9876543210</td>
+                </tr>
+                <tr>
+                    <td><code>request</code></td>
+                    <td>Only show logs events for the request with this id</td>
+                    <td>req-111222333</td>
+                </tr>
+            </table>
+        </td>
     </tr>
     <tr id="logs.tail">
         <td>-logs.tail</td>
         <td>logs.tail</td>
         <td>false</td>
         <td><p><i>VirtualBox only</i></p>Tail (keep running with live updates) the logs</td>
+    </tr>
+    <tr id="newrelic.licensekey">
+        <td>-newrelic.licensekey=...</td>
+        <td>newrelic.licensekey</td>
+        <td></td>
+        <td><p><i>When fusing new images only</i></p>Installs and configures the <a href="/docs/newrelic">New Relic</a> agents to monitor your instance.</td>
     </tr>
     <tr id="ports">
         <td>-ports.<em>NAME</em>=<em>definition</em></td>
@@ -280,13 +359,13 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
             </table>
         </td>
     </tr>
-    <tr>
+    <tr id="ram">
         <td>-ram=...</td>
         <td>ram</td>
         <td>1024</td>
         <td><p><i>VirtualBox only</i></p><p>The amount of RAM in MB to assign to an Instance (VirtualBox only)</p></td>
     </tr>
-    <tr>
+    <tr id="securitygroup">
         <td>-securitygroup=...</td>
         <td>securitygroup</td>
         <td>auto</td>

@@ -1,0 +1,61 @@
+
+<h2>Structured Logging</h2>
+
+<p>When we think about logs, we still very often think of an ocean of text somewhat similar to this:</p>
+
+<pre class="prettyprint">Mar 03, 2015 8:47:09 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-nio-80"]
+Mar 03, 2015 8:47:09 PM org.apache.tomcat.util.net.NioSelectorPool getSharedSelector
+INFO: Using a shared selector for servlet write/read
+Mar 03, 2015 8:47:09 PM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 361 ms
+Mar 03, 2015 8:47:09 PM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+Mar 03, 2015 8:47:09 PM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/8.0.9
+Mar 03, 2015 8:47:09 PM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /tomcat/webapps/ROOT.war
+HelloServlet: You should see this in the Instance Logs :-)
+Mar 03, 2015 8:47:09 PM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive /tomcat/webapps/ROOT.war has finished in 257 ms
+Mar 03, 2015 8:47:09 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-nio-80"]
+Mar 03, 2015 8:47:09 PM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 302 ms</pre>
+
+<p>What we have here is really a wall of text with a limited custom structure. This strongly assumes the consumer of the
+    logs will be a human.
+    However when it comes to search (yes, that needle in the haystack) machines simply are a lot of better than it than
+    we are,
+    yet this type of logging is only making things harder than they really should be. While it is possible to develop
+    some kind of parser
+    for this, the log events still only come with text messages that can only be interpreted by humans.</p>
+
+<p>And things only get exponentially worse once you start aggregating the log output of many different services in a
+    centralized logging service.
+    Each individual service will most likely have some similar, but ever so slightly different, format. This makes it
+    effectively impossible
+    to efficiently query our logs across services.</p>
+
+<p>So what can we do about this?</p>
+
+<p>The answer is called <strong>structured logging</strong>. At its core the idea behind structured logging, is to
+    replace our custom text
+    format with a machine-readable format that can then be searched or rendered in any way we like. We are effectively
+    stripping presentation
+    sugar out and replacing it with a nice parsable structure. Not only does this make our logs much more accessible for
+    machines, but you can
+    of course always sprinkle the presentation sugar back on later.</p>
+
+<p>But simply adding structure to our logs is sufficient by itself. To be able to bridge the boundary across services
+    when analysing them,
+    it is critically important to use a <strong>standard log structure</strong>. This effectively means agreeing on two
+    things: <em>fields</em> and <em>format</em>.</p>
+
+<p>The easiest one to agree on is certainly format. Unless you have a very good reason, <strong>JSON</strong> should be
+    your format of choice.
+    It enjoys great support on virtually every platform and language out there, it is reasonably terse and it compresses
+    very well.</p>
+
+<p>In terms of fields, you'll have to think in terms of queries you'll want to apply to your log data down the line.</p>
+

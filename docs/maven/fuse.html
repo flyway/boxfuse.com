@@ -23,6 +23,9 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
     <li>Executable jar file</li>
     <li>War file</li>
     <li>Play dist zip</li>
+    <li>Node.js tgz</li>
+    <li>ELF64 binary</li>
+    <li>Revel tar.gz</li>
 </ul>
 
 <h3>Properties</h3>
@@ -160,6 +163,12 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
         <td>false</td>
         <td>Enable <a href="/docs/live">live reloading</a> of changes in dev for super fast round-trips. Note that images with live reloading cannot be pushed to the Boxfuse Vault.</td>
     </tr>
+    <tr id="newrelic.licensekey">
+        <td>newrelic.licensekey</td>
+        <td>boxfuse.newrelic.licensekey</td>
+        <td></td>
+        <td>Installs and configures the <a href="/docs/newrelic">New Relic</a> agents to monitor your instance.</td>
+    </tr>
     <tr id="ports">
         <td>ports</td>
         <td>boxfuse.ports.<em>NAME</em></td>
@@ -217,6 +226,7 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
     &lt;jvm.main.class&gt;com.mycorp.MyApp&lt;/jvm.main.class&gt;
     &lt;jvm.main.args&gt;-abc -def&lt;/jvm.main.args&gt;
     &lt;live&gt;true&lt;/live&gt;
+    &lt;newrelic.licensekey&gt;0123456789abcdef0123456789abcdef012345&lt;/newrelic.licensekey&gt;
     &lt;ports&gt;
         &lt;https&gt;443&lt;/https&gt;
         &lt;http&gt;80&lt;/http&gt;
@@ -225,7 +235,7 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
     &lt;vault&gt;false&lt;/vault&gt;
 &lt;/configuration&gt;</pre>
 
-<h3>Dynamically defined properties</h3>
+<h3 id="dynamic-properties">Dynamically defined properties</h3>
 
 <p>After you execute run, Boxfuse will automatically define the following Maven properties</p>
 

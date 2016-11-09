@@ -42,15 +42,15 @@ Successfully created axelfontaine/hello</pre>
         <td><strong>Required</strong> - Your Boxfuse Client secret. Also configurable via the <code>BOXFUSE_SECRET</code>
             environment variable</td>
     </tr>
-    <tr>
+    <tr id="app">
         <td>app</td>
         <td>boxfuse.app</td>
         <td></td>
         <td>The name of the application</td>
     </tr>
-    <tr>
-        <td>apptype</td>
-        <td>boxfuse.apptype</td>
+    <tr id="appType">
+        <td>appType</td>
+        <td>boxfuse.app.type</td>
         <td>single-instance</td>
         <td><p>The <a href="/docs/apptypes">type of app</a> to create.</p>
             <p>Possible values:</p>
@@ -61,11 +61,17 @@ Successfully created axelfontaine/hello</pre>
             </ul>
         </td>
     </tr>
-    <tr id="dbtype">
-        <td>dbtype</td>
-        <td>boxfuse.dbtype</td>
+    <tr id="dbType">
+        <td>dbType</td>
+        <td>boxfuse.db.type</td>
         <td>none</td>
         <td>The type of database your app needs. Possible values: <code>none</code> (no database) or <code>postgresql</code> (Boxfuse-managed PostgreSQL database)</td>
+    </tr>
+    <tr id="logsType">
+        <td>logsType</td>
+        <td>boxfuse.logs.type</td>
+        <td>none</td>
+        <td>The type of centralized logging service your app needs. Possible values: <code>none</code> (no centralized logging) or <code>cloudwatch-logs</code> (AWS CloudWatch Logs)</td>
     </tr>
 </table>
 
@@ -75,8 +81,9 @@ Successfully created axelfontaine/hello</pre>
     user='1234567890abcdef1234567890abcdef12345678'
     secret='ABCDEFGHIJKL1234567abcdefghijklmnopqrstu'
     app='hello'
-    apptype='load-balanced'
-    dbtype='postgresql'
+    appType='load-balanced'
+    dbType='postgresql'
+    logsType='cloudwatch-logs'
 }</pre>
 
 <p class="next-steps">

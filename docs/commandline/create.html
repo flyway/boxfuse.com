@@ -26,9 +26,9 @@ Successfully created myuser/hello</pre>
         <th>Description</th>
     </tr>
     </thead>
-    <tr id="apptype">
-        <td><nobr>-apptype=...</nobr></td>
-        <td>apptype</td>
+    <tr id="app.type">
+        <td><nobr>-app.type=...</nobr></td>
+        <td>app.type</td>
         <td><nobr>single-instance</nobr></td>
         <td><p>The <a href="/docs/apptypes">type of app</a> to create.</p>
             <p>Possible values:</p>
@@ -39,11 +39,17 @@ Successfully created myuser/hello</pre>
             </ul>
         </td>
     </tr>
-    <tr id="dbtype">
-        <td>-dbtype=...</td>
-        <td>dbtype</td>
+    <tr id="db.type">
+        <td>-db.type=...</td>
+        <td>db.type</td>
         <td>none</td>
         <td>The type of database your app needs. Possible values: <code>none</code> (no database) or <code>postgresql</code> (Boxfuse-managed PostgreSQL database)</td>
+    </tr>
+    <tr id="logs.type">
+        <td>-logs.type=...</td>
+        <td>logs.type</td>
+        <td>none</td>
+        <td>The type of centralized logging service your app needs. Possible values: <code>none</code> (no centralized logging) or <code>cloudwatch-logs</code> (AWS CloudWatch Logs)</td>
     </tr>
 </table>
 
