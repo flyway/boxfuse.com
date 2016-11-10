@@ -100,32 +100,32 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
             </table>
         </td>
     </tr>
-    <tr>
+    <tr id="cpus">
         <td>cpus</td>
         <td>boxfuse.cpus</td>
         <td><em>same as host</em></td>
         <td><p><i>VirtualBox only</i></p>The number of CPUs to assign to an Instance</td>
     </tr>
-    <tr>
+    <tr id="debug">
         <td>debug</td>
         <td>boxfuse.debug</td>
         <td>false</td>
         <td>Start the Payload in <a href="/docs/debugging">debug mode</a> when an Instance launches</td>
     </tr>
-    <tr>
+    <tr id="debug.wait">
         <td>debug.wait</td>
         <td>boxfuse.debug.wait</td>
         <td>false</td>
         <td><p><i>JVM apps only</i></p>Whether the JVM should wait for the remote debugger to connect (Only applicable when <a href="/docs/debugging">debug mode</a> is active)</td>
     </tr>
-    <tr>
+    <tr id="elb">
         <td>elb</td>
         <td>boxfuse.elb</td>
         <td>auto</td>
         <td><p><i>AWS only</i></p>
             The name of the AWS ELB to use when deploying this application in the specified environment (load balanced apps only). <code>auto</code> to let Boxfuse automatically create a new ELB for you.</td>
     </tr>
-    <tr>
+    <tr id="env">
         <td>env</td>
         <td>boxfuse.env</td>
         <td>dev</td>
@@ -139,13 +139,13 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
             Example: boxfuse.envvars.JDBC_URL=jdbc:mydburl
         </td>
     </tr>
-    <tr>
+    <tr id="healthcheck">
         <td>healthcheck</td>
         <td>boxfuse.healthcheck</td>
         <td>true</td>
         <td>Check whether to payload started correctly</td>
     </tr>
-    <tr>
+    <tr id="healthcheck.port">
         <td>healthcheck.port</td>
         <td>boxfuse.healthcheck.port</td>
         <td><em>autodetected</em></td>
@@ -171,7 +171,7 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
             The ARN of the AWS instance profile to use in the specified environment.
             This is only for apps using the AWS API. The value <code>none</code> unsets any instance profile.</td>
     </tr>
-    <tr>
+    <tr id="jvm.args">
         <td>jvm.args</td>
         <td>boxfuse.jvm.args</td>
         <td></td>
@@ -183,19 +183,19 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>false</td>
         <td><p><i>JVM apps only</i></p>Enable the JMX remote <a href="/docs/profiling">management and profiling</a> interface for the JVM</td>
     </tr>
-    <tr>
+    <tr id="jvm.main.class">
         <td>jvm.main.class</td>
         <td>boxfuse.jvm.main.class</td>
         <td><em>autodetected</em></td>
         <td><p><i>JVM apps only</i></p>Main class to invoke on JVM startup</td>
     </tr>
-    <tr>
+    <tr id="jvm.main.args">
         <td>jvm.main.args</td>
         <td>boxfuse.jvm.main.args</td>
         <td></td>
         <td><p><i>JVM apps only</i></p>Arguments to pass to the main class</td>
     </tr>
-    <tr>
+    <tr id="image">
         <td>image</td>
         <td>boxfuse.image</td>
         <td></td>
@@ -207,7 +207,7 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>false</td>
         <td><p><i>When fusing new images only</i></p>Enable <a href="/docs/live">live reloading</a> of changes in dev for super fast round-trips. Note that images with live reloading cannot be pushed to the Boxfuse Vault.</td>
     </tr>
-    <tr>
+    <tr id="logs.auto">
         <td>logs.auto</td>
         <td>boxfuse.logs.auto</td>
         <td>true</td>
@@ -219,11 +219,84 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>true</td>
         <td>Shows the instance boot logs</td>
     </tr>
-    <tr>
+    <tr id="logs.dir">
         <td>logs.dir</td>
         <td>boxfuse.logs.dir</td>
         <td>target/boxfuse</td>
         <td>The directory where the logs should be redirected to</td>
+    </tr>
+    <tr id="logs.filter">
+        <td>
+            <nobr>-logs.filter</nobr>
+        </td>
+        <td>boxfuse.logs.filter.<em>FILTER</em></td>
+        <td></td>
+        <td><p><i>CloudWatch Logs apps only</i></p>
+            <p>The filter to apply when viewing the application logs.</p>
+            <p>Supported filters:</p>
+            <table class="table table-striped">
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+                <tr>
+                    <td><code>instance</code></td>
+                    <td>Only show logs for the instance with this id</td>
+                    <td>i-12345678</td>
+                </tr>
+                <tr>
+                    <td><code>image</code></td>
+                    <td>Only show logs for instances of this Boxfuse image</td>
+                    <td>myuser/myapp:123</td>
+                </tr>
+                <tr>
+                    <td><code>level</code></td>
+                    <td>Only show log events at this log level or higher (possible values: <code>DEBUG</code>,<code>INFO</code>,<code>WARN</code>,<code>ERROR</code>)</td>
+                    <td>WARN</td>
+                </tr>
+                <tr>
+                    <td><code>event</code></td>
+                    <td>Only show logs events with this exact event id</td>
+                    <td>USER_CREATED</td>
+                </tr>
+                <tr>
+                    <td><code>logger</code></td>
+                    <td>Only show logs events with this exact logger</td>
+                    <td>com.myapp.MyClass</td>
+                </tr>
+                <tr>
+                    <td><code>thread</code></td>
+                    <td>Only show logs events created on this exact thread</td>
+                    <td>main</td>
+                </tr>
+                <tr>
+                    <td><code>account</code></td>
+                    <td>Only show logs events in relation to this account in the system</td>
+                    <td>my-account</td>
+                </tr>
+                <tr>
+                    <td><code>action</code></td>
+                    <td>Only show logs events in relation to a domain-specific element in the system (like an customer order for example)</td>
+                    <td>order-12345</td>
+                </tr>
+                <tr>
+                    <td><code>user</code></td>
+                    <td>Only show logs events in relation to this user of the account (for systems with the concept of teams or multiple users per account)</td>
+                    <td>MyUser</td>
+                </tr>
+                <tr>
+                    <td><code>session</code></td>
+                    <td>Only show logs events for the session with this id</td>
+                    <td>session-9876543210</td>
+                </tr>
+                <tr>
+                    <td><code>request</code></td>
+                    <td>Only show logs events for the request with this id</td>
+                    <td>req-111222333</td>
+                </tr>
+            </table>
+        </td>
     </tr>
     <tr id="logs.tail">
         <td>logs.tail</td>
@@ -344,6 +417,10 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
     &lt;logs.auto&gt;true&lt;/logs.auto&gt;
     &lt;logs.boot&gt;true&lt;/logs.boot&gt;
     &lt;logs.dir&gt;${project.outputDirectory}/logs&lt;/logs.dir&gt;
+    &lt;logs.filter&gt;
+        &lt;level&gt;WARN&lt;/level&gt;
+        &lt;account&gt;MyAccount123&lt;/account&gt;
+    &lt;/logs.filter&gt;
     &lt;logs.tail&gt;true&lt;/logs.tail&gt;
     &lt;newrelic.licensekey&gt;0123456789abcdef0123456789abcdef012345&lt;/newrelic.licensekey&gt;
     &lt;ports&gt;

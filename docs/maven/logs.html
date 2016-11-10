@@ -150,6 +150,79 @@ INFO: Server startup in 302 ms</pre>
         <td>false</td>
         <td>Shows the instance boot logs instead of the application logs</td>
     </tr>
+    <tr id="logs.filter">
+        <td>
+            <nobr>-logs.filter</nobr>
+        </td>
+        <td>boxfuse.logs.filter.<em>FILTER</em></td>
+        <td></td>
+        <td><p><i>CloudWatch Logs apps only</i></p>
+            <p>The filter to apply when viewing the application logs.</p>
+            <p>Supported filters:</p>
+            <table class="table table-striped">
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+                <tr>
+                    <td><code>instance</code></td>
+                    <td>Only show logs for the instance with this id</td>
+                    <td>i-12345678</td>
+                </tr>
+                <tr>
+                    <td><code>image</code></td>
+                    <td>Only show logs for instances of this Boxfuse image</td>
+                    <td>myuser/myapp:123</td>
+                </tr>
+                <tr>
+                    <td><code>level</code></td>
+                    <td>Only show log events at this log level or higher (possible values: <code>DEBUG</code>,<code>INFO</code>,<code>WARN</code>,<code>ERROR</code>)</td>
+                    <td>WARN</td>
+                </tr>
+                <tr>
+                    <td><code>event</code></td>
+                    <td>Only show logs events with this exact event id</td>
+                    <td>USER_CREATED</td>
+                </tr>
+                <tr>
+                    <td><code>logger</code></td>
+                    <td>Only show logs events with this exact logger</td>
+                    <td>com.myapp.MyClass</td>
+                </tr>
+                <tr>
+                    <td><code>thread</code></td>
+                    <td>Only show logs events created on this exact thread</td>
+                    <td>main</td>
+                </tr>
+                <tr>
+                    <td><code>account</code></td>
+                    <td>Only show logs events in relation to this account in the system</td>
+                    <td>my-account</td>
+                </tr>
+                <tr>
+                    <td><code>action</code></td>
+                    <td>Only show logs events in relation to a domain-specific element in the system (like an customer order for example)</td>
+                    <td>order-12345</td>
+                </tr>
+                <tr>
+                    <td><code>user</code></td>
+                    <td>Only show logs events in relation to this user of the account (for systems with the concept of teams or multiple users per account)</td>
+                    <td>MyUser</td>
+                </tr>
+                <tr>
+                    <td><code>session</code></td>
+                    <td>Only show logs events for the session with this id</td>
+                    <td>session-9876543210</td>
+                </tr>
+                <tr>
+                    <td><code>request</code></td>
+                    <td>Only show logs events for the request with this id</td>
+                    <td>req-111222333</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
     <tr id="logs.tail">
         <td>logs.tail</td>
         <td>boxfuse.logs.tail</td>
@@ -170,6 +243,10 @@ INFO: Server startup in 302 ms</pre>
     &lt;user&gt;1234567890abcdef1234567890abcdef12345678&lt;/user&gt;
     &lt;secret&gt;ABCDEFGHIJKL1234567abcdefghijklmnopqrstu&lt;/secret&gt;
     &lt;logs.boot&gt;true&lt;/logs.boot&gt;
+    &lt;logs.filter&gt;
+        &lt;level&gt;WARN&lt;/level&gt;
+        &lt;account&gt;MyAccount123&lt;/account&gt;
+    &lt;/logs.filter&gt;
     &lt;logs.tail&gt;true&lt;/logs.tail&gt;
     &lt;instances&gt;vb-ec717c5e&lt;/instances&gt;
 &lt;/configuration&gt;</pre>

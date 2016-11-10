@@ -217,6 +217,77 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>target/boxfuse</td>
         <td>The directory where the logs should be redirected to</td>
     </tr>
+    <tr id="logsFilter">
+        <td>logsFilter</td>
+        <td>boxfuse.logs.filter.<em>FILTER</em></td>
+        <td></td>
+        <td><p><i>CloudWatch Logs apps only</i></p>
+            <p>The filter to apply when viewing the application logs.</p>
+            <p>Supported filters:</p>
+            <table class="table table-striped">
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+                <tr>
+                    <td><code>instance</code></td>
+                    <td>Only show logs for the instance with this id</td>
+                    <td>i-12345678</td>
+                </tr>
+                <tr>
+                    <td><code>image</code></td>
+                    <td>Only show logs for instances of this Boxfuse image</td>
+                    <td>myuser/myapp:123</td>
+                </tr>
+                <tr>
+                    <td><code>level</code></td>
+                    <td>Only show log events at this log level or higher (possible values: <code>DEBUG</code>,<code>INFO</code>,<code>WARN</code>,<code>ERROR</code>)</td>
+                    <td>WARN</td>
+                </tr>
+                <tr>
+                    <td><code>event</code></td>
+                    <td>Only show logs events with this exact event id</td>
+                    <td>USER_CREATED</td>
+                </tr>
+                <tr>
+                    <td><code>logger</code></td>
+                    <td>Only show logs events with this exact logger</td>
+                    <td>com.myapp.MyClass</td>
+                </tr>
+                <tr>
+                    <td><code>thread</code></td>
+                    <td>Only show logs events created on this exact thread</td>
+                    <td>main</td>
+                </tr>
+                <tr>
+                    <td><code>account</code></td>
+                    <td>Only show logs events in relation to this account in the system</td>
+                    <td>my-account</td>
+                </tr>
+                <tr>
+                    <td><code>action</code></td>
+                    <td>Only show logs events in relation to a domain-specific element in the system (like an customer order for example)</td>
+                    <td>order-12345</td>
+                </tr>
+                <tr>
+                    <td><code>user</code></td>
+                    <td>Only show logs events in relation to this user of the account (for systems with the concept of teams or multiple users per account)</td>
+                    <td>MyUser</td>
+                </tr>
+                <tr>
+                    <td><code>session</code></td>
+                    <td>Only show logs events for the session with this id</td>
+                    <td>session-9876543210</td>
+                </tr>
+                <tr>
+                    <td><code>request</code></td>
+                    <td>Only show logs events for the request with this id</td>
+                    <td>req-111222333</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
     <tr id="logsTail">
         <td>logsTail</td>
         <td>boxfuse.logs.tail</td>
@@ -336,6 +407,10 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
     logsAuto=true
     logsBoot=true
     logsDir='target/logs'
+    logsFilter=[
+        'account':'MyAccount123',
+        'level':'WARN'
+    ]
     logsTail=true
     newrelicLicensekey='0123456789abcdef0123456789abcdef012345'
     ports=[
