@@ -81,6 +81,12 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
         <td>/</td>
         <td>The path where the payload starts</td>
     </tr>
+    <tr id="cmd">
+        <td>cmd</td>
+        <td>boxfuse.cmd</td>
+        <td><em>first executable file in image</em></td>
+        <td><p><i>Generic Linux x64 apps only</i></p>The command to start the app including relative path and all necessary arguments</td>
+    </tr>
     <tr>
         <td>components</td>
         <td>boxfuse.components.<em>NAME</em></td>
@@ -207,6 +213,7 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
     &lt;payload&gt;hello-1.0.war&lt;/payload&gt;
     &lt;payload.port&gt;https&lt;/payload.port&gt;
     &lt;payload.path&gt;/app&lt;/payload.path&gt;
+    &lt;cmd&gt;-cmd=bin/myapp -with -my args&lt;/cmd&gt;
     &lt;components&gt;
         &lt;openjdk&gt;8.25.40&lt;/openjdk&gt;
         &lt;tomcat&gt;8.0.20&lt;/tomcat&gt;

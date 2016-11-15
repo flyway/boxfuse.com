@@ -100,6 +100,12 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
             </table>
         </td>
     </tr>
+    <tr id="cmd">
+        <td>cmd</td>
+        <td>boxfuse.cmd</td>
+        <td><em>first executable file in image</em></td>
+        <td><p><i>Generic Linux x64 apps only</i></p><p><i>When fusing new images only</i></p>The command to start the app including relative path and all necessary arguments</td>
+    </tr>
     <tr id="cpus">
         <td>cpus</td>
         <td>boxfuse.cpus</td>
@@ -392,6 +398,7 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
     &lt;user&gt;1234567890abcdef1234567890abcdef12345678&lt;/user&gt;
     &lt;secret&gt;ABCDEFGHIJKL1234567abcdefghijklmnopqrstu&lt;/secret&gt;
     &lt;capacity&gt;3:t2.large&lt;/capacity&gt;
+    &lt;cmd&gt;-cmd=bin/myapp -with -my args&lt;/cmd&gt;
     &lt;cpus&gt;2&lt;/cpus&gt;
     &lt;debug&gt;true&lt;/debug&gt;
     &lt;debug.wait&gt;false&lt;/debug.wait&gt;

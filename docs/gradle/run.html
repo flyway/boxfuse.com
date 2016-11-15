@@ -92,6 +92,12 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
             </table>
         </td>
     </tr>
+    <tr id="cmd">
+        <td>cmd</td>
+        <td>boxfuse.cmd</td>
+        <td><em>first executable file in image</em></td>
+        <td><p><i>Generic Linux x64 apps only</i></p><p><i>When fusing new images only</i></p>The command to start the app including relative path and all necessary arguments</td>
+    </tr>
     <tr>
         <td>cpus</td>
         <td>boxfuse.cpus</td>
@@ -385,6 +391,7 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
     secret='ABCDEFGHIJKL1234567abcdefghijklmnopqrstu'
     payload='hello-1.0.war'
     capacity='3:t2.large'
+    cmd='-cmd=bin/myapp -with -my args'
     cpus=2
     debug=true
     debugWait=false

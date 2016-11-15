@@ -42,6 +42,12 @@ AMI created in 00:12.603s -> ami-74d4d369</pre>
         <td><strong>Required</strong> - Your Boxfuse Client secret. Also configurable via the <code>BOXFUSE_SECRET</code>
             environment variable</td>
     </tr>
+    <tr id="env">
+        <td>env</td>
+        <td>boxfuse.env</td>
+        <td>prod</td>
+        <td>Use the AWS region of this Boxfuse <a href="/docs/environments">environment</a> to create the AMI</td>
+    </tr>
     <tr>
         <td>image</td>
         <td>boxfuse.image</td>
@@ -69,6 +75,10 @@ AMI created in 00:12.603s -> ami-74d4d369</pre>
         <th>Description</th>
     </tr>
     </thead>
+    <tr>
+        <td>boxfuse.aws.<em>region</em>.ami</td>
+        <td>The id of the new AMI (where <em>region</em> is the region the AMI was created it according to the <code>env</code> parameter</td>
+    </tr>
     <tr>
         <td>boxfuse.image</td>
         <td>The image that was used to create the AMI</td>
