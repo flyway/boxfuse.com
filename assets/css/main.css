@@ -684,6 +684,10 @@ pre.console strong {
     color: yellow;
 }
 
+pre.console strong.success {
+    color: #00ff00;
+}
+
 pre.console>span:first-child {
     color: #CCC;
 }

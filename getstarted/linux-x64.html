@@ -1,0 +1,141 @@
+---
+layout: getstarted
+menu: linux-x64
+subtitle: 'Get Started with Boxfuse & Linux x64 apps'
+---
+<p><img src="/assets/img/linux.png" height="150"></p>
+<p>&nbsp;</p>
+
+<p>This tutorial will get you started with Boxfuse and Linux x64 apps. It should take you about <strong>5-10 minutes</strong>
+    to complete.</p>
+
+<h2>Prerequisites</h2>
+<p>Before you begin, ensure you have an x64 machine and have successfully:</p>
+<ol>
+    <li>created a <strong><a href="https://console.boxfuse.com">Boxfuse Account</a></strong> (simply log in with your
+        GitHub account, it's free)
+    </li>
+    <li>downloaded and installed the latest <strong><a href="/getstarted/download">Boxfuse Client</a></strong></li>
+    <li>downloaded and installed the latest version of <strong><a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a></strong>
+    </li>
+</ol>
+
+<h2>Downloading the application</h2>
+
+<p>In this tutorial we are going to deploy a simple Linux x64 application. We'll use Nginx as an example.</p>
+
+<p>Start by creating a directory for our app:</p>
+
+<pre class="console"><span>&gt;</span> mkdir getstarted-linux-x64</pre>
+
+<p>And navigate to it:</p>
+
+<pre class="console"><span>&gt;</span> cd getstarted-linux-x64</pre>
+
+<p>Now download the tar.gz Linux x64 build of Nginx available from this <a href="https://github.com/micw/nginx-static-1.5.x">page on GitHub</a>
+and save it in our new directory as <code>nginx-static-1.5.tgz</code>.</p>
+
+<h2>Fusing a Boxfuse image and running it locally on VirtualBox</h2>
+
+<p>Continue by fusing your application into a Boxfuse image and launching an instance of it on VirtualBox. To do so you'll need to pass in both the command to start it as well as the port to open:</p>
+
+<pre class="console"><span>getstarted-linux-x64&gt;</span> boxfuse run nginx-static-1.5.tgz "-cmd=nginx-static/sbin/nginx -g 'daemon off; user root;'" -ports.http=80
+
+Creating nginx-static ...
+Mapping nginxstatic-dev-myuser.boxfuse.io to 127.0.0.1 ...
+Created app nginx-static (type: single-instance, db: none, logs: none)
+Fusing Image for nginx-static-1.5.tgz (Linux x64) ...
+Image fused in 00:00.707s (10522 K) -> myuser/nginx-static:1.5
+Launching Instance of myuser/nginx-static:1.5 on VirtualBox ...
+Forwarding http port localhost:80 -> vb-6df058de:80
+Instance launched in 00:03.020s -> vb-6df058de
+Waiting for Payload to start on vb-6df058de:80 (expecting HTTP 200 at / within 300s) ...
+Payload started in 00:00.509s -> http://127.0.0.1</pre>
+
+<p>In just a few seconds Boxfuse found your application, detected its type,
+    generated an image for it and launched an instance of that image on VirtualBox.</p>
+
+<p>Now open your browser and navigate to this address to see your new application up and running within the VirtualBox
+    VM:</p>
+
+<img class="screenshot" src="/assets/img/getstarted/linux-x64-virtualbox.png">
+
+<p>You can also see your newly created image:</p>
+
+<pre class="console" style="font-size: 90%"><span>getstarted-go&gt;</span> boxfuse ls
+
+Images available locally:
++-------------------------+----------------------+-------+-----------+------------+---------+---------------------+
+| Image                   |        Payload       | Debug |  Runtime  |   Ports    |  Size   |    Generated at     |
++-------------------------+----------------------+-------+-----------+------------+---------+---------------------+
+| myuser/nginx-static:1.5 | nginx-static-1.5.tgz | false | Linux x64 | http -> 80 | 10522 K | 2016-11-16 13:02:58 |
++-------------------------+----------------------+-------+-----------+------------+---------+---------------------+
+Total: 1</pre>
+
+<p>As well as the instance that is running:</p>
+
+<pre class="console"><span>getstarted-go&gt;</span> boxfuse ps
+
+Running Instances on VirtualBox in the dev environment :
++-------------+-------------------------+---------------------+------------------+---------------------+
+|  Instance   |          Image          |        Type         |       URL        |     Launched at     |
++-------------+-------------------------+---------------------+------------------+---------------------+
+| vb-6df058de | myuser/nginx-static:1.5 | 4 CPU / 1024 MB RAM | http://127.0.0.1 | 2016-11-16 13:02:59 |
++-------------+-------------------------+---------------------+------------------+---------------------+
+Total: 1</pre>
+
+<h2>Deploying your application to AWS</h2>
+
+<p>Now let's deploy the image to AWS. As Boxfuse works with your AWS account, it first needs the necessary permissions
+    to do so.
+    So if you haven't already done it, go to the Boxfuse Console and <strong><a
+            href="https://console.boxfuse.com/#/awsAccount">connect your AWS account</a></strong> now.</p>
+
+<p>Every new Boxfuse account comes with 3 environments: <code>dev</code>, <code>test</code> and <code>prod</code>.
+    <code>dev</code> is your local VirtualBox environment and <code>test</code> and <code>prod</code> are on AWS.</p>
+
+<p>So let's deploy our application to the <code>prod</code> environment on AWS:</p>
+
+<pre class="console"><span>getstarted-linux-x64&gt;</span> boxfuse run nginx-static:1.5 -env=prod
+
+Pushing myuser/nginx-static:1.5 ...
+Verifying myuser/nginx-static:1.5 ...
+Waiting for AWS to create an AMI for myuser/nginx-static:1.5 in eu-central-1 (this may take up to 50 seconds) ...
+AMI created in 00:26.849s in eu-central-1 -> ami-d2dc19bd
+Creating security group boxsg-myuser-prod-nginx-static ...
+Creating Elastic IP ...
+Mapping nginxstatic-myuser.boxfuse.io to 35.156.101.145 ...
+Creating security group boxsg-myuser-prod-nginx-static-1.5 ...
+Launching t2.micro instance of myuser/nginx-static:1.5 (ami-d2dc19bd) in prod (eu-central-1) ...
+Instance launched in 00:24.478s -> i-8f39a332
+Creating Cloud Watch Alarm for Instance auto-recovery -> i-8f39a332-auto-recovery-alarm
+Waiting for AWS to boot Instance i-8f39a332 and Payload to start at http://54.93.62.223/ ...
+Payload started in 00:00.003s -> http://54.93.62.223/
+Associating Elastic IP 35.156.101.145 to i-8f39a332 ...
+Waiting 15s for AWS to complete Elastic IP Zero Downtime transition ...
+<strong class="success">Successfully deployed myuser/nginx-static:1.5 in prod at http://nginxstatic-myuser.boxfuse.io/</strong></pre>
+
+<p>Notice that we have now specified an image, as we want to reuse our image unchanged instead fusing a new one.</p>
+
+<p>With that one command Boxfuse has automatically pushed your image to the Boxfuse Vault as well as provisioned,
+    configured and secured all necessary AWS resources. There is no manual work necessary on your behalf.</p>
+
+<p>All you need to do is simply navigate to your new domain to see your Linux x64 application in action on AWS:</p>
+
+<img class="screenshot" src="/assets/img/getstarted/linux-x64-aws.png">
+
+<h2>Summary</h2>
+
+<p>In this brief guide we have seen how to:</p>
+<ul>
+    <li>fuse a Linux x64 app into a Boxfuse image</li>
+    <li>deploy the image locally on VirtualBox</li>
+    <li>deploy the image unchanged to AWS</li>
+</ul>
+
+<p>Now it's your turn. Take your favorite Linux x64 application and deploy it with ease and pleasure.</p>
+
+<p class="next-steps">
+    <a class="btn btn-primary" href="/docs/payloads/linux-x64">Boxfuse Linux x64 Documentation <i
+            class="fa fa-arrow-right"></i></a>
+</p>

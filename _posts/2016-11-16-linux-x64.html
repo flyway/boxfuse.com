@@ -1,0 +1,77 @@
+---
+layout: blog
+subtitle: "Deploy any Linux x64 app on AWS with one command"
+permalink: /blog/linux-x64.html
+---
+<p>Boxfuse is all about effortlessly deploying your applications so they just work. This is made possible by a combination of intelligent minimal image creatuin
+    using deep integration with popular frameworks and language runtimes as well as seamless orchestration of blue/green deployments on AWS.</p>
+
+<p>There are however a number of languages and frameworks we don't specifically support yet. So far this meant that if you weren't
+    using the <a href="/docs/payloads/springboot">JVM</a>, <a href="/docs/payloads/nodejs">Node.js</a> or <a href="/docs/payloads/elf64">Go</a> you were out of luck.</p>
+
+<p>Today we are introducing <strong>generic Linux x64 apps support</strong>. You can now deploy any Linux x64 app you like
+    and still benefit from Boxfuse's great AWS integration including <a href="/blog/amis-in-30-seconds">ultra-fast AMI creation</a>,
+    blue/green deployment, <a href="/blog/auto-scaling">auto-scaling</a> and more.</p>
+
+<img src="/assets/posts/linux-x64/linux-x64-aws.png">
+
+<h2>Seeing it in action</h2>
+<p>Let's dive in and look at how you can deploy any Linux x64 app using Boxfuse.</p>
+
+<p>To demonstrate this we are going to run Nginx on AWS. To do so we'll need two things:</p>
+<ul>
+    <li>a tar.gz file containing the app we want to run (in this case Nginx)</li>
+    <li>the command required to start the app</li>
+</ul>
+
+<p>For this demo we'll use a Linux x64 build of Nginx available from this <a href="https://github.com/micw/nginx-static-1.5.x">page on GitHub</a>.</p>
+
+<p>To fuse an image and run it on AWS all we need to do is pass the command to start it and which port to open:</p>
+
+<pre class="console" style="font-size: 95%"><span>&gt;</span> boxfuse run nginx-static-1.5.tgz "-cmd=nginx-static/sbin/nginx -g 'daemon off; user root;'" -ports.http=80
+
+Creating nginx-static ...
+Mapping nginxstatic-dev-myuser.boxfuse.io to 127.0.0.1 ...
+Created app nginx-static (type: single-instance, db: none, logs: none)
+Fusing Image for nginx-static-1.5.tgz (Linux x64) ...
+Image fused in 00:00.707s (10522 K) -> myuser/nginx-static:1.5
+Pushing myuser/nginx-static:1.5 ...
+Verifying myuser/nginx-static:1.5 ...
+Waiting for AWS to create an AMI for myuser/nginx-static:1.5 in eu-central-1 (this may take up to 50 seconds) ...
+AMI created in 00:26.849s in eu-central-1 -> ami-d2dc19bd
+Creating security group boxsg-myuser-prod-nginx-static ...
+Creating Elastic IP ...
+Mapping nginxstatic-myuser.boxfuse.io to 35.156.101.145 ...
+Creating security group boxsg-myuser-prod-nginx-static-1.5 ...
+Launching t2.micro instance of myuser/nginx-static:1.5 (ami-d2dc19bd) in prod (eu-central-1) ...
+Instance launched in 00:24.478s -> i-8f39a332
+Creating Cloud Watch Alarm for Instance auto-recovery -> i-8f39a332-auto-recovery-alarm
+Waiting for AWS to boot Instance i-8f39a332 and Payload to start at http://54.93.62.223/ ...
+Payload started in 00:00.003s -> http://54.93.62.223/
+Associating Elastic IP 35.156.101.145 to i-8f39a332 ...
+Waiting 15s for AWS to complete Elastic IP Zero Downtime transition ...
+<strong class="success">Successfully deployed myuser/nginx-static:1.5 in prod at http://nginxstatic-myuser.boxfuse.io/</strong></pre>
+
+<p>And here we go! We created a <strong>10 MB image</strong> containing a boot loader, the Linux kernel and Nginx in <strong>0.7 seconds</strong>.
+Boxfuse then <strong>deployed it on AWS by creating all necessary infrastructure</strong> including a custom domain name,
+    an elastic IP, security groups, an AMI, a t2.micro instance and more in <strong>under 60 seconds</strong> total.</p>
+
+<p>And here it is up and running:</p>
+
+<img src="/assets/img/getstarted/linux-x64-aws.png" class="screenshot">
+
+<p>All of this in under one minute from start to finish with just a single command. And best of all, all subsequent
+    updates will always be performed using <a href="/learn/how">zero downtime blue/green deployments</a>.</p>
+
+<h2>Summary</h2>
+
+<p>Boxfuse now let's you <strong>deploy any Linux x64 app you want</strong> with the same orchestration features already
+    available to JVM, Node.js and Go apps including <a href="/blog/amis-in-30-seconds">ultra-fast AMI creation</a>,
+    blue/green deployment, <a href="/blog/auto-scaling">auto-scaling</a> and more.</p>
+
+<p>Simply package your app as a tar.gz, pass the command required to start it and Boxfuse will get you up and running on AWS in no time.</p>
+
+<p>Check out the <a href="/docs/payloads/linux-x64">documentation</a> and if you haven't already,
+    <a href="https://console.boxfuse.com"><strong>sign up for your
+        Boxfuse account</strong></a> now (simply log in with your GitHub id, it's free) and start deploying
+    any Linux x64 application effortlessly to AWS today.</p>
