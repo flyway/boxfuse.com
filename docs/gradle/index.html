@@ -115,6 +115,14 @@ The Boxfuse Gradle plugin will then automatically pick up those settings and use
 }</pre>
 <p>This can also be defined directly on individual tasks using the <code>proxy</code> attribute or through the Gradle/System property <code>boxfuse.proxy</code>.</p>
 
+<h2 id="insecure">Disabling TLS certificate validation</h2>
+<p>Boxfuse always communicates via TLS (SSL). If your corporate network modifies the certificate chain to inspect traffic,
+    you can tell Boxfuse not to verify TLS certificate chains via the <code>insecure</code> property:</p>
+<pre class="prettyprint">boxfuse {
+    insecure=true
+}</pre>
+<p>This can also be defined through any other configuration means described above.</p>
+
 <h2 id="virtualbox-networking">VirtualBox Networking configuration</h2>
 
 <p>Boxfuse handles networking on <a href="/docs/virtualbox">VirtualBox</a> differently based on the version.</p>

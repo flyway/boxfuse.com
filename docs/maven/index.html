@@ -117,6 +117,19 @@ ways to pass in authentication info.</p>
 &lt;/plugin&gt;</pre>
 <p>This can also be defined through the Maven/System property <code>boxfuse.proxy</code>.</p>
 
+<h2 id="insecure">Disabling TLS certificate validation</h2>
+<p>Boxfuse always communicates via TLS (SSL). If your corporate network modifies the certificate chain to inspect traffic,
+    you can tell Boxfuse not to verify TLS certificate chains via the <code>insecure</code> property:</p>
+<pre class="prettyprint">&lt;plugin&gt;
+    &lt;groupId&gt;com.boxfuse.client&lt;/groupId&gt;
+    &lt;artifactId&gt;boxfuse-maven-plugin&lt;/artifactId&gt;
+    &lt;version&gt;{{site.boxfuseVersion}}&lt;/version&gt;
+    &lt;configuration&gt;
+        <strong>&lt;insecure&gt;</strong>true<strong>&lt;/insecure&gt;</strong>
+    &lt;/configuration&gt;
+&lt;/plugin&gt;</pre>
+<p>This can also be defined through any other configuration means described above.</p>
+
 <h2 id="virtualbox-networking">VirtualBox Networking configuration</h2>
 
 <p>Boxfuse handles networking on <a href="/docs/virtualbox">VirtualBox</a> differently based on the version.</p>
