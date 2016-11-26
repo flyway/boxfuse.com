@@ -3,31 +3,33 @@ layout: docs
 menu: jar
 subtitle: 'Executable Jar'
 ---
-<div id="war">
-    <p><img src="/assets/img/java.png"></p>
+<p><img src="/assets/img/java.png"></p>
 
-    <p>Boxfuse supports Apps written in Java or any other language and packaged as an <strong>Executable Jar file</strong> running on either <strong>OpenJDK 7.x or 8.x</strong>.</p>
+<p>Boxfuse supports Apps written in Java or any other language and packaged as an <strong>Executable Jar file</strong>
+    running on either <strong>OpenJDK 7.x or 8.x</strong>.</p>
 
-    <h2>Java Runtime Environment</h2>
-    <p>By default Boxfuse uses the <strong>latest OpenJDK 8.x version</strong> (headless JRE).</p>
+<h2>Java Runtime Environment</h2>
+<p>By default Boxfuse uses the <strong>latest OpenJDK 8.x version</strong> (headless JRE).</p>
 
-    <h3>OpenJDK version</h3>
-    <p>If you want to switch to OpenJDK 7.x or simply an
-        older version, you can do so using the <code>-components.openjdk</code> configuration setting:</p>
+<h3>OpenJDK version</h3>
+<p>If you want to switch to OpenJDK 7.x or simply an
+    older version, you can do so using the <code>-components.openjdk</code> configuration setting:</p>
 
-    <pre class="console"><span>&gt;</span> boxfuse run my-app-1.0.jar <strong>-components.openjdk=</strong>7.80.32</pre>
+<pre class="console"><span>&gt;</span> boxfuse run my-app-1.0.jar <strong>-components.openjdk=</strong>7.80.32</pre>
 
-    <p>To find out which OpenJDK versions are available from the Boxfuse Inventory you can simply issue:</p>
+<p>To find out which OpenJDK versions are available from the Boxfuse Inventory you can simply issue:</p>
 
-    <pre class="console"><span>&gt;</span> boxfuse inventory openjdk</pre>
+<pre class="console"><span>&gt;</span> boxfuse inventory openjdk</pre>
 
-    <h3>Custom JRE</h3>
-    <p>If you prefer to use a different JRE, including the <strong>Oracle JRE</strong>, rather than the default OpenJDK one,
-        you can do so by including the <strong>Linux x64</strong> JRE distribution of your choice in a <code>/jre</code> folder <em>inside</em> the jar file.</p>
+<h3>Custom JRE</h3>
+<p>If you prefer to use a different JRE, including the <strong>Oracle JRE</strong>, rather than the default OpenJDK one,
+    you can do so by including the <strong>Linux x64</strong> JRE distribution of your choice in a <code>/jre</code>
+    folder <em>inside</em> the jar file.</p>
 
-    <p>If you use Maven or Gradle, this means the <code>/jre</code> folder should be put into the <code>src/main/resources</code> directory:</p>
+<p>If you use Maven or Gradle, this means the <code>/jre</code> folder should be put into the
+    <code>src/main/resources</code> directory:</p>
 
-    <pre class="filetree"><i class="fa fa-folder-open"></i> my-executable-jar-app
+<pre class="filetree"><i class="fa fa-folder-open"></i> my-executable-jar-app
   <i class="fa fa-folder-open"></i> src
     <i class="fa fa-folder-open"></i> main
       <i class="fa fa-folder"></i> java
@@ -45,61 +47,69 @@ subtitle: 'Executable Jar'
   <i class="fa fa-file-text"></i> LICENSE
   <i class="fa fa-file"></i> ...</span></pre>
 
-    <div class="alert alert-info"><p><strong>Tip for Git users</strong></p>
-        <p>To avoid file corruption due to Git line-ending normalization, add the following line to <code>.gitattributes</code></p>
-        <pre class="prettyprint" style="margin-bottom: 0">src/main/resources/jre/* binary</pre>
-    </div>
+<div class="alert alert-info"><p><strong>Tip for Git users</strong></p>
+    <p>To avoid file corruption due to Git line-ending normalization, add the following line to
+        <code>.gitattributes</code></p>
+    <pre class="prettyprint" style="margin-bottom: 0">src/main/resources/jre/* binary</pre>
+</div>
 
-    <h2>Databases</h2>
+<h2>Databases</h2>
 
-    <h3>Database auto-provisioning</h3>
+<h3>Database auto-provisioning</h3>
 
-    <p>When using the <a href="/docs/databases">Boxfuse database auto-provisioning support</a>, Boxfuse automatically
-        inject the correct jdbc url, user and password as environment variables in your instance.</p>
+<p>When using the <a href="/docs/databases">Boxfuse database auto-provisioning support</a>, Boxfuse automatically
+    inject the correct jdbc url, user and password as environment variables in your instance.</p>
 
-    <p>If your app includes the PostgreSQL or MySQL JDBC driver, Boxfuse will automatically provision the necessary PostgreSQL or MySQL database
-        in each environment.</p>
+<p>If your app includes the PostgreSQL or MySQL JDBC driver, Boxfuse will automatically provision the necessary
+    PostgreSQL or MySQL database
+    in each environment.</p>
 
-    <p>Here is an example on how to configure a <a href="https://github.com/brettwooldridge/HikariCP#initialization">HikariCP</a> DataSource to make use of them:</p>
+<p>Here is an example on how to configure a <a href="https://github.com/brettwooldridge/HikariCP#initialization">HikariCP</a>
+    DataSource to make use of them:</p>
 
-    <pre class="prettyprint">HikariDataSource ds = new HikariDataSource();
+<pre class="prettyprint">HikariDataSource ds = new HikariDataSource();
 ds.setJdbcUrl(System.getenv("BOXFUSE_DATABASE_URL"));
 ds.setUsername(System.getenv("BOXFUSE_DATABASE_USER"));
 ds.setPassword(System.getenv("BOXFUSE_DATABASE_PASSWORD"));</pre>
 
-    <p>This works identically in all environments and Boxfuse ensures you always get the correct settings.</p>
+<p>This works identically in all environments and Boxfuse ensures you always get the correct settings.</p>
 
-    <h3>Using an existing database</h3>
-    <p>To disable database auto-provisioning and use an existing database set <code>db.type</code> to <code>none</code> when <a
+<h3>Using an existing database</h3>
+<p>To disable database auto-provisioning and use an existing database set <code>db.type</code> to <code>none</code> when
+    <a
             href="/docs/commandline/create#dbtype">creating your app</a>.</p>
 
-    <h2>Root Certificates</h2>
+<h2>Root Certificates</h2>
 
-    <p>By default, Boxfuse uses the <strong>same root certificate bundle as the latest version of Firefox</strong>.
-        Additionally Boxfuse also includes the <strong>root certificates for Amazon RDS</strong>, so you can connect securely to RDS databases out of the box.</p>
-    <p>You can, however, ship your own set of root certificates, by placing them in a KeyStore inside the Jar file as <code>/cacerts</code>.
-        If you use Maven or Gradle, this means your <code>cacerts</code> KeyStore file should be put into the <code>src/main/resources</code> directory.
-        Boxfuse will then automatically configure the JRE to use these instead.
-    </p>
+<p>By default, Boxfuse uses the <strong>same root certificate bundle as the latest version of Firefox</strong>.
+    Additionally Boxfuse also includes the <strong>root certificates for Amazon RDS</strong>, so you can connect
+    securely to RDS databases out of the box.</p>
+<p>You can, however, ship your own set of root certificates, by placing them in a KeyStore inside the Jar file as <code>/cacerts</code>.
+    If you use Maven or Gradle, this means your <code>cacerts</code> KeyStore file should be put into the <code>src/main/resources</code>
+    directory.
+    Boxfuse will then automatically configure the JRE to use these instead.
+</p>
 
-    <pre class="filetree"><i class="fa fa-folder-open"></i> my-executable-jar-app
+<pre class="filetree"><i class="fa fa-folder-open"></i> my-executable-jar-app
   <i class="fa fa-folder-open"></i> src
     <i class="fa fa-folder-open"></i> main
       <i class="fa fa-folder"></i> java
       <i class="fa fa-folder-open"></i> resources
         <span><i class="fa fa-file"></i> cacerts</span></pre>
 
-    <h2>JCE unlimited strength cryptography</h2>
+<h2>JCE unlimited strength cryptography</h2>
 
-    <p>To enable JCE unlimited cryptography (for AES-256, RSA-4096, ...), download the policy zip from the Oracle website
-        for either <a href="http://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html">Java 7</a>
-        or <a href="http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html">Java 8</a>.</p>
-    <p>Extract both <code>local_policy.jar</code> and <code>US_export_policy.jar</code> and place them at the root of your Jar file.
-        If you use Maven or Gradle, this means both policy jar files should be put into the <code>src/main/resources</code> directory.
-        Boxfuse will then automatically configure the JRE to use these instead.
-    </p>
+<p>To enable JCE unlimited cryptography (for AES-256, RSA-4096, ...), download the policy zip from the Oracle website
+    for either <a href="http://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html">Java 7</a>
+    or <a href="http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html">Java 8</a>.</p>
+<p>Extract both <code>local_policy.jar</code> and <code>US_export_policy.jar</code> and place them at the root of your
+    Jar file.
+    If you use Maven or Gradle, this means both policy jar files should be put into the <code>src/main/resources</code>
+    directory.
+    Boxfuse will then automatically configure the JRE to use these instead.
+</p>
 
-    <pre class="filetree"><i class="fa fa-folder-open"></i> my-executable-jar-app
+<pre class="filetree"><i class="fa fa-folder-open"></i> my-executable-jar-app
   <i class="fa fa-folder-open"></i> src
     <i class="fa fa-folder-open"></i> main
       <i class="fa fa-folder"></i> java
@@ -107,11 +117,13 @@ ds.setPassword(System.getenv("BOXFUSE_DATABASE_PASSWORD"));</pre>
         <span><i class="fa fa-file"></i> local_policy.jar
 <i class="fa fa-file"></i> US_export_policy.jar</span></pre>
 
-    <h2>Java Agents</h2>
+<h2>Java Agents</h2>
 
-    <p>If you wish to launch the JRE with one or more Java Agents, simply place the Java Agent files inside the Jar file under
-        <code>/javaagents/</code>. In a Maven or Gradle project this means you have to put your agent jar and whatever other files it requires under <code>src/main/resources/javaagents</code>:</p>
-    <pre class="filetree"><i class="fa fa-folder-open"></i> my-executable-jar-app
+<p>If you wish to launch the JRE with one or more Java Agents, simply place the Java Agent files inside the Jar file
+    under
+    <code>/javaagents/</code>. In a Maven or Gradle project this means you have to put your agent jar and whatever other
+    files it requires under <code>src/main/resources/javaagents</code>:</p>
+<pre class="filetree"><i class="fa fa-folder-open"></i> my-executable-jar-app
   <i class="fa fa-folder-open"></i> src
     <i class="fa fa-folder-open"></i> main
       <i class="fa fa-folder"></i> java
@@ -120,81 +132,87 @@ ds.setPassword(System.getenv("BOXFUSE_DATABASE_PASSWORD"));</pre>
   <i class="fa fa-file"></i> myjavaagent.jar
   <i class="fa fa-file-text"></i> myjavaagent.properties</span></pre>
 
-    <p>Boxfuse will then <strong>automatically configure the JRE to use these Java Agents</strong></p>
+<p>Boxfuse will then <strong>automatically configure the JRE to use these Java Agents</strong></p>
 
-    <h2>JVM Memory</h2>
+<h2>JVM Memory</h2>
 
-    <p>By default Boxfuse will <strong>dynamically configure your JVM heap to use 85% of the available memory</strong> in the instance. All other settings
-        use the JVM defaults. You can override this by specifying the required JVM arguments like <code>-Xmx</code> via the
-        <code>jvm.args</code> configuration setting.</p>
+<p>By default Boxfuse will <strong>dynamically configure your JVM heap to use 85% of the available memory</strong> in
+    the instance. All other settings
+    use the JVM defaults. You can override this by specifying the required JVM arguments like <code>-Xmx</code> via the
+    <code>jvm.args</code> configuration setting.</p>
 
-    <h2>Temporary Files</h2>
+<h2>Temporary Files</h2>
 
-    <p>Boxfuse configures the JVM to use <code>/tmp</code> as the directory to store temporary files and provisions <strong>1 GB of space by default</strong>.</p>
-    <p>To increase this (up to a maximum of 16 TB), simply set
-        the <code>tmp</code> configuration setting to the number of GB of temp space you need. To prevent Boxfuse from
-        provisioning any temp space set <code>tmp</code> to <code>0</code>.</p>
+<p>Boxfuse configures the JVM to use <code>/tmp</code> as the directory to store temporary files and provisions <strong>1
+    GB of space by default</strong>.</p>
+<p>To increase this (up to a maximum of 16 TB), simply set
+    the <code>tmp</code> configuration setting to the number of GB of temp space you need. To prevent Boxfuse from
+    provisioning any temp space set <code>tmp</code> to <code>0</code>.</p>
 
-    <p class="next-steps">
-        <a class="btn btn-primary" href="/docs/payloads/nodejs">Node.js <i class="fa fa-arrow-right"></i></a>
-    </p>
+<h2 id="debugging">Debugging</h2>
+<p>Remote debugging (including hot-code replace) with your favorite IDE is fully supported.
+    Details and setup instructions on our <a href="/docs/debugging">debugging page</a>.</p>
 
-    <h2 id="debugging">Debugging</h2>
-    <p>Remote debugging (including hot-code replace) with your favorite IDE is fully supported.
-        Details and setup instructions on our <a href="/docs/debugging">debugging page</a>.</p>
+<h2 id="profiling">Profiling</h2>
+<p>Profiling with tools like JVisualVM and Java Flight Recorder is fully supported.
+    Details and setup instructions on our <a href="/docs/profiling">profiling page</a>.</p>
 
-    <h2 id="profiling">Profiling</h2>
-    <p>Profiling with tools like JVisualVM and Java Flight Recorder is fully supported.
-        Details and setup instructions on our <a href="/docs/profiling">profiling page</a>.</p>
+<h2 id="live">Live Reloading</h2>
+<p>Boxfuse supports <a href="/docs/live">Live Reloading</a> of exploded jar files.</p>
 
-    <h2 id="live">Live Reloading</h2>
-    <p>Boxfuse supports <a href="/docs/live">Live Reloading</a> of exploded jar files.</p>
+<h2 id="timezone">Time Zone</h2>
 
-    <h2 id="timezone">Time Zone</h2>
+<p>By default all Boxfuse instance use the <strong><code>UTC</code> time zone</strong>.</p>
 
-    <p>By default all Boxfuse instance use the <strong><code>UTC</code> time zone</strong>.</p>
+<p>We <strong>don't recommend changing this</strong> as this greatly simplifies time zone issues in machine to machine
+    communication
+    and cleanly relegates all time zones related aspects to a pure presentation layer concern.</p>
 
-    <p>We <strong>don't recommend changing this</strong> as this greatly simplifies time zone issues in machine to machine communication
-        and cleanly relegates all time zones related aspects to a pure presentation layer concern.</p>
+<p>If however you still do want to change this, you can override the default time zone of the instance using the
+    <code>TZ</code> environment variable. For example to change the time zone of your instance to <code>America/Los_Angeles</code>
+    you would do so like this:</p>
 
-    <p>If however you still do want to change this, you can override the default time zone of the instance using the
-        <code>TZ</code> environment variable. For example to change the time zone of your instance to <code>America/Los_Angeles</code>
-        you would do so like this:</p>
+<pre class="console"><span>&gt;</span> boxfuse fuse <strong>-envvars.TZ=</strong>America/Los_Angeles</pre>
 
-    <pre class="console"><span>&gt;</span> boxfuse fuse <strong>-envvars.TZ=</strong>America/Los_Angeles</pre>
+<h2 id="newrelic">New Relic support</h2>
 
-    <h2 id="newrelic">New Relic support</h2>
+<p>To monitor your app using <a href="/docs/newrelic">New Relic</a> simply pass in your New Relic license key when
+    fusing your image and Boxfuse will automatically install and configure the New Relic Servers Linux x64 and New Relic
+    Java agents for you.</p>
 
-    <p>To monitor your app using <a href="/docs/newrelic">New Relic</a> simply pass in your New Relic license key when
-        fusing your image and Boxfuse will automatically install and configure the New Relic Servers Linux x64 and New Relic Java agents for you.</p>
+<pre class="console"><span>&gt;</span> boxfuse fuse <strong>-newrelic.licensekey=</strong>0123456789abcdef0123456789abcdef01234567</pre>
 
-    <pre class="console"><span>&gt;</span> boxfuse fuse <strong>-newrelic.licensekey=</strong>0123456789abcdef0123456789abcdef01234567</pre>
+<p>Alternatively you can also supply a <code>newrelic.yml</code> configuration file for the Java agent and Boxfuse will
+    automatically use that instead. Boxfuse will then install the agent for you, but won't override any application name
+    you may have configured.
+    If you haven't configured a New Relic license key as described above, Boxfuse will use
+    the license key contained in your <code>newrelic.yml</code> configuration file instead.</p>
 
-    <p>Alternatively you can also supply a <code>newrelic.yml</code> configuration file for the Java agent and Boxfuse will
-        automatically use that instead. Boxfuse will then install the agent for you, but won't override any application name you may have configured.
-        If you haven't configured a New Relic license key as described above, Boxfuse will use
-        the license key contained in your <code>newrelic.yml</code> configuration file instead.</p>
+<p>If you use Maven or Gradle, the <code>newrelic.yml</code> file should be put into the <code>src/main/resources</code>
+    directory.
+    Boxfuse will then automatically configure the New Relic Java agent to use it.</p>
 
-    <p>If you use Maven or Gradle, the <code>newrelic.yml</code> file should be put into the <code>src/main/resources</code> directory.
-        Boxfuse will then automatically configure the New Relic Java agent to use it.</p>
-
-    <pre class="filetree"><i class="fa fa-folder-open"></i> my-executable-jar-app
+<pre class="filetree"><i class="fa fa-folder-open"></i> my-executable-jar-app
   <i class="fa fa-folder-open"></i> src
     <i class="fa fa-folder-open"></i> main
       <i class="fa fa-folder"></i> java
       <i class="fa fa-folder-open"></i> resources
         <span><i class="fa fa-file"></i> newrelic.yml</span></pre>
 
-    <h2 id="sysctl">Linux Kernel Tuning (experts only)</h2>
+<h2 id="sysctl">Linux Kernel Tuning (experts only)</h2>
 
-    <p>If you need to tune the Linux kernel running in your instance, simply place a <code>sysctl.conf</code> file at the root inside your jar file.
-        In a Maven or Gradle project this means you have to put it under <code>src/main/resources</code>:</p>
-    <pre class="filetree"><i class="fa fa-folder-open"></i> my-executable-jar-app
+<p>If you need to tune the Linux kernel running in your instance, simply place a <code>sysctl.conf</code> file at the
+    root inside your jar file.
+    In a Maven or Gradle project this means you have to put it under <code>src/main/resources</code>:</p>
+<pre class="filetree"><i class="fa fa-folder-open"></i> my-executable-jar-app
   <i class="fa fa-folder-open"></i> src
     <i class="fa fa-folder-open"></i> main
       <i class="fa fa-folder"></i> java
       <i class="fa fa-folder-open"></i> resources
         <span><i class="fa fa-file-text"></i> sysctl.conf</span></pre>
 
-    <p>Boxfuse will then <strong>automatically configure the Linux kernel to use these settings</strong>.</p>
-</div>
+<p>Boxfuse will then <strong>automatically configure the Linux kernel to use these settings</strong>.</p>
+
+<p class="next-steps">
+    <a class="btn btn-primary" href="/docs/payloads/nodejs">Node.js <i class="fa fa-arrow-right"></i></a>
+</p>
