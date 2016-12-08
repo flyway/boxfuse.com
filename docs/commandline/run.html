@@ -230,6 +230,11 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
                     <td>myuser/myapp:123</td>
                 </tr>
                 <tr>
+                    <td><code>app</code></td>
+                    <td>Only show logs for instances of this Boxfuse app</td>
+                    <td>myuser/myapp</td>
+                </tr>
+                <tr>
                     <td><code>level</code></td>
                     <td>Only show log events at this log level or higher (possible values: <code>DEBUG</code>,<code>INFO</code>,<code>WARN</code>,<code>ERROR</code>)</td>
                     <td>WARN</td>
@@ -273,6 +278,45 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
                     <td><code>request</code></td>
                     <td>Only show logs events for the request with this id</td>
                     <td>req-111222333</td>
+                </tr>
+                <tr>
+                    <td><code>limit</code></td>
+                    <td>Limit output to last n log messages where 1 &lt;= n &lt;= 10000</td>
+                    <td>2500</td>
+                </tr>
+                <tr>
+                    <td><code>start</code></td>
+                    <td>Limit output to log messages created after this date and time.
+                        <p>Supported date formats:</p>
+                        <ul>
+                            <li>2016-12-08 11:22:44</li>
+                            <li>2016-12-08 11:22</li>
+                            <li>2016-12-08</li>
+                            <li>11:22:44</li>
+                            <li>11:22</li>
+                        </ul>
+                        <p>The space between date and time can also be replaced by the letter <code>T</code> like in standard ISO dates. Example: <code>2016-12-08T11:22:44</code></p>
+                        <p>By appending <code>Z</code> to the time it will be treated as UTC instead of local time. Example: <code>2016-12-08 11:22:44Z</code></p>
+                        <p>As an alternative to the absolute date/time you also have the option to pass in the relative number of seconds to the current time. Example: <code>-600</code> (10 minutes ago)</p>
+                    </td>
+                    <td>2016-12-07 12:34:56</td>
+                </tr>
+                <tr>
+                    <td><code>end</code></td>
+                    <td>Limit output to log messages created before this date and time.
+                        <p>Supported date formats:</p>
+                        <ul>
+                            <li>2016-12-08 11:22:44</li>
+                            <li>2016-12-08 11:22</li>
+                            <li>2016-12-08</li>
+                            <li>11:22:44</li>
+                            <li>11:22</li>
+                        </ul>
+                        <p>The space between date and time can also be replaced by the letter <code>T</code> like in standard ISO dates. Example: <code>2016-12-08T11:22:44</code></p>
+                        <p>By appending <code>Z</code> to the time it will be treated as UTC instead of local time. Example: <code>2016-12-08 11:22:44Z</code></p>
+                        <p>As an alternative to the absolute date/time you also have the option to pass in the relative number of seconds to the current time. Example: <code>-600</code> (10 minutes ago)</p>
+                    </td>
+                    <td>2016-12-08 20:10:00</td>
                 </tr>
             </table>
         </td>
