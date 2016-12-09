@@ -1,0 +1,178 @@
+---
+layout: blog
+subtitle: "Logback and Log4J2 appender for AWS CloudWatch Logs"
+permalink: /blog/logback-log4j2-appender.html
+---
+<p>Logging is one of the major diagnostic tools we have at our disposal for identifying issues with our applications.
+    Traditionally logging consistent of writing lines of text to a file on the local filesystem. This creates a bunch of
+    issues. Not only does one now have to start hunting through various backend servers to see which one actually
+    processed the request we were looking for. Without forgetting of course that multiple requests from the same session
+    may land on different backend instances. But much more severe is the fact that in a cloud world any persistent data
+    on an instance dies together with the instance. And in the case of auto-scaling we don't even actively control anymore
+    when certain instances are terminated.</p>
+
+<p>To remedy this we need to look at a new solution: <strong>centralized logging</strong>. All logs get sent to a central service
+    where they are aggregated, stored, and made searchable. AWS offers its own service for this called <strong>CloudWatch Logs</strong>.</p>
+
+<img class="blog-post-image" src="/assets/img/cloudwatch-logs-appender.png">
+
+<p>We first <strong><a href="/blog/cloudwatch-logs">added support for it in October</a></strong>, by letting you create applications and indicate that you want your logs
+    sent to CloudWatch Logs. Images of those applications <strong>automatically redirect both stdout and stderr</strong> using the
+    <a href="https://github.com/boxfuse/cloudwatchlogs-agent">open-source Boxfuse CloudWatch Logs agent</a> to the CloudWatch Logs LogStream of the application within the CloudWatch Logs
+    LogGroup for the current environment. So if you haven't already, pause here and read that article first.</p>
+
+<p class="center">
+<img class="blog-post-image" src="/assets/img/logback.jpg" style="padding-right: 30px">
+<img class="blog-post-image" src="/assets/img/log4j2.png">
+</p>
+
+<p>Today we are taking things further for JVM apps by offering you a brand-new <strong><a href="https://github.com/boxfuse/cloudwatchlogs-java-appender">open-source appender for both Logback and Log4J</a></strong>.
+    This gives you much more fined-grained control by <strong>integrating natively into your preferred logging framework</strong> and letting you
+    configure exactly how you want to route your logs.</p>
+
+<h2>Installation</h2>
+
+<p>To include the <a href="https://github.com/boxfuse/cloudwatchlogs-java-appender">Boxfuse Java log appender for AWS CloudWatch Logs</a>
+    in your application all you need to do is include the dependency in your build file.</p>
+
+<h3>Maven</h3>
+
+<p>Start by adding the Boxfuse Maven repository to your list of repositories in your <code>pom.xml</code>:</p>
+
+<pre class="prettyprint">&lt;repositories&gt;
+    &lt;repository&gt;
+        &lt;id&gt;central&lt;/id&gt;
+        &lt;url&gt;http://repo1.maven.org/maven2/&lt;/url&gt;
+    &lt;/repository&gt;
+    &lt;repository&gt;
+        &lt;id&gt;boxfuse-repo&lt;/id&gt;
+        &lt;url&gt;https://files.boxfuse.com&lt;/url&gt;
+    &lt;/repository&gt;
+&lt;/repositories&gt;</pre>
+
+<p>Then add the dependency:</p>
+
+<pre class="prettyprint">&lt;dependency&gt;
+    &lt;groupId&gt;com.boxfuse.cloudwatchlogs&lt;/groupId&gt;
+    &lt;artifactId&gt;cloudwatchlogs-java-appender&lt;/artifactId&gt;
+    &lt;version&gt;1.0.2.17&lt;/version&gt;
+&lt;/dependency&gt;</pre>
+
+<h3>Gradle</h3>
+
+<p>Start by adding the Boxfuse Maven repository to your list of repositories in your <code>build.gradle</code>:</p>
+
+<pre class="prettyprint">repositories {
+    mavenCentral()
+    maven {
+        url "https://files.boxfuse.com"
+    }
+}</pre>
+
+<p>Then add the dependency:</p>
+
+<pre class="prettyprint">dependencies {
+    compile 'com.boxfuse.cloudwatchlogs:cloudwatchlogs-java-appender:1.0.2.17'
+}</pre>
+
+<h2>Usage</h2>
+
+<p>To use the appender you must add it to the configuration of your logging system.</p>
+
+<h3>Logback</h3>
+
+<p>Add the appender to your <code>logback.xml</code> file at the root of your classpath. In a Maven or Gradle project you can find it under <code>src/main/resources</code>:</p>
+
+<pre class="prettyprint">&lt;configuration&gt;
+    &lt;appender name="Boxfuse-CloudwatchLogs" class="com.boxfuse.cloudwatchlogs.logback.CloudwatchLogsLogbackAppender"/&gt;
+
+    &lt;root level="debug"&gt;
+        &lt;appender-ref ref="Boxfuse-CloudwatchLogs" /&gt;
+    &lt;/root&gt;
+&lt;/configuration&gt;</pre>
+
+<h3>Log4J2</h3>
+
+<p>Add the appender to your <code>log4j2.xml</code> file at the root of your classpath. In a Maven or Gradle project you can find it under <code>src/main/resources</code>:</p>
+
+<pre class="prettyprint">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+    &lt;Configuration packages="com.boxfuse.cloudwatchlogs.log4j2"&gt;
+    &lt;Appenders&gt;
+        &lt;Boxfuse-CloudwatchLogs/&gt;
+    &lt;/Appenders&gt;
+    &lt;Loggers&gt;
+        &lt;Root level="debug"&gt;
+            &lt;AppenderRef ref="Boxfuse-CloudwatchLogs"/&gt;
+        &lt;/Root&gt;
+    &lt;/Loggers&gt;
+&lt;/Configuration&gt;</pre>
+
+<h3>Code</h3>
+
+<p>And that's all the setup you need! You can now start using it from code as you normally would using either SLF4J or the api of your choice.</p>
+
+<p>Logging a message like this:</p>
+
+<pre class="prettyprint">private static final Logger LOGGER = LoggerFactory.getLogger(MyClazz.class);
+...
+LOGGER.info("My log message ...");</pre>
+
+<p>will now automatically sent it to CloudWatch Logs in structured form as a JSON document. The Boxfuse CloudWatch Logs
+    appender automatically adds critical metadata to the document as well so that it looks like this:</p>
+
+<pre class="prettyprint">{
+    "image": "myuser/myapp:123",
+    "instance": "i-607b5ddc",
+    "level": "INFO",
+    "logger": "org.mycompany.myapp.MyClazz",
+    "message": "My log message ...",
+    "thread": "main"
+}</pre>
+
+<p>This is very useful as this will allow us to query and filter the logs later.</p>
+
+<p>Note that these are just the attributes sent automatically. You also have the possibility to fill in many other ones
+    (such as current user, session id, request id, ...) via the MDC as described in the <a href="https://github.com/boxfuse/cloudwatchlogs-java-appender">docs of the GitHub project</a>.</p>
+
+<h2>Displaying the Logs</h2>
+
+<p>To display the logs simply open a new terminal and show the logs for your app in your desired environment:</p>
+
+<pre class="console"><span>&gt;</span> boxfuse logs myapp -env=prod</pre>
+
+<h3>Live tailing</h3>
+
+<p>And if you want to follow along in real time you can use log tailing:</p>
+
+<pre class="console"><span>&gt;</span> boxfuse logs myapp -env=prod <strong>-logs.tail</strong></pre>
+
+<p>And new logs will now automatically be displayed as soon as they are sent from the application to CloudWatch Logs.</p>
+
+<h3>Log filtering</h3>
+
+<p>This however can produce a lot of output. To aid finding the needle in the haystack, Boxfuse also supports powerful
+    <strong><a href="https://boxfuse.com/docs/commandline/logs#logs.filter">log filtering</a></strong>, both on existing logs as well as during live tailing of a log stream.</p>
+
+<p>You can make use of the attributes of the structured logs to filter them exactly the way you like. For example,
+    to tail the logs live on the prod environment on AWS and only show the logs for a specific instance all you need to do is:</p>
+
+<pre class="console"><span>&gt;</span> boxfuse logs myapp -env=prod -logs.tail <strong>-logs.filter.instance=</strong>i-607b5ddc</pre>
+
+<p>And if you aren't quite sure what you are looking for you can also simply filter by time. For example to show all the logs created in the last minute (60 seconds) you could do:</p>
+
+<pre class="console"><span>&gt;</span> boxfuse logs myapp -env=prod -logs.tail <strong>-logs.filter.start=</strong>-60</pre>
+
+<p>This is a very powerful feature and there are <strong>many more filters which can all be combined</strong>. You can find all the details in the
+    <strong><a href="https://boxfuse.com/docs/commandline/logs#logs.filter">documentation</a></strong>.</p>
+
+<h2>Available today</h2>
+
+<p>The <strong><a href="https://github.com/boxfuse/cloudwatchlogs-java-appender">Boxfuse Logback and Log4J2 Appender for CloudWatch Logs</a></strong> is available today. It is fully open-source (Apache 2.0 license)
+    and you can browse the sources as well as read the detailed documentation on the <a href="https://github.com/boxfuse/cloudwatchlogs-java-appender">GitHub project</a>.</p>
+
+<p>This feature is available at no charge to all customers.</p>
+
+<p>So if you haven't already,
+    <a href="https://console.boxfuse.com"><strong>sign up for your
+        Boxfuse account</strong></a> now (simply log in with your GitHub id, it's free), start deploying
+    your application effortlessly to AWS today and enjoy the power of centralized logging, live tailing and filtering.</p>
