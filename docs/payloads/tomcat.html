@@ -124,6 +124,27 @@ subtitle: 'Tomcat'
           <span><i class="fa fa-file"></i> local_policy.jar
 <i class="fa fa-file"></i> US_export_policy.jar</span></pre>
 
+    <h2 id="server.xml">Custom server.xml (advanced users only)</h2>
+
+    <p>By default Boxfuse will auto-generate a <code>server.xml</code> file for Tomcat with sensible defaults and all
+    connectors set up properly according to the Boxfuse settings specified.</p>
+
+    <p>Sometimes advanced users may want more control over this. Boxfuse therefore gives you the option to pass in a
+        custom <code>server.xml</code> file at <code>/WEB-INF/server.xml</code> in your war file.</p>
+
+    <p><strong>Note:</strong> If you chose to go down this path it is <strong>your responsibility to configure
+            all connectors so that they match the Boxfuse configuration.</strong></p>
+
+    <p>If you use Maven or Gradle this means you have to put the <code>server.xml</code> file under <code>src/main/webapp/WEB-INF</code>:</p>
+    <pre class="filetree"><i class="fa fa-folder-open"></i> my-tomcat-app
+  <i class="fa fa-folder-open"></i> src
+    <i class="fa fa-folder-open"></i> main
+      <i class="fa fa-folder"></i> java
+      <i class="fa fa-folder"></i> resources
+      <i class="fa fa-folder-open"></i> webapp
+        <i class="fa fa-folder-open"></i> WEB-INF
+          <span><i class="fa fa-file-text"></i> server.xml</span></pre>
+
     <h2 id="databases">Databases</h2>
 
     <h3>Database auto-provisioning</h3>

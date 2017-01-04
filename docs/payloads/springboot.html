@@ -172,8 +172,7 @@ spring.datasource.validationQuery=SELECT 1</pre>
 <h2 id="tls">SSL (TLS) / HTTPS</h2>
 
 <p>To use <strong>HTTPS</strong> simply add the KeyStore containing your SSL certificate at the root of the classpath
-    <em>inside</em> the Spring Boot jar file. Boxfuse will automatically extract all <code>.jks</code> and <code>.keystore</code>
-    files it finds to the same directory on the file system as your Spring Boot jar file.</p>
+    <em>inside</em> the Spring Boot jar file.</p>
 
 <p>If you use Maven or Gradle, this means your <code>.jks</code> or <code>.keystore</code> KeyStore file should be put
     into the <code>src/main/resources</code> directory.
@@ -187,12 +186,12 @@ spring.datasource.validationQuery=SELECT 1</pre>
         <span><i class="fa fa-file"></i> example.jks</span></pre>
 
 <p>You can then configure the Spring Boot connector to use it. So if for example
-    you have a KeyStore named <code>/example.jks</code> inside your Spring Boot jar file,
+    you have a KeyStore named <code>example.jks</code> inside your Spring Boot jar file,
     <code>application-boxfuse.properties</code> should look like this:</p>
 
 <pre class="prettyprint">server.port=443
 server.ssl.enabled=true
-server.ssl.key-store=example.jks
+server.ssl.key-store=classpath:example.jks
 server.ssl.key-store-password=myS3cr3tPwd</pre>
 
 <h2 id="root-certificates">Root Certificates</h2>

@@ -163,8 +163,7 @@ subtitle: 'JHipster'
 <h2 id="tls">SSL (TLS) / HTTPS</h2>
 
 <p>To use <strong>HTTPS</strong> simply add the KeyStore containing your SSL certificate at the root of the classpath
-    <em>inside</em> the JHipster war file. Boxfuse will automatically extract all <code>.jks</code> and <code>.keystore</code>
-    files it finds to the same directory on the file system as your JHipster war file.</p>
+    <em>inside</em> the JHipster war file.</p>
 
 <p>If you use Maven or Gradle, this means your <code>.jks</code> or <code>.keystore</code> KeyStore file should be put
     into the <code>src/main/resources</code> directory.
@@ -185,7 +184,7 @@ subtitle: 'JHipster'
   port: 443
   ssl:
     enabled: true
-    key-store: example.jks
+    key-store: classpath:example.jks
     key-store-password: myS3cr3tPwd</pre>
 
 <h2 id="root-certificates">Root Certificates</h2>
