@@ -235,6 +235,37 @@ subtitle: 'Grails'
 
     <pre class="console"><span>&gt;</span> boxfuse fuse <strong>-envvars.TZ=</strong>America/Los_Angeles</pre>
 
+    <h2 id="native">Native binaries and libs</h2>
+
+    <p>Some JVM applications also depend on <strong>native Linux x64 binaries and libs</strong> to do their work. Boxfuse makes it easy to
+        integrate them into your image.</p>
+    <p>Simply place your binaries under <code>/native/bin</code> on the classpath and Boxfuse
+        will automatically add them to the <code>PATH</code> at runtime in your instances.</p>
+
+    <p>If those binaries also depend on additional shared libraries beyond the C library, place the .so files of your libraries
+        under <code>/native/libs</code> on the classpath and Boxfuse
+        will automatically add them to the <code>LD_LIBRARY_PATH</code> at runtime in your instances.</p>
+
+    <p>If you use Maven or Gradle, the <code>native</code> directory should be put into the <code>src/main/resources</code>
+        directory. Boxfuse will then automatically configure the <code>PATH</code> and <code>LD_LIBRARY_PATH</code> to use it.</p>
+
+    <pre class="filetree"><i class="fa fa-folder-open"></i> my-grails-app
+  <i class="fa fa-folder-open"></i> src
+    <i class="fa fa-folder-open"></i> main
+      <i class="fa fa-folder"></i> java
+      <i class="fa fa-folder-open"></i> resources
+        <span><i class="fa fa-folder-open"></i> native
+  <i class="fa fa-folder-open"></i> bin
+    <i class="fa fa-file"></i> my-native-binary
+    <i class="fa fa-file"></i> other-linux-x64-binary
+  <i class="fa fa-folder-open"></i> libs
+    <i class="fa fa-file"></i> my-shared-lib.so
+    <i class="fa fa-file"></i> other-shared-lib.so</span></pre>
+
+    <p>You can then simply invoke them in your code using</p>
+
+    <pre class="prettyprint">Runtime.getRuntime().exec("my-native-binary arg1 arg2 arg3");</pre>
+
     <h2 id="newrelic">New Relic support</h2>
 
     <p>To monitor your app using <a href="/docs/newrelic">New Relic</a> simply pass in your New Relic license key when
