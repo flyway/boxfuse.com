@@ -325,6 +325,11 @@ also enable them for the Spring Boot <code>prod</code> profile.</p>
     under <code>/native/libs</code> on the classpath and Boxfuse
     will automatically add them to the <code>LD_LIBRARY_PATH</code> at runtime in your instances.</p>
 
+<div class="alert alert-info"><p><strong>Tip</strong></p>
+    <p>To list all the shared libraries your Linux x64 binary requires, you can use the following command on a Linux system:</p>
+    <pre class="console" style="margin-bottom: 0"><span>$</span> ldd -v my-native-binary</pre>
+</div>
+
 <p>If you use Maven or Gradle, the <code>native</code> directory should be put into the <code>src/main/resources</code>
     directory. Boxfuse will then automatically configure the <code>PATH</code> and <code>LD_LIBRARY_PATH</code> to use it.</p>
 
