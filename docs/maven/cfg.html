@@ -62,30 +62,37 @@ Successfully configured hello in test</pre>
         <td>dev</td>
         <td>Use the AWS <code>test</code> or <code>prod</code> environments instead of the local <code>dev</code> one</td>
     </tr>
+    <tr id="domain">
+        <td>domain</td>
+        <td>boxfuse.domain</td>
+        <td>auto</td>
+        <td><p><i>AWS only</i></p>
+            The custom domain to use for this application in the specified environment. <code>auto</code> to let Boxfuse automatically create a new <code>boxfuse.io</code> subdomain for you.</td>
+    </tr>
     <tr>
         <td>securitygroup</td>
         <td>boxfuse.securitygroup</td>
         <td>auto</td>
-        <td>The id of the AWS security group to use in the specified environment. <code>auto</code> will auto-create a new security group based on the configured ports.</td>
+        <td><p><i>AWS only</i></p>The id of the AWS security group to use in the specified environment. <code>auto</code> will auto-create a new security group based on the configured ports.</td>
     </tr>
     <tr id="instanceprofile">
         <td><nobr>instanceprofile</nobr></td>
         <td><nobr>boxfuse.instanceprofile</nobr></td>
         <td>none</td>
-        <td>The ARN of the AWS instance profile to use in the specified environment.
+        <td><p><i>AWS only</i></p>The ARN of the AWS instance profile to use in the specified environment.
             This is only for apps using the AWS API. The value <code>none</code> unsets any instance profile.</td>
     </tr>
     <tr>
         <td>subnets</td>
         <td>boxfuse.subnets</td>
         <td>auto</td>
-        <td>The AWS subnets to deploy to in the specified environment. AWS supports maximum one subnet per availability zone. <code>auto</code> to let AWS automatically select the subnet(s).</td>
+        <td><p><i>AWS only</i></p>The AWS subnets to deploy to in the specified environment. AWS supports maximum one subnet per availability zone. <code>auto</code> to let AWS automatically select the subnet(s).</td>
     </tr>
     <tr>
         <td>elb</td>
         <td>boxfuse.elb</td>
         <td>auto</td>
-        <td>The name of the AWS ELB to use when deploying this application in the specified environment (load balanced apps only). <code>auto</code> to let Boxfuse automatically create a new ELB for you.</td>
+        <td><p><i>AWS only</i></p>The name of the AWS ELB to use when deploying this application in the specified environment (load balanced apps only). <code>auto</code> to let Boxfuse automatically create a new ELB for you.</td>
     </tr>
 </table>
 
@@ -96,6 +103,7 @@ Successfully configured hello in test</pre>
     &lt;secret&gt;ABCDEFGHIJKL1234567abcdefghijklmnopqrstu&lt;/secret&gt;
     &lt;app&gt;hello&lt;/app&gt;
     &lt;env&gt;prod&lt;/env&gt;
+    &lt;domain&gt;myapp.mydomain.com&lt;/domain&gt;
     &lt;securitygroup&gt;sg-12345678&lt;/securitygroup&gt;
     &lt;instanceprofile&gt;none&lt;/instanceprofile&gt;
     &lt;subnets&gt;

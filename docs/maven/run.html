@@ -124,6 +124,13 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>false</td>
         <td><p><i>JVM apps only</i></p>Whether the JVM should wait for the remote debugger to connect (Only applicable when <a href="/docs/debugging">debug mode</a> is active)</td>
     </tr>
+    <tr id="domain">
+        <td>domain</td>
+        <td>boxfuse.domain</td>
+        <td>auto</td>
+        <td><p><i>AWS only</i></p>
+            The custom domain to use for this application in the specified environment. <code>auto</code> to let Boxfuse automatically create a new <code>boxfuse.io</code> subdomain for you.</td>
+    </tr>
     <tr id="elb">
         <td>elb</td>
         <td>boxfuse.elb</td>
@@ -446,6 +453,7 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
     &lt;cpus&gt;2&lt;/cpus&gt;
     &lt;debug&gt;true&lt;/debug&gt;
     &lt;debug.wait&gt;false&lt;/debug.wait&gt;
+    &lt;domain&gt;myapp.mydomain.com&lt;/domain&gt;
     &lt;elb&gt;my-elb&lt;/elb&gt;
     &lt;env&gt;prod&lt;/env&gt;
     &lt;envvars&gt;

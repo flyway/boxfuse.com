@@ -7,17 +7,18 @@ subtitle: 'Custom Domains'
     <p>When Boxfuse deploys your app it will automatically create a <code>boxfuse.io</code> subdomain like
         <code>myapp-myuser.boxfuse.io</code> for you to easily access it.</p>
 
-    <p>If your application is externally visible you may want to use your own domain though, like <code>www.myapp.com</code>.</p>
+    <p>If your application is externally visible you may want to use your own domain though, like <code>myapp.mygreatcompany.com</code>.</p>
 
     <h2>Using Route 53</h2>
-    <p>If you use <a href="https://aws.amazon.com/route53/">AWS Route 53</a> to manage your domain, go to the
-        <a href="https://console.aws.amazon.com/route53/home">AWS console</a>
-        and create a new <strong>CNAME Record Set</strong> to point your own domain to the one Boxfuse generated for you:</p>
+    <p>If you use <a href="https://aws.amazon.com/route53/">AWS Route 53</a> to manage your domain, you can simply
+        configure the domain for your app by configuring it in the Boxfuse Console:</p>
 
-    <p><img class="max-width-image" src="/assets/img/route53-cname.png"></p>
+    <p><img class="max-width-image screenshot" src="/assets/img/custom-domain.png"></p>
 
-    <p>In this example here your application will now be available under <code>www.myapp.com</code>, which internally
-        now points to <code>myapp-myuser.boxfuse.io</code>.</p>
+    <p>In this example where you own the domain <code>mygreatcompany.com</code> and it is managed by AWS Route 53,
+        your application will now be available under <code>myapp.mygreatcompany.com</code>.</p>
+
+    <p>Alternatively you can of course also configure this with the Boxfuse Client using the <a href="/docs/commandline/cfg#domain">-domain=... parameter</a>.</p>
 
     <h2>Using another DNS provider</h2>
 
