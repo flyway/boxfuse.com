@@ -39,6 +39,18 @@ Successfully configured hello in test</pre>
         <td><p><i>AWS only</i></p>
             The custom domain to use for this application in the specified environment. <code>auto</code> to let Boxfuse automatically create a new <code>boxfuse.io</code> subdomain for you.</td>
     </tr>
+    <tr id="elasticip">
+        <td>-elasticip=...</td>
+        <td>elasticip</td>
+        <td>auto</td>
+        <td><p><i>AWS only</i></p>The AWS Elastic IP to use when deploying this application in the specified environment (single-instance apps only). <code>auto</code> to let Boxfuse automatically create a new Elastic IP for you.</td>
+    </tr>
+    <tr id="elb">
+        <td>-elb=...</td>
+        <td>elb</td>
+        <td>auto</td>
+        <td><p><i>AWS only</i></p>The name of the AWS ELB to use when deploying this application in the specified environment (load-balanced apps only). <code>auto</code> to let Boxfuse automatically create a new ELB for you.</td>
+    </tr>
     <tr id="securitygroup">
         <td>-securitygroup=...</td>
         <td>securitygroup</td>
@@ -57,12 +69,6 @@ Successfully configured hello in test</pre>
         <td>subnets</td>
         <td>auto</td>
         <td><p><i>AWS only</i></p>Comma-separated list of AWS subnets to deploy to in the specified environment. AWS supports maximum one subnet per availability zone. <code>auto</code> to let AWS automatically select the subnet(s).</td>
-    </tr>
-    <tr id="elb">
-        <td>-elb=...</td>
-        <td>elb</td>
-        <td>auto</td>
-        <td><p><i>AWS only</i></p>The name of the AWS ELB to use when deploying this application in the specified environment (load balanced apps only). <code>auto</code> to let Boxfuse automatically create a new ELB for you.</td>
     </tr>
 </table>
 

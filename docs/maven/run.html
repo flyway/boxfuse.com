@@ -131,12 +131,18 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td><p><i>AWS only</i></p>
             The custom domain to use for this application in the specified environment. <code>auto</code> to let Boxfuse automatically create a new <code>boxfuse.io</code> subdomain for you.</td>
     </tr>
+    <tr id="elasticip">
+        <td>elasticip</td>
+        <td>boxfuse.elasticip</td>
+        <td>auto</td>
+        <td><p><i>AWS only</i></p>The AWS Elastic IP to use when deploying this application in the specified environment (single-instance apps only). <code>auto</code> to let Boxfuse automatically create a new Elastic IP for you.</td>
+    </tr>
     <tr id="elb">
         <td>elb</td>
         <td>boxfuse.elb</td>
         <td>auto</td>
         <td><p><i>AWS only</i></p>
-            The name of the AWS ELB to use when deploying this application in the specified environment (load balanced apps only). <code>auto</code> to let Boxfuse automatically create a new ELB for you.</td>
+            The name of the AWS ELB to use when deploying this application in the specified environment (load-balanced apps only). <code>auto</code> to let Boxfuse automatically create a new ELB for you.</td>
     </tr>
     <tr id="env">
         <td>env</td>
@@ -454,6 +460,7 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
     &lt;debug&gt;true&lt;/debug&gt;
     &lt;debug.wait&gt;false&lt;/debug.wait&gt;
     &lt;domain&gt;myapp.mydomain.com&lt;/domain&gt;
+    &lt;elasticip&gt;1.2.3.4&lt;/elasticip&gt;
     &lt;elb&gt;my-elb&lt;/elb&gt;
     &lt;env&gt;prod&lt;/env&gt;
     &lt;envvars&gt;
