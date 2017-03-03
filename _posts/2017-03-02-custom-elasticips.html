@@ -1,0 +1,55 @@
+---
+layout: blog
+subtitle: "Custom Elastic IPs"
+permalink: /blog/custom-elasticips.html
+---
+<p>When you need your application to have a unique public IP address that doesn't change over time, Boxfuse lets you
+    create your application as <code>single-instance</code> to ensure it will always be deployed behind the same
+    <strong>AWS Elastic IP</strong> at runtime.</p>
+
+<p>Until now, Boxfuse has always automatically provisioned that Elastic IP address (along with all other AWS resources) for you.
+This is extremely convenient and by far the best choice for the vast majority of the <code>single-instance</code> applications.</p>
+
+<p>There are however a number of cases where this falls short. The most common one is being able to know the exact IP address
+in advance to ensure the necessary firewall or security group rules have been set up correctly. This is especially relevant when
+ an application doesn't need to be up 24/7. So far killing an application meant terminating all related AWS resources,
+    including the Elastic IP. When running it again the application would get the same <code>boxfuse.io</code>
+    or <a href="/blog/custom-domains">custom domain</a>, however a new Elastic IP would be created and the DNS A record
+    would then point at that one instead.</p>
+
+<p>Today we are introducing support for <strong>custom Elastic IPs</strong> for <code>single-instance</code> apps to fix this.</p>
+
+<h2>How does it work?</h2>
+
+<p>First of all, ensure you have allocated the Elastic IP you need either via the AWS Console or some other client.</p>
+
+<p>From here on things couldn't be easier. Simply go to your application in the <a href="https://console.boxfuse.com">Boxfuse Console</a>
+and configure it for the environment you want:</p>
+
+<img class="blog-post-image screenshot" src="/assets/img/custom-elasticips.png">
+
+<p>And now simply select the Elastic IP of your choice from the list and your app will be deployed  behind it.</p>
+
+<p>Needless to say, once deployed the <code>boxfuse.io</code> or <a href="/blog/custom-domains">custom domain</a> will also point directly at that Elastic IP.</p>
+
+<h2>Using the Boxfuse Client</h2>
+
+<p>If you prefer to use the Boxfuse Client instead, you can simply specify the Elastic IP as follows:</p>
+
+<pre class="console"><span>&gt;</span> boxfuse run -env=prod <strong>-elasticip=</strong>35.157.139.99</pre>
+
+<p>And for <strong>infrastructure as code</strong> simply place it in your <code>boxfuse.conf</code> file
+    which you can check in to version control along with your sources:</p>
+
+<pre class="prettyprint">elasticip=35.157.139.99</pre>
+
+<h2>Available today</h2>
+
+<p>The Boxfuse support for <strong>custom Elastic IPs</strong> for <code>single-instance</code> apps is available today
+    at no additional charge on all paid plans. Enjoy!</p>
+
+<p>So if you haven't already,
+    <a href="https://console.boxfuse.com"><strong>sign up for your
+        Boxfuse account</strong></a> now (simply log in with your GitHub id, it's free), start deploying
+    your application effortlessly to AWS today and have it running online under the Elastic IP of your choice in minutes.
+</p>
