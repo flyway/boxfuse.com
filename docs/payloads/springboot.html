@@ -306,6 +306,22 @@ server.ssl.trust-store-password=my0th3rPwd</pre>
 <p>Or in your <code>build.gradle</code>:</p>
 <pre class="prettyprint">compile("org.springframework.boot:spring-boot-devtools")</pre>
 
+<p>And ensure the Spring Boot Dev Tools are enabled in the final jar by setting the <code>excludeDevtools</code> flag of the Spring Boot Maven plugin to <code>false</code>:</p>
+
+<pre class="prettyprint">&lt;plugin&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+    &lt;configuration&gt;
+        &lt;excludeDevtools&gt;false&lt;/excludeDevtools&gt;
+    &lt;/configuration&gt;
+&lt;/plugin&gt;</pre>
+
+<p>Or in your <code>build.gradle</code>:</p>
+
+<pre class="prettyprint">bootRepackage {
+    excludeDevtools = false
+}</pre>
+
 <p>Then define an application secret in <code>application.properties</code>:</p>
 <pre class="prettyprint">spring.devtools.remote.secret=mysecret</pre>
 

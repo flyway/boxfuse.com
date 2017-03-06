@@ -86,6 +86,16 @@ public class DevtoolsDemoApplication {
 
 <pre class="prettyprint">&lt;version&gt;0.0.1&lt;/version&gt;</pre>
 
+<p>And ensure the Spring Boot Dev Tools are enabled in the final artifact by setting the <code>excludeDevtools</code> flag of the Spring Boot Maven plugin to <code>false</code>:</p>
+
+<pre class="prettyprint">&lt;plugin&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+    &lt;configuration&gt;
+        &lt;excludeDevtools&gt;false&lt;/excludeDevtools&gt;
+    &lt;/configuration&gt;
+&lt;/plugin&gt;</pre>
+
 <p>Then open a terminal window and navigate to the
     directory where you extracted the archive. Go inside the newly created <code>devtools-demo</code> directory and
 invoke Maven to create an executable jar:</p>
