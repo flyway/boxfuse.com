@@ -82,8 +82,7 @@ subtitle: 'Commands'
     <img src="/assets/img/commands/ps.png" alt="ps">
 
     <h2 id="kill">kill</h2>
-    <p>Gracefully kill an <em>Instance</em> or an <em>App</em> either on your machine or on AWS<br/>
-        Specifying an App will kill all Instances of that App.</p>
+    <p>Gracefully kill all <em>Instances</em> of an <em>App</em> in the specified <em>Environment</em>.</p>
 
     <img src="/assets/img/commands/kill.png" alt="kill">
 
@@ -97,7 +96,8 @@ subtitle: 'Commands'
     <img src="/assets/img/commands/logs.png" alt="logs">
 
     <h2 id="destroy">destroy</h2>
-    <p>Destroys an <em>App</em> in the <em>Boxfuse Console</em>.</p>
+    <p>Destroys an <em>App</em> in the <em>Boxfuse Console</em>. This will kill all current deployments of this app
+        in all environments, remove all its images from the Boxfuse Vault, and destroy the app in the Boxfuse Console.</p>
     <img src="/assets/img/commands/destroy.png" alt="destroy">
 
     <h2 id="inventory">inventory</h2>
