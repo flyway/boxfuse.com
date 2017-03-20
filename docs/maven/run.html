@@ -6,10 +6,12 @@ pill: run
 
 <h2>boxfuse:run</h2>
 
-<p>Runs one or more <em>Instances</em> of this <em>Image</em> in the specified <a href="/docs/environments">environment</a> (on your machine or on AWS).</p>
+<p>Runs one or more <em>Instances</em> of this <em>Image</em> in the specified <a
+        href="/docs/environments">environment</a> (on your machine or on AWS).</p>
 
 <p>All necessary resources (Elastic IPs, ELBs, Security Groups, Auto-Scaling Groups, Databases, ...) will be provisioned
-    automatically if they don't already exist. Already running applications will be updated with zero-downtime blue/green deployments.</p>
+    automatically if they don't already exist. Already running applications will be updated with zero-downtime
+    blue/green deployments.</p>
 
 <p><strong>Usage: </strong> mvn boxfuse:run -Dboxfuse.image=<em>image</em> -Dboxfuse.env=<em>environment</em></p>
 
@@ -50,8 +52,10 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>secret</td>
         <td>boxfuse.secret</td>
         <td></td>
-        <td><strong>Required</strong> - Your Boxfuse Client secret. Also configurable via the <code>BOXFUSE_SECRET</code>
-            environment variable or the Maven settings.xml</td>
+        <td><strong>Required</strong> - Your Boxfuse Client secret. Also configurable via the
+            <code>BOXFUSE_SECRET</code>
+            environment variable or the Maven settings.xml
+        </td>
     </tr>
     <tr>
         <td>serverid</td>
@@ -71,32 +75,66 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
             The capacity to scale an app to in a certain environment
             <p>Valid formats:</p>
             <table class="table table-striped table-condensed">
-                <tr><td><code><nobr>5:t2.small</nobr></code></td>
-                    <td>ensure there are always 5 t2.small instances running</td></tr>
-                <tr><td><code><nobr>2-10:c4.large:cpu30-70</nobr></code></td>
+                <tr>
+                    <td><code>
+                        <nobr>5:t2.small</nobr>
+                    </code></td>
+                    <td>ensure there are always 5 t2.small instances running</td>
+                </tr>
+                <tr>
+                    <td><code>
+                        <nobr>2-10:c4.large:cpu30-70</nobr>
+                    </code></td>
                     <td>auto-scale between 2 (min) and 10 (max) c4.large instances
                         based upon average CPU load over the last 300 seconds
-                        scale in at 30% and below, scale out at 70% and above</td></tr>
-                <tr><td><code><nobr>2-10:c4.large:cpu30-70:60</nobr></code></td>
+                        scale in at 30% and below, scale out at 70% and above
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>
+                        <nobr>2-10:c4.large:cpu30-70:60</nobr>
+                    </code></td>
                     <td>auto-scale between 2 (min) and 10 (max) c4.large instances
                         based upon average CPU load over the last 60 seconds
-                        scale in at 30% and below, scale out at 70% and above</td></tr>
-                <tr><td><code><nobr>2-10:c4.large:netin1024-8300</nobr></code></td>
+                        scale in at 30% and below, scale out at 70% and above
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>
+                        <nobr>2-10:c4.large:netin1024-8300</nobr>
+                    </code></td>
                     <td>auto-scale between 2 (min) and 10 (max) c4.large instances
                         based upon incoming network traffic per instance over the last 300 seconds
-                        scale in at 1024 KB and below, scale out at 8300 KB and above</td></tr>
-                <tr><td><code><nobr>2-10:c4.large:netin1024-8300:60</nobr></code></td>
+                        scale in at 1024 KB and below, scale out at 8300 KB and above
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>
+                        <nobr>2-10:c4.large:netin1024-8300:60</nobr>
+                    </code></td>
                     <td>auto-scale between 2 (min) and 10 (max) c4.large instances
                         based upon incoming network traffic per instance over the last 60 seconds
-                        scale in at 1024 KB and below, scale out at 8300 KB and above</td></tr>
-                <tr><td><code><nobr>2-10:c4.large:netout1024-8300</nobr></code></td>
+                        scale in at 1024 KB and below, scale out at 8300 KB and above
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>
+                        <nobr>2-10:c4.large:netout1024-8300</nobr>
+                    </code></td>
                     <td>auto-scale between 2 (min) and 10 (max) c4.large instances
                         based upon outgoing network traffic per instance over the last 300 seconds
-                        scale in at 1024 KB and below, scale out at 8300 KB and above</td></tr>
-                <tr><td><code><nobr>2-10:c4.large:netout1024-8300:60</nobr></code></td>
+                        scale in at 1024 KB and below, scale out at 8300 KB and above
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>
+                        <nobr>2-10:c4.large:netout1024-8300:60</nobr>
+                    </code></td>
                     <td>auto-scale between 2 (min) and 10 (max) c4.large instances
                         based upon outgoing network traffic per instance over the last 60 seconds
-                        scale in at 1024 KB and below, scale out at 8300 KB and above</td></tr>
+                        scale in at 1024 KB and below, scale out at 8300 KB and above
+                    </td>
+                </tr>
             </table>
         </td>
     </tr>
@@ -104,7 +142,10 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>cmd</td>
         <td>boxfuse.cmd</td>
         <td><em>first executable file in image</em></td>
-        <td><p><i>Generic Linux x64 apps only</i></p><p><i>When fusing new images only</i></p>The command to start the app including relative path and all necessary arguments</td>
+        <td><p><i>Generic Linux x64 apps only</i></p>
+            <p><i>When fusing new images only</i></p>The command to start the app including relative path and all
+            necessary arguments
+        </td>
     </tr>
     <tr id="cpus">
         <td>cpus</td>
@@ -122,33 +163,43 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>debug.wait</td>
         <td>boxfuse.debug.wait</td>
         <td>false</td>
-        <td><p><i>JVM apps only</i></p>Whether the JVM should wait for the remote debugger to connect (Only applicable when <a href="/docs/debugging">debug mode</a> is active)</td>
+        <td><p><i>JVM apps only</i></p>Whether the JVM should wait for the remote debugger to connect (Only applicable
+            when <a href="/docs/debugging">debug mode</a> is active)
+        </td>
     </tr>
     <tr id="domain">
         <td>domain</td>
         <td>boxfuse.domain</td>
         <td>auto</td>
         <td><p><i>AWS only</i></p>
-            The custom domain to use for this application in the specified environment. <code>auto</code> to let Boxfuse automatically create a new <code>boxfuse.io</code> subdomain for you.</td>
+            The custom domain to use for this application in the specified environment. <code>auto</code> to let Boxfuse
+            automatically create a new <code>boxfuse.io</code> subdomain for you.
+        </td>
     </tr>
     <tr id="elasticip">
         <td>elasticip</td>
         <td>boxfuse.elasticip</td>
         <td>auto</td>
-        <td><p><i>AWS only</i></p>The AWS Elastic IP to use when deploying this application in the specified environment (single-instance apps only). <code>auto</code> to let Boxfuse automatically create a new Elastic IP for you.</td>
+        <td><p><i>AWS only</i></p>The AWS Elastic IP to use when deploying this application in the specified environment
+            (single-instance apps only). <code>auto</code> to let Boxfuse automatically create a new Elastic IP for you.
+        </td>
     </tr>
     <tr id="elb">
         <td>elb</td>
         <td>boxfuse.elb</td>
         <td>auto</td>
         <td><p><i>AWS only</i></p>
-            The name of the AWS ELB to use when deploying this application in the specified environment (load-balanced apps only). <code>auto</code> to let Boxfuse automatically create a new ELB for you.</td>
+            The name of the AWS ELB to use when deploying this application in the specified environment (load-balanced
+            apps only). <code>auto</code> to let Boxfuse automatically create a new ELB for you.
+        </td>
     </tr>
     <tr id="env">
         <td>env</td>
         <td>boxfuse.env</td>
         <td>dev</td>
-        <td>Use the AWS <code>test</code> or <code>prod</code> <a href="/docs/environments">environments</a> instead of the local <code>dev</code> one</td>
+        <td>Use the AWS <code>test</code> or <code>prod</code> <a href="/docs/environments">environments</a> instead of
+            the local <code>dev</code> one
+        </td>
     </tr>
     <tr id="envvars">
         <td>envvars</td>
@@ -183,12 +234,17 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>The number of seconds to wait for the Payload to come up</td>
     </tr>
     <tr id="instanceprofile">
-        <td><nobr>instanceprofile</nobr></td>
-        <td><nobr>boxfuse.instanceprofile</nobr></td>
+        <td>
+            <nobr>instanceprofile</nobr>
+        </td>
+        <td>
+            <nobr>boxfuse.instanceprofile</nobr>
+        </td>
         <td>none</td>
         <td><p><i>AWS only</i></p>
             The ARN of the AWS instance profile to use in the specified environment.
-            This is only for apps using the AWS API. The value <code>none</code> unsets any instance profile.</td>
+            This is only for apps using the AWS API. The value <code>none</code> unsets any instance profile.
+        </td>
     </tr>
     <tr id="jvm.args">
         <td>jvm.args</td>
@@ -200,7 +256,9 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>jvm.jmx</td>
         <td>boxfuse.jvm.jmx</td>
         <td>false</td>
-        <td><p><i>JVM apps only</i></p>Enable the JMX remote <a href="/docs/profiling">management and profiling</a> interface for the JVM</td>
+        <td><p><i>JVM apps only</i></p>Enable the JMX remote <a href="/docs/profiling">management and profiling</a>
+            interface for the JVM
+        </td>
     </tr>
     <tr id="jvm.main.class">
         <td>jvm.main.class</td>
@@ -224,7 +282,9 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>live</td>
         <td>boxfuse.live</td>
         <td>false</td>
-        <td><p><i>When fusing new images only</i></p>Enable <a href="/docs/live">live reloading</a> of changes in dev for super fast round-trips. Note that images with live reloading cannot be pushed to the Boxfuse Vault.</td>
+        <td><p><i>When fusing new images only</i></p>Enable <a href="/docs/live">live reloading</a> of changes in dev
+            for super fast round-trips. Note that images with live reloading cannot be pushed to the Boxfuse Vault.
+        </td>
     </tr>
     <tr id="logs.auto">
         <td>logs.auto</td>
@@ -274,7 +334,9 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
                 </tr>
                 <tr>
                     <td><code>level</code></td>
-                    <td>Only show log events at this log level or higher (possible values: <code>DEBUG</code>,<code>INFO</code>,<code>WARN</code>,<code>ERROR</code>)</td>
+                    <td>Only show log events at this log level or higher (possible values:
+                        <code>DEBUG</code>,<code>INFO</code>,<code>WARN</code>,<code>ERROR</code>)
+                    </td>
                     <td>WARN</td>
                 </tr>
                 <tr>
@@ -299,12 +361,16 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
                 </tr>
                 <tr>
                     <td><code>action</code></td>
-                    <td>Only show logs events in relation to a domain-specific element in the system (like an customer order for example)</td>
+                    <td>Only show logs events in relation to a domain-specific element in the system (like an customer
+                        order for example)
+                    </td>
                     <td>order-12345</td>
                 </tr>
                 <tr>
                     <td><code>user</code></td>
-                    <td>Only show logs events in relation to this user of the account (for systems with the concept of teams or multiple users per account)</td>
+                    <td>Only show logs events in relation to this user of the account (for systems with the concept of
+                        teams or multiple users per account)
+                    </td>
                     <td>MyUser</td>
                 </tr>
                 <tr>
@@ -316,6 +382,11 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
                     <td><code>request</code></td>
                     <td>Only show logs events for the request with this id</td>
                     <td>req-111222333</td>
+                </tr>
+                <tr>
+                    <td><code>message</code></td>
+                    <td>Only show logs events with this message</td>
+                    <td>my-log-message</td>
                 </tr>
                 <tr>
                     <td><code>limit</code></td>
@@ -333,9 +404,12 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
                             <li>11:22:44</li>
                             <li>11:22</li>
                         </ul>
-                        <p>The space between date and time can also be replaced by the letter <code>T</code> like in standard ISO dates. Example: <code>2016-12-08T11:22:44</code></p>
-                        <p>By appending <code>Z</code> to the time it will be treated as UTC instead of local time. Example: <code>2016-12-08 11:22:44Z</code></p>
-                        <p>As an alternative to the absolute date/time you also have the option to pass in the relative number of seconds to the current time. Example: <code>-600</code> (10 minutes ago)</p>
+                        <p>The space between date and time can also be replaced by the letter <code>T</code> like in
+                            standard ISO dates. Example: <code>2016-12-08T11:22:44</code></p>
+                        <p>By appending <code>Z</code> to the time it will be treated as UTC instead of local time.
+                            Example: <code>2016-12-08 11:22:44Z</code></p>
+                        <p>As an alternative to the absolute date/time you also have the option to pass in the relative
+                            number of seconds to the current time. Example: <code>-600</code> (10 minutes ago)</p>
                     </td>
                     <td>2016-12-07 12:34:56</td>
                 </tr>
@@ -350,11 +424,30 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
                             <li>11:22:44</li>
                             <li>11:22</li>
                         </ul>
-                        <p>The space between date and time can also be replaced by the letter <code>T</code> like in standard ISO dates. Example: <code>2016-12-08T11:22:44</code></p>
-                        <p>By appending <code>Z</code> to the time it will be treated as UTC instead of local time. Example: <code>2016-12-08 11:22:44Z</code></p>
-                        <p>As an alternative to the absolute date/time you also have the option to pass in the relative number of seconds to the current time. Example: <code>-600</code> (10 minutes ago)</p>
+                        <p>The space between date and time can also be replaced by the letter <code>T</code> like in
+                            standard ISO dates. Example: <code>2016-12-08T11:22:44</code></p>
+                        <p>By appending <code>Z</code> to the time it will be treated as UTC instead of local time.
+                            Example: <code>2016-12-08 11:22:44Z</code></p>
+                        <p>As an alternative to the absolute date/time you also have the option to pass in the relative
+                            number of seconds to the current time. Example: <code>-600</code> (10 minutes ago)</p>
                     </td>
                     <td>2016-12-08 20:10:00</td>
+                </tr>
+            </table>
+            <p><strong>Wildcards:</strong> Wilcard matching is supported by prepending and/or appending an asterisk
+                (<code>*</code>) to the filter value. Examples:</p>
+            <table class="table table-striped table-condensed">
+                <tr>
+                    <td><code>*abc</code></td>
+                    <td>match all ending with <code>abc</code></td>
+                </tr>
+                <tr>
+                    <td><code>abc*</code></td>
+                    <td>match all starting with <code>abc</code></td>
+                </tr>
+                <tr>
+                    <td><code>*abc*</code></td>
+                    <td>match all starting or ending with <code>abc</code></td>
                 </tr>
             </table>
         </td>
@@ -369,21 +462,45 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>newrelic.licensekey</td>
         <td>boxfuse.newrelic.licensekey</td>
         <td></td>
-        <td><p><i>When fusing new images only</i></p>Installs and configures the <a href="/docs/newrelic">New Relic</a> agents to monitor your instance.</td>
+        <td><p><i>When fusing new images only</i></p>Installs and configures the <a href="/docs/newrelic">New Relic</a>
+            agents to monitor your instance.
+        </td>
     </tr>
     <tr id="ports">
         <td>ports</td>
         <td>boxfuse.ports.<em>NAME</em></td>
         <td>http=80</td>
-        <td><p>Exposes the port of the app with this name using this definition. Example: boxfuse.ports.jmx=8001</p><p>Supported formats:</p>
+        <td><p>Exposes the port of the app with this name using this definition. Example: boxfuse.ports.jmx=8001</p>
+            <p>Supported formats:</p>
             <table class="table table-striped table-condensed">
-                <tr><td><code>80</code></td><td>TCP port 80, universally accessible</td></tr>
-                <tr><td><code>80/tcp</code></td><td>TCP port 80, universally accessible</td></tr>
-                <tr><td><code>80/udp</code></td><td>UDP port 80, universally accessible</td></tr>
-                <tr><td><code>80/tcp:@</code></td><td>TCP port 80 only accessible from your own IP</td></tr>
-                <tr><td><code>80/udp:@/20</code></td><td>UDP port 80 only accessible from the IPs in the CIDR /20 block of your own IP</td></tr>
-                <tr><td><code>80/udp:1.2.3.4</code></td><td>UDP port 80 only accessible from 1.2.3.4</td></tr>
-                <tr><td><code>80/tcp:1.2.3.4/31</code></td><td>TCP port 80 only accessible from the IPs in the CIDR /31 block of 1.2.3.4</td></tr>
+                <tr>
+                    <td><code>80</code></td>
+                    <td>TCP port 80, universally accessible</td>
+                </tr>
+                <tr>
+                    <td><code>80/tcp</code></td>
+                    <td>TCP port 80, universally accessible</td>
+                </tr>
+                <tr>
+                    <td><code>80/udp</code></td>
+                    <td>UDP port 80, universally accessible</td>
+                </tr>
+                <tr>
+                    <td><code>80/tcp:@</code></td>
+                    <td>TCP port 80 only accessible from your own IP</td>
+                </tr>
+                <tr>
+                    <td><code>80/udp:@/20</code></td>
+                    <td>UDP port 80 only accessible from the IPs in the CIDR /20 block of your own IP</td>
+                </tr>
+                <tr>
+                    <td><code>80/udp:1.2.3.4</code></td>
+                    <td>UDP port 80 only accessible from 1.2.3.4</td>
+                </tr>
+                <tr>
+                    <td><code>80/tcp:1.2.3.4/31</code></td>
+                    <td>TCP port 80 only accessible from the IPs in the CIDR /31 block of 1.2.3.4</td>
+                </tr>
             </table>
         </td>
     </tr>
@@ -392,7 +509,8 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>boxfuse.portsmap.<em>NAME</em></td>
         <td><em>same as matching image port</em></td>
         <td><p><i>VirtualBox only</i></p>
-            <p>The local ports to map to the app inside the instance. By default Boxfuse will attempt to open the same port
+            <p>The local ports to map to the app inside the instance. By default Boxfuse will attempt to open the same
+                port
                 locally as has been opened in the VirtualBox VM. On Linux &amp; Mac privileged ports (&lt;1024) will be
                 opened at 10000
                 + the port number for non-root users.<br>
@@ -432,14 +550,18 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>boxfuse.securitygroup</td>
         <td>auto</td>
         <td><p><i>AWS only</i></p>
-            The id of the AWS security group to use in the specified environment. <code>auto</code> will auto-create a new security group based on the configured ports.</td>
+            The id of the AWS security group to use in the specified environment. <code>auto</code> will auto-create a
+            new security group based on the configured ports.
+        </td>
     </tr>
     <tr>
         <td>subnets</td>
         <td>boxfuse.subnets</td>
         <td>auto</td>
         <td><p><i>AWS only</i></p>
-            The AWS subnets to deploy to in the specified environment. AWS supports maximum one subnet per availability zone. <code>auto</code> to let AWS automatically select the subnet(s).</td>
+            The AWS subnets to deploy to in the specified environment. AWS supports maximum one subnet per availability
+            zone. <code>auto</code> to let AWS automatically select the subnet(s).
+        </td>
     </tr>
     <tr id="tmp">
         <td>tmp</td>

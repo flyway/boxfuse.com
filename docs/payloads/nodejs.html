@@ -152,6 +152,34 @@ client.connect(function(err) {
 
     <pre class="console"><span>&gt;</span> boxfuse fuse <strong>-envvars.TZ=</strong>America/Los_Angeles</pre>
 
+    <h2 id="native">Native binaries and libs</h2>
+
+    <p>Some Node.js applications also depend on <strong>native Linux x64 binaries and libs</strong> to do their work. Boxfuse makes it easy to
+        integrate them into your image.</p>
+    <p>Simply place your binaries under <code>/native/bin</code> inside your tgz and Boxfuse
+        will automatically add them to the <code>PATH</code> at runtime in your instances.</p>
+
+    <p>If those binaries also depend on additional shared libraries beyond the C library, place the .so files of your libraries
+        under <code>/native/lib</code> inside your tgz and Boxfuse
+        will automatically add them to the <code>LD_LIBRARY_PATH</code> at runtime in your instances.</p>
+
+    <div class="alert alert-info"><p><strong>Tip</strong></p>
+        <p>To list all the shared libraries your Linux x64 binary requires, you can use the following command on a Linux system:</p>
+        <pre class="console" style="margin-bottom: 0"><span>$</span> ldd -v my-native-binary</pre>
+    </div>
+
+    <p>This effectively means the native binaries and libs should be under a <code>native</code> directory inside your application:</p>
+
+    <pre class="filetree"><i class="fa fa-folder-open"></i> my-nodejs-app
+  <i class="fa fa-file-text"></i> package.json
+  <span><i class="fa fa-folder-open"></i> native
+  <i class="fa fa-folder-open"></i> bin
+    <i class="fa fa-file"></i> my-native-binary
+    <i class="fa fa-file"></i> other-linux-x64-binary
+  <i class="fa fa-folder-open"></i> lib
+    <i class="fa fa-file"></i> my-shared-lib.so
+    <i class="fa fa-file"></i> other-shared-lib.so</span></pre>
+
     <h2 id="sysctl">Linux Kernel Tuning (experts only)</h2>
 
     <p>If you need to tune the Linux kernel running in your instance, simply place a <code>sysctl.conf</code> file at the root inside your tgz file.
