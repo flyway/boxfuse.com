@@ -357,6 +357,40 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
                 enclosed in single quotes.<br>Example: <code>'-logs.filter.message=*my text to match*'</code></p>
         </td>
     </tr>
+    <tr id="logs.layout">
+        <td>-logs.layout=...</td>
+        <td>logs.layout</td>
+        <td><code>timestamp app? image? instance? event? 40:logger? 10:thread? account? action? user? session? request? message?</code></td>
+        <td>
+            <p><i>CloudWatch Logs apps only</i></p>
+            <p>The layout to use when displaying the logs.</p>
+            <p><strong>Format:</strong></p>
+            <ul>
+                <li>All fields are separated by 1 whitespace and variable-width by default</li>
+                <li>Appending <code>?</code> to the field name hides the field if a filter matches it exactly</li>
+                <li>Prepending a number and a column (example: <code>10:</code>) left trims or left pads the field to that
+                    length
+                </li>
+                <li>Appending a number and a column (example: <code>:10</code>) right trims or right pads the field to that
+                    length
+                </li>
+                <li>Valid field names: <code>level</code>, <code>timestamp</code>, <code>app</code>, <code>image</code>,
+                    <code>instance</code>, <code>event</code>, <code>logger</code>, <code>thread</code>, <code>account</code>,
+                    <code>action</code>, <code>user</code>, <code>session</code>, <code>request</code>,
+                    <code>message</code>
+                </li>
+            </ul>
+            <p>Example: <code>level:5 image logger?:30 10:thread</code> shows 4 fields:</p>
+            <ul>
+                <li><code>level</code> fixed width of 5, right padded or right trimmed if necessary</li>
+                <li><code>image</code> variable width</li>
+                <li><code>logger</code> fixed width of 30, right padded or right trimmed if necessary, hidden if matched
+                    exactly in filter
+                </li>
+                <li><code>thread</code> fixed width of 10, left padded or left trimmed if necessary</li>
+            </ul>
+        </td>
+    </tr>
     <tr id="logs.tail">
         <td>-logs.tail</td>
         <td>logs.tail</td>

@@ -126,8 +126,10 @@ INFO: Server startup in 302 ms</pre>
         <td>secret</td>
         <td>boxfuse.secret</td>
         <td></td>
-        <td><strong>Required</strong> - Your Boxfuse Client secret. Also configurable via the <code>BOXFUSE_SECRET</code>
-            environment variable or the Maven settings.xml</td>
+        <td><strong>Required</strong> - Your Boxfuse Client secret. Also configurable via the
+            <code>BOXFUSE_SECRET</code>
+            environment variable or the Maven settings.xml
+        </td>
     </tr>
     <tr>
         <td>serverid</td>
@@ -142,7 +144,8 @@ INFO: Server startup in 302 ms</pre>
         <td>env</td>
         <td>boxfuse.env</td>
         <td>dev</td>
-        <td>Use the AWS <code>test</code> or <code>prod</code> environments instead of the local <code>dev</code> one</td>
+        <td>Use the AWS <code>test</code> or <code>prod</code> environments instead of the local <code>dev</code> one
+        </td>
     </tr>
     <tr id="logs.boot">
         <td>logs.boot</td>
@@ -180,7 +183,8 @@ INFO: Server startup in 302 ms</pre>
                 </tr>
                 <tr>
                     <td><code>level</code></td>
-                    <td>Only show log events at this log level or higher (possible values: <code>TRACE</code>,<code>DEBUG</code>,<code>INFO</code>,<code>WARN</code>,<code>ERROR</code>)</td>
+                    <td>Only show log events at this log level or higher (possible values: <code>TRACE</code>,<code>DEBUG</code>,<code>INFO</code>,<code>WARN</code>,<code>ERROR</code>)
+                    </td>
                     <td>WARN</td>
                 </tr>
                 <tr>
@@ -205,12 +209,16 @@ INFO: Server startup in 302 ms</pre>
                 </tr>
                 <tr>
                     <td><code>action</code></td>
-                    <td>Only show logs events in relation to a domain-specific element in the system (like an customer order for example)</td>
+                    <td>Only show logs events in relation to a domain-specific element in the system (like an customer
+                        order for example)
+                    </td>
                     <td>order-12345</td>
                 </tr>
                 <tr>
                     <td><code>user</code></td>
-                    <td>Only show logs events in relation to this user of the account (for systems with the concept of teams or multiple users per account)</td>
+                    <td>Only show logs events in relation to this user of the account (for systems with the concept of
+                        teams or multiple users per account)
+                    </td>
                     <td>MyUser</td>
                 </tr>
                 <tr>
@@ -244,9 +252,12 @@ INFO: Server startup in 302 ms</pre>
                             <li>11:22:44</li>
                             <li>11:22</li>
                         </ul>
-                        <p>The space between date and time can also be replaced by the letter <code>T</code> like in standard ISO dates. Example: <code>2016-12-08T11:22:44</code></p>
-                        <p>By appending <code>Z</code> to the time it will be treated as UTC instead of local time. Example: <code>2016-12-08 11:22:44Z</code></p>
-                        <p>As an alternative to the absolute date/time you also have the option to pass in the relative number of seconds to the current time. Example: <code>-600</code> (10 minutes ago)</p>
+                        <p>The space between date and time can also be replaced by the letter <code>T</code> like in
+                            standard ISO dates. Example: <code>2016-12-08T11:22:44</code></p>
+                        <p>By appending <code>Z</code> to the time it will be treated as UTC instead of local time.
+                            Example: <code>2016-12-08 11:22:44Z</code></p>
+                        <p>As an alternative to the absolute date/time you also have the option to pass in the relative
+                            number of seconds to the current time. Example: <code>-600</code> (10 minutes ago)</p>
                     </td>
                     <td>2016-12-07 12:34:56</td>
                 </tr>
@@ -261,9 +272,12 @@ INFO: Server startup in 302 ms</pre>
                             <li>11:22:44</li>
                             <li>11:22</li>
                         </ul>
-                        <p>The space between date and time can also be replaced by the letter <code>T</code> like in standard ISO dates. Example: <code>2016-12-08T11:22:44</code></p>
-                        <p>By appending <code>Z</code> to the time it will be treated as UTC instead of local time. Example: <code>2016-12-08 11:22:44Z</code></p>
-                        <p>As an alternative to the absolute date/time you also have the option to pass in the relative number of seconds to the current time. Example: <code>-600</code> (10 minutes ago)</p>
+                        <p>The space between date and time can also be replaced by the letter <code>T</code> like in
+                            standard ISO dates. Example: <code>2016-12-08T11:22:44</code></p>
+                        <p>By appending <code>Z</code> to the time it will be treated as UTC instead of local time.
+                            Example: <code>2016-12-08 11:22:44Z</code></p>
+                        <p>As an alternative to the absolute date/time you also have the option to pass in the relative
+                            number of seconds to the current time. Example: <code>-600</code> (10 minutes ago)</p>
                     </td>
                     <td>2016-12-08 20:10:00</td>
                 </tr>
@@ -284,6 +298,40 @@ INFO: Server startup in 302 ms</pre>
                     <td>match all starting or ending with <code>abc</code></td>
                 </tr>
             </table>
+        </td>
+    </tr>
+    <tr id="logs.layout">
+        <td>logs.layout</td>
+        <td>boxfuse.logs.layout</td>
+        <td><code>timestamp app? image? instance? event? 40:logger? 10:thread? account? action? user? session? request? message?</code></td>
+        <td>
+            <p><i>CloudWatch Logs apps only</i></p>
+            <p>The layout to use when displaying the logs.</p>
+            <p><strong>Format:</strong></p>
+            <ul>
+                <li>All fields are separated by 1 whitespace and variable-width by default</li>
+                <li>Appending <code>?</code> to the field name hides the field if a filter matches it exactly</li>
+                <li>Prepending a number and a column (example: <code>10:</code>) left trims or left pads the field to that
+                    length
+                </li>
+                <li>Appending a number and a column (example: <code>:10</code>) right trims or right pads the field to that
+                    length
+                </li>
+                <li>Valid field names: <code>level</code>, <code>timestamp</code>, <code>app</code>, <code>image</code>,
+                    <code>instance</code>, <code>event</code>, <code>logger</code>, <code>thread</code>, <code>account</code>,
+                    <code>action</code>, <code>user</code>, <code>session</code>, <code>request</code>,
+                    <code>message</code>
+                </li>
+            </ul>
+            <p>Example: <code>level:5 image logger?:30 10:thread</code> shows 4 fields:</p>
+            <ul>
+                <li><code>level</code> fixed width of 5, right padded or right trimmed if necessary</li>
+                <li><code>image</code> variable width</li>
+                <li><code>logger</code> fixed width of 30, right padded or right trimmed if necessary, hidden if matched
+                    exactly in filter
+                </li>
+                <li><code>thread</code> fixed width of 10, left padded or left trimmed if necessary</li>
+            </ul>
         </td>
     </tr>
     <tr id="logs.tail">
@@ -310,6 +358,7 @@ INFO: Server startup in 302 ms</pre>
         &lt;level&gt;WARN&lt;/level&gt;
         &lt;account&gt;MyAccount123&lt;/account&gt;
     &lt;/logs.filter&gt;
+    &lt;logs.layout&gt;timestamp app? image? instance? event? 40:logger? account? session? request? message?&lt;/logs.layout&gt;
     &lt;logs.tail&gt;true&lt;/logs.tail&gt;
     &lt;instances&gt;vb-ec717c5e&lt;/instances&gt;
 &lt;/configuration&gt;</pre>
