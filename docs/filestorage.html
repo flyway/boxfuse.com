@@ -20,10 +20,10 @@ subtitle: 'File Storage'
     is this service not currently available in all all AWS regions, but you also lose the advantage of being able to
         offload large file up- and downloads as you can with S3.</p>
 
-    <h2>Temporary files</h2>
+    <h2 id="tmp">Temporary files</h2>
 
     <p>If your application needs to temporarily store files it can afford to lose should the instance die, then the
-        <strong><code>/tmp</code> directory</strong> in your instance is the perfect place for this. It is a separate filesystem that
+        <strong><code>/tmp</code> directory</strong> in your instance is the perfect place for this. It is a separate <strong>fully encrypted filesystem</strong> that
         resides on disk (unlike the other directories in your Boxfuse instance which reside in RAM).</p>
 
     <p>With the <code>-tmp=...</code> parameter Boxfuse can automatically provision between 0 and 16384 GB of space, with 1 GB being the default.</p>
