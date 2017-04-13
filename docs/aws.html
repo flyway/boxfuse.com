@@ -163,7 +163,26 @@ subtitle: 'AWS'
 
     <h2 id="instance-profiles">Instance Profiles</h2>
 
-    <p>To make it easy to access other AWS services, Boxfuse let's you configure IAM Instance Profiles to pass AWS credentials to EC2 instances.</p>
+    <p>To make it easy to access other AWS services, Boxfuse let's you configure IAM Instance Profiles to pass temporary
+        AWS credentials to EC2 instances without needing to bake them into your image.</p>
+
+    <p>Note that by default for apps using CloudWatch Logs, Boxfuse will configure your instances to use an IAM Instance Profile
+        that allows your application to invoke <code>logs:PutLogEvents</code>. This is required in order to be able to send log events to CloudWatch Logs.</p>
+
+    <p>If you configure your app to use a custom Instance Profile instead and it needs to send logs to CloudWatch Logs,
+        you have to ensure that the IAM policy attached to your instance profile does include the following statement:</p>
+
+    <pre class="prettyprint">"Statement": [
+  {
+    "Effect": "Allow",
+    "Action": [
+      "logs:PutLogEvents"
+    ],
+    "Resource": [
+      "arn:aws:logs:*:*:*"
+    ]
+  }
+]</pre>
 
     <p class="next-steps">
         <a class="btn btn-primary" href="/docs/databases">Databases <i class="fa fa-arrow-right"></i></a>
