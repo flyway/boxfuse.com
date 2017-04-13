@@ -161,6 +161,21 @@ subtitle: 'AWS'
         </tbody>
     </table>
 
+    <h2 id="elbs">ELBs</h2>
+
+    <p>When running a <code>load-balanced</code> app, Boxfuse will automatically provision an AWS Elastic Load Balancer (ELB)
+        in that <a href="/docs/environments">environment</a> to distribute incoming requests across all your instances.
+        The ELB will also be tagged using the <code>boxfuse:app</code>
+    and <code>boxfuse:env</code> tags described above. Once the app is killed, the ELB will also be removed.</p>
+
+    <p>Boxfuse configures each ELB it provisions to load-balance all open ports of an image at layer 4 (TCP, UDP).
+        Unlike for layer 7 (HTTP, HTTPS) load balancing this means that HTTPS connection are only terminated on your
+        instance and ensures the entire path between client and instance remains fully encrypted.</p>
+
+    <p>If those defaults don't work for you, you do have the option to set up your own ELB and configure Boxfuse to use
+        it for a specific environment. This in turn means that it is then your entire responsibility to ensure it is
+    configured correctly and decommissioned when not needed anymore.</p>
+
     <h2 id="instance-profiles">Instance Profiles</h2>
 
     <p>To make it easy to access other AWS services, Boxfuse let's you configure IAM Instance Profiles to pass temporary
