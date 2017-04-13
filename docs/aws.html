@@ -121,9 +121,11 @@ subtitle: 'AWS'
     <p>Additionally every instance of an app also receives a marker security group tagged with the app and environment names.
     This makes it easy to refer to all instances of an app from other security groups, regardless of the version.</p>
 
-    <p>Alternatively you can also explicitly configure a custom security group for every app in each <a href="/docs/environments">environment</a>.</p>
-
     <p>All security groups that have been created by Boxfuse are automatically removed when they are no longer in use.</p>
+
+    <p>Alternatively you can also explicitly configure a custom security group for every app in each <a href="/docs/environments">environment</a>.
+    In this case, Boxfuse will not create any security groups for you and it is then your responsibility to properly
+        configure and decommission your security group.</p>
 
     <h2 id="tagging">Tagging</h2>
 

@@ -556,22 +556,22 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
             </table>
         </td>
     </tr>
-    <tr>
+    <tr id="ram">
         <td>ram</td>
         <td>boxfuse.ram</td>
         <td>1024</td>
         <td><p><i>VirtualBox only</i></p>The amount of RAM in MB to assign to an Instance</td>
     </tr>
-    <tr>
+    <tr id="securitygroup">
         <td>securitygroup</td>
         <td>boxfuse.securitygroup</td>
         <td>auto</td>
         <td><p><i>AWS only</i></p>
-            The id of the AWS security group to use in the specified environment. <code>auto</code> will auto-create a
+            The id of the <a href="/docs/aws#security-groups">AWS security group</a> to use in the specified environment. <code>auto</code> will auto-create a
             new security group based on the configured ports.
         </td>
     </tr>
-    <tr>
+    <tr id="subnets">
         <td>subnets</td>
         <td>boxfuse.subnets</td>
         <td>auto</td>
