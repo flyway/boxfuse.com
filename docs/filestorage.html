@@ -11,14 +11,25 @@ subtitle: 'File Storage'
 
     <h2>Persistent files</h2>
 
-    <p>Apps that need to store files durably and persistently should do so off-instance. We recommend using an
+    <p>Apps that need to store files durably and persistently should do so off-instance.</p>
+
+    <h3>S3</h3>
+    <p>We recommend using an
         <strong>S3 bucket</strong> for this. Not only is it cost effective, but you can also serve large files directly
     to clients either via unsecured buckets or pre-signed URLs.</p>
 
+    <h3>EFS</h3>
     <p>Alternatively you can also consider mounting an <strong>Elastic File System</strong>. This comes with trade-offs though. The
     clear advantage is that from an application's perspective this is just a regular NFS directory. However not only
     is this service not currently available in all all AWS regions, but you also lose the advantage of being able to
         offload large file up- and downloads as you can with S3.</p>
+
+    <p>You can mount an elastic file system, by adding these statements to the start of your main method:</p>
+
+    <pre class="prettyprint">new File("/efs").mkdir();
+Runtime.getRuntime().exec("mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 <em>&lt;our-efs-id&gt;</em>.efs.<em>&lt;your-aws-region&gt;</em>.amazonaws.com:/ /efs").waitFor();</pre>
+
+    <p>The elastic file system is now mounted at <code>/efs</code> and is ready for you to use.</p>
 
     <h2 id="tmp">Temporary files</h2>
 
