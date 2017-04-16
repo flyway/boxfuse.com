@@ -13,12 +13,12 @@ subtitle: 'File Storage'
 
     <p>Apps that need to store files durably and persistently should do so off-instance.</p>
 
-    <h3>S3</h3>
+    <h3 id="s3">S3</h3>
     <p>We recommend using an
         <strong>S3 bucket</strong> for this. Not only is it cost effective, but you can also serve large files directly
     to clients either via unsecured buckets or pre-signed URLs.</p>
 
-    <h3>EFS</h3>
+    <h3 id="efs">EFS</h3>
     <p>Alternatively you can also consider mounting an <strong>Elastic File System</strong>. This comes with trade-offs though. The
     clear advantage is that from an application's perspective this is just a regular NFS directory. However not only
     is this service not currently available in all all AWS regions, but you also lose the advantage of being able to
