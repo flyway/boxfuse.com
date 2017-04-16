@@ -27,7 +27,7 @@ subtitle: 'File Storage'
     <p>You can mount an elastic file system, by adding these statements to the start of your main method:</p>
 
     <pre class="prettyprint">new File("/efs").mkdir();
-Runtime.getRuntime().exec("mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 <em>&lt;our-efs-id&gt;</em>.efs.<em>&lt;your-aws-region&gt;</em>.amazonaws.com:/ /efs").waitFor();</pre>
+Runtime.getRuntime().exec("mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 <em>&lt;your-efs-id&gt;</em>.efs.<em>&lt;your-aws-region&gt;</em>.amazonaws.com:/ /efs").waitFor();</pre>
 
     <p>The elastic file system is now mounted at <code>/efs</code> and is ready for you to use.</p>
 
