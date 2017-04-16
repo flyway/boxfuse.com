@@ -163,6 +163,18 @@ subtitle: 'AWS'
         </tbody>
     </table>
 
+    <h2 id="elasticips">Elastic IPs</h2>
+
+    <p>When running a <code>single-instance</code> app, Boxfuse will automatically provision an AWS Elastic IP
+        in that <a href="/docs/environments">environment</a>.
+        As soon as healthchecks have passed for a deployment, your new instance
+        becomes reachable via the Elastic IP (as opposed to its initial public IP which it replaces).
+        This is effectively makes the Elastic IP the stable entry point into your application.
+        Once the app is killed, the Elastic IP is also removed.</p>
+
+    <p>If this auto-provisioning doesn't work for you, you do have the option to set up your own Elastic IP and configure Boxfuse to use
+        it for a specific environment. This in turn means that it is then also your responsibility to dispose of it when not needed anymore.</p>
+
     <h2 id="elbs">ELBs</h2>
 
     <p>When running a <code>load-balanced</code> app, Boxfuse will automatically provision an AWS Elastic Load Balancer (ELB)
