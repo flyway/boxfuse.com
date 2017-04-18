@@ -183,6 +183,24 @@ Type „help“ for help.
 
 myapp=></pre>
 
+    <p>Alternatively you can obtain the url and credentials of your database for each environment where your app is currently deployed
+    by using the <a href="/docs/commandline/info">info</a> command.</p>
+
+    <pre class="console"><span>&gt;</span> boxfuse <strong>info</strong> -env=test
+
+Info about myuser/myapp in the test environment:
+
+App Type    : Single Instance with Zero Downtime updates
+App URL     : http://myapp-test-myuser.boxfuse.io/
+DB Type     : PostgreSQL database
+DB URL      : jdbc:postgresql://boxdb-myuser-test-myapp.ca53c5vrhrzn.eu-central-1.rds.amazonaws.com:5432/myapp
+DB Host     : boxdb-myuser-test-myapp.ca53c5vrhrzn.eu-central-1.rds.amazonaws.com
+DB Port     : 5432
+DB Database : myapp
+DB User     : qbGh5bYandLAYiXBHXp5L8jQliU9qwAkEFRf1R7JzJJ3azNwWmauKfYJe1TCoUW
+DB Password : JDBsCkFuDUCqLwDhbWZcZWmaeFCN7W8aAIzy0MjYA5ICXKCf3zMO7azw9092VFFqsnKayqWefAaklZchfATAbLsvShdsOWjKJBaU
+DB Status   : available</pre>
+
     <p class="next-steps">
         <a class="btn btn-primary" href="/docs/filestorage">File Storage <i class="fa fa-arrow-right"></i></a>
     </p>
