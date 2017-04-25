@@ -105,7 +105,7 @@ passed in via the <code>user</code> and <code>secret</code> configuration parame
 
 <h2 id="proxy">Proxy configuration</h2>
 <p>If your network requires you to use a proxy to connect to the outside world, you can tell Boxfuse to use a proxy via the <code>proxy</code> option:</p>
-<pre class="console"><span>&gt;</span> boxfuse -proxy=https://myuser:mypwd@myproxyhost:1234</pre>
+<pre class="console"><span>&gt;</span> boxfuse <strong>-proxy=</strong>https://myuser:mypwd@myproxyhost:1234</pre>
 <p>This can also be defined through any other configuration means described above.</p>
 
 <h2 id="insecure">Disabling TLS certificate validation</h2>
@@ -119,7 +119,7 @@ passed in via the <code>user</code> and <code>secret</code> configuration parame
 <p>Boxfuse handles networking on <a href="/docs/virtualbox">VirtualBox</a> differently based on the version.</p>
 
 <p>By default, on VirtualBox 5.1 and above, Boxfuse creates a separate VirtualBox NAT Network.
-    On VirtualBox 5.0 and older Boxfuse uses regular VirtualBox NAT instead.</p>
+    On VirtualBox 5.0 Boxfuse uses regular VirtualBox NAT instead.</p>
 
 <p>VirtualBox 5.1+ users also have the possibility to force Boxfuse to use regular VirtualBox NAT instead of the NAT Network
     by explicitly setting the <code>virtualbox.natnetwork</code> Boxfuse configuration property to <code>false</code>.</p>

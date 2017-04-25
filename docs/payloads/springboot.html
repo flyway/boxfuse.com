@@ -169,9 +169,29 @@ spring.datasource.validationQuery=SELECT 1</pre>
 <h3>Using an existing database</h3>
 <p>To disable database auto-provisioning and use an existing database set <code>db.type</code> to <code>none</code> when <a
         href="/docs/commandline/create#db.type">creating your app</a>.</p>
-<h2 id="tls">SSL (TLS) / HTTPS</h2>
+<h2 id="tls">TLS (SSL) Certificates / HTTPS</h2>
 
-<p>To use <strong>HTTPS</strong> simply add the KeyStore containing your SSL certificate at the root of the classpath
+<h3>Automatic TLS (SSL) Certificate management</h3>
+
+<p>To expose your app via <strong>HTTPS</strong> make sure you have a <a href="/docs/domains">custom domain</a> configured
+    for the <a href="/docs/environments">environment</a> where you want to run it. Also make sure that you have obtained
+    a <a href="/docs/tls">valid TLS (SSL) certificate</a> and that your <a href="/docs/commandline/create">app has been created</a>
+    with <code>app.type</code> set to <code>load-balanced</code> and <code>tls.type</code> set to <code>acm</code> (AWS Certificate Manager).</p>
+
+<p>With that in place your Spring Boot app will be automatically configured to run with HTTPS and a green lock will appear in the browser.</p>
+
+<p>You can also manually force the correct configuration by adding these properties to your Spring Boot config file:</p>
+
+<pre class="prettyprint">server.port=443
+server.ssl.enabled=true
+server.ssl.key-store=/app-config/boxfuse-selfsigned.jks
+server.ssl.key-store-password=boxfuse-selfsigned</pre>
+
+<p>This will ensure that all network traffic between the ELB and your instances will be encrypted as well.</p>
+
+<h3>Manual TLS (SSL) Certificate management</h3>
+<p>To use HTTPS with your own certificate, you first have to obtain a valid certificate from a Certificate Authority and
+    add a KeyStore containing your TLS (SSL) certificate to the root of the classpath to ensure it is packaged
     <em>inside</em> the Spring Boot jar file.</p>
 
 <p>If you use Maven or Gradle, this means your <code>.jks</code> or <code>.keystore</code> KeyStore file should be put

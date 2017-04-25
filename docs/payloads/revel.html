@@ -33,6 +33,31 @@ subtitle: 'Revel'
     or <code>https</code> based on the value of <code>http.ssl</code>. The actual port number is automatically
     configured according to the value of the <code>http.port</code> property.</p>
 
+<h2 id="tls">TLS (SSL) Certificates / HTTPS</h2>
+
+<p>To expose your app via <strong>HTTPS</strong> make sure you have a <a href="/docs/domains">custom domain</a> configured
+    for the <a href="/docs/environments">environment</a> where you want to run it. Also make sure that you have obtained
+    a <a href="/docs/tls">valid TLS (SSL) certificate</a> and that your <a href="/docs/commandline/create">app has been created</a>
+    with <code>app.type</code> set to <code>load-balanced</code> and <code>tls.type</code> set to <code>acm</code> (AWS Certificate Manager).</p>
+
+<p>To listen to the HTTPS port you can use the following code:</p>
+
+<pre class="prettyprint">import (
+  "net/http"
+)
+
+func handler(w http.ResponseWriter, req *http.Request) {
+  w.Header().Set("Content-Type", "text/plain")
+  w.Write([]byte("This is an example server.\n"))
+}
+
+func main() {
+  http.HandleFunc("/", handler)
+  err := http.ListenAndServeTLS(":443", "/app-config/boxfuse-selfsigned-cert.pem", "/app-config/boxfuse-selfsigned-key.pem", nil)
+}</pre>
+
+<p>This will ensure that all network traffic between the ELB and your instances will be encrypted as well.</p>
+
 <h2 id="root-certificates">Root Certificates</h2>
 
 <p>Boxfuse uses the <strong>same root certificate bundle as the latest version of Firefox</strong>.

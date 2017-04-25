@@ -79,6 +79,18 @@ ds.setPassword(System.getenv("BOXFUSE_DATABASE_PASSWORD"));</pre>
     <a
             href="/docs/commandline/create#dbtype">creating your app</a>.</p>
 
+<h2 id="tls">TLS (SSL) Certificates / HTTPS</h2>
+
+<p>To expose your app via <strong>HTTPS</strong> make sure you have a <a href="/docs/domains">custom domain</a> configured
+    for the <a href="/docs/environments">environment</a> where you want to run it. Also make sure that you have obtained
+    a <a href="/docs/tls">valid TLS (SSL) certificate</a> and that your <a href="/docs/commandline/create">app has been created</a>
+    with <code>app.type</code> set to <code>load-balanced</code> and <code>tls.type</code> set to <code>acm</code> (AWS Certificate Manager).</p>
+
+<p>With that in place your Java app will be automatically configured to run with HTTPS and a green lock will appear in the browser.</p>
+
+<p>Note that you must configure your web server to use HTTPS with a valid self-signed certificate to ensure that all
+    network traffic between the ELB and your instances will be encrypted as well.</p>
+
 <h2>Root Certificates</h2>
 
 <p>By default, Boxfuse uses the <strong>same root certificate bundle as the latest version of Firefox</strong>.

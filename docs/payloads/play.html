@@ -135,9 +135,26 @@ subtitle: 'Play'
     <p>For Play 2.3.x, set <code>applyEvolutions.&lt;database&gt=true</code> in your Play config (<a href="https://www.playframework.com/documentation/2.3.x/Evolutions#Running-Evolutions-in-Production">reference docs</a>).</p>
     <p>For Play 2.4.x and newer, set <code>play.evolutions.autoApply=true</code> in your Play config (<a href="https://www.playframework.com/documentation/2.4.x/Evolutions#Evolutions-configuration">reference docs</a>).</p>
 
-    <h2 id="tls">SSL (TLS) / HTTPS</h2>
+    <h2 id="tls">TLS (SSL) Certificates / HTTPS</h2>
 
-    <p>To use <strong>HTTPS</strong> simply add a keystore containing your SSL certificate inside the zip file at <code>/conf/boxfuse.jks</code>.
+    <h3>Automatic TLS (SSL) Certificate management</h3>
+
+    <p>To expose your app via <strong>HTTPS</strong> make sure you have a <a href="/docs/domains">custom domain</a> configured
+        for the <a href="/docs/environments">environment</a> where you want to run it. Also make sure that you have obtained
+        a <a href="/docs/tls">valid TLS (SSL) certificate</a> and that your <a href="/docs/commandline/create">app has been created</a>
+        with <code>app.type</code> set to <code>load-balanced</code> and <code>tls.type</code> set to <code>acm</code> (AWS Certificate Manager).</p>
+
+    <p>With that in place your Play app will be automatically configured to run with HTTPS and a green lock will appear in the browser.</p>
+
+    <p>You can also manually force the correct configuration by adding these properties to your Play config file:</p>
+
+    <pre class="prettyprint">play.server.https.port=443</pre>
+
+    <p>Boxfuse will automatically ensure that all network traffic between the ELB and your instances will be encrypted as well.</p>
+
+    <h3>Manual TLS (SSL) Certificate management</h3>
+    <p>To use HTTPS with your own certificate, you first have to obtain a valid certificate from a Certificate Authority and
+        add a KeyStore containing your SSL certificate inside the zip file at <code>/conf/boxfuse.jks</code>.
         If you use SBT or Typesafe Activator, this means your <code>boxfuse.jks</code> keystore file should be put into the <code>conf</code> directory.</p>
     <p>Both the keystore itself as well as the certificate should be secured with the password <code>boxfuse</code>.</p>
 

@@ -112,6 +112,28 @@ client.connect(function(err) {
 
     <p>This also automatically ensures that all connections to RDS PostgreSQL use TLS (SSL).</p>
 
+    <h2 id="tls">TLS (SSL) Certificates / HTTPS</h2>
+
+    <p>To expose your app via <strong>HTTPS</strong> make sure you have a <a href="/docs/domains">custom domain</a> configured
+        for the <a href="/docs/environments">environment</a> where you want to run it. Also make sure that you have obtained
+        a <a href="/docs/tls">valid TLS (SSL) certificate</a> and that your <a href="/docs/commandline/create">app has been created</a>
+        with <code>app.type</code> set to <code>load-balanced</code> and <code>tls.type</code> set to <code>acm</code> (AWS Certificate Manager).</p>
+
+    <p>To listen to the HTTPS port you can use the following code:</p>
+
+    <pre class="prettyprint">var https = require('https');
+var fs = require('fs');
+
+var server = https.createServer({
+    key: fs.readFileSync('/app-config/boxfuse-selfsigned-key.pem'),
+    cert: fs.readFileSync('/app-config/boxfuse-selfsigned-cert.pem'),
+    requestCert: false,
+    rejectUnauthorized: false
+}, app);
+server.listen(443);</pre>
+
+    <p>This will ensure that all network traffic between the ELB and your instances will be encrypted as well.</p>
+
     <h2 id="root-certificates">Root Certificates</h2>
 
     <p>Boxfuse uses the <strong>same root certificate bundle as the latest version of Firefox</strong>.

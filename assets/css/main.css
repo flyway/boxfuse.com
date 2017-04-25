@@ -611,11 +611,12 @@ h2[id]:hover:after, h3[id]:hover:after, tr[id]:hover>td:first-child:after {
 }
 
 .nav-pills.nav-stacked {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .nav-pills.nav-stacked>li>a {
     border-radius: 0;
+	padding: 8px 12px;
 }
 
 .nav-pills.nav-stacked>li>a:hover {
@@ -648,6 +649,11 @@ h2[id]:hover:after, h3[id]:hover:after, tr[id]:hover>td:first-child:after {
     font-size: 44px;
     font-weight: 400;
 	line-height: 130%;
+}
+
+#blog h1 {
+	margin-top: 0;
+    margin-bottom: 0;
 }
 
 #getstarted h2, #docs h2, #blog h2, .doc-section {
@@ -762,6 +768,7 @@ pre.filetree span {
 	font-size: 14px;
 	font-weight: bold;
 	color: #aaaaaa;
+	margin-bottom: 30px;
 }
 
 .blog-post-title {
@@ -778,7 +785,6 @@ pre.filetree span {
 }
 
 .blog-post-section {
-	margin-top: 60px;
 	font-weight: 400;
 	font-size: 28px;
 }
@@ -883,15 +889,16 @@ pre.filetree span {
 	border: 1px #ccc solid;
 	min-height: 295px;
 	background-color: #f8f8f8;
-	margin-left: -7px;
-	margin-right: -7px;
+	margin-left: -10px;
+	margin-right: -10px;
+	padding-bottom: 10px;
 }
 
 #pricing .plan.plan-featured {
 	margin-top: -10px;
 	margin-left: -12px;
 	margin-right: -12px;
-	padding-bottom: 10px;
+	padding-bottom: 25px;
 }
 
 #pricing .plan.plan-featured .plan-name {
@@ -929,11 +936,24 @@ pre.filetree span {
 #pricing .plan-feature .num {
 	font-size: 200%;
 	color: #888;
+	margin-right: 5px;
+}
+
+#pricing .plan-feature .num .fa-check {
+	font-size: 62%;
+}
+
+#pricing .plan-feature-left {
+	text-align: left;
+	margin-top: 0;
+	padding-top: 0;
+	padding-left: 10px;
+	padding-bottom: 0;
 }
 
 #pricing .plan-feature .name {
 	font-weight: bold;
-	font-size: 175%;
+	font-size: 150%;
 	color: #888;
 }
 

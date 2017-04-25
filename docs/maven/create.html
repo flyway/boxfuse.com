@@ -94,6 +94,19 @@ Successfully created axelfontaine/hello</pre>
             </ul>
         </td>
     </tr>
+    <tr id="tls.type">
+        <td>tls.type</td>
+        <td>boxfuse.tls.type</td>
+        <td>none</td>
+        <td><p><i><code>load-balanced</code> apps only</i></p>
+            <p>The type of automatic TLS (SSL) certificate management your app needs.</p>
+            <p>Possible values:</p>
+            <ul>
+                <li><code>none</code> (No automatic TLS (SSL) certificate management)</li>
+                <li><code>acm</code> (Automatic TLS (SSL) certificates with AWS Certificate Manager)</li>
+            </ul>
+        </td>
+    </tr>
 </table>
 
 <h3>Sample Configuration</h3>
@@ -105,6 +118,7 @@ Successfully created axelfontaine/hello</pre>
     &lt;app.type&gt;load-balanced&lt;/app.type&gt;
     &lt;db.type&gt;postgresql&lt;/db.type&gt;
     &lt;logs.type&gt;cloudwatch-logs&lt;/logs.type&gt;
+    &lt;tls.type&gt;acm&lt;/tls.type&gt;
 &lt;/configuration&gt;</pre>
 
 <p class="next-steps">
