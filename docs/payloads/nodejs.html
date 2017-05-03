@@ -202,7 +202,14 @@ server.listen(443);</pre>
     <i class="fa fa-file"></i> my-shared-lib.so
     <i class="fa fa-file"></i> other-shared-lib.so</span></pre>
 
-    <h2 id="sysctl">Linux Kernel Tuning (experts only)</h2>
+    <h2 id="kernel">Linux Kernel Tuning (experts only)</h2>
+
+    <h3 id="kernelargs">Kernel arguments</h3>
+
+    <p>To tune the arguments passed Linux kernel from the bootloader, simply pass them using the
+        <a href="/docs/commandline/fuse#linux.args"><code>-linux.args</code></a> setting when fusing your image.</p>
+
+    <h3 id="sysctl">sysctl.conf</h3>
 
     <p>If you need to tune the Linux kernel running in your instance, simply place a <code>sysctl.conf</code> file at the root inside your tgz file.
         This effectively means it should be in the root directory of your application:</p>

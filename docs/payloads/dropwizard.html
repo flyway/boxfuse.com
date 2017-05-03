@@ -331,7 +331,14 @@ trustStorePassword: my0th3rPwd</pre>
       <i class="fa fa-folder-open"></i> resources
         <span><i class="fa fa-file"></i> newrelic.yml</span></pre>
 
-    <h2 id="sysctl">Linux Kernel Tuning (experts only)</h2>
+    <h2 id="kernel">Linux Kernel Tuning (experts only)</h2>
+
+    <h3 id="kernelargs">Kernel arguments</h3>
+
+    <p>To tune the arguments passed Linux kernel from the bootloader, simply pass them using the
+        <a href="/docs/commandline/fuse#linux.args"><code>-linux.args</code></a> setting when fusing your image.</p>
+
+    <h3 id="sysctl">sysctl.conf</h3>
 
     <p>If you need to tune the Linux kernel running in your instance, simply place a <code>sysctl.conf</code> file at the root inside your jar file.
         In a Maven project this means you have to put it under <code>src/main/resources</code>:</p>

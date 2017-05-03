@@ -46,7 +46,14 @@ subtitle: 'Linux x64'
 
 <pre class="console"><span>&gt;</span> boxfuse fuse <strong>-envvars.TZ=</strong>America/Los_Angeles</pre>
 
-<h2 id="sysctl">Linux Kernel Tuning (experts only)</h2>
+<h2 id="kernel">Linux Kernel Tuning (experts only)</h2>
+
+<h3 id="kernelargs">Kernel arguments</h3>
+
+<p>To tune the arguments passed Linux kernel from the bootloader, simply pass them using the
+    <a href="/docs/commandline/fuse#linux.args"><code>-linux.args</code></a> setting when fusing your image.</p>
+
+<h3 id="sysctl">sysctl.conf</h3>
 
 <p>If you need to tune the Linux kernel running in your instance, simply place a <code>sysctl.conf</code> file at the root inside your tar.gz file.</p>
 

@@ -162,7 +162,7 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td><em>autodetected</em></td>
         <td>The name of the <a href="#ports">port</a> to check whether the payload started correctly (must be an https or http port, not tcp or udp). Example: <code>admin-https</code></td>
     </tr>
-    <tr>
+    <tr id="healthcheckPath">
         <td>healthcheckPath</td>
         <td>boxfuse.healthcheck.path</td>
         <td>/</td>
@@ -194,23 +194,29 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>false</td>
         <td><p><i>JVM apps only</i></p>Enable the JMX remote <a href="/docs/profiling">management and profiling</a> interface for the JVM</td>
     </tr>
-    <tr>
+    <tr id="jvmMainClass">
         <td>jvmMainClass</td>
         <td>boxfuse.jvm.main.class</td>
         <td><em>autodetected</em></td>
         <td><p><i>JVM apps only</i></p>Main class to invoke on JVM startup</td>
     </tr>
-    <tr>
+    <tr id="jvmMainArgs">
         <td>jvmMainArgs</td>
         <td>boxfuse.jvm.main.args</td>
         <td></td>
         <td><p><i>JVM apps only</i></p>Arguments to pass to the main class</td>
     </tr>
-    <tr>
+    <tr id="image">
         <td>image</td>
         <td>boxfuse.image</td>
         <td></td>
         <td>The Image to use</td>
+    </tr>
+    <tr id="linuxArgs">
+        <td>linuxArgs</td>
+        <td>boxfuse.linux.args</td>
+        <td>quiet</td>
+        <td><p><i>When fusing new images only</i></p><p><i>Experts only</i></p>The arguments to pass from the bootloader to the Linux kernel</td>
     </tr>
     <tr id="live">
         <td>live</td>
@@ -528,6 +534,7 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
     jvmMainClass='com.mycorp.MyApp'
     jvmMainArgs='-abc -def'
     image='hello:1.0'
+    linuxArgs='quiet'
     live=true
     logsAuto=true
     logsBoot=true

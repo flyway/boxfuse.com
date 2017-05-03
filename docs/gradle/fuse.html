@@ -41,21 +41,21 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
         <th>Description</th>
     </tr>
     </thead>
-    <tr>
+    <tr id="user">
         <td>user</td>
         <td>boxfuse.user</td>
         <td></td>
         <td><strong>Required</strong> - Your Boxfuse Client user. Also configurable via the <code>BOXFUSE_USER</code>
             environment variable</td>
     </tr>
-    <tr>
+    <tr id="secret">
         <td>secret</td>
         <td>boxfuse.secret</td>
         <td></td>
         <td><strong>Required</strong> - Your Boxfuse Client secret. Also configurable via the <code>BOXFUSE_SECRET</code>
             environment variable</td>
     </tr>
-    <tr>
+    <tr id="payload">
         <td>payload</td>
         <td>boxfuse.payload</td>
         <td><em>The project artifact</em></td>
@@ -79,7 +79,7 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
         <td><em>first executable file in image</em></td>
         <td><p><i>Generic Linux x64 apps only</i></p>The command to start the app including relative path and all necessary arguments</td>
     </tr>
-    <tr>
+    <tr id="components">
         <td>components</td>
         <td>boxfuse.components.<em>NAME</em></td>
         <td><em>latest version</em></td>
@@ -87,13 +87,13 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
             Example: -components.tomcat=8.0.9
         </td>
     </tr>
-    <tr>
+    <tr id="debug">
         <td>debug</td>
         <td>boxfuse.debug</td>
         <td>false</td>
         <td>Start the Payload in <a href="/docs/debugging">debug mode</a> when an Instance launches</td>
     </tr>
-    <tr>
+    <tr id="debugWait">
         <td>debugWait</td>
         <td>boxfuse.debug.wait</td>
         <td>false</td>
@@ -107,7 +107,7 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
             Example: boxfuse.envvars.JDBC_URL=jdbc:mydburl
         </td>
     </tr>
-    <tr>
+    <tr id="healthcheck">
         <td>healthcheck</td>
         <td>boxfuse.healthcheck</td>
         <td>true</td>
@@ -119,7 +119,7 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
         <td><em>autodetected</em></td>
         <td>The name of the <a href="#ports">port</a> to check whether the payload started correctly (must be an https or http port, not tcp or udp). Example: <code>admin-https</code></td>
     </tr>
-    <tr>
+    <tr id="healthcheckPath">
         <td>healthcheckPath</td>
         <td>boxfuse.healthcheck.path</td>
         <td>/</td>
@@ -131,7 +131,7 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
         <td>300</td>
         <td>The number of seconds to wait for the Payload to come up</td>
     </tr>
-    <tr>
+    <tr id="jvmArgs">
         <td>jvmArgs</td>
         <td>boxfuse.jvm.args</td>
         <td></td>
@@ -143,17 +143,23 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
         <td>false</td>
         <td><p><i>JVM apps only</i></p>Enable the JMX remote <a href="/docs/profiling">management and profiling</a> interface for the JVM</td>
     </tr>
-    <tr>
+    <tr id="jvmMainClass">
         <td>jvmMainClass</td>
         <td>boxfuse.jvm.main.class</td>
         <td><em>autodetected</em></td>
         <td><p><i>JVM apps only</i></p>Main class to invoke on JVM startup</td>
     </tr>
-    <tr>
+    <tr id="jvmMainArgs">
         <td>jvmMainArgs</td>
         <td>boxfuse.jvm.main.args</td>
         <td></td>
         <td><p><i>JVM apps only</i></p>Arguments to pass to the main class</td>
+    </tr>
+    <tr id="linuxArgs">
+        <td>linuxArgs</td>
+        <td>boxfuse.linux.args</td>
+        <td>quiet</td>
+        <td><p><i>Experts only</i></p>The arguments to pass from the bootloader to the Linux kernel</td>
     </tr>
     <tr id="live">
         <td>live</td>
@@ -228,6 +234,7 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
     jvmJmx=true
     jvmMainClass='com.mycorp.MyApp'
     jvmMainArgs='-abc -def'
+    linuxArgs='quiet'
     live=true
     newrelicLicensekey='0123456789abcdef0123456789abcdef012345'
     ports=[
