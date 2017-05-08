@@ -76,11 +76,10 @@ subtitle: 'Play'
     <h3 id="allowedhosts">Allowed hosts filter</h3>
 
     <p>If your application uses the allowed hosts filter you must ensure <code>play.filters.hosts.allowed</code> in
-        <code>application.conf</code> allows connections from both <code>127.0.0.1</code>
-        as well as <code>boxfuse.io</code> and any custom domains you may have. For example:</p>
+        <code>application.conf</code> allows connections from anywhere as this filter otherwise causes ELB healthchecks to fail. For example:</p>
 
     <pre class="prettyprint">play.filters.hosts {
-  allowed = [".boxfuse.io", "127.0.0.1", "localhost"]
+  allowed = ["."]
 }</pre>
 
     <p>More info in the <a href="https://www.playframework.com/documentation/2.5.x/AllowedHostsFilter">official Play documentation</a>.</p>
