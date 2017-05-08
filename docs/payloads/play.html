@@ -65,7 +65,27 @@ subtitle: 'Play'
         <p>When both <code>play.server.http.port</code> and <code>play.server.https.port</code> are set, the https port takes precedence for the healthcheck.
         You can override this by explicitly passing the Boxfuse parameter <code>-healthcheck.port=http</code> when fusing the image.</p>
 
-    <h2 id="alternative-config">Alternative Play config files</h2>
+    <h3 id="secret">Application secret</h3>
+    <p>As Boxfuse runs your application in production mode you must set your application secret either in <code>application.conf</code>
+        or pass it from the command-line. For example:</p>
+
+    <pre class="prettyprint">play.crypto.secret="QCY?tAnfk?aZ?iwrNwnxIlR6CTf:G3gf:90Latabg@5241AB`R5W:1uDFN];Ik@n"</pre>
+
+    <p>More info in the <a href="https://playframework.com/documentation/2.5.x/ApplicationSecret">official Play documentation</a>.</p>
+
+    <h3 id="allowedhosts">Allowed hosts filter</h3>
+
+    <p>If your application uses the allowed hosts filter you must ensure <code>play.filters.hosts.allowed</code> in
+        <code>application.conf</code> allows connections from both <code>127.0.0.1</code>
+        as well as <code>boxfuse.io</code> and any custom domains you may have. For example:</p>
+
+    <pre class="prettyprint">play.filters.hosts {
+  allowed = [".boxfuse.io", "127.0.0.1", "localhost"]
+}</pre>
+
+    <p>More info in the <a href="https://www.playframework.com/documentation/2.5.x/AllowedHostsFilter">official Play documentation</a>.</p>
+
+    <h3 id="alternative-config">Alternative Play config files</h3>
 
     <p>By default, Play loads the <code>application.conf</code> file in the <code>conf</code> directory of your app.</p>
         <p>You can however tell play to use alternative config files by passing in a JVM system property. So for:
