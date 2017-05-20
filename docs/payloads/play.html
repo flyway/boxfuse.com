@@ -377,6 +377,9 @@ class ErrorHandler @Inject() (
   <i class="fa fa-folder-open"></i> conf
     <span><i class="fa fa-file-text"></i> sysctl.conf</span></pre>
 
+    <p>You can then for example tune the maximum number of file descriptors by simply including the following in <code>sysctl.conf</code>:</p>
+    <pre class="prettyprint">fs.file-max = 131072</pre>
+
     <p>Boxfuse will then <strong>automatically configure the Linux kernel to use these settings</strong>.</p>
 
     <p class="next-steps">
