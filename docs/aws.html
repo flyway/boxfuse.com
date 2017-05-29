@@ -198,6 +198,8 @@ subtitle: 'AWS'
     <p>Note that by default for apps using CloudWatch Logs, Boxfuse will configure your instances to use an IAM Instance Profile
         that allows your application to invoke <code>logs:PutLogEvents</code>. This is required in order to be able to send log events to CloudWatch Logs.</p>
 
+    <h3 id="instance-profiles-custom">Custom Instance Profiles</h3>
+
     <p>If you configure your app to use a custom Instance Profile instead it will replace any default instance profile
         provided by Boxfuse. This means that if your app uses CloudWatch Logs,
         you have to ensure that the IAM policy attached to your custom instance profile does include the following statement:</p>
