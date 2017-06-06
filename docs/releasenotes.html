@@ -4,6 +4,16 @@ menu: releasenotes
 subtitle: 'Release Notes for the Boxfuse Client'
 ---
 <div id="faq">
+    <h2 id="1.27.0.1352">Version 1.27.0.1352 (2017-06-06)</h2>
+    <ul>
+        <li>Added support for custom AWS tags to be added to AWS resources in addition to the default Boxfuse ones</li>
+        <li>Fail fast on invalid config parameters and misspellings</li>
+        <li>Fixed manual database type override</li>
+        <li>Fixed minimal VirtualBox version error message</li>
+        <li>The default number of CPUs for a VirtualBox instance is now 2</li>
+        <li>The default for virtualbox.natnetwork is now false</li>
+    </ul>
+
     <h2 id="1.26.7.1312">Version 1.26.7.1312 (2017-05-20)</h2>
     <ul>
         <li>Automatically adjust Linux file-max user limits to the current kernel limits</li>
@@ -11,13 +21,17 @@ subtitle: 'Release Notes for the Boxfuse Client'
 
     <h2 id="1.26.6.1311">Version 1.26.6.1311 (2017-05-19)</h2>
     <ul>
-        <li>Fixed an issue with the MySQL JDBC driver not being able to access the root certificates from the truststore</li>
+        <li>Fixed an issue with the MySQL JDBC driver not being able to access the root certificates from the
+            truststore
+        </li>
     </ul>
 
     <h2 id="1.26.5.1309">Version 1.26.5.1309 (2017-05-17)</h2>
     <ul>
         <li>Fixed issue when parsing Play configuration with unresolved placeholders</li>
-        <li>Tomcat, TomEE, Node.js and Spring Loaded are now fetched directly from archive.apache.org, nodejs.org and repo.spring.io instead of the Boxfuse Inventory</li>
+        <li>Tomcat, TomEE, Node.js and Spring Loaded are now fetched directly from archive.apache.org, nodejs.org and
+            repo.spring.io instead of the Boxfuse Inventory
+        </li>
     </ul>
 
     <h2 id="1.26.4.1303">Version 1.26.4.1303 (2017-05-08)</h2>
@@ -28,7 +42,9 @@ subtitle: 'Release Notes for the Boxfuse Client'
     <h2 id="1.26.3.1302">Version 1.26.3.1302 (2017-05-08)</h2>
     <ul>
         <li>Fixed TLS (acm) support for Play</li>
-        <li>New Relic Java and Linux agents are now fetched directly from download.newrelic.com instead of the Boxfuse Inventory</li>
+        <li>New Relic Java and Linux agents are now fetched directly from download.newrelic.com instead of the Boxfuse
+            Inventory
+        </li>
     </ul>
 
     <h2 id="1.26.2.1299">Version 1.26.2.1299 (2017-05-03)</h2>
