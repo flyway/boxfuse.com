@@ -181,6 +181,15 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
         <td></td>
         <td>Installs and configures the <a href="/docs/newrelic">New Relic</a> agents to monitor your instance.</td>
     </tr>
+    <tr id="payload">
+        <td>payload</td>
+        <td>boxfuse.payload</td>
+        <td><em>The current build artifact</em></td>
+        <td>The payload to use when fusing an image. This is useful when
+            running the Boxfuse Maven plugin from the command-line or when multiple artifacts are produced and you want
+            to use an artifact which is not the main one (an artifact using a classifier for example).
+        </td>
+    </tr>
     <tr id="ports">
         <td>ports</td>
         <td>boxfuse.ports.<em>NAME</em></td>
@@ -245,6 +254,7 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
     &lt;linux.args&gt;quiet&lt;/linux.args&gt;
     &lt;live&gt;true&lt;/live&gt;
     &lt;newrelic.licensekey&gt;0123456789abcdef0123456789abcdef012345&lt;/newrelic.licensekey&gt;
+    &lt;payload&gt;my-app-1.2.jar&lt;/payload&gt;
     &lt;ports&gt;
         &lt;https&gt;443&lt;/https&gt;
         &lt;http&gt;80&lt;/http&gt;
