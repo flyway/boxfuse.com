@@ -100,6 +100,12 @@ Successfully configured hello in test</pre>
         <td>auto</td>
         <td><p><i>AWS only</i></p>The AWS subnets to deploy to in the specified environment. AWS supports maximum one subnet per availability zone. <code>auto</code> to let AWS automatically select the subnet(s).</td>
     </tr>
+    <tr id="tags">
+        <td>tags</td>
+        <td>boxfuse.tags.<em>key</em></td>
+        <td></td>
+        <td><p><i>AWS only</i></p>The custom <a href="/docs/aws#tags">tags</a> to apply to AWS resources in addition to the default Boxfuse ones.</td>
+    </tr>
 </table>
 
 <h3>Sample Configuration</h3>
@@ -108,16 +114,20 @@ Successfully configured hello in test</pre>
     &lt;user&gt;1234567890abcdef1234567890abcdef12345678&lt;/user&gt;
     &lt;secret&gt;ABCDEFGHIJKL1234567abcdefghijklmnopqrstu&lt;/secret&gt;
     &lt;app&gt;hello&lt;/app&gt;
-    &lt;env&gt;prod&lt;/env&gt;
     &lt;domain&gt;myapp.mydomain.com&lt;/domain&gt;
-    &lt;securitygroup&gt;sg-12345678&lt;/securitygroup&gt;
+    &lt;elasticip&gt;1.2.3.4&lt;/elasticip&gt;
+    &lt;elb&gt;my-elb&lt;/elb&gt;
+    &lt;env&gt;prod&lt;/env&gt;
     &lt;instanceprofile&gt;none&lt;/instanceprofile&gt;
+    &lt;securitygroup&gt;sg-12345678&lt;/securitygroup&gt;
     &lt;subnets&gt;
         &lt;subnet&gt;subnet-abcd1234&lt;/subnet&gt;
         &lt;subnet&gt;subnet-efgh5678&lt;/subnet&gt;
     &lt;/subnets&gt;
-    &lt;elasticip&gt;1.2.3.4&lt;/elasticip&gt;
-    &lt;elb&gt;my-elb&lt;/elb&gt;
+    &lt;tags&gt;
+        &lt;my-tag&gt;My Value&lt;/my-tag&gt;
+        &lt;my-other-tag&gt;myothervalue&lt;/my-other-tag&gt;
+    &lt;/tags&gt;
 &lt;/configuration&gt;</pre>
 
 <p class="next-steps">

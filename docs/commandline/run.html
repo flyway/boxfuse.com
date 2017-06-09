@@ -488,6 +488,12 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td><p><i>AWS only</i></p>
             Comma-separated list of AWS subnets to deploy to in the specified environment. AWS supports maximum one subnet per availability zone. <code>auto</code> to let AWS automatically select the subnet(s).</td>
     </tr>
+    <tr id="tags">
+        <td>-tags.<em>key</em>=<em>value</em></td>
+        <td>tags.<em>key</em></td>
+        <td></td>
+        <td><p><i>AWS only</i></p>The custom <a href="/docs/aws#tags">tags</a> to apply to AWS resources in addition to the default Boxfuse ones.</td>
+    </tr>
     <tr id="tmp">
         <td>-tmp=...</td>
         <td>tmp</td>

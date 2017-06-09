@@ -92,6 +92,12 @@ Successfully configured hello in test</pre>
         <td>auto</td>
         <td><p><i>AWS only</i></p>The AWS subnets to deploy to in the specified environment. AWS supports maximum one subnet per availability zone. <code>auto</code> to let AWS automatically select the subnet(s).</td>
     </tr>
+    <tr id="tags">
+        <td>tags</td>
+        <td>boxfuse.tags.<em>key</em></td>
+        <td></td>
+        <td><p><i>AWS only</i></p>The custom <a href="/docs/aws#tags">tags</a> to apply to AWS resources in addition to the default Boxfuse ones.</td>
+    </tr>
 </table>
 
 <h3>Sample Configuration</h3>
@@ -100,13 +106,17 @@ Successfully configured hello in test</pre>
     user='1234567890abcdef1234567890abcdef12345678'
     secret='ABCDEFGHIJKL1234567abcdefghijklmnopqrstu'
     app='hello'
-    env='prod'
     domain='myapp.mydomain.com'
-    securitygroup='sg-12345678'
-    instanceprofile='none'
-    subnets=['subnet-abcd1234','subnet-efgh5678']
     elasticip='1.2.3.4'
     elb='my-elb'
+    env='prod'
+    instanceprofile='none'
+    securitygroup='sg-12345678'
+    subnets=['subnet-abcd1234','subnet-efgh5678']
+    tags=[
+        'my-tag':'My Value',
+        'my-other-tag':'myothervalue'
+    ]
 }</pre>
 
 <p class="next-steps">

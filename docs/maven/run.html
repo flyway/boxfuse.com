@@ -509,7 +509,7 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
     <tr id="payload">
         <td>payload</td>
         <td>boxfuse.payload</td>
-        <td><em>current build artifact</em></td>
+        <td><em>build artifact</em></td>
         <td><p><i>When fusing new images only</i></p>The payload to use when fusing an image. This is useful when
             running the Boxfuse Maven plugin from the command-line or when multiple artifacts are produced and you want
             to use an artifact which is not the main one (an artifact using a classifier for example).
@@ -595,6 +595,12 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
             zone. <code>auto</code> to let AWS automatically select the subnet(s).
         </td>
     </tr>
+    <tr id="tags">
+        <td>tags</td>
+        <td>boxfuse.tags.<em>key</em></td>
+        <td></td>
+        <td><p><i>AWS only</i></p>The custom <a href="/docs/aws#tags">tags</a> to apply to AWS resources in addition to the default Boxfuse ones.</td>
+    </tr>
     <tr id="tmp">
         <td>tmp</td>
         <td>boxfuse.tmp</td>
@@ -658,6 +664,10 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         &lt;subnet&gt;subnet-abcd1234&lt;/subnet&gt;
         &lt;subnet&gt;subnet-efgh5678&lt;/subnet&gt;
     &lt;/subnets&gt;
+    &lt;tags&gt;
+        &lt;my-tag&gt;My Value&lt;/my-tag&gt;
+        &lt;my-other-tag&gt;myothervalue&lt;/my-other-tag&gt;
+    &lt;/tags&gt;
     &lt;tmp&gt;16&lt;/tmp&gt;
 &lt;/configuration&gt;</pre>
 
