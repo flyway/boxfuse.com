@@ -104,7 +104,7 @@ AWS Tags are a useful way to associate important metadata with AWS resources. Wh
 
 AWS Tag Name | Description | Example
 ------------ | ----------- | -------
-`boxfuse:env` | The Boxfuse [environment](/docs/environments) | prod{: #env}
+`boxfuse:env` | The Boxfuse [environment](/docs/environments) | prod
 `boxfuse:app` | The Boxfuse application | myuser/myapp
 `boxfuse:image` | The Boxfuse image | myuser/myapp:1.2.3
 `Name` | (For EC2 instances only) The Boxfuse image and environment | boxfuse myuser/myapp:1.2.3@prod
