@@ -424,6 +424,19 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td></td>
         <td><p><i>When fusing new images only</i></p>Installs and configures the <a href="/docs/newrelic">New Relic</a> agents to monitor your instance.</td>
     </tr>
+    <tr id="platform">
+        <td>platform</td>
+        <td>boxfuse.platform</td>
+        <td>auto</td>
+        <td><p><i><code>dev</code> <a href="/docs/environments">environment</a> only</i></p><p>The hypervisor platform to use for the local dev environment.</p>
+            <p>Choices:</p>
+            <table class="table table-striped table-condensed">
+                <tr><td><code>auto</code></td><td>automatically select the best platform for your machine</td></tr>
+                <tr><td><code>virtualbox</code></td><td>always use <a href="/docs/virtualbox">VirtualBox</a></td></tr>
+                <tr><td><code>hyperv</code></td><td>always use <a href="/docs/hyperv">Hyper-V</a> (Windows 10 Pro only)</td></tr>
+            </table>
+        </td>
+    </tr>
     <tr id="ports">
         <td>ports</td>
         <td>boxfuse.ports.<em>NAME</em></td>
@@ -510,6 +523,18 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>1</td>
         <td>The amount of temp space to allocate to /tmp in GB</td>
     </tr>
+    <tr id="windowsUser">
+        <td>windowsUser</td>
+        <td>boxfuse.windows.user</td>
+        <td><i>current user</i></td>
+        <td><p><i><a href="/docs/hyperv#live-images">Hyper-V live images</a> only</i></p>The Windows user of your machine.</td>
+    </tr>
+    <tr id="windowsPassword">
+        <td>windowsPassword</td>
+        <td>boxfuse.windows.password</td>
+        <td></td>
+        <td><p><i><a href="/docs/hyperv#live-images">Hyper-V live images</a> only</i></p>The Windows password of your machine.</td>
+    </tr>
 </table>
 
 <h3>Sample Configuration</h3>
@@ -552,6 +577,7 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
     logsLayout='timestamp app? image? instance? event? 40:logger? account? session? request? message?'
     logsTail=true
     newrelicLicensekey='0123456789abcdef0123456789abcdef012345'
+    platform='virtualbox'
     ports=[
         'https':443,
         'http':80
@@ -568,6 +594,8 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         'my-other-tag':'myothervalue'
     ]
     tmp=16
+    windowsUser='myuser'
+    windowsPassword='mypassword'
 }</pre>
 
 <h3 id="dynamic-properties">Dynamically defined properties</h3>

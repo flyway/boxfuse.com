@@ -515,6 +515,19 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
             to use an artifact which is not the main one (an artifact using a classifier for example).
         </td>
     </tr>
+    <tr id="platform">
+        <td>platform</td>
+        <td>boxfuse.platform</td>
+        <td>auto</td>
+        <td><p><i><code>dev</code> <a href="/docs/environments">environment</a> only</i></p><p>The hypervisor platform to use for the local dev environment.</p>
+            <p>Choices:</p>
+            <table class="table table-striped table-condensed">
+                <tr><td><code>auto</code></td><td>automatically select the best platform for your machine</td></tr>
+                <tr><td><code>virtualbox</code></td><td>always use <a href="/docs/virtualbox">VirtualBox</a></td></tr>
+                <tr><td><code>hyperv</code></td><td>always use <a href="/docs/hyperv">Hyper-V</a> (Windows 10 Pro only)</td></tr>
+            </table>
+        </td>
+    </tr>
     <tr id="ports">
         <td>ports</td>
         <td>boxfuse.ports.<em>NAME</em></td>
@@ -607,6 +620,18 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>1</td>
         <td>The amount of temp space to allocate to /tmp in GB</td>
     </tr>
+    <tr id="windows.user">
+        <td>windows.user</td>
+        <td>boxfuse.windows.user</td>
+        <td><i>current user</i></td>
+        <td><p><i><a href="/docs/hyperv#live-images">Hyper-V live images</a> only</i></p>The Windows user of your machine.</td>
+    </tr>
+    <tr id="windows.password">
+        <td>windows.password</td>
+        <td>boxfuse.windows.password</td>
+        <td></td>
+        <td><p><i><a href="/docs/hyperv#live-images">Hyper-V live images</a> only</i></p>The Windows password of your machine.</td>
+    </tr>
 </table>
 
 <h3>Sample Configuration</h3>
@@ -650,6 +675,7 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
     &lt;logs.tail&gt;true&lt;/logs.tail&gt;
     &lt;newrelic.licensekey&gt;0123456789abcdef0123456789abcdef012345&lt;/newrelic.licensekey&gt;
     &lt;payload&gt;my-app-1.2.jar&lt;/payload&gt;
+    &lt;platform&gt;virtualbox&lt;/platform&gt;
     &lt;ports&gt;
         &lt;https&gt;443&lt;/https&gt;
         &lt;http&gt;80&lt;/http&gt;
@@ -669,6 +695,8 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         &lt;my-other-tag&gt;myothervalue&lt;/my-other-tag&gt;
     &lt;/tags&gt;
     &lt;tmp&gt;16&lt;/tmp&gt;
+    &lt;windows.user&gt;myuser&lt;/windows.user&gt;
+    &lt;windows.password&gt;mypassword&lt;/windows.password&gt;
 &lt;/configuration&gt;</pre>
 
 <h3 id="dynamic-properties">Dynamically defined properties</h3>
