@@ -148,19 +148,25 @@ your entire responsibility to ensure it is configured correctly and decommission
 
 ## Instance Profiles
 
-To make it easy to access other AWS services, Boxfuse let's you configure IAM Instance Profiles to pass temporary
-AWS credentials to EC2 instances without needing to bake them into your image.
+To access other AWS services (using the AWS SDK for example) you need IAM credentials. While it is possible to bake
+these directly into your image, AWS actually offers a better and more secure way to obtain them: IAM instance profiles.
+Once an EC2 instance has been configured to use an IAM instance profile, AWS will automatically inject temporary IAM
+credentials into the instance at launch time. They will then automatically be picked up by the AWS SDK when it connects
+to a service.
 
-Note that by default for apps using CloudWatch Logs, Boxfuse will configure your instances to use an IAM Instance Profile
+### CloudWatch Logs
+
+By default for apps using CloudWatch Logs, Boxfuse configures your instances to use an IAM Instance Profile
 that allows your application to invoke `logs:PutLogEvents`. This is required in order to be able to send log events to
 CloudWatch Logs.
 
 ### Custom Instance Profiles
 
-You can configure your app using the [`instanceprofile`](/docs/commandline/cfg#instanceprofile) property to use a custom
-Instance Profile which replaces any default instance profile provided by Boxfuse. This means that if your app
-uses CloudWatch Logs, you have to ensure that the IAM policy attached to your custom instance profile does include the
-following statement:
+You can however also very easily configure your app to use your own custom Instance Profile (which replaces any default
+instance profile provided by Boxfuse) using the [`instanceprofile`](/docs/commandline/cfg#instanceprofile) property.
+ 
+Note that if your app uses CloudWatch Logs, you must explicitly ensure it is be able to send logs to CloudWatch Logs
+by including the following statement in the IAM policy attached to your custom instance profile:
 
 ```json
 {
