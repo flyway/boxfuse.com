@@ -135,7 +135,7 @@ configured and secured all necessary AWS resources. There is no manual work nece
 
 All you need to do is simply navigate to your new domain to see your Play application in action on AWS:
 
-![Play on AWS]()/assets/img/getstarted/play-aws.png){: .screenshot}
+![Play on AWS](/assets/img/getstarted/play-aws.png){: .screenshot}
 
 ## Bonus: update your application using blue/green deployments
 
