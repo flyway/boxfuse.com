@@ -5,7 +5,8 @@ subtitle: 'Get Started with Boxfuse & Play'
 ---
 ![Play](/assets/img/play.png)
 
-This tutorial will get you started with Boxfuse and Play. It should take you about **5-10 minutes** to complete.
+This tutorial will get you started with Boxfuse and Play. Together we'll create a new Play app, deploy it to AWS and
+update it with zero downtime. Altogether this should take you about **5-10 minutes** to complete.
 
 ## Prerequisites
 
