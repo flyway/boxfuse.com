@@ -104,7 +104,7 @@ You can however tell play to use alternative config files by passing in a JVM sy
     <i class="fa fa-file-text"></i> application.conf
     <span><i class="fa fa-file-text"></i> other.conf</span></pre>
 
-You could then launch your Boxfuse instance with `-jvm.args=-Dconfig.resource=other.conf` to load the
+You could then launch your Boxfuse instance with `-jvm.args=-Dconfig.file=other.conf` to load the
 alternate Play config file called `other.conf` in the conf directory of your application.
 
 **Note:** these files must be present at the time you build the dist zip using `sbt dist`.
