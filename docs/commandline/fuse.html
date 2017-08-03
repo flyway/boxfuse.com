@@ -97,6 +97,15 @@ Image fused in 00:07.351s (48147 K) -> axelfontaine/hello:1.0</pre>
         <td>300</td>
         <td>The number of seconds to wait for the Payload to come up</td>
     </tr>
+    <tr id="image">
+        <td>-image=...</td>
+        <td>image</td>
+        <td><em>autodetected</em></td>
+        <td>The image app name and version. By default this is autodetected based on the payload name.
+            For example <code>myapp-1.2.jar</code> would trigger the creation of the image <code>myapp:1.2</code>.
+            You can override this by explicitly setting this property to say <code>my-other-app:333</code>.
+        </td>
+    </tr>
     <tr id="jvm.args">
         <td>-jvm.args=...</td>
         <td>jvm.args</td>
