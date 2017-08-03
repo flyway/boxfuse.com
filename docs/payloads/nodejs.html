@@ -38,13 +38,9 @@ subtitle: 'Node.js'
     <p>By default Boxfuse attempts to <strong>autodetect the Node.js version</strong> from the <code>engines</code> section in <code>package.json</code>.
         </p><p>If no fixed version is specified, Boxfuse falls back to the <strong>latest Node.js version</strong> (Current branch).
     </p><p>If you want to switch to an
-        LTS release or simply an older version, you override this by using the <code><nobr>-components.nodejs</nobr></code> configuration setting:</p>
+        LTS release or simply a different version, you override this by using the <code><nobr>-components.nodejs</nobr></code> configuration setting:</p>
 
-    <pre class="console"><span>&gt;</span> boxfuse run my-app-1.0.tgz <strong>-components.nodejs=</strong>5.9.1</pre>
-
-    <p>To find out which Node.js versions are available from the Boxfuse Inventory you can simply issue:</p>
-
-    <pre class="console"><span>&gt;</span> boxfuse inventory nodejs</pre>
+    <pre class="console"><span>&gt;</span> boxfuse run my-app-1.0.tgz <strong>-components.nodejs=</strong>8.2.1</pre>
 
     <h2>Ports</h2>
 
