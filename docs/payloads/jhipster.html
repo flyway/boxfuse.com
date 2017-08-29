@@ -235,6 +235,8 @@ server.ssl.key-store-password=boxfuse-selfsigned</pre>
 
 <h2 id="jce">JCE unlimited strength cryptography</h2>
 
+<h3>Using Boxfuse's default JRE</h3>
+
 <p>To enable JCE unlimited cryptography (for AES-256, RSA-4096, ...), download the policy zip from the Oracle website
     for <a href="http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html">Java 8</a>.</p>
 <p>Extract both <code>local_policy.jar</code> and <code>US_export_policy.jar</code> and place them inside your
@@ -251,6 +253,11 @@ server.ssl.key-store-password=boxfuse-selfsigned</pre>
       <i class="fa fa-folder-open"></i> resources
         <span><i class="fa fa-file"></i> local_policy.jar
 <i class="fa fa-file"></i> US_export_policy.jar</span></pre>
+
+<h3>Using a custom JRE</h3>
+
+<p>If you use a <a href="#custom-jre">custom JRE</a> it is your responsibility to ensure it is configured for unlimited
+    strength cryptography if you need it.</p>
 
 <h2 id="javaagents">Java Agents</h2>
 

@@ -230,6 +230,8 @@ you have to add the following to your Play configuration:
 
 ## JCE unlimited strength cryptography
 
+### Using Boxfuse's default JRE
+
 To enable JCE unlimited cryptography (for AES-256, RSA-4096, ...), download the policy zip from the Oracle website
 for either [Java 7](http://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html)
 or [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html).
@@ -242,6 +244,11 @@ Boxfuse will then automatically configure the JRE to use these instead.
   <i class="fa fa-folder-open"></i> conf
     <span><i class="fa fa-file"></i> local_policy.jar
 <i class="fa fa-file"></i> US_export_policy.jar</span></pre>
+
+### Using a custom JRE
+
+If you use a [custom JRE](#custom-jre) it is your responsibility to ensure it is configured for unlimited
+strength cryptography if you need it.
 
 ## Java Agents
 
