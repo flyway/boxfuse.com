@@ -1,5 +1,5 @@
 safe: true
 future: true
 exclude: [.gitattributes, .gitignore, boxfuse.com.iml, README.md, CNAME]
-boxfuseVersion: 1.28.7.1392
+boxfuseVersion: 1.29.0.1396
 highlighter: rouge

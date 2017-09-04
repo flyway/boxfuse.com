@@ -16,6 +16,7 @@ subtitle: 'App Types'
         </th>
         <th>load-balanced</th>
         <th>worker</th>
+        <th>one-off</th>
     </tr>
     </thead>
     <tr>
@@ -23,23 +24,27 @@ subtitle: 'App Types'
         <td>Elastic IP</td>
         <td>Elastic Load Balancer</td>
         <td><em>custom</em></td>
+        <td><em>custom</em></td>
     </tr>
     <tr>
         <th><nobr>Max instances</nobr></th>
         <td>1</td>
         <td><em>AWS limit</em></td>
         <td><em>AWS limit</em></td>
+        <td>1</td>
     </tr>
     <tr>
         <th>Auto-Scaling</th>
         <td>no</td>
         <td>yes</td>
         <td>yes</td>
+        <td>no</td>
     </tr>
     <tr>
         <th><nobr>Application Monitoring</nobr><br><nobr style="font-weight: 400; font-style: italic">with Auto-Recovery on failure</nobr></th>
         <td>no</td>
         <td>yes</td>
+        <td>no</td>
         <td>no</td>
     </tr>
     <tr>
@@ -47,12 +52,21 @@ subtitle: 'App Types'
         <td>yes (with minimal downtime)</td>
         <td>yes</td>
         <td>yes</td>
+        <td>yes (with minimal downtime)</td>
+    </tr>
+    <tr>
+        <th>Instance action on app process exit</th>
+        <td>reboot</td>
+        <td>reboot</td>
+        <td>reboot</td>
+        <td>shutdown</td>
     </tr>
     <tr>
         <th>Usage</th>
         <td>Simple, non-critical applications using HTTP(S)</td>
         <td>Robust production workloads using HTTP(S)</td>
         <td>Robust production workloads using queuing, time-based triggers or client-side load balancing</td>
+        <td>One-off administrative and maintenance tasks</td>
     </tr>
 </table>
 
