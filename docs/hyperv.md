@@ -15,6 +15,12 @@ For development on Windows 10 Pro, Boxfuse can run your apps on **Hyper-V**.
 
 Boxfuse supports **Hyper-V** running on **Windows 10 Pro**.
 
+## VirtualBox compatibility
+
+Due to the way Hyper-V is architected, **[VirtualBox will no longer work if Hyper-V is enabled](https://www.virtualbox.org/ticket/12350)**.
+If you need VirtualBox compatibility, you must [disable Hyper-V](https://superuser.com/questions/540055/convenient-way-to-enable-disable-hyper-v-in-windows-8)
+to make VirtualBox work again.
+
 ## CPU &amp; RAM usage
 
 You can control the number of CPUs exposed to the VM using the `cpus` property and the number of MB of RAM

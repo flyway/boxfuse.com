@@ -17,6 +17,12 @@ subtitle: 'VirtualBox'
 
     <p>Boxfuse supports <strong>VirtualBox 5.0.x</strong> and <strong>5.1.x</strong> running on Windows, Mac OSX or Linux.</p>
 
+    <h2 id="hyperv">Hyper-V compatibility (Windows Users only)</h2>
+
+    <p>Due to the way Hyper-V is architected, <strong><a href="https://www.virtualbox.org/ticket/12350">VirtualBox will no longer work if Hyper-V is enabled</a></strong>. In that case,
+            you can either switch to <a href="/docs/hyperv">Boxfuse's support for Hyper-V</a> or <a href="https://superuser.com/questions/540055/convenient-way-to-enable-disable-hyper-v-in-windows-8">disable Hyper-V</a>
+        to make VirtualBox work again.</p>
+
     <h2>CPU &amp; RAM usage</h2>
 
     <p>You can control the number of CPUs exposed to the VM using the <code>cpus</code> property and the number of MB of RAM using the <code>ram</code> property.
