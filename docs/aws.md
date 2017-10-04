@@ -129,6 +129,31 @@ If this auto-provisioning doesn't work for you, you do have the option to set up
 Boxfuse to use it for a specific environment using the [`elasticip`](/docs/commandline/cfg#elasticip) property. This in
 turn means that it is then also your responsibility to dispose of it when not needed anymore.
 
+## ALBs
+
+When running a `load-balanced-https` app, Boxfuse will automatically provision an AWS Application Load Balancer (ALB)
+in that [environment](/docs/environments) to distribute incoming requests across all your instances.
+The ALB will also be tagged using the `boxfuse:app` and `boxfuse:env` tags described above as well as any additional
+custom tags you may have defined. Once the app is killed, the ALB will also be removed.
+
+Boxfuse configures each ALB it provisions to load-balance all HTTP and HTTPS ports of an image at layer 7. The same
+ports and protocols exposed by your image are also exposed by the ALB. This means that for HTTPS ports,
+the ALB terminates HTTPS connections and initiates new HTTPS connections to your instances, ensuring data in motion
+remains fully encrypted at all times.
+
+### Target Groups
+
+For an auto-scaling group to be able to attach instances to an ALB, the ALB needs a target group. Boxfuse will
+automatically provision and configure this target group for you and wire it up with both a listener for the ALB and
+the auto-scaling group for the instances. 
+
+### Custom ALBs and Target Groups
+
+If those defaults don't work for you, you do have the option to set up your own ALB and Target Groups and configure Boxfuse
+to use a specific Target Group for a specific environment using the [`targetgroup`](/docs/commandline/cfg#targetgroup)
+property. This in turn means that it is then your entire responsibility to ensure it is configured correctly and
+decommissioned when not needed anymore.
+
 ## ELBs
 
 When running a `load-balanced` app, Boxfuse will automatically provision an AWS Elastic Load Balancer (ELB)
@@ -136,8 +161,8 @@ in that [environment](/docs/environments) to distribute incoming requests across
 The ELB will also be tagged using the `boxfuse:app` and `boxfuse:env` tags described above as well as any additional
 custom tags you may have defined. Once the app is killed, the ELB will also be removed.
 
-Boxfuse configures each ELB it provisions to load-balance all open ports of an image at layer 4 (TCP, UDP).
-Unlike for layer 7 (HTTP, HTTPS) load balancing this means that HTTPS connection are only terminated on your
+Boxfuse configures each ELB it provisions to load-balance all open ports of an image at layer 4 (TCP).
+Unlike for layer 7 (HTTP, HTTPS) load balancing this means that HTTPS connections are only terminated on your
 instance and ensures the entire path between client and instance remains fully encrypted.
 
 ### Custom ELBs
@@ -145,6 +170,12 @@ instance and ensures the entire path between client and instance remains fully e
 If those defaults don't work for you, you do have the option to set up your own ELB and configure Boxfuse to use
 it for a specific environment using the [`elb`](/docs/commandline/cfg#elb) property. This in turn means that it is then
 your entire responsibility to ensure it is configured correctly and decommissioned when not needed anymore.
+
+## Auto Scaling Groups
+
+When running a `load-balanced-https`, `load-balanced` or `worker` app, Boxfuse will automatically provision an AWS
+Auto Scaling Group for each deployment. This Auto Scaling Group will then automatically ensure the configured
+[capacity](/docs/commandline/scale#capacity) will be met and automatically adjusted based on the configured triggers.
 
 ## Instance Profiles
 

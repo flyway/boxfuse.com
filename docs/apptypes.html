@@ -14,15 +14,17 @@ subtitle: 'App Types'
         <th>
             <nobr>single-instance</nobr>
         </th>
-        <th>load-balanced</th>
+        <th><nobr>load-balanced-https</nobr></th>
+        <th><nobr>load-balanced</nobr></th>
         <th>worker</th>
-        <th>one-off</th>
+        <th><nobr>one-off</nobr></th>
     </tr>
     </thead>
     <tr>
         <th>Entry point</th>
         <td>Elastic IP</td>
-        <td>Elastic Load Balancer</td>
+        <td>Application Load Balancer</td>
+        <td>Classic Elastic Load Balancer</td>
         <td><em>custom</em></td>
         <td><em>custom</em></td>
     </tr>
@@ -38,18 +40,21 @@ subtitle: 'App Types'
         <td>no</td>
         <td>yes</td>
         <td>yes</td>
+        <td>yes</td>
         <td>no</td>
     </tr>
     <tr>
-        <th><nobr>Application Monitoring</nobr><br><nobr style="font-weight: 400; font-style: italic">with Auto-Recovery on failure</nobr></th>
+        <th><nobr>Application Monitoring</nobr><br><span style="font-weight: 400; font-style: italic">with Auto-Recovery on failure</span></th>
         <td>no</td>
+        <td>yes</td>
         <td>yes</td>
         <td>no</td>
         <td>no</td>
     </tr>
     <tr>
-        <th><nobr>Hardware Monitoring</nobr><br><nobr style="font-weight: 400; font-style: italic">with Auto-Recovery on failure</nobr></th>
+        <th><nobr>Hardware Monitoring</nobr><br><span style="font-weight: 400; font-style: italic">with Auto-Recovery on failure</span></th>
         <td>yes (with minimal downtime)</td>
+        <td>yes</td>
         <td>yes</td>
         <td>yes</td>
         <td>yes (with minimal downtime)</td>
@@ -59,12 +64,14 @@ subtitle: 'App Types'
         <td>reboot</td>
         <td>reboot</td>
         <td>reboot</td>
+        <td>reboot</td>
         <td>shutdown</td>
     </tr>
     <tr>
         <th>Usage</th>
         <td>Simple, non-critical applications using HTTP(S)</td>
         <td>Robust production workloads using HTTP(S)</td>
+        <td>Robust production workloads using TCP</td>
         <td>Robust production workloads using queuing, time-based triggers or client-side load balancing</td>
         <td>One-off administrative and maintenance tasks</td>
     </tr>

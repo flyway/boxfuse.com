@@ -180,18 +180,13 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>elasticip</td>
         <td>boxfuse.elasticip</td>
         <td>auto</td>
-        <td><p><i>AWS only</i></p>The <a href="/docs/aws#elasticips">AWS Elastic IP</a> to use when deploying this application in the specified environment
-            (single-instance apps only). <code>auto</code> to let Boxfuse automatically create a new Elastic IP for you.
-        </td>
+        <td><p><i><code>single-instance</code> apps on AWS only</i></p>The <a href="/docs/aws#elasticips">AWS Elastic IP</a> to use when deploying this application in the specified environment. <code>auto</code> to let Boxfuse automatically create a new Elastic IP for you.</td>
     </tr>
     <tr id="elb">
         <td>elb</td>
         <td>boxfuse.elb</td>
         <td>auto</td>
-        <td><p><i>AWS only</i></p>
-            The name of the <a href="/docs/aws#elbs">AWS ELB</a> to use when deploying this application in the specified environment (load-balanced
-            apps only). <code>auto</code> to let Boxfuse automatically create a new ELB for you.
-        </td>
+        <td><p><i><code>load-balanced</code> apps on AWS only</i></p>The name of the <a href="/docs/aws#elbs">AWS ELB</a> to use when deploying this application in the specified environment. <code>auto</code> to let Boxfuse automatically create a new ELB for you.</td>
     </tr>
     <tr id="env">
         <td>env</td>
@@ -614,6 +609,12 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td></td>
         <td><p><i>AWS only</i></p>The custom <a href="/docs/aws#tags">tags</a> to apply to AWS resources in addition to the default Boxfuse ones.</td>
     </tr>
+    <tr id="targetgroup">
+        <td>targetgroup</td>
+        <td>boxfuse.targetgroup</td>
+        <td>auto</td>
+        <td><p><i><code>load-balanced-https</code> apps on AWS only</i></p>The name of the <a href="/docs/aws#target-groups">AWS Target Group</a> to use when deploying this application in the specified environment. <code>auto</code> to let Boxfuse automatically create a new ALB and Target Group for you.</td>
+    </tr>
     <tr id="tmp">
         <td>tmp</td>
         <td>boxfuse.tmp</td>
@@ -694,6 +695,7 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         &lt;my-tag&gt;My Value&lt;/my-tag&gt;
         &lt;my-other-tag&gt;myothervalue&lt;/my-other-tag&gt;
     &lt;/tags&gt;
+    &lt;targetgroup&gt;my-targetgroup&lt;/targetgroup&gt;
     &lt;tmp&gt;16&lt;/tmp&gt;
     &lt;windows.user&gt;myuser&lt;/windows.user&gt;
     &lt;windows.password&gt;mypassword&lt;/windows.password&gt;
