@@ -162,6 +162,16 @@ Payload started in 00:08.786s -> http://127.0.0.1:8888</pre>
         <td>300</td>
         <td>The number of seconds to wait for the Payload to come up</td>
     </tr>
+    <tr id="image">
+        <td>-image=...</td>
+        <td>image</td>
+        <td><em>autodetected</em></td>
+        <td><p>Run this specific image.</p>
+            <p>When run as part of fusing a new image, this overrides the app name and version to assign to a new image. By default this is autodetected based on the payload name.
+                For example <code>myapp-1.2.jar</code> would trigger the creation of the image <code>myapp:1.2</code>.
+                You can override this by explicitly setting this property to say <code>my-other-app:333</code>.</p>
+        </td>
+    </tr>
     <tr id="instanceprofile">
         <td><nobr>-instanceprofile=...</nobr></td>
         <td><nobr>instanceprofile</nobr></td>
