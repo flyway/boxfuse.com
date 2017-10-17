@@ -123,19 +123,20 @@ subtitle: 'Spring Boot'
 <h2 id="profiles">Spring Profiles</h2>
 
 <p>By default Boxfuse activates a Spring Profile called <code>boxfuse</code>. You can however easily specify a different
-    profile by setting the <code>SPRING_PROFILES_ACTIVE</code> environment variable to the value you need using the
-    <a href="/docs/commandline/run#envvars">envvars</a> argument.</p>
+    profile by setting the <code>SPRING_PROFILES_ACTIVE</code> environment variable or the <code>spring.profiles.active</code>
+    JVM system property to the value you need using the
+    <a href="/docs/commandline/run#envvars">envvars</a> and <a href="/docs/commandline/run#jvm.args">jvm.args</a> arguments.</p>
 
 <p>To use a different Spring Profile for each <a href="/docs/environments">Boxfuse environment</a>,
     set the Spring Boot profile to the value of the <code>BOXFUSE_ENV</code> environment variable which contains the
     name of the
-    current <a href="/docs/environments">environment</a> (dev, test, prod): <code>envvars.SPRING_PROFILES_ACTIVE=$BOXFUSE_ENV</code>
+    current <a href="/docs/environments">environment</a> (dev, test, prod): <code>-jvm.args=-Dspring.profiles.active=$BOXFUSE_ENV</code>
 </p>
 
 <div class="alert alert-info"><p><strong>Tip for Mac OSX and Linux users</strong></p>
     <p>The <code>BOXFUSE_ENV</code> environment variable is only available within the Boxfuse instance, so
         you must prevent variable expansion by using single quotes:
-        <code>'-envvars.SPRING_PROFILES_ACTIVE=$BOXFUSE_ENV'</code></p>
+        <code>'-jvm.args=-Dspring.profiles.active=$BOXFUSE_ENV'</code></p>
 </div>
 
 <p>Note that selecting a Spring Profile via an environment variables or any other means does not affect how Boxfuse
