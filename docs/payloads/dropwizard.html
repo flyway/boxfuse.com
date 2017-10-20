@@ -89,7 +89,7 @@ logging:
     - type: console
       threshold: WARN</pre>
 
-    <p>To make it easy to use a <strong>different configuration file</strong>, Boxfuse always extracts all .yml files at the root of the jar file
+    <p>To make it easy to use a <strong>different configuration file</strong>, Boxfuse always extracts all .yml and .json files at the root of the jar file
         to the same directory as the executable jar. You can then refer to the different yml config file or pass in a
         different set of arguments by setting <code>jvm.main.args</code> to <code>server myconfig.yml</code>. However,
         keep in mind that this will bypass Boxfuse's auto-configuration mechanism and you will need to ensure that
