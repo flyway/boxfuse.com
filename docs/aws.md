@@ -67,7 +67,7 @@ create.
 
 ## Instance Types
 
-Boxfuse supports all `t2`, `m5`, `m4`, `m3`, `c5`, `c4`, `c3`, `r4` and `r3` instance types in all available regions.
+Boxfuse supports all `t3`, `t2`, `m5`, `m4`, `m3`, `c5`, `c4`, `c3`, `r5`, `r4` and `r3` instance types in all available regions.
 
 ## App Types
 
