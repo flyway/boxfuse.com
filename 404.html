@@ -1,14 +1,28 @@
-<!DOCTYPE HTML>
-<html lang="en-US">
+<!DOCTYPE html>
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="1;url=/">
-    <script type="text/javascript">
-        window.location.href = "/"
+    <meta charset="utf-8">
+    <title>Error 404 :(</title>
+
+    <script>
+        window.onload = function () {
+            const sourceDomain = "boxfuse.com";
+            const destination = window.location.href;
+            if (window.location.href.includes(sourceDomain)) {
+                const redirectLocation = window.location.href.replace(
+                    sourceDomain,
+                    "cloudcaptain.sh"
+                );
+                document.getElementById("body").innerHTML = "Boxfuse is now CloudCaptain<br/><br/>Redirecting to " + redirectLocation + " ...";
+                window.location.href = redirectLocation;
+            }
+        }
     </script>
-    <title>Page Not Found</title>
 </head>
-<body>
-Page Not Found! Return to the <a href='/'>home page</a>
+
+<body id="body" style="text-align: center">
+Page not found
 </body>
+
 </html>
